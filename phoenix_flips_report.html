@@ -1,0 +1,280 @@
+<title>Phoenix Flip Scan — July 2026</title>
+<style>
+  :root{
+    --surface-1:#fcfcfb; --page:#f9f9f7;
+    --ink-1:#0b0b0b; --ink-2:#52514e; --ink-3:#898781;
+    --grid:#e1e0d9; --baseline:#c3c2b7; --ring:rgba(11,11,11,.10);
+    --blue:#2a78d6; --blue-deep:#0d366b; --blue-mid:#1c5cab;
+    --hot:#d03b3b; --warm:#eda100; --good:#006300;
+    --hot-wash:#fdecea; --warm-wash:#fff6e5; --event-wash:#eaf1fb;
+    --sun:#eda100; --desert:#eb6834;
+  }
+  @media (prefers-color-scheme: dark){ :root{
+    --surface-1:#1a1a19; --page:#0d0d0d;
+    --ink-1:#ffffff; --ink-2:#c3c2b7; --ink-3:#898781;
+    --grid:#2c2c2a; --baseline:#383835; --ring:rgba(255,255,255,.10);
+    --blue:#3987e5; --blue-deep:#9ec5f4; --blue-mid:#6da7ec;
+    --hot:#e66767; --warm:#c98500; --good:#0ca30c;
+    --hot-wash:#3a1f1e; --warm-wash:#38301a; --event-wash:#1c2a3d;
+  }}
+  :root[data-theme="dark"]{
+    --surface-1:#1a1a19; --page:#0d0d0d;
+    --ink-1:#ffffff; --ink-2:#c3c2b7; --ink-3:#898781;
+    --grid:#2c2c2a; --baseline:#383835; --ring:rgba(255,255,255,.10);
+    --blue:#3987e5; --blue-deep:#9ec5f4; --blue-mid:#6da7ec;
+    --hot:#e66767; --warm:#c98500; --good:#0ca30c;
+    --hot-wash:#3a1f1e; --warm-wash:#38301a; --event-wash:#1c2a3d;
+  }
+  :root[data-theme="light"]{
+    --surface-1:#fcfcfb; --page:#f9f9f7;
+    --ink-1:#0b0b0b; --ink-2:#52514e; --ink-3:#898781;
+    --grid:#e1e0d9; --baseline:#c3c2b7; --ring:rgba(11,11,11,.10);
+    --blue:#2a78d6; --blue-deep:#0d366b; --blue-mid:#1c5cab;
+    --hot:#d03b3b; --warm:#eda100; --good:#006300;
+    --hot-wash:#fdecea; --warm-wash:#fff6e5; --event-wash:#eaf1fb;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--page);color:var(--ink-1);
+    font:15px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}
+  .wrap{max-width:980px;margin:0 auto;padding:0 20px 64px}
+
+  /* ---- hero ---- */
+  .hero{position:relative;overflow:hidden;border-radius:0 0 20px 20px;
+    background:linear-gradient(180deg,#0d366b 0%,#1c5cab 55%,#eb6834 100%);color:#fff}
+  .hero-inner{max-width:980px;margin:0 auto;padding:44px 20px 0}
+  .hero h1{margin:0 0 6px;font-size:30px;letter-spacing:-.5px}
+  .hero p{margin:0 0 4px;max-width:640px;color:rgba(255,255,255,.85)}
+  .hero .stamp{display:inline-block;margin-top:10px;padding:4px 12px;border-radius:999px;
+    background:rgba(255,255,255,.16);font-size:12.5px;font-weight:600}
+  .hero svg{display:block;width:100%;height:auto;margin-top:8px}
+
+  /* ---- stat tiles ---- */
+  .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:-34px 0 36px}
+  .tile{background:var(--surface-1);border:1px solid var(--ring);border-radius:14px;
+    padding:16px 18px;box-shadow:0 4px 18px rgba(0,0,0,.08)}
+  .tile .k{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-3)}
+  .tile .v{font-size:28px;font-weight:700;letter-spacing:-.5px;margin:2px 0}
+  .tile .d{font-size:12.5px;color:var(--ink-2)}
+  .tile .v .up{color:var(--good);font-size:16px;vertical-align:middle}
+
+  h2{font-size:20px;margin:40px 0 4px;letter-spacing:-.3px}
+  .sub{color:var(--ink-2);font-size:13.5px;margin:0 0 16px}
+
+  /* ---- lead cards ---- */
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:12px}
+  .card{background:var(--surface-1);border:1px solid var(--ring);border-radius:14px;padding:16px 18px;
+    display:flex;flex-direction:column;gap:6px}
+  .badge{align-self:flex-start;font-size:11px;font-weight:700;letter-spacing:.08em;
+    padding:3px 10px;border-radius:999px}
+  .badge.hot{background:var(--hot-wash);color:var(--hot)}
+  .badge.warm{background:var(--warm-wash);color:var(--warm)}
+  .badge.event{background:var(--event-wash);color:var(--blue)}
+  .card h3{margin:2px 0 0;font-size:15.5px;line-height:1.3}
+  .card .loc{font-size:12.5px;color:var(--ink-3)}
+  .nums{display:flex;gap:14px;margin:4px 0 2px;font-size:13px}
+  .nums b{display:block;font-size:16px;font-weight:700}
+  .nums .profit b{color:var(--good)}
+  .why{font-size:13px;color:var(--ink-2);border-left:3px solid var(--warm);
+    padding:2px 0 2px 10px;margin:2px 0}
+  .play{font-size:13px;color:var(--ink-2)}
+  .play b{color:var(--ink-1)}
+
+  /* ---- chart ---- */
+  .chart-card{background:var(--surface-1);border:1px solid var(--ring);border-radius:14px;padding:20px 22px}
+  .chart-card h3{margin:0;font-size:15.5px}
+  .chart-card .cap{font-size:12.5px;color:var(--ink-3);margin:2px 0 14px}
+  .row{display:grid;grid-template-columns:170px 1fr 74px;align-items:center;gap:10px;
+    padding:5px 0;position:relative;border-radius:6px}
+  .row:hover{background:color-mix(in srgb,var(--blue) 8%,transparent)}
+  .row .lbl{font-size:13px;color:var(--ink-2);text-align:right;line-height:1.25}
+  .track{height:14px;position:relative}
+  .track::before{content:"";position:absolute;left:0;top:0;bottom:0;width:1px;background:var(--baseline)}
+  .bar{height:14px;border-radius:0 4px 4px 0;background:var(--blue);min-width:3px}
+  .row .val{font-size:13px;font-weight:700;font-variant-numeric:tabular-nums}
+  .row .tip{display:none;position:absolute;left:180px;top:-40px;z-index:3;white-space:nowrap;
+    background:var(--surface-1);border:1px solid var(--ring);border-radius:8px;
+    box-shadow:0 6px 18px rgba(0,0,0,.16);padding:7px 11px;font-size:12.5px;color:var(--ink-2)}
+  .row .tip b{color:var(--ink-1)}
+  .row:hover .tip{display:block}
+  .axis-note{font-size:11.5px;color:var(--ink-3);margin-top:10px}
+
+  /* ---- keywords ---- */
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{background:var(--surface-1);border:1px solid var(--ring);border-radius:999px;
+    padding:7px 14px;font-size:13px}
+  .chip b{color:var(--hot);font-weight:700}
+  .chip span{color:var(--ink-3);font-size:12px}
+
+  /* ---- source table ---- */
+  .tbl{width:100%;border-collapse:collapse;background:var(--surface-1);
+    border:1px solid var(--ring);border-radius:14px;overflow:hidden;font-size:13.5px}
+  .tbl-wrap{overflow-x:auto;border-radius:14px}
+  .tbl th{background:var(--blue-deep);color:#fff;text-align:left;padding:10px 14px;font-size:12.5px;
+    text-transform:uppercase;letter-spacing:.05em}
+  :root[data-theme="dark"] .tbl th{color:#0b0b0b}
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .tbl th{color:#0b0b0b} }
+  .tbl td{padding:10px 14px;border-top:1px solid var(--grid);vertical-align:top;color:var(--ink-2)}
+  .tbl td:first-child{color:var(--ink-1);font-weight:600;white-space:nowrap}
+
+  .foot{margin-top:44px;font-size:12px;color:var(--ink-3);border-top:1px solid var(--grid);padding-top:14px}
+  .foot a{color:var(--blue)}
+</style>
+
+<div class="hero">
+  <div class="hero-inner">
+    <h1>Phoenix Flip Scan</h1>
+    <p>Goodwill &amp; Facebook Marketplace — desperation &amp; urgency sweep of the Phoenix metro.</p>
+    <span class="stamp">Scanned July 9, 2026 · 15 leads · 4 estate events this weekend</span>
+  </div>
+  <!-- desert skyline illustration -->
+  <svg viewBox="0 0 980 150" role="img" aria-label="Phoenix desert skyline illustration">
+    <circle cx="800" cy="52" r="34" fill="#fab219" opacity=".95"/>
+    <circle cx="800" cy="52" r="46" fill="#fab219" opacity=".25"/>
+    <path d="M0 118 L120 62 L240 118 Z" fill="#0d366b" opacity=".55"/>
+    <path d="M150 118 L300 48 L460 118 Z" fill="#0d366b" opacity=".7"/>
+    <path d="M380 118 L520 70 L660 118 Z" fill="#0d366b" opacity=".5"/>
+    <path d="M600 118 L760 58 L930 118 Z" fill="#0d366b" opacity=".65"/>
+    <rect x="0" y="116" width="980" height="34" fill="#7a3b1d"/>
+    <!-- saguaros -->
+    <g fill="#1e5e3a">
+      <path d="M90 130 v-52 a7 7 0 0 1 14 0 v52 z M83 100 v-16 a6 6 0 0 1 12 0 v10 a6 6 0 0 1 -6 6 z M111 108 v-24 a6 6 0 0 1 12 0 v18 a6 6 0 0 1 -6 6 z" transform="translate(0,-6)"/>
+      <path d="M470 132 v-44 a6 6 0 0 1 12 0 v44 z M463 108 v-12 a5 5 0 0 1 10 0 v7 a5 5 0 0 1 -5 5 z" transform="translate(0,-6)"/>
+      <path d="M860 132 v-58 a8 8 0 0 1 16 0 v58 z M851 100 v-18 a6 6 0 0 1 12 0 v12 a6 6 0 0 1 -6 6 z M883 112 v-28 a6 6 0 0 1 12 0 v22 a6 6 0 0 1 -6 6 z" transform="translate(0,-6)"/>
+    </g>
+    <!-- price tags floating -->
+    <g font="700 12px system-ui" fill="#ffffff">
+      <g transform="translate(250,28) rotate(-8)"><rect x="-4" y="-14" width="52" height="22" rx="5" fill="#0ca30c"/><text x="4" y="2">$100</text></g>
+      <g transform="translate(560,22) rotate(6)"><rect x="-4" y="-14" width="70" height="22" rx="5" fill="#d03b3b"/><text x="4" y="2">MUST GO</text></g>
+      <g transform="translate(660,88) rotate(-5)"><rect x="-4" y="-14" width="64" height="22" rx="5" fill="#1c5cab"/><text x="4" y="2">$1,300</text></g>
+    </g>
+  </svg>
+</div>
+
+<div class="wrap">
+
+  <div class="tiles">
+    <div class="tile"><div class="k">Best single spread</div><div class="v">$1,300 <span class="up">▲</span></div>
+      <div class="d">West Elm Haven sectional · ask $100 vs $800–1,400 resale</div></div>
+    <div class="tile"><div class="k">Hot leads live now</div><div class="v">4</div>
+      <div class="d">+ 5 warm, 2 watch — verify before driving</div></div>
+    <div class="tile"><div class="k">Bins cost of goods</div><div class="v">$0.89<span style="font-size:15px;color:var(--ink-3)">/lb</span></div>
+      <div class="d">Hard goods at Goodwill Clearance Center, 51st Ave &amp; Van Buren</div></div>
+    <div class="tile"><div class="k">Estate events</div><div class="v">Jul 11–12</div>
+      <div class="d">Fountain Hills · Sun City · Mesa (no-reserve) · online</div></div>
+  </div>
+
+  <h2>🔥 Top live leads</h2>
+  <p class="sub">Indexed from public Facebook Marketplace listings during today's scan. Listings move fast — message first, then drive.</p>
+  <div class="cards">
+    <div class="card">
+      <span class="badge hot">HOT · PHOENIX</span>
+      <h3>West Elm Haven Sectional</h3>
+      <div class="nums"><span>Ask<b>$100</b></span><span>Resale<b>$800–1,400</b></span><span class="profit">Est. profit<b>+$700–1,300</b></span></div>
+      <div class="why">Priced ~90% under used-market comps — classic "dump it fast" signal.</div>
+      <div class="play"><b>Play:</b> grab immediately, clean &amp; stage, re-list at $900. Retail is $2,200+.</div>
+    </div>
+    <div class="card">
+      <span class="badge hot">HOT · MESA</span>
+      <h3>West Elm Quinn Dresser — like new</h3>
+      <div class="nums"><span>Ask<b>$100</b></span><span>Resale<b>$400–600</b></span><span class="profit">Est. profit<b>+$300–500</b></span></div>
+      <div class="why">Like-new at 1/6 retail — seller wants it gone this week.</div>
+      <div class="play"><b>Play:</b> re-list at $450 to Scottsdale/Arcadia buyers.</div>
+    </div>
+    <div class="card">
+      <span class="badge hot">HOT · PHX / AVONDALE</span>
+      <h3>Milwaukee power-tool bundle</h3>
+      <div class="nums"><span>Ask<b>$150</b></span><span>Part-out<b>$300–450</b></span><span class="profit">Est. profit<b>+$150–300</b></span></div>
+      <div class="why">Bundle priced under single-tool value — job-change / quick-cash seller pattern.</div>
+      <div class="play"><b>Play:</b> part out M18 tools + batteries individually. Verify serials (FB tool-scam check).</div>
+    </div>
+    <div class="card">
+      <span class="badge warm">WARM · LAVEEN</span>
+      <h3>West Elm sectional + free delivery</h3>
+      <div class="nums"><span>Ask<b>$250–299</b></span><span>Resale<b>$600–900</b></span><span class="profit">Est. profit<b>+$300–600</b></span></div>
+      <div class="why">Free delivery = seller subsidizing their own exit. Motivated.</div>
+      <div class="play"><b>Play:</b> take delivery, stage, re-list at $700+.</div>
+    </div>
+    <div class="card">
+      <span class="badge warm">WARM · MESA</span>
+      <h3>Moving-sale furniture bundle</h3>
+      <div class="nums"><span>Ask<b>$350</b></span><span>Piece-out<b>$700–1,000</b></span><span class="profit">Est. profit<b>+$350–650</b></span></div>
+      <div class="why">Explicit "moving sale" — July is peak Phoenix lease-turnover month.</div>
+      <div class="play"><b>Play:</b> negotiate the whole lot, piece out over two weekends.</div>
+    </div>
+    <div class="card">
+      <span class="badge event">ESTATE · JUL 11–12</span>
+      <h3>Weekend estate circuit</h3>
+      <div class="nums"><span>Format<b>Auction / tagged</b></span><span class="profit">Edge<b>Thin July crowds</b></span></div>
+      <div class="why">Mesa auction is <b>no-reserve</b> — forced liquidation, the purest desperation format.</div>
+      <div class="play"><b>Play:</b> Fountain Hills sterling &amp; gold watches Sat 8 AM · Sun City MacKenzie-Childs (resells $100–400/pc) · online vintage-bike lots close Sun 9 AM.</div>
+    </div>
+  </div>
+
+  <h2>📈 Goodwill playbook — typical flip multiple</h2>
+  <p class="sub">What a dollar spent at Phoenix Goodwill (retail stores, the bins, shopgoodwill.com/phoenix) typically returns by category. Midpoint of current 2026 sold comps.</p>
+  <div class="chart-card">
+    <h3>Resale multiple by category</h3>
+    <div class="cap">midpoint sold price ÷ typical Goodwill buy price · hover a row for the underlying prices</div>
+    <div class="row"><div class="lbl">Pre-2000 band tees</div><div class="track"><div class="bar" style="width:100%"></div></div><div class="val">~25×</div>
+      <div class="tip"><b>$4–8 buy → $80–300 sold</b> · single-stitch hems, classic rock acts</div></div>
+    <div class="row"><div class="lbl">Levi's 501 orange tab / Big E</div><div class="track"><div class="bar" style="width:60%"></div></div><div class="val">~15×</div>
+      <div class="tip"><b>$6–10 buy → $60–120 sold</b> · check red tab &amp; care label</div></div>
+    <div class="row"><div class="lbl">Vintage Pyrex (good patterns)</div><div class="track"><div class="bar" style="width:48%"></div></div><div class="val">~12×</div>
+      <div class="tip"><b>$3–8/pc → $80–150/set</b> · Lucky in Love pattern: $1,000–4,000</div></div>
+    <div class="row"><div class="lbl">Sterling / gold-filled jewelry</div><div class="track"><div class="bar" style="width:40%"></div></div><div class="val">~10×</div>
+      <div class="tip"><b>$3–15 buy → melt to $200+</b> · shopgoodwill PHX jewelry lots, local pickup</div></div>
+    <div class="row"><div class="lbl">Vintage audio (Pioneer, Marantz)</div><div class="track"><div class="bar" style="width:32%"></div></div><div class="val">~8×</div>
+      <div class="tip"><b>$25–50 buy → $250+ sold</b> · retiree donations feed this steadily</div></div>
+    <div class="row"><div class="lbl">CIB retro video games</div><div class="track"><div class="bar" style="width:28%"></div></div><div class="val">~7×</div>
+      <div class="tip"><b>$5–10 buy → $40+/title</b> · box + manual = 5× a loose cart</div></div>
+    <div class="row"><div class="lbl">Lululemon / Patagonia</div><div class="track"><div class="bar" style="width:28%"></div></div><div class="val">~7×</div>
+      <div class="tip"><b>$6–10 buy → $40–90 sold</b> · rip tags date Lulu styles</div></div>
+    <div class="row"><div class="lbl">MCM / branded furniture</div><div class="track"><div class="bar" style="width:24%"></div></div><div class="val">~6×</div>
+      <div class="tip"><b>$15–75 buy → $150–800 local</b> · zero shipping, re-list on FB</div></div>
+    <div class="row"><div class="lbl">Le Creuset / cast iron</div><div class="track"><div class="bar" style="width:22%"></div></div><div class="val">~5.5×</div>
+      <div class="tip"><b>$10–45 buy → $150–300 sold</b> · Griswold &amp; Wagner skillets too</div></div>
+    <div class="row"><div class="lbl">DeWalt / Milwaukee tools</div><div class="track"><div class="bar" style="width:18%"></div></div><div class="val">~4.5×</div>
+      <div class="tip"><b>$20–40 buy → $120+ sold</b> · batteries are the profit</div></div>
+    <div class="axis-note">Bars scaled to band-tee midpoint (25×). Ranges vary with condition — always check eBay <i>sold</i> listings before buying.</div>
+  </div>
+
+  <h2>🚨 Desperation search strings</h2>
+  <p class="sub">Run daily on FB Marketplace, 20-mile radius, sorted newest-first. July–August = lease turnover + ASU move-out + heat-driven exits.</p>
+  <div class="chips">
+    <div class="chip"><b>"must sell today"</b> <span>— same-day cash need</span></div>
+    <div class="chip"><b>"need gone asap"</b> <span>— move truck booked</span></div>
+    <div class="chip"><b>"moving this weekend"</b> <span>— hard deadline, bundles</span></div>
+    <div class="chip"><b>"PCS"</b> <span>— Luke AFB fixed move dates</span></div>
+    <div class="chip"><b>"storage unit"</b> <span>— fee deadline</span></div>
+    <div class="chip"><b>"first come first serve"</b> <span>— takes first cash</span></div>
+    <div class="chip"><b>"OBO" + 2 price drops</b> <span>— capitulation</span></div>
+    <div class="chip"><b>"free delivery"</b> <span>— subsidized exit</span></div>
+    <div class="chip"><b>"husband said / wife said"</b> <span>— ultimatum sale</span></div>
+    <div class="chip"><b>"cleaning out"</b> <span>— no sentimental floor</span></div>
+  </div>
+
+  <h2>🗺️ Phoenix source map</h2>
+  <p class="sub">Lowest cost-of-goods first. Bins restock heaviest Monday–Tuesday after the weekend donation backlog.</p>
+  <div class="tbl-wrap"><table class="tbl">
+    <tr><th>Source</th><th>Where</th><th>Cost basis</th><th>Edge</th></tr>
+    <tr><td>Goodwill bins (Clearance Center)</td><td>51st Ave &amp; Van Buren, Phoenix</td>
+      <td>$1.49/lb clothing · $0.89/lb hard goods · $0.29/lb glassware</td>
+      <td>Cheapest inventory in the metro; one cart per shopper; ask staff for bin-rotation times</td></tr>
+    <tr><td>East Valley bins</td><td>Arizona Ave &amp; Ray Rd, Chandler · 9 AM–9 PM</td><td>Same per-pound model</td>
+      <td>Newer location — lighter reseller competition</td></tr>
+    <tr><td>GCNA retail stores</td><td>100+ metro stores · goodwillaz.org</td><td>Tagged retail + weekly color-tag sales</td>
+      <td>Mon/Tue restock; Scottsdale &amp; Arcadia stores get the richest donations</td></tr>
+    <tr><td>shopgoodwill.com/phoenix</td><td>Online auction, local pickup by appointment</td><td>Auction — snipe endings</td>
+      <td>Local pickup kills shipping — outbid out-of-state buyers who must pay freight; 14-day pickup window</td></tr>
+    <tr><td>FB Marketplace Phoenix</td><td>facebook.com/marketplace/phoenix</td><td>Negotiable — urgency strings above</td>
+      <td>Meet at police exchange zones for tools/electronics; check seller profile age</td></tr>
+    <tr><td>Estate sales</td><td>estatesales.net / estatesales.org</td><td>Tagged · 50% off final day</td>
+      <td>Sun City = permanent downsizing pipeline; July heat thins the crowds</td></tr>
+  </table></div>
+
+  <div class="foot">
+    Compiled July 9, 2026 from indexed Facebook Marketplace listings, ShopGoodwill Phoenix (Goodwill of Central &amp; Northern Arizona),
+    Goodwill AZ clearance-center pricing, estate-sale calendars (estatesales.net / estatesales.org), and current 2026 eBay sold-comp guides.
+    Listing prices are as-indexed at scan time — always re-verify live before committing money. Companion spreadsheet: <b>phoenix_flips.xlsx</b>.
+  </div>
+</div>
