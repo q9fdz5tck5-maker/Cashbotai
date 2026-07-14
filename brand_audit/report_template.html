@@ -1,0 +1,193 @@
+<title>Public Brand Audit — Shine Ranker LLC</title>
+<style>
+  :root{
+    --surface-1:#fcfcfb; --page:#f9f9f7;
+    --ink-1:#0b0b0b; --ink-2:#52514e; --ink-3:#898781;
+    --grid:#e1e0d9; --ring:rgba(11,11,11,.10);
+    --blue:#2a78d6; --blue-deep:#0d366b; --blue-mid:#1c5cab;
+    --good:#006300; --warm:#eda100; --desert:#eb6834;
+    --wash:#eaf1fb;
+  }
+  @media (prefers-color-scheme: dark){ :root{
+    --surface-1:#1a1a19; --page:#0d0d0d;
+    --ink-1:#ffffff; --ink-2:#c3c2b7; --ink-3:#898781;
+    --grid:#2c2c2a; --ring:rgba(255,255,255,.10);
+    --blue:#3987e5; --blue-deep:#9ec5f4; --blue-mid:#6da7ec;
+    --good:#0ca30c; --warm:#c98500; --wash:#1c2a3d;
+  }}
+  :root[data-theme="dark"]{
+    --surface-1:#1a1a19; --page:#0d0d0d;
+    --ink-1:#ffffff; --ink-2:#c3c2b7; --ink-3:#898781;
+    --grid:#2c2c2a; --ring:rgba(255,255,255,.10);
+    --blue:#3987e5; --blue-deep:#9ec5f4; --blue-mid:#6da7ec;
+    --good:#0ca30c; --warm:#c98500; --wash:#1c2a3d;
+  }
+  :root[data-theme="light"]{
+    --surface-1:#fcfcfb; --page:#f9f9f7;
+    --ink-1:#0b0b0b; --ink-2:#52514e; --ink-3:#898781;
+    --grid:#e1e0d9; --ring:rgba(11,11,11,.10);
+    --blue:#2a78d6; --blue-deep:#0d366b; --blue-mid:#1c5cab;
+    --good:#006300; --warm:#eda100; --wash:#eaf1fb;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--page);color:var(--ink-1);
+    font:15px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}
+  .wrap{max-width:980px;margin:0 auto;padding:0 20px 64px}
+  a{color:var(--blue);text-decoration:none}
+  a:hover{text-decoration:underline}
+
+  .hero{position:relative;overflow:hidden;border-radius:0 0 20px 20px;
+    background:linear-gradient(180deg,#0d366b 0%,#1c5cab 60%,#eb6834 100%);color:#fff}
+  .hero-inner{max-width:980px;margin:0 auto;padding:44px 20px 40px}
+  .hero h1{margin:0 0 6px;font-size:30px;letter-spacing:-.5px}
+  .hero p{margin:0 0 4px;max-width:640px;color:rgba(255,255,255,.88)}
+  .hero .stamp{display:inline-block;margin-top:12px;padding:4px 12px;border-radius:999px;
+    background:rgba(255,255,255,.16);font-size:12.5px;font-weight:600}
+
+  .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:-28px 0 36px}
+  .tile{background:var(--surface-1);border:1px solid var(--ring);border-radius:14px;
+    padding:16px 18px;box-shadow:0 4px 18px rgba(0,0,0,.08)}
+  .tile .k{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-3)}
+  .tile .v{font-size:28px;font-weight:700;letter-spacing:-.5px;margin:2px 0}
+  .tile .d{font-size:12.5px;color:var(--ink-2)}
+
+  h2{font-size:20px;margin:40px 0 10px;letter-spacing:-.3px}
+  .lead{color:var(--ink-2);max-width:720px}
+
+  .card{background:var(--surface-1);border:1px solid var(--ring);border-radius:14px;padding:4px 0;margin:8px 0}
+  table{width:100%;border-collapse:collapse;font-size:14px}
+  th,td{text-align:left;padding:11px 16px;border-bottom:1px solid var(--grid);vertical-align:top}
+  th{font-size:11.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-3);font-weight:600}
+  tr:last-child td{border-bottom:none}
+  .num{font-variant-numeric:tabular-nums;font-weight:600}
+
+  .bar{height:7px;border-radius:99px;background:var(--grid);overflow:hidden;min-width:90px;margin-top:5px}
+  .bar>span{display:block;height:100%;background:var(--blue)}
+  .score{font-weight:700;font-variant-numeric:tabular-nums}
+
+  .chip{display:inline-block;padding:3px 10px;border-radius:999px;background:var(--wash);
+    color:var(--blue-deep);font-size:12.5px;font-weight:600;margin:0 6px 6px 0}
+  @media(prefers-color-scheme:dark){.chip{color:var(--blue-deep)}}
+
+  .gap{display:grid;grid-template-columns:1fr 1fr;gap:0;border-bottom:1px solid var(--grid)}
+  .gap>div{padding:11px 16px}
+  .gap .obs{color:var(--ink-2)}
+  .gap:last-child{border-bottom:none}
+  @media(max-width:640px){.gap{grid-template-columns:1fr;gap:0}
+    .gap .opp{padding-top:0;color:var(--good)}}
+
+  .note{font-size:12.5px;color:var(--ink-3)}
+  .foot{margin-top:44px;padding-top:18px;border-top:1px solid var(--grid);font-size:12.5px;color:var(--ink-3)}
+  .foot strong{color:var(--ink-2)}
+</style>
+
+<div class="hero">
+  <div class="hero-inner">
+    <h1 id="subject-name">Chase Reiner — Shine Ranker LLC</h1>
+    <p id="subject-tagline">SEO &amp; AI-marketing educator; founder of the Shine Ranker toolset and community.</p>
+    <p class="note" style="color:rgba(255,255,255,.7)">Public brand &amp; presence audit — published professional sources only.</p>
+    <span class="stamp" id="subject-verified">Audit run: 2026-07-14</span>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- STAT TILES -->
+  <div class="tiles">
+    <div class="tile"><div class="k">Public reach</div><div class="v num" id="stat-reach">— </div><div class="d">summed public following, as displayed</div></div>
+    <div class="tile"><div class="k">Active platforms</div><div class="v num" id="stat-platforms">—</div><div class="d">public channels found</div></div>
+    <div class="tile"><div class="k">Posting cadence</div><div class="v" id="stat-cadence">—</div><div class="d">typical publishing rhythm</div></div>
+    <div class="tile"><div class="k">Contact channels</div><div class="v num" id="stat-contact">—</div><div class="d">published business contacts</div></div>
+  </div>
+
+  <!-- POSITIONING -->
+  <h2>Positioning</h2>
+  <p class="lead" id="positioning">
+    <em>Fill from audit.</em> One paragraph: who they are, who they serve, what they're
+    known for — drawn only from their own published bios and site copy.
+  </p>
+
+  <!-- CHANNELS -->
+  <h2>Public channels</h2>
+  <div class="card">
+    <table>
+      <thead><tr><th>Platform</th><th>Handle</th><th>Followers</th><th>Cadence</th><th>Note</th></tr></thead>
+      <tbody id="channels">
+        <tr><td>Website</td><td><a href="#">shineranker.com</a></td><td class="num">—</td><td>—</td><td>Primary owned property</td></tr>
+        <tr><td>YouTube</td><td>—</td><td class="num">—</td><td>—</td><td>Fill from public channel page</td></tr>
+        <tr><td>Instagram</td><td>—</td><td class="num">—</td><td>—</td><td>—</td></tr>
+        <tr><td>X / Twitter</td><td>—</td><td class="num">—</td><td>—</td><td>—</td></tr>
+        <tr><td>TikTok</td><td>—</td><td class="num">—</td><td>—</td><td>—</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">Only channels the subject publicly operates. Follower counts are shown as the platform displays them; leave <code>—</code> where not public.</p>
+
+  <!-- CONTENT THEMES -->
+  <h2>Content themes</h2>
+  <div id="themes">
+    <span class="chip">SEO</span>
+    <span class="chip">AI marketing</span>
+    <span class="chip">Rank &amp; rent</span>
+    <span class="chip">Agency growth</span>
+    <span class="chip">Tool tutorials</span>
+  </div>
+  <p class="note">The 3–6 topics they publish about most, from their own content.</p>
+
+  <!-- SCORECARD -->
+  <h2>Presence scorecard</h2>
+  <div class="card">
+    <table>
+      <thead><tr><th>Metric</th><th style="width:130px">Score</th><th>Evidence</th></tr></thead>
+      <tbody id="scorecard">
+        <tr><td>Reach</td><td><span class="score">—/5</span><div class="bar"><span style="width:0%"></span></div></td><td>Fill: audience size across public platforms.</td></tr>
+        <tr><td>Consistency</td><td><span class="score">—/5</span><div class="bar"><span style="width:0%"></span></div></td><td>Fill: posting rhythm &amp; cross-platform coherence.</td></tr>
+        <tr><td>Professionalism</td><td><span class="score">—/5</span><div class="bar"><span style="width:0%"></span></div></td><td>Fill: branding, site quality, clarity of offer.</td></tr>
+        <tr><td>Contactability</td><td><span class="score">—/5</span><div class="bar"><span style="width:0%"></span></div></td><td>Fill: how easily a prospect can reach them.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- PUBLISHED CONTACT -->
+  <h2>Published business contact</h2>
+  <div class="card">
+    <table>
+      <thead><tr><th>Type</th><th>Value</th><th>Source</th></tr></thead>
+      <tbody id="contact">
+        <tr><td>Business email</td><td>central@shineranker.com</td><td class="note">Published contact card</td></tr>
+        <tr><td>Website</td><td><a href="#">shineranker.com</a></td><td class="note">Owned domain</td></tr>
+        <tr><td>Booking link</td><td>—</td><td class="note">Fill if published</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">Business-facing contact details the subject lists publicly. No personal, home, or non-published information.</p>
+
+  <!-- GAPS -->
+  <h2>Gaps &amp; opportunities</h2>
+  <div class="card">
+    <div class="gap"><div class="k" style="grid-column:1/-1;color:var(--ink-3);font-size:11.5px;text-transform:uppercase;letter-spacing:.06em">Observation → Opportunity</div></div>
+    <div class="gap"><div class="obs">Fill: where the public presence is thin.</div><div class="opp" style="color:var(--good)">Fill: the concrete move that closes it.</div></div>
+    <div class="gap"><div class="obs">e.g. No booking link on contact card.</div><div class="opp" style="color:var(--good)">Add a scheduling link to shorten lead-to-call.</div></div>
+  </div>
+
+  <!-- SOURCES -->
+  <h2>Sources</h2>
+  <div class="card">
+    <table>
+      <thead><tr><th>URL</th><th>What it provided</th><th>Seen</th></tr></thead>
+      <tbody id="sources">
+        <tr><td><a href="#">—</a></td><td>—</td><td class="note">2026-07-14</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="foot">
+    <strong>Scope:</strong> This report uses only information the subject has
+    intentionally published for professional purposes. It excludes government IDs,
+    financial accounts, home address, physical description, and family details by
+    design. Every filled field should carry a source URL and a seen-date.
+    <br><br>
+    Generated by the Cashbotai brand-audit template · fields map to <code>brand_audit/PROMPT.md</code>.
+  </div>
+
+</div>
