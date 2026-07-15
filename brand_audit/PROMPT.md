@@ -40,6 +40,16 @@ THEN PRODUCE
   concrete move that fixes each.
 - Sources table: every URL used, what it provided, and the date.
 
+BREVITY — HARD LIMITS
+- Return ONLY the JSON object. No preamble, no commentary, no markdown fences,
+  nothing after the closing brace.
+- positioning: max 60 words.
+- Each channel note: max 12 words. Each theme note: max 8 words.
+- Each scorecard evidence: max 15 words.
+- Each gap observation and opportunity: max 20 words each. Max 4 gaps.
+- Sources: the 8 most load-bearing URLs only.
+- Stats values: 4 words max each (e.g. "212K total", "5 active").
+
 OUTPUT FORMAT
 Return a JSON object with these keys so it maps to the report template:
 subject{name, entity, tagline, verified},
@@ -66,6 +76,10 @@ sources[]{url, what, seen_date}
    python brand_audit/build_audit_html.py audit.json -o brand_audit_report.html
    ```
 
-5. **Re-run anytime.** Same prompt, new SUBJECT line.
+5. **View it on your phone.** Paste the JSON into a Claude Code session and ask it to
+   build the report and publish it as an **Artifact** — that gives you a private
+   claude.ai link that renders the finished page in the Claude app, instead of raw
+   HTML/diff output.
+6. **Re-run anytime.** Same prompt, new SUBJECT line.
 
 See `sample_audit.json` for a filled-in (fictional) example of the expected JSON.
