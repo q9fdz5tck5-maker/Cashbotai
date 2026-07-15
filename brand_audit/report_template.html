@@ -1,0 +1,196 @@
+<title>{{SUBJECT_NAME}} — Public Brand Audit</title>
+<style>
+  :root{
+    --surface-1:#fcfcfb; --page:#f9f9f7;
+    --ink-1:#0b0b0b; --ink-2:#52514e; --ink-3:#898781;
+    --grid:#e1e0d9; --ring:rgba(11,11,11,.10);
+    --blue:#2a78d6; --blue-deep:#0d366b; --blue-mid:#1c5cab;
+    --good:#006300; --warn:#a05a00;
+    --wash:#eaf1fb;
+  }
+  @media (prefers-color-scheme: dark){ :root{
+    --surface-1:#1a1a19; --page:#0d0d0d;
+    --ink-1:#ffffff; --ink-2:#c3c2b7; --ink-3:#898781;
+    --grid:#2c2c2a; --ring:rgba(255,255,255,.10);
+    --blue:#3987e5; --blue-deep:#9ec5f4; --blue-mid:#6da7ec;
+    --good:#0ca30c; --warn:#c98500;
+    --wash:#1c2a3d;
+  }}
+  :root[data-theme="dark"]{
+    --surface-1:#1a1a19; --page:#0d0d0d;
+    --ink-1:#ffffff; --ink-2:#c3c2b7; --ink-3:#898781;
+    --grid:#2c2c2a; --ring:rgba(255,255,255,.10);
+    --blue:#3987e5; --blue-deep:#9ec5f4; --blue-mid:#6da7ec;
+    --good:#0ca30c; --warn:#c98500;
+    --wash:#1c2a3d;
+  }
+  :root[data-theme="light"]{
+    --surface-1:#fcfcfb; --page:#f9f9f7;
+    --ink-1:#0b0b0b; --ink-2:#52514e; --ink-3:#898781;
+    --grid:#e1e0d9; --ring:rgba(11,11,11,.10);
+    --blue:#2a78d6; --blue-deep:#0d366b; --blue-mid:#1c5cab;
+    --good:#006300; --warn:#a05a00;
+    --wash:#eaf1fb;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--page);color:var(--ink-1);
+    font:15px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}
+  .wrap{max-width:980px;margin:0 auto;padding:0 20px 64px}
+  a{color:var(--blue-mid)}
+
+  /* ---- hero ---- */
+  .hero{position:relative;overflow:hidden;border-radius:0 0 20px 20px;
+    background:linear-gradient(135deg,#0d366b 0%,#1c5cab 60%,#2a78d6 100%);color:#fff}
+  .hero-inner{max-width:980px;margin:0 auto;padding:46px 20px 42px}
+  .hero .kicker{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+    color:rgba(255,255,255,.75);margin:0 0 8px}
+  .hero h1{margin:0 0 4px;font-size:32px;letter-spacing:-.5px}
+  .hero .entity{margin:0 0 6px;font-size:15px;color:rgba(255,255,255,.85)}
+  .hero .tagline{margin:0;max-width:640px;font-size:15px;color:rgba(255,255,255,.85);font-style:italic}
+  .hero .stamp{display:inline-block;margin-top:14px;padding:4px 12px;border-radius:999px;
+    background:rgba(255,255,255,.16);font-size:12.5px;font-weight:600}
+
+  /* ---- stat tiles ---- */
+  .tiles{position:relative;z-index:1;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:-30px 0 36px}
+  .tile{background:var(--surface-1);border:1px solid var(--ring);border-radius:14px;
+    padding:16px 18px;box-shadow:0 4px 18px rgba(0,0,0,.08)}
+  .tile .k{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-3)}
+  .tile .v{font-size:24px;font-weight:700;letter-spacing:-.4px;margin:2px 0;line-height:1.2}
+
+  h2{font-size:20px;margin:40px 0 4px;letter-spacing:-.3px}
+  .sub{color:var(--ink-2);font-size:13.5px;margin:0 0 16px}
+  .prose{background:var(--surface-1);border:1px solid var(--ring);border-radius:14px;
+    padding:18px 20px;font-size:15px;color:var(--ink-2)}
+  .prose::first-letter{color:var(--ink-1)}
+
+  /* ---- channel cards ---- */
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}
+  .card{background:var(--surface-1);border:1px solid var(--ring);border-radius:14px;padding:16px 18px;
+    display:flex;flex-direction:column;gap:6px}
+  .card .plat{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--blue-mid)}
+  .card h3{margin:0;font-size:15.5px;line-height:1.3}
+  .card .nums{display:flex;gap:16px;font-size:13px;color:var(--ink-3)}
+  .card .nums b{display:block;font-size:15px;font-weight:700;color:var(--ink-1)}
+  .card .note{font-size:13px;color:var(--ink-2)}
+
+  /* ---- theme chips ---- */
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{background:var(--surface-1);border:1px solid var(--ring);border-radius:999px;
+    padding:8px 15px;font-size:13px}
+  .chip b{color:var(--ink-1)}
+  .chip span{color:var(--ink-3);font-size:12.5px}
+
+  /* ---- scorecard ---- */
+  .score-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}
+  .score-card{background:var(--surface-1);border:1px solid var(--ring);border-radius:14px;padding:16px 18px}
+  .score-head{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+  .score-head h3{margin:0;font-size:14.5px}
+  .score-num{font-size:14px;font-weight:700;font-variant-numeric:tabular-nums;color:var(--ink-1)}
+  .meter{display:flex;gap:3px;margin:9px 0 8px}
+  .meter .seg{height:10px;flex:1;border-radius:3px;background:var(--grid)}
+  .meter .seg.on{background:var(--blue)}
+  .score-card .ev{font-size:13px;color:var(--ink-2)}
+
+  /* ---- gaps ---- */
+  .gap-card{display:flex;flex-direction:column;gap:6px}
+  .gap-card .obs{font-size:13.5px;color:var(--ink-2)}
+  .gap-card .fix{font-size:13.5px;color:var(--ink-2);border-left:3px solid var(--blue);
+    padding:2px 0 2px 10px}
+  .gap-card .fix b{color:var(--ink-1)}
+  .gap-card .lab{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+
+  /* ---- tables ---- */
+  .tbl{width:100%;border-collapse:collapse;background:var(--surface-1);
+    border:1px solid var(--ring);font-size:13.5px}
+  .tbl-wrap{overflow-x:auto;border-radius:14px;border:1px solid var(--ring)}
+  .tbl-wrap .tbl{border:0}
+  .tbl th{background:var(--blue-deep);color:#fff;text-align:left;padding:10px 14px;font-size:12.5px;
+    text-transform:uppercase;letter-spacing:.05em}
+  :root[data-theme="dark"] .tbl th{color:#0b0b0b}
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .tbl th{color:#0b0b0b} }
+  .tbl td{padding:10px 14px;border-top:1px solid var(--grid);vertical-align:top;color:var(--ink-2)}
+  .tbl td:first-child{color:var(--ink-1);font-weight:600;white-space:nowrap}
+  .tbl td a{word-break:break-all}
+  .np{color:var(--ink-3);font-style:italic}
+
+  .foot{margin-top:44px;font-size:12px;color:var(--ink-3);border-top:1px solid var(--grid);padding-top:14px}
+</style>
+
+<div class="hero">
+  <div class="hero-inner">
+    <p class="kicker">Public brand audit</p>
+    <h1 id="subject-name">{{SUBJECT_NAME}}</h1>
+    <p class="entity" id="subject-entity">{{SUBJECT_ENTITY}}</p>
+    <p class="tagline" id="subject-tagline">{{SUBJECT_TAGLINE}}</p>
+    <span class="stamp">{{VERIFIED_STAMP}} · generated {{GENERATED_DATE}} · public professional sources only</span>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div class="tiles">
+    <div class="tile"><div class="k">Reach</div><div class="v" id="stat-reach">{{STAT_REACH}}</div></div>
+    <div class="tile"><div class="k">Platforms</div><div class="v" id="stat-platforms">{{STAT_PLATFORMS}}</div></div>
+    <div class="tile"><div class="k">Cadence</div><div class="v" id="stat-cadence">{{STAT_CADENCE}}</div></div>
+    <div class="tile"><div class="k">Contactability</div><div class="v" id="stat-contactability">{{STAT_CONTACTABILITY}}</div></div>
+  </div>
+
+  <h2>Positioning</h2>
+  <p class="sub">Who they are, who they serve, what they're known for — as published.</p>
+  <div class="prose" id="positioning">{{POSITIONING}}</div>
+
+  <h2>Channels</h2>
+  <p class="sub">Public content platforms, as displayed on the date viewed.</p>
+  <div class="cards" id="channels">
+    {{CHANNELS}}
+  </div>
+
+  <h2>Content themes</h2>
+  <p class="sub">The topics they publish about most.</p>
+  <div class="chips" id="themes">
+    {{THEMES}}
+  </div>
+
+  <h2>Presence scorecard</h2>
+  <p class="sub">Each metric scored 1–5 with the evidence behind it.</p>
+  <div class="score-grid" id="scorecard">
+    {{SCORECARD}}
+  </div>
+
+  <h2>Published contact</h2>
+  <p class="sub">Business contact info the subject lists on their own properties.</p>
+  <div class="tbl-wrap">
+    <table class="tbl" id="contact">
+      <thead><tr><th>Type</th><th>Value</th><th>Source</th></tr></thead>
+      <tbody>
+        {{CONTACT}}
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Gaps &amp; opportunities</h2>
+  <p class="sub">Where the public presence is thin or inconsistent — and the concrete fix.</p>
+  <div class="cards" id="gaps">
+    {{GAPS}}
+  </div>
+
+  <h2>Sources</h2>
+  <p class="sub">Every URL used, what it provided, and the date viewed.</p>
+  <div class="tbl-wrap">
+    <table class="tbl" id="sources">
+      <thead><tr><th>#</th><th>URL</th><th>What it provided</th><th>Seen</th></tr></thead>
+      <tbody>
+        {{SOURCES}}
+      </tbody>
+    </table>
+  </div>
+
+  <div class="foot">
+    Compiled from publicly published professional sources only. Fields the subject
+    has not published are marked “not public” and were not reconstructed from other
+    data. Follower counts and cadence are as displayed on the dates listed in the
+    sources table.
+  </div>
+
+</div>

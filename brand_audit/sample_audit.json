@@ -1,0 +1,149 @@
+{
+  "_comment": "Fictional example data showing the expected schema. Replace with real JSON returned by PROMPT.md.",
+  "subject": {
+    "name": "Jordan Avery",
+    "entity": "Brightline Media LLC — brightlinemedia.example",
+    "tagline": "Short-form video systems for local service businesses.",
+    "verified": true
+  },
+  "stats": {
+    "reach": "212K total",
+    "platforms": "5 active",
+    "cadence": "4–6 posts/wk",
+    "contactability": "Email + booking"
+  },
+  "positioning": "Jordan Avery runs Brightline Media, a one-person agency that teaches local service businesses (HVAC, landscaping, med spas) to generate leads with short-form video. Known for teardown-style videos that rebuild a real business's content funnel on camera, and for a weekly newsletter that packages each teardown into a checklist.",
+  "channels": [
+    {
+      "platform": "YouTube",
+      "handle": "@brightlinejordan",
+      "url": "https://youtube.com/@brightlinejordan",
+      "followers": "148K",
+      "cadence": "2 long-form/wk + 4 Shorts",
+      "note": "Teardowns and tool walkthroughs drive most views; Shorts repurpose long-form hooks."
+    },
+    {
+      "platform": "TikTok",
+      "handle": "@brightlinejordan",
+      "url": "https://tiktok.com/@brightlinejordan",
+      "followers": "41K",
+      "cadence": "daily",
+      "note": "Same clips as YT Shorts, posted a day earlier."
+    },
+    {
+      "platform": "LinkedIn",
+      "handle": "Jordan Avery",
+      "url": "https://linkedin.com/in/example",
+      "followers": "12K",
+      "cadence": "3/wk",
+      "note": "Text versions of the newsletter; strongest comment engagement of any channel."
+    },
+    {
+      "platform": "X",
+      "handle": "@brightlinejordan",
+      "url": "https://x.com/brightlinejordan",
+      "followers": "9.8K",
+      "cadence": "sporadic",
+      "note": "Mostly reposts; no native content in 6 weeks."
+    },
+    {
+      "platform": "Newsletter",
+      "handle": "The Brightline Brief",
+      "url": "https://brightlinemedia.example/brief",
+      "followers": "not public",
+      "cadence": "weekly",
+      "note": "Subscriber count not published; archive shows 90+ consecutive weekly issues."
+    }
+  ],
+  "themes": [
+    { "theme": "Short-form lead gen", "note": "core teardown format" },
+    { "theme": "Local SEO basics", "note": "GBP optimization series" },
+    { "theme": "AI content tooling", "note": "monthly tool roundups" },
+    { "theme": "Pricing & packaging", "note": "for solo agencies" }
+  ],
+  "scorecard": [
+    {
+      "metric": "Reach",
+      "score_1_5": 4,
+      "evidence": "212K combined followers with 148K concentrated on YouTube; median long-form video clears 20K views."
+    },
+    {
+      "metric": "Consistency",
+      "score_1_5": 3,
+      "evidence": "YouTube, TikTok and newsletter hold a strict schedule, but X has been dormant 6 weeks and Instagram redirects to a dead link."
+    },
+    {
+      "metric": "Professionalism",
+      "score_1_5": 4,
+      "evidence": "Uniform handle, logo and bio across active platforms; site has current case studies; one outdated pricing page found."
+    },
+    {
+      "metric": "Contactability",
+      "score_1_5": 5,
+      "evidence": "Business email, booking link and media kit all one click from the homepage."
+    }
+  ],
+  "contact": [
+    {
+      "type": "Business email",
+      "value": "hello@brightlinemedia.example",
+      "source_url": "https://brightlinemedia.example/contact"
+    },
+    {
+      "type": "Booking link",
+      "value": "cal.example/jordan/intro",
+      "source_url": "https://brightlinemedia.example/contact"
+    },
+    {
+      "type": "Phone",
+      "value": "not public",
+      "source_url": ""
+    }
+  ],
+  "gaps": [
+    {
+      "observation": "X account dormant for 6 weeks while the bio still promises daily tips.",
+      "opportunity": "Either auto-syndicate the daily TikTok scripts as text posts, or edit the bio to point followers at the active channels."
+    },
+    {
+      "observation": "Newsletter subscriber count and social proof are absent from the signup page.",
+      "opportunity": "Publish the issue count (90+ weeks) and 2–3 reader quotes above the signup form."
+    },
+    {
+      "observation": "No Google Business Profile found despite serving local businesses as the core audience.",
+      "opportunity": "Claim a GBP for Brightline Media — it is the exact surface the audience is taught to optimize."
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://brightlinemedia.example",
+      "what": "Positioning, services, contact info, case studies",
+      "seen_date": "2026-07-15"
+    },
+    {
+      "url": "https://youtube.com/@brightlinejordan",
+      "what": "Follower count, cadence, top content themes",
+      "seen_date": "2026-07-15"
+    },
+    {
+      "url": "https://tiktok.com/@brightlinejordan",
+      "what": "Follower count, posting cadence",
+      "seen_date": "2026-07-15"
+    },
+    {
+      "url": "https://linkedin.com/in/example",
+      "what": "Title, follower count, newsletter cross-posts",
+      "seen_date": "2026-07-15"
+    },
+    {
+      "url": "https://x.com/brightlinejordan",
+      "what": "Follower count, last-post date",
+      "seen_date": "2026-07-15"
+    },
+    {
+      "url": "https://brightlinemedia.example/brief",
+      "what": "Newsletter cadence and archive depth",
+      "seen_date": "2026-07-15"
+    }
+  ]
+}
