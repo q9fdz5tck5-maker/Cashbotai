@@ -1,0 +1,180 @@
+<title>Haul Scan #2 — Hidden Value Pass (v4)</title>
+<style>
+  :root{
+    --surface-1:#fcfcfb; --page:#f9f9f7;
+    --ink-1:#0b0b0b; --ink-2:#52514e; --ink-3:#898781;
+    --grid:#e1e0d9; --ring:rgba(11,11,11,.10);
+    --blue:#2a78d6; --blue-deep:#0d366b;
+    --hot:#d03b3b; --warm:#eda100; --good:#006300; --violet:#4a3aa7;
+    --hot-wash:#fdecea; --warm-wash:#fff6e5; --good-wash:#e9f4e9; --violet-wash:#eeecfa;
+  }
+  @media (prefers-color-scheme: dark){ :root{
+    --surface-1:#1a1a19; --page:#0d0d0d;
+    --ink-1:#ffffff; --ink-2:#c3c2b7; --ink-3:#898781;
+    --grid:#2c2c2a; --ring:rgba(255,255,255,.10);
+    --blue:#3987e5; --blue-deep:#9ec5f4;
+    --hot:#e66767; --warm:#c98500; --good:#0ca30c; --violet:#9085e9;
+    --hot-wash:#3a1f1e; --warm-wash:#38301a; --good-wash:#1d2e1d; --violet-wash:#262042;
+  }}
+  :root[data-theme="dark"]{
+    --surface-1:#1a1a19; --page:#0d0d0d;
+    --ink-1:#ffffff; --ink-2:#c3c2b7; --ink-3:#898781;
+    --grid:#2c2c2a; --ring:rgba(255,255,255,.10);
+    --blue:#3987e5; --blue-deep:#9ec5f4;
+    --hot:#e66767; --warm:#c98500; --good:#0ca30c; --violet:#9085e9;
+    --hot-wash:#3a1f1e; --warm-wash:#38301a; --good-wash:#1d2e1d; --violet-wash:#262042;
+  }
+  :root[data-theme="light"]{
+    --surface-1:#fcfcfb; --page:#f9f9f7;
+    --ink-1:#0b0b0b; --ink-2:#52514e; --ink-3:#898781;
+    --grid:#e1e0d9; --ring:rgba(11,11,11,.10);
+    --blue:#2a78d6; --blue-deep:#0d366b;
+    --hot:#d03b3b; --warm:#eda100; --good:#006300; --violet:#4a3aa7;
+    --hot-wash:#fdecea; --warm-wash:#fff6e5; --good-wash:#e9f4e9; --violet-wash:#eeecfa;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--page);color:var(--ink-1);font:15px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}
+  .wrap{max-width:940px;margin:0 auto;padding:0 20px 64px}
+  .hero{background:linear-gradient(135deg,#0d366b,#4a3aa7);color:#fff;border-radius:0 0 20px 20px;padding:38px 0 30px}
+  .hero-inner{max-width:940px;margin:0 auto;padding:0 20px}
+  .hero h1{margin:0 0 6px;font-size:27px;letter-spacing:-.5px}
+  .hero p{margin:0;color:rgba(255,255,255,.85);max-width:660px}
+  .hero .stamp{display:inline-block;margin-top:12px;padding:4px 12px;border-radius:999px;background:rgba(255,255,255,.16);font-size:12.5px;font-weight:600}
+  h2{font-size:19px;margin:36px 0 4px;letter-spacing:-.3px}
+  .sub{color:var(--ink-2);font-size:13.5px;margin:0 0 14px}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}
+  .card{background:var(--surface-1);border:1px solid var(--ring);border-radius:14px;padding:15px 17px;display:flex;flex-direction:column;gap:5px}
+  .badge{align-self:flex-start;font-size:11px;font-weight:700;letter-spacing:.08em;padding:3px 10px;border-radius:999px}
+  .b-hot{background:var(--hot-wash);color:var(--hot)}
+  .b-warm{background:var(--warm-wash);color:var(--warm)}
+  .b-new{background:var(--violet-wash);color:var(--violet)}
+  .b-good{background:var(--good-wash);color:var(--good)}
+  .card h3{margin:2px 0 0;font-size:15px;line-height:1.3}
+  .nums{display:flex;gap:14px;margin:3px 0 1px;font-size:12.5px;color:var(--ink-3)}
+  .nums b{display:block;font-size:15px;font-weight:700;color:var(--ink-1)}
+  .nums .p b{color:var(--good)}
+  .note{font-size:13px;color:var(--ink-2)}
+  .note b{color:var(--ink-1)}
+  .check{font-size:12.5px;color:var(--ink-2);border-left:3px solid var(--blue);padding:2px 0 2px 10px;margin-top:3px}
+  .tbl-wrap{overflow-x:auto;border-radius:14px}
+  .tbl{width:100%;border-collapse:collapse;background:var(--surface-1);border:1px solid var(--ring);border-radius:14px;overflow:hidden;font-size:13.5px}
+  .tbl th{background:var(--blue-deep);color:#fff;text-align:left;padding:9px 14px;font-size:12px;text-transform:uppercase;letter-spacing:.05em}
+  :root[data-theme="dark"] .tbl th{color:#0b0b0b}
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .tbl th{color:#0b0b0b} }
+  .tbl td{padding:9px 14px;border-top:1px solid var(--grid);vertical-align:top;color:var(--ink-2)}
+  .tbl td:first-child{color:var(--ink-1);font-weight:600;white-space:nowrap}
+  .prompt-box{background:var(--surface-1);border:1px solid var(--ring);border-left:4px solid var(--violet);border-radius:14px;padding:18px 20px;font-size:13.5px;color:var(--ink-2)}
+  .prompt-box h3{margin:0 0 8px;font-size:15px;color:var(--ink-1)}
+  .prompt-box ol{margin:6px 0 0;padding-left:20px}
+  .prompt-box li{margin:5px 0}
+  .prompt-box b{color:var(--ink-1)}
+  .foot{margin-top:40px;font-size:12px;color:var(--ink-3);border-top:1px solid var(--grid);padding-top:12px}
+</style>
+
+<div class="hero"><div class="hero-inner">
+  <h1>Haul Scan #2 — Hidden Value Pass</h1>
+  <p>Re-scan of the Goodwill aisle video under upgraded v4 criteria: melt/scrap value, collectibles, misprints &amp; hidden-value flags added on top of the resale sweep.</p>
+  <span class="stamp">Scanned July 16, 2026 · criteria v4 (draft) · 1 video re-processed</span>
+</div></div>
+
+<div class="wrap">
+
+  <h2>🆕 New finds from the hidden-value pass</h2>
+  <p class="sub">Items the plain resale sweep under-rated. Each card lists the exact thing to check in-store — the check is where the hidden value lives.</p>
+  <div class="cards">
+    <div class="card"><span class="badge b-new">NEW FLAG · SPORTS</span>
+      <h3>Rawlings baseball glove (black/gray, red web)</h3>
+      <div class="nums"><span>Likely tag<b>$5–10</b></span><span>If consumer line<b>$15–30</b></span><span class="p">If PRO stamp<b>$80–150+</b></span></div>
+      <div class="note">Rawlings gloves hide their value in the wrist stamp.</div>
+      <div class="check">CHECK: model code inside the wrist strap — <b>"PRO" prefix = Heart of the Hide / Pro Preferred</b> (pro leather, $80–150+ used). "RBG"/"PL" prefixes = consumer line, small flip only.</div>
+    </div>
+    <div class="card"><span class="badge b-new">NEW FLAG · TOOLS</span>
+      <h3>Bosch corded tool (blue, under the lamp shelf)</h3>
+      <div class="nums"><span>Likely tag<b>$8–15</b></span><span class="p">Resale<b>$40–90</b></span></div>
+      <div class="note">Blue Bosch = their pro line. Corded Bosch routers, sanders and rotary hammers hold value oddly well.</div>
+      <div class="check">CHECK: model number on the plate; test at the store outlet. Rotary hammer or router = best case.</div>
+    </div>
+    <div class="card"><span class="badge b-new">NEW FLAG · CASES</span>
+      <h3>Long black hard case (rifle/instrument profile)</h3>
+      <div class="nums"><span>Likely tag<b>$8–20</b></span><span class="p">Resale<b>$40–120</b></span></div>
+      <div class="note">Long-profile hard cases are either gun cases (Pelican/Plano — Pelican Vault V730 resells $80–120) or instrument cases, which can be worth more than what was in them.</div>
+      <div class="check">CHECK: brand embossing near the latches; look INSIDE — thrift stores routinely miss contents (bows, scopes, mic hardware).</div>
+    </div>
+    <div class="card"><span class="badge b-new">NEW FLAG · GOLF</span>
+      <h3>Bag of golf balls (bottom shelf)</h3>
+      <div class="nums"><span>Likely tag<b>$3–6</b></span><span class="p">If Pro V1s<b>$0.75–1.50/ball</b></span></div>
+      <div class="note">Phoenix golf market absorbs used premium balls endlessly.</div>
+      <div class="check">CHECK: dig for <b>Titleist Pro V1/V1x, TaylorMade TP5, Callaway Chrome Soft</b>. 20+ premium balls in the bag = auto-buy.</div>
+    </div>
+    <div class="card"><span class="badge b-new">NEW FLAG · SPORTS</span>
+      <h3>Lacrosse head (white, strung)</h3>
+      <div class="nums"><span>Likely tag<b>$3–8</b></span><span class="p">Resale<b>$20–50</b></span></div>
+      <div class="note">Lacrosse gear is scarce in Arizona thrift — buyers are on eBay.</div>
+      <div class="check">CHECK: brand on the throat (STX, Warrior, Maverik). Fresh stringing adds value.</div>
+    </div>
+    <div class="card"><span class="badge b-good">MELT REALITY CHECK</span>
+      <h3>"Silver" candlestick lamps &amp; chrome decor</h3>
+      <div class="nums"><span>Melt value<b>≈ $0</b></span><span class="p">Decor resale<b>$25–40/pc</b></span></div>
+      <div class="note">The trumpet candlestick lamps and pierced cylinder read as <b>silverplate/chrome — no meaningful scrap value</b>. Plated silver is ~microns thick; refiners won't touch it.</div>
+      <div class="check">CHECK anyway: any <b>".925" / "STERLING"</b> stamp on the base changes everything — weighted sterling candlesticks run $50–150 in melt-adjusted value. 10 seconds to flip it over.</div>
+    </div>
+  </div>
+
+  <h2>🔥 Carry-over verdicts (from pass #1)</h2>
+  <p class="sub">Unchanged from the first scan — listed so this report stands alone.</p>
+  <div class="cards">
+    <div class="card"><span class="badge b-hot">BUY 1st</span><h3>Portable AC unit</h3>
+      <div class="nums"><span>Tag est.<b>$25–60</b></span><span class="p">July PHX resale<b>$100–180</b></span></div>
+      <div class="note">Same-day FB flip in a heatwave. Outlet-test the compressor: cold air in under a minute or walk.</div></div>
+    <div class="card"><span class="badge b-hot">BUY 2nd</span><h3>Sedici-style motorcycle helmet</h3>
+      <div class="nums"><span>Tag est.<b>$8–15</b></span><span class="p">Resale<b>$60–120</b></span></div>
+      <div class="note">Check liner date stamp (&lt;5–7 yrs) and no impact marks. White full-face next to it: check brand too.</div></div>
+    <div class="card"><span class="badge b-hot">BUY 3rd</span><h3>THE ICEPOD (boxed cold plunge)</h3>
+      <div class="nums"><span>Tag est.<b>$15–25</b></span><span class="p">Resale<b>$60–100</b></span></div>
+      <div class="note">Verify pod + cover + frame all in box. Peak season for the gym crowd.</div></div>
+    <div class="card"><span class="badge b-warm">CHECK &amp; BUY</span><h3>Vacuums: Bissell SpotLifter · Hoover WindTunnels · orange stick vac</h3>
+      <div class="nums"><span>Tags<b>$8–20 ea</b></span><span class="p">Resale<b>$35–70 ea</b></span></div>
+      <div class="note">SpotLifter is the fastest seller (pet owners). Stick vac: if the label says Shark Rocket → $40–70; Dyson → best item in the building.</div></div>
+    <div class="card"><span class="badge b-warm">CHECK &amp; BUY</span><h3>Lasko tower fan · dehumidifier · hex dumbbells</h3>
+      <div class="nums"><span>Various<b>&lt;$0.75/lb on iron</b></span><span class="p">Dumbbell resale<b>$1–1.50/lb</b></span></div>
+      <div class="note">Fan sells in hours in July. Dehumidifier = monsoon-season demand. Dumbbells: resale beats scrap iron (~$0.10/lb) 10:1 — never melt-math cast iron.</div></div>
+    <div class="card"><span class="badge b-warm">SKIP</span><h3>Heaters · yoga mats · bowling ball · LED illusion lamp · steamer</h3>
+      <div class="note">Heaters have margin but capital sits until November. The rest is sub-$15 resale clutter.</div></div>
+  </div>
+
+  <h2>🧪 Melt &amp; hidden-value cheat table (v4 additions)</h2>
+  <p class="sub">The 10-second checks that catch value the price tag missed. Rule: <b>resale almost always beats melt</b> — melt is the floor, not the play, except on precious metals.</p>
+  <div class="tbl-wrap"><table class="tbl">
+    <tr><th>Signal</th><th>Where to look</th><th>What it's worth</th></tr>
+    <tr><td>".925" / "STERLING" stamp</td><td>Flatware, candlesticks, jewelry, trays — flip it over</td><td>~$0.90–1.10/gram melt floor (2026 spot); pattern pieces (Gorham, Tiffany) resell 2–5× melt</td></tr>
+    <tr><td>"10K / 14K / 18K" or "585 / 750"</td><td>Jewelry bins, watch cases, eyeglass frames, thimbles</td><td>14K ≈ 58% of spot gold by weight — even broken chains are money</td></tr>
+    <tr><td>Magnet test fails (non-magnetic + yellow)</td><td>Heavy "brass" lamps, bookends, fireplace tools, shell casings</td><td>Solid brass scrap $1.50–2.50/lb; brass-plated steel (magnet sticks) ≈ $0</td></tr>
+    <tr><td>Copper bottoms / all-copper</td><td>Revere Ware, mixing bowls, mugs, wire</td><td>Copper scrap $3.50–4.50/lb; vintage Revere resells above scrap</td></tr>
+    <tr><td>"Rogers / EPNS / silverplate"</td><td>Flatware chests</td><td>≈ $0 melt — skip unless the chest itself is nice</td></tr>
+    <tr><td>PRO-prefix stamps</td><td>Rawlings glove wrists, tools' model plates</td><td>Pro-line versions of consumer goods = 3–10× the consumer price</td></tr>
+    <tr><td>First edition / number line "1"</td><td>Book copyright pages; also signed flyleaves</td><td>Modern firsts (King, Rowling, McCarthy) $50–500+</td></tr>
+    <tr><td>Misprints &amp; factory errors</td><td>Coins in junk drawers/ashtrays, sports cards, stamps, game cartridge labels, band-tee prints</td><td>Error coins $20–1,000+; miscut cards and misprint shirts have cult buyers</td></tr>
+    <tr><td>Radioactive-orange Fiestaware, Jadeite, Uranium glass (UV torch)</td><td>Dish shelves — carry a $5 UV keychain light</td><td>Uranium glass glows green under UV; pieces $30–150</td></tr>
+    <tr><td>Date codes on Zippos, Seiko/Casio serials</td><td>Jewelry/watch case</td><td>Vintage Zippos $25–200; Seiko divers $100–500+</td></tr>
+  </table></div>
+
+  <h2>📋 Scan prompt — version 4 (draft, awaiting your go)</h2>
+  <p class="sub">This is the criteria stack every future video/photo/listing scan will run. v1–3 = resale comps → urgency signals → local-season demand. v4 adds the hidden-value layer.</p>
+  <div class="prompt-box">
+    <h3>v4 scan procedure</h3>
+    <ol>
+      <li><b>Identify</b> every item; brand &amp; model where legible — zoom frames, read labels/stamps.</li>
+      <li><b>Resale comp</b> each: current eBay sold / FB local price vs likely tag. Rank by spread and sell-through speed.</li>
+      <li><b>Urgency &amp; season</b>: weight items the Phoenix market wants <i>this month</i> (July = cooling, ice baths, monsoon dehumidifiers; flag off-season capital traps).</li>
+      <li><b>NEW — Melt/scrap floor</b>: for anything metal, estimate material value (sterling/gold marks, brass/copper magnet test, copper cookware). Flag any item where <b>melt &gt; tag price</b> as an auto-buy; state melt as the floor vs resale.</li>
+      <li><b>NEW — Collector/misprint sweep</b>: check every item class for the collectible variant of itself — pro-line stamps, first editions, error coins/cards, uranium glass, discontinued patterns (Pyrex, Fiestaware, MacKenzie-Childs), vintage date codes, CIB games, promo/misprint apparel &amp; vinyl.</li>
+      <li><b>NEW — Look inside</b>: cases, boxes, bags, and pockets get opened — contents are unpriced value (case contents, manuals that complete a CIB set, balls in bags).</li>
+      <li><b>Output</b>: ranked BUY-NOW / CHECK-&amp;-BUY / SKIP with the exact in-store verification step for each, tag-price ceiling to pay, and expected net after fees.</li>
+    </ol>
+  </div>
+
+  <div class="foot">
+    Note: no new video arrived with this request — this report re-processes the July 16 store walkthrough (IMG_3463) under the v4 draft criteria.
+    Upload the next clip and it runs the full v4 stack. Melt figures use mid-2026 scrap benchmarks; verify sterling/gold at a refiner before selling by weight.
+  </div>
+</div>
