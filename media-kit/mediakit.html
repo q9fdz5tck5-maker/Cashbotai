@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CASH.BOT — Creator Media Kit</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  @page { size: letter; margin: 0; }
+  :root {
+    --bg: #0B120C;
+    --bg2: #101A11;
+    --card: #152216;
+    --ink: #F2F7F2;
+    --ink2: #A8BDA9;
+    --ink3: #6E836F;
+    --green: #35E06A;
+    --green-dim: #1F8A44;
+    --line: #243525;
+  }
+  body { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; background: #333; color: var(--ink); }
+  .page {
+    width: 8.5in; height: 11in;
+    background: var(--bg);
+    padding: 0.65in 0.7in;
+    page-break-after: always;
+    position: relative;
+    overflow: hidden;
+    display: flex; flex-direction: column;
+  }
+  .mono { font-family: "SF Mono", Menlo, Consolas, "Courier New", monospace; }
+
+  /* ---------- shared ---------- */
+  .eyebrow { font-family: Menlo, Consolas, monospace; font-size: 9.5px; letter-spacing: 0.28em; color: var(--green); text-transform: uppercase; }
+  .pagefoot {
+    margin-top: auto; padding-top: 14px; border-top: 1px solid var(--line);
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: Menlo, Consolas, monospace; font-size: 8.5px; letter-spacing: 0.12em; color: var(--ink3); text-transform: uppercase;
+  }
+  .pagefoot b { color: var(--ink2); font-weight: 600; }
+  h2.sect { font-size: 26px; font-weight: 800; letter-spacing: -0.01em; margin: 6px 0 4px; }
+  .sub { font-size: 12px; color: var(--ink2); line-height: 1.55; max-width: 6.2in; }
+  .grid { display: grid; gap: 10px; }
+
+  .tile {
+    background: var(--card); border: 1px solid var(--line); border-radius: 10px;
+    padding: 14px 16px;
+  }
+  .tile .k { font-family: Menlo, Consolas, monospace; font-size: 8.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink3); }
+  .tile .v { font-size: 26px; font-weight: 800; letter-spacing: -0.02em; margin-top: 5px; color: var(--ink); }
+  .tile .v .u { color: var(--green); }
+  .tile .d { font-size: 9.5px; color: var(--ink2); margin-top: 4px; line-height: 1.45; }
+
+  /* ---------- cover ---------- */
+  .cover { justify-content: flex-start; }
+  .cover .scan {
+    position: absolute; inset: 0;
+    background:
+      repeating-linear-gradient(0deg, rgba(53,224,106,0.045) 0px, rgba(53,224,106,0.045) 1px, transparent 1px, transparent 26px),
+      repeating-linear-gradient(90deg, rgba(53,224,106,0.045) 0px, rgba(53,224,106,0.045) 1px, transparent 1px, transparent 26px);
+  }
+  .cover .glow {
+    position: absolute; right: -1.4in; top: -1.4in; width: 4.5in; height: 4.5in; border-radius: 50%;
+    background: radial-gradient(circle, rgba(53,224,106,0.22) 0%, rgba(53,224,106,0.0) 65%);
+  }
+  .cover > * { position: relative; }
+  .brandline { display: flex; align-items: center; gap: 10px; margin-top: 4px; }
+  .botmark {
+    width: 34px; height: 34px; border-radius: 8px; background: #0F1810; border: 1.5px solid var(--green);
+    display: flex; align-items: center; justify-content: center;
+    font-family: Menlo, monospace; font-size: 15px; font-weight: 700; color: var(--green);
+  }
+  .brandline .t { font-family: Menlo, Consolas, monospace; font-size: 12px; letter-spacing: 0.3em; color: var(--ink2); }
+  .cover .robo {
+    position: absolute; top: 0.52in; right: 0.45in; width: 2.2in; height: 2.2in;
+    border-radius: 16px; border: 1px solid #1d2c1e; object-fit: cover;
+    box-shadow: 0 0 70px rgba(53,224,106,0.18);
+  }
+  .shot { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 10px; }
+  .shot img { width: 100%; border-radius: 8px; display: block; }
+  .shot .cap { font-size: 9.5px; color: var(--ink2); margin-top: 8px; line-height: 1.5; }
+  .shot .cap b { color: var(--green); }
+  .shot--hl { width: 5.6in; margin: 12px auto 0; }
+  .shot--wide { margin-top: 12px; }
+  .shotrow { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-top: 12px; align-items: start; }
+  .livenote {
+    margin-top: 14px; border: 1px dashed var(--green-dim); border-radius: 10px; padding: 11px 14px;
+    font-size: 10.5px; color: var(--ink2); line-height: 1.5;
+  }
+  .livenote b { color: var(--green); }
+  .press {
+    display: inline-flex; align-items: center; gap: 9px; margin-top: 18px;
+    border: 1px solid var(--green-dim); background: rgba(53,224,106,0.06); border-radius: 99px;
+    padding: 8px 16px 8px 12px; font-size: 10.5px; color: var(--ink2); line-height: 1.4; max-width: 5.5in;
+  }
+  .press .star { color: var(--green); font-size: 13px; }
+  .press b { color: var(--ink); letter-spacing: 0.04em; }
+  .cover h1 { font-size: 58px; font-weight: 850; letter-spacing: -0.03em; line-height: 1.0; margin-top: 0.42in; }
+  .cover h1 .g { color: var(--green); }
+  .cover .who { margin-top: 16px; font-size: 15px; color: var(--ink2); }
+  .cover .who b { color: var(--ink); }
+  .hook {
+    margin-top: 0.42in; border-left: 3px solid var(--green); padding: 4px 0 4px 16px;
+    font-size: 19px; font-weight: 700; line-height: 1.4; max-width: 5.9in;
+  }
+  .hook span { color: var(--green); }
+  .cover .tiles { grid-template-columns: 1fr 1fr; margin-top: 0.42in; }
+  .cover .tile .v { font-size: 30px; }
+  .partnerline { margin-top: 0.32in; font-size: 10.5px; color: var(--ink3); letter-spacing: 0.04em; }
+  .partnerline b { color: var(--ink2); font-weight: 600; }
+
+  /* ---------- platforms ---------- */
+  table.plat { width: 100%; border-collapse: collapse; margin-top: 14px; }
+  table.plat th {
+    font-family: Menlo, Consolas, monospace; font-size: 8.5px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--ink3); text-align: left; padding: 0 10px 8px; border-bottom: 1px solid var(--line);
+  }
+  table.plat td { padding: 10px; border-bottom: 1px solid var(--line); font-size: 12px; vertical-align: middle; }
+  table.plat td.name { font-weight: 700; }
+  table.plat td.name .h { display: block; font-family: Menlo, monospace; font-weight: 400; font-size: 9px; color: var(--ink3); margin-top: 2px; letter-spacing: 0.04em;}
+  table.plat td.num { font-size: 17px; font-weight: 800; white-space: nowrap; }
+  table.plat td.num span { color: var(--green); }
+  table.plat td.note { color: var(--ink2); font-size: 10.5px; line-height: 1.45; }
+  .chip {
+    display: inline-block; font-family: Menlo, monospace; font-size: 8px; letter-spacing: 0.1em;
+    color: var(--green); border: 1px solid var(--green-dim); border-radius: 99px; padding: 2px 8px; margin-left: 6px; vertical-align: 2px;
+  }
+  .aud { grid-template-columns: 1fr 1fr 1fr; margin-top: 14px; }
+  .aud .tile .v { font-size: 15px; }
+
+  /* ---------- proof ---------- */
+  .case {
+    background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 18px 20px; margin-top: 12px;
+  }
+  .case .tag { font-family: Menlo, monospace; font-size: 8.5px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--green); }
+  .case h3 { font-size: 16px; font-weight: 800; margin-top: 6px; }
+  .case p { font-size: 11px; color: var(--ink2); line-height: 1.55; margin-top: 6px; }
+  .case .nums { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 12px; }
+  .case .nums div { border-left: 2px solid var(--green-dim); padding-left: 10px; }
+  .case .nums .n { font-size: 19px; font-weight: 800; letter-spacing: -0.02em; }
+  .case .nums .l { font-family: Menlo, monospace; font-size: 7.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink3); margin-top: 3px; }
+  .verify { margin-top: 12px; font-size: 10px; color: var(--ink3); line-height: 1.5; }
+
+  /* ---------- rates ---------- */
+  .pkg { grid-template-columns: 1.15fr 1fr; margin-top: 12px; }
+  .pkgcard { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; position: relative; }
+  .pkgcard.hero { border: 1.5px solid var(--green); background: linear-gradient(160deg, #142617 0%, #101A11 100%); }
+  .flag {
+    position: absolute; top: -9px; left: 16px; background: var(--green); color: #05130A;
+    font-family: Menlo, monospace; font-size: 8px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
+    padding: 3px 9px; border-radius: 99px;
+  }
+  .pkgcard h3 { font-size: 15px; font-weight: 800; }
+  .pkgcard .price { font-size: 30px; font-weight: 850; letter-spacing: -0.02em; margin-top: 4px; }
+  .pkgcard .price small { font-size: 10.5px; font-weight: 500; color: var(--ink3); letter-spacing: 0; margin-left: 6px; }
+  .pkgcard .price small s { color: var(--ink3); }
+  .pkgcard ul { list-style: none; margin-top: 10px; }
+  .pkgcard li { font-size: 10px; color: var(--ink2); line-height: 1.5; padding: 3px 0 3px 16px; position: relative; }
+  .pkgcard li::before { content: "▸"; position: absolute; left: 0; color: var(--green); }
+  table.rates { width: 100%; border-collapse: collapse; margin-top: 12px; }
+  table.rates td { padding: 8px 10px; border-bottom: 1px solid var(--line); font-size: 11px; color: var(--ink2); }
+  table.rates td:last-child { text-align: right; font-weight: 800; font-size: 13px; color: var(--ink); white-space: nowrap; }
+  .perf {
+    margin-top: 12px; border: 1px dashed var(--green-dim); border-radius: 10px; padding: 12px 14px;
+    font-size: 10.5px; color: var(--ink2); line-height: 1.55;
+  }
+  .perf b { color: var(--green); }
+
+  /* ---------- how / terms / contact ---------- */
+  .steps { grid-template-columns: 1fr 1fr 1fr; margin-top: 12px; }
+  .steps .tile .v { font-size: 12.5px; font-weight: 700; line-height: 1.4; }
+  .steps .num { font-family: Menlo, monospace; font-size: 20px; font-weight: 700; color: var(--green); }
+  .terms { columns: 2; column-gap: 28px; margin-top: 10px; }
+  .terms li { font-size: 10px; color: var(--ink2); line-height: 1.55; margin: 0 0 7px 14px; }
+  .contact {
+    margin-top: 14px; background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+    padding: 16px 18px; display: flex; justify-content: space-between; align-items: center;
+  }
+  .contact .cta { font-size: 15px; font-weight: 800; }
+  .contact .cta span { color: var(--green); }
+  .contact .ways { text-align: right; font-family: Menlo, monospace; font-size: 9.5px; color: var(--ink2); line-height: 1.8; letter-spacing: 0.05em; }
+  .contact .ways b { color: var(--green); font-weight: 600; }
+</style>
+</head>
+<body>
+
+<!-- ================= PAGE 1 : COVER ================= -->
+<div class="page cover">
+  <div class="scan"></div><div class="glow"></div>
+  <img class="robo" src="assets/robot.jpg" alt="CASH.BOT robot mascot">
+  <div class="brandline">
+    <div class="botmark">$</div>
+    <div class="t">CASH.BOT &nbsp;//&nbsp; MEDIA KIT 2026</div>
+  </div>
+
+  <h1>CHASE<br>REINER<span class="g">.</span></h1>
+  <div class="who"><b>Creator of CASH.BOT</b> &nbsp;·&nbsp; AI tools &amp; make-money-online education &nbsp;·&nbsp; Phoenix, AZ</div>
+
+  <div class="press"><span class="star">★</span><span>AS FEATURED IN <b>THE NEW YORK POST</b> — profiled among the content creators making thousands per month with AI</span></div>
+
+  <div class="hook">Most creators sell views. <span>I sell buyers</span> — my audience has generated over $425,000 in tracked affiliate commissions and $2.9M in direct product sales.</div>
+
+  <div class="grid tiles">
+    <div class="tile"><div class="k">Total Combined Reach</div><div class="v">1.6M<span class="u">+</span></div><div class="d">Email + YouTube + Instagram + Facebook</div></div>
+    <div class="tile"><div class="k">Email List — AI / MMO Niche</div><div class="v">600K<span class="u">+</span></div><div class="d">Owned first-party list, verifiable live on a call</div></div>
+    <div class="tile"><div class="k">Tracked Affiliate Commissions Earned</div><div class="v">$425K<span class="u">+</span></div><div class="d">Paid out to me by partner programs — proof of conversion</div></div>
+    <div class="tile"><div class="k">Own-Product Sales (Stripe)</div><div class="v">$2.9M<span class="u">+</span></div><div class="d">26,839 successful payments · 27,454 customers</div></div>
+  </div>
+
+  <div class="partnerline">SELECTED PROGRAMS &amp; PARTNERS &nbsp;—&nbsp; <b>Temu · HighLevel · ElevenLabs · Surfer · AdCreative.ai · Manychat · Descript · Spotter Studio</b></div>
+
+  <div class="pagefoot"><span><b>ChaseReiner.com</b> · support@shineranker.com</span><span>PAGE 01 / 06</span></div>
+</div>
+
+<!-- ================= PAGE 2 : AUDIENCE ================= -->
+<div class="page">
+  <div class="eyebrow">01 — Audience &amp; Platforms</div>
+  <h2 class="sect">Where your offer gets seen.</h2>
+  <p class="sub">One of the largest owned audiences in the AI / make-money-online niche: entrepreneurs, side-hustlers, and AI-curious action-takers who follow me specifically to find tools worth paying for.</p>
+
+  <table class="plat">
+    <tr><th>Platform</th><th>Size</th><th>Notes</th></tr>
+    <tr>
+      <td class="name">Email List<span class="h">GoHighLevel / Kartra CRM</span></td>
+      <td class="num"><span>600K+</span> contacts</td>
+      <td class="note">Owned first-party list in the AI / tech / MMO niche. My highest-converting channel — sponsors get solo sends or featured placements.</td>
+    </tr>
+    <tr>
+      <td class="name">YouTube — CA$H BOT<span class="h">@CASH_BOT_AI</span></td>
+      <td class="num"><span>329K</span> subscribers</td>
+      <td class="note">Long-form tutorials + Shorts. Sponsored videos stay live 12+ months and keep converting via description links.</td>
+    </tr>
+    <tr>
+      <td class="name">Instagram — CA$H.BOT <span class="chip">VERIFIED</span><span class="h">@cash_bot_ai</span></td>
+      <td class="num"><span>272K</span> followers</td>
+      <td class="note">~84K views in the last 30 days. Reels + stories + broadcast channel.</td>
+    </tr>
+    <tr>
+      <td class="name">Instagram — Chase Reiner<span class="h">@hustlersshit</span></td>
+      <td class="num"><span>161K</span> followers</td>
+      <td class="note">Personal brand page + “The 1 Percents!” broadcast community (6.7K members).</td>
+    </tr>
+    <tr>
+      <td class="name">Instagram — The AI Hub<span class="h">@the_aihub</span></td>
+      <td class="num"><span>66K</span> followers</td>
+      <td class="note">AI-tools page. Reels regularly reach 3K–11K+ views; hosted the Temu brand collab.</td>
+    </tr>
+    <tr>
+      <td class="name">Facebook Group<span class="h">Make Money Online With AI Prompting</span></td>
+      <td class="num"><span>146K</span> members</td>
+      <td class="note">Public community I own and manage — direct posting access to an engaged MMO audience.</td>
+    </tr>
+    <tr>
+      <td class="name">Facebook Page — Cash.bot<span class="h">facebook.com/cash.bot</span></td>
+      <td class="num"><span>52K</span> followers</td>
+      <td class="note">2.9K posts of AI money-making content.</td>
+    </tr>
+  </table>
+
+  <div class="grid aud">
+    <div class="tile"><div class="k">Niche</div><div class="v">AI tools · prompting · online income</div></div>
+    <div class="tile"><div class="k">Audience Mindset</div><div class="v">Buyers hunting their next tool or side income</div></div>
+    <div class="tile"><div class="k">Best Fit Sponsors</div><div class="v">AI &amp; SaaS apps · finance · creator tools · e-com</div></div>
+  </div>
+
+  <div class="pagefoot"><span><b>ChaseReiner.com</b> · support@shineranker.com</span><span>PAGE 02 / 06</span></div>
+</div>
+
+<!-- ================= PAGE 3 : PROOF ================= -->
+<div class="page">
+  <div class="eyebrow">02 — Proof of Performance</div>
+  <h2 class="sect">Receipts, not promises.</h2>
+  <p class="sub">Every number below comes straight from my live partner dashboards and Stripe account. I share the actual screens on any call — no medians, no “up to,” no vanity metrics.</p>
+
+  <div class="case">
+    <div class="tag">Case Study 01 — HighLevel Affiliate Program</div>
+    <h3>One partner. $313,808 paid to me. 1,484 paying customers delivered.</h3>
+    <p>Promoted across my ecosystem — video, email, and community. This is what sustained promotion to my audience does for a SaaS product over time.</p>
+    <div class="nums">
+      <div><div class="n">$313,808</div><div class="l">Commissions Paid</div></div>
+      <div><div class="n">847,753</div><div class="l">Clicks Driven</div></div>
+      <div><div class="n">225,789</div><div class="l">Referral Sign-ups</div></div>
+      <div><div class="n">1,484</div><div class="l">Paying Customers</div></div>
+    </div>
+  </div>
+
+  <div class="case">
+    <div class="tag">Case Study 02 — PartnerStack Network</div>
+    <h3>$111,283 in paid commissions across AI &amp; SaaS programs.</h3>
+    <p>ElevenLabs, Surfer, AdCreative.ai, Manychat, Descript and more — including 170,720 clicks driven to a single partner (Spotter Studio) in 12 months.</p>
+    <div class="nums">
+      <div><div class="n">$111,283</div><div class="l">Paid Commissions</div></div>
+      <div><div class="n">$0.65</div><div class="l">Earnings Per Click</div></div>
+      <div><div class="n">230K+</div><div class="l">Network Clicks</div></div>
+      <div><div class="n">170,720</div><div class="l">Clicks · One Partner / 12 Mo</div></div>
+    </div>
+  </div>
+
+  <div class="case">
+    <div class="tag">Case Study 03 — My Own Products (Stripe)</div>
+    <h3>$2.94M net sales to this exact audience.</h3>
+    <p>The strongest proof a sponsor can ask for: this audience doesn’t just click — it pulls out a card. Zero percent high-risk payment rate.</p>
+    <div class="nums">
+      <div><div class="n">$2.94M</div><div class="l">Net Volume</div></div>
+      <div><div class="n">26,839</div><div class="l">Successful Payments</div></div>
+      <div><div class="n">27,454</div><div class="l">Customers</div></div>
+      <div><div class="n">$231</div><div class="l">Avg Spend / Customer</div></div>
+    </div>
+  </div>
+
+  <div class="case" style="border-color: var(--green-dim);">
+    <div class="tag">In The Press — New York Post · December 30, 2024</div>
+    <h3>&ldquo;Meet the content creators harnessing AI — and how they use it to make thousands per month&rdquo;</h3>
+    <p>The New York Post profiled my strategy of using AI to advertise AI — generating branded images and video content and distributing it across <b style="color:var(--ink)">40+ social platforms</b> — reporting the method generates <b style="color:var(--ink)">$50,000–$60,000 per month</b> in commission income. National press coverage means your brand rides on a creator sponsors can point to.</p>
+  </div>
+
+  <div class="verify">All figures from live dashboards (HighLevel Affiliate Portal, PartnerStack, Stripe) as of July 2026. Screen-share verification available on request. Past performance shown as evidence of audience quality, not a guarantee of campaign results.</div>
+
+  <div class="pagefoot"><span><b>ChaseReiner.com</b> · support@shineranker.com</span><span>PAGE 03 / 06</span></div>
+</div>
+
+<!-- ================= PAGE 4 : RATES ================= -->
+<div class="page">
+  <div class="eyebrow">03 — Sponsorship Packages &amp; Rates</div>
+  <h2 class="sect">Pick your firepower.</h2>
+
+  <div class="grid pkg">
+    <div class="pkgcard hero">
+      <div class="flag">Most Popular</div>
+      <h3>THE TAKEOVER</h3>
+      <div class="price">$5,500 <small><s>$8,450</s> booked separately</small></div>
+      <ul>
+        <li>Dedicated email blast to 600K+ list (solo send)</li>
+        <li>Featured mention in a regular email send</li>
+        <li>Dedicated YouTube video — 5–10 min, live 12+ months</li>
+        <li>Sponsored 60–90 sec integration in a second video</li>
+        <li>Social blast: reels on 2 IG accounts + FB group + FB page + broadcast channel</li>
+        <li>Permanent post on ChaseReiner.com</li>
+        <li>Link in all new video descriptions for 30 days + pinned comment</li>
+      </ul>
+    </div>
+    <div class="pkgcard">
+      <h3>THE SPOTLIGHT</h3>
+      <div class="price">$3,500 <small><s>$4,950</s> booked separately</small></div>
+      <ul>
+        <li>Everything in The Takeover except the email items</li>
+        <li>Best for building awareness before going all-in on my list</li>
+      </ul>
+      <table class="rates">
+        <tr><td>Dedicated email blast (600K+)</td><td>$2,500</td></tr>
+        <tr><td>Dedicated YouTube video</td><td>$2,000</td></tr>
+        <tr><td>Video integration (60–90s)</td><td>$1,000</td></tr>
+        <tr><td>Featured email mention</td><td>$1,000</td></tr>
+        <tr><td>Social blast (IG ×2 + FB ×2)</td><td>$950</td></tr>
+        <tr><td>Blog post (permanent)</td><td>$600</td></tr>
+        <tr><td>Description links · 30 days</td><td>$400</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="perf"><b>⚡ PERFORMANCE DEAL —</b> If your product genuinely converts, I’ll cut the flat fee in exchange for rev-share on tracked sales, and you get my hardest push: I only win when you win. This is how I produced the six-figure case studies on page 3. Serious offers only.</div>
+
+  <div class="grid steps">
+    <div class="tile"><div class="num">1</div><div class="v">Send your product, offer &amp; chosen package</div></div>
+    <div class="tile"><div class="num">2</div><div class="v">Stripe invoice — 50% locks your slot, 50% on delivery</div></div>
+    <div class="tile"><div class="num">3</div><div class="v">Live within 7–14 business days of your brief</div></div>
+  </div>
+
+  <ul class="terms">
+    <li><b>2 sponsors max per month</b> — every campaign gets my audience’s full attention. Slots go to whoever locks first.</li>
+    <li>One revision round included on all content.</li>
+    <li>I keep final creative control — my voice is why the audience converts.</li>
+    <li>All sponsorships disclosed per FTC guidelines.</li>
+    <li>I personally vet every product before accepting. I built this audience on trust and only promote what I’d use myself.</li>
+    <li>Sponsored content remains live a minimum of 12 months (YouTube &amp; blog).</li>
+  </ul>
+
+  <div class="contact">
+    <div class="cta">Ready to get in front of <span>1.6M+ buyers?</span></div>
+    <div class="ways">
+      <b>EMAIL</b> &nbsp;support@shineranker.com<br>
+      <b>WEB</b> &nbsp;ChaseReiner.com · cash.bot<br>
+      <b>WHATSAPP</b> &nbsp;+1 (805) 453-3586
+    </div>
+  </div>
+
+  <div class="pagefoot"><span><b>ChaseReiner.com</b> · support@shineranker.com</span><span>PAGE 04 / 06</span></div>
+</div>
+
+<!-- ================= PAGE 5 : APPENDIX 1 ================= -->
+<div class="page">
+  <div class="eyebrow">04 — Appendix: The Receipts (1 of 2)</div>
+  <h2 class="sect">Straight from the dashboards.</h2>
+  <p class="sub">The screenshots behind every number on page 3 — exactly as they appear in my accounts.</p>
+
+  <div class="shot shot--hl">
+    <img src="assets/hl-portal.jpg" alt="HighLevel Affiliate Portal screenshot">
+    <div class="cap"><b>HighLevel Affiliate Portal</b> — $313,808.99 total paid · 847,753 clicks · 225,789 referrals · 1,484 paying customers.</div>
+  </div>
+
+  <div class="shot shot--wide">
+    <img src="assets/ghl-contacts.jpg" alt="GoHighLevel CRM showing 660,901 contacts">
+    <div class="cap"><b>The email list, live</b> — 660,901 contacts in my CRM. When I quote 600K+, this is the screen behind it.</div>
+  </div>
+
+  <div class="pagefoot"><span><b>ChaseReiner.com</b> · support@shineranker.com</span><span>PAGE 05 / 06</span></div>
+</div>
+
+<!-- ================= PAGE 6 : APPENDIX 2 ================= -->
+<div class="page">
+  <div class="eyebrow">04 — Appendix: The Receipts (2 of 2)</div>
+  <h2 class="sect">More receipts.</h2>
+
+  <div class="shotrow">
+    <div class="shot">
+      <img src="assets/partnerstack.jpg" alt="PartnerStack dashboard screenshot">
+      <div class="cap"><b>PartnerStack</b> — $111,283.20 paid commissions · $0.65 earnings per click.</div>
+    </div>
+    <div class="shot">
+      <img src="assets/stripe.jpg" alt="Stripe reports screenshot">
+      <div class="cap"><b>Stripe</b> — $3.37M gross · $2.94M net from sales · 26,839 successful payments.</div>
+    </div>
+    <div class="shot">
+      <img src="assets/youtube.jpg" alt="YouTube channel screenshot">
+      <div class="cap"><b>YouTube — @CASH_BOT_AI</b> — 329K subscribers.</div>
+    </div>
+  </div>
+
+  <div class="livenote"><b>Want the live view?</b> Every dashboard shown here can be verified on a screen-share during our call — no edited numbers, no cherry-picked date ranges.</div>
+
+  <div class="pagefoot"><span><b>CASH.BOT</b> · Shine Ranker LLC · Media Kit 2026</span><span>PAGE 06 / 06</span></div>
+</div>
+
+</body>
+</html>
