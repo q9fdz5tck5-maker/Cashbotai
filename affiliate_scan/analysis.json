@@ -1,0 +1,421 @@
+{
+ "channel": {
+  "name": "CA$H BOT",
+  "handle": "@cash_bot_ai",
+  "id": "UC6z07Hh9Muy6urJgA0F0azg",
+  "videos_scanned": 655,
+  "tabs": {
+   "videos": 171,
+   "shorts": 72,
+   "streams": 412
+  }
+ },
+ "totals": {
+  "affiliate_link_occurrences": 142,
+  "distinct_programs": 27,
+  "videos_with_affiliate_links": 21,
+  "affiliate_word_mentions": 142,
+  "videos_mentioning_affiliate_word": 138,
+  "total_urls_all": 4187,
+  "unique_urls_all": 204,
+  "videos_with_descriptions": 585
+ },
+ "links": [
+  {
+   "label": "Replit referral",
+   "platform": "replit.com/refer/rebootbase",
+   "kind": "referral",
+   "occurrences": 15,
+   "videos": 10
+  },
+  {
+   "label": "Honeygain referral",
+   "platform": "join.honeygain.com/CENTRFAD3A",
+   "kind": "referral",
+   "occurrences": 13,
+   "videos": 13
+  },
+  {
+   "label": "Whop affiliate (?a=80t)",
+   "platform": "whop.com/...?a=80t",
+   "kind": "affiliate",
+   "occurrences": 10,
+   "videos": 5
+  },
+  {
+   "label": "Crown Coins Casino referral",
+   "platform": "crowncoinscasino.com (friends campaign)",
+   "kind": "referral",
+   "occurrences": 9,
+   "videos": 9
+  },
+  {
+   "label": "Kraken invite",
+   "platform": "invite.kraken.com/JDNW/*",
+   "kind": "referral",
+   "occurrences": 9,
+   "videos": 9
+  },
+  {
+   "label": "GoHighLevel affiliate",
+   "platform": "gohighlevel.com (fp_ref=chase-96)",
+   "kind": "affiliate",
+   "occurrences": 7,
+   "videos": 7
+  },
+  {
+   "label": "Fetch Rewards referral",
+   "platform": "referral.fetch.com (code 3AX5JU)",
+   "kind": "referral",
+   "occurrences": 7,
+   "videos": 7
+  },
+  {
+   "label": "Pawns.app referral",
+   "platform": "pawns.app/?r=chase + discoverpawns.eu/chase",
+   "kind": "referral",
+   "occurrences": 7,
+   "videos": 7
+  },
+  {
+   "label": "MoneyLion referral",
+   "platform": "mlion.us/$AudibleChase497",
+   "kind": "referral",
+   "occurrences": 6,
+   "videos": 6
+  },
+  {
+   "label": "Crypto.com referral",
+   "platform": "crypto.com/app/2gk8q3vvmd",
+   "kind": "referral",
+   "occurrences": 4,
+   "videos": 4
+  },
+  {
+   "label": "Rakuten referral",
+   "platform": "rakuten.com/r/CENTRA1199",
+   "kind": "referral",
+   "occurrences": 4,
+   "videos": 4
+  },
+  {
+   "label": "Ibotta referral",
+   "platform": "ibotta.onelink.me (friend_code=pyntmly)",
+   "kind": "referral",
+   "occurrences": 4,
+   "videos": 4
+  },
+  {
+   "label": "SoFi invite",
+   "platform": "sofi.com/invite/money",
+   "kind": "referral",
+   "occurrences": 4,
+   "videos": 4
+  },
+  {
+   "label": "OnePay refer-a-friend",
+   "platform": "web.onepay.com (code 1Gtw8URPu)",
+   "kind": "referral",
+   "occurrences": 4,
+   "videos": 4
+  },
+  {
+   "label": "MEXC referral",
+   "platform": "promote.mexc.co/r/vY9aUpkt",
+   "kind": "referral",
+   "occurrences": 4,
+   "videos": 4
+  },
+  {
+   "label": "Freecash referral",
+   "platform": "freecash.com/r/8PGVI",
+   "kind": "referral",
+   "occurrences": 4,
+   "videos": 4
+  },
+  {
+   "label": "KashKick referral",
+   "platform": "kashkick.com?ref=...",
+   "kind": "referral",
+   "occurrences": 4,
+   "videos": 4
+  },
+  {
+   "label": "BigCashWeb referral",
+   "platform": "bigcashweb.com/refer/htpzgbht",
+   "kind": "referral",
+   "occurrences": 4,
+   "videos": 4
+  },
+  {
+   "label": "Swagbucks referral",
+   "platform": "swagbucks.com/profile/r_229374557",
+   "kind": "referral",
+   "occurrences": 4,
+   "videos": 4
+  },
+  {
+   "label": "SurveySavvy affiliate",
+   "platform": "surveysavvy.com/?m=9031152",
+   "kind": "affiliate",
+   "occurrences": 4,
+   "videos": 4
+  },
+  {
+   "label": "Cash App invite",
+   "platform": "cash.app/app/S9F8ZJF",
+   "kind": "referral",
+   "occurrences": 4,
+   "videos": 4
+  },
+  {
+   "label": "Coinbase join",
+   "platform": "coinbase.com/join/W88AC66",
+   "kind": "referral",
+   "occurrences": 3,
+   "videos": 3
+  },
+  {
+   "label": "Kling AI invitation",
+   "platform": "pro.klingai.com (code 7BELXWWVFR6D)",
+   "kind": "referral",
+   "occurrences": 3,
+   "videos": 3
+  },
+  {
+   "label": "SEOprofiler affiliate",
+   "platform": "seoprofiler.com/#a_aid=chasereiner",
+   "kind": "affiliate",
+   "occurrences": 2,
+   "videos": 2
+  },
+  {
+   "label": "Claude referral",
+   "platform": "claude.ai/referral/-D2ekibIbQ",
+   "kind": "referral",
+   "occurrences": 1,
+   "videos": 1
+  },
+  {
+   "label": "Vultr affiliate",
+   "platform": "vultr.com/?ref=9906626",
+   "kind": "affiliate",
+   "occurrences": 1,
+   "videos": 1
+  },
+  {
+   "label": "KWFinder discount (likely affiliate)",
+   "platform": "kwfinder.com/15%",
+   "kind": "likely",
+   "occurrences": 1,
+   "videos": 1
+  }
+ ],
+ "affiliate_word_lines": [
+  {
+   "line": "\u274c IMPORTANT \u274c : Don't use an ad blocker or chrome extension when clicking on the link, it will block affiliate tracking and you will NOT receive any of my bonus",
+   "count": 124
+  },
+  {
+   "line": "\ud83c\udf40: I highly urge you to either pause the video or at the end of this video, spend the time grabbing free accounts on these free offer apps before it may be too ",
+   "count": 3
+  },
+  {
+   "line": "Results not guaranteed, for informational purposes only,  just speaking from my experience, do not expect similar results as me or any results at all. This vide",
+   "count": 3
+  },
+  {
+   "line": "\ud83d\udcb0 VERIFIED AFFILIATE LINKS (ORDERED FOR CONVERSION)",
+   "count": 3
+  },
+  {
+   "line": "Today we continue our affiliate SEO series!",
+   "count": 2
+  },
+  {
+   "line": "VULTR AFFILIATE $300 FREE CREDITS WHEN $5 DEPOSITED: https://www.vultr.com/?ref=9906626",
+   "count": 1
+  },
+  {
+   "line": "25:07 Free tier coming + 50% affiliate on the LTD",
+   "count": 1
+  },
+  {
+   "line": "Struggling to claim bonuses or help others? Learn quick affiliate credit hacks, even with zero experience. Maximize your earnings with these simple strategies.",
+   "count": 1
+  },
+  {
+   "line": "#BonusHacks #AffiliateMarketing #EarningMoney #OnlineBusiness",
+   "count": 1
+  },
+  {
+   "line": "Learn the top 5 SEO Affiliate Marketing techniques that I use today. If I missed anything please let me know in the comments! :)",
+   "count": 1
+  },
+  {
+   "line": "Today we cover part 6 for our SEO for affiliate sites series. Let me know what you think in the comments!",
+   "count": 1
+  },
+  {
+   "line": "Today we continue to part 5 of SEO for affiliate sites.",
+   "count": 1
+  }
+ ],
+ "titles_with_affiliate": [
+  {
+   "videoId": "fZpWw8PwHrM",
+   "title": "I Built the Ultimate AI Lead + Affiliate Referral System (Here\u2019s Proof)"
+  },
+  {
+   "videoId": "YGt4qL6sJIw",
+   "title": "Let's Start an Amazon Affiliate Website"
+  },
+  {
+   "videoId": "VFmz5gzZGWo",
+   "title": "SEO Affiliate Marketing Secret Techniques (EASY MODE)"
+  },
+  {
+   "videoId": "TNIK8HT2zb4",
+   "title": "SEO For Affiliates Part 17: Reporting"
+  },
+  {
+   "videoId": "K8R3Z93pm4A",
+   "title": "Affiliate SEO Part 16: SEO Roadmap"
+  },
+  {
+   "videoId": "eaUeHYAqurc",
+   "title": "SEO For Affiliate Sites Part 15"
+  },
+  {
+   "videoId": "5-NUwGXSrx8",
+   "title": "SEO For Affiliates Part 16"
+  },
+  {
+   "videoId": "qWtFrH9gE4s",
+   "title": "SEO For Affiliates Part 9"
+  },
+  {
+   "videoId": "QJr3prqyG_k",
+   "title": "Affiliate SEO Series Part 8"
+  },
+  {
+   "videoId": "sW4udUisvus",
+   "title": "SEO For Affiliate Sites Part 7"
+  },
+  {
+   "videoId": "nE75W6fAdQs",
+   "title": "SEO For Affiliate Sites Part 6"
+  },
+  {
+   "videoId": "fM-vAolDwiQ",
+   "title": "SEO For Affiliate Sites Part 5"
+  }
+ ],
+ "top_videos": [
+  {
+   "videoId": "_cvGjQ4WP2E",
+   "title": "THIS ONE AI PROMPT DOUBLED MY CLIENTS LEADS AND MADE ME $5K",
+   "published": "2026-02-19T05:26:59-08:00",
+   "views": "613",
+   "affiliate_links": 19
+  },
+  {
+   "videoId": "bENDp0IyUvk",
+   "title": "AI RESPONDS TO MY IPHONE CONTACTS FOR ME WHILE I SLEEP",
+   "published": "2026-02-16T09:25:29-08:00",
+   "views": "575",
+   "affiliate_links": 19
+  },
+  {
+   "videoId": "hsFC95LlAHs",
+   "title": "This AI Finds Free Cash Apps Automatically (LIVE DEMO + New CashBot Updates)",
+   "published": "2026-02-08T03:47:37-08:00",
+   "views": "5345",
+   "affiliate_links": 19
+  },
+  {
+   "videoId": "i-tpHLdo47w",
+   "title": "THIS ONE AI PROMPT MADE ME $5K FROM MY CLIENTS ADS",
+   "published": "2026-02-18T20:18:18-08:00",
+   "views": "832",
+   "affiliate_links": 18
+  },
+  {
+   "videoId": "-DKMpp66A4w",
+   "title": "I FOUND OUT HOW TO MAKE MONEY ONLINE WITH AI PROMPTING FROM MY PHONE AND IT\u2019S TERRIFYING",
+   "published": "2026-07-07T14:44:12-07:00",
+   "views": "2135",
+   "affiliate_links": 12
+  },
+  {
+   "videoId": "qTbf6ZOx9J0",
+   "title": "YOUTUBE GENERATED MASSIVE GLOWING AI SCORPION VIDEO FROM IPHONE 17 (MILLION DOLLAR PROMPT ",
+   "published": "2026-07-08T07:07:07-07:00",
+   "views": "273",
+   "affiliate_links": 12
+  },
+  {
+   "videoId": "aykKo33vxBs",
+   "title": "How I Sold $2,000 of AI Video Services From My Phone (WITH PROOF!)",
+   "published": "2026-07-09T21:01:12-07:00",
+   "views": "587",
+   "affiliate_links": 12
+  },
+  {
+   "videoId": "byTlB7CIcLw",
+   "title": "I CODED AN AI CASH BOT (USING ONLY MY PHONE)",
+   "published": "2026-06-24T01:19:02-07:00",
+   "views": "598",
+   "affiliate_links": 8
+  },
+  {
+   "videoId": "s_YLfkQt8os",
+   "title": "AI MADE AND LOST ME MILLIONS & WIFE GONE!!! HOW I MAKE MONEY WITH AI PROMPTS",
+   "published": "2026-07-03T20:13:40-07:00",
+   "views": "1421",
+   "affiliate_links": 5
+  },
+  {
+   "videoId": "PD_kJz-e5nQ",
+   "title": "THIS FREE APP CLAIMS CASH FOR YOU! \ud83d\ude31",
+   "published": "2026-02-04T20:30:51-08:00",
+   "views": "1412",
+   "affiliate_links": 3
+  },
+  {
+   "videoId": "MXAut5rNsmI",
+   "title": "NEW AI CASH BOT CRAWLS SITES THAT GIVE YOU FREE STUFF! \ud83e\udd2f",
+   "published": "2026-02-05T22:59:25-08:00",
+   "views": "2396",
+   "affiliate_links": 3
+  },
+  {
+   "videoId": "Mv_NIBEJkHY",
+   "title": "I ACCIDENTALLY BOUGHT A RARE SVJ AND IT'S FLIPPING FOR $500K",
+   "published": "2026-03-02T22:48:45-08:00",
+   "views": "769",
+   "affiliate_links": 2
+  },
+  {
+   "videoId": "gueoDGZH8vw",
+   "title": "THIS FREE AI APP DISCOVERS HIDDEN MONEY \ud83d\ude31",
+   "published": "2026-01-31T15:39:39-08:00",
+   "views": "2023",
+   "affiliate_links": 2
+  },
+  {
+   "videoId": "zthS1VQfwxk",
+   "title": "How I Earn Money From My Phone Using AI Prompting (CASH.BOT COMPLETE GUIDE PART 1)",
+   "published": "2026-06-08T20:54:10-07:00",
+   "views": "1838",
+   "affiliate_links": 1
+  },
+  {
+   "videoId": "8yGWRwHTPEY",
+   "title": "\ufffcWHOP IS HANDS DOWN THE BIGGEST OPPORTUNITY TO EARN MONEY FROM YOUR PHONE FOR FREE!",
+   "published": "2026-06-04T19:33:18-07:00",
+   "views": "949",
+   "affiliate_links": 1
+  }
+ ]
+}
