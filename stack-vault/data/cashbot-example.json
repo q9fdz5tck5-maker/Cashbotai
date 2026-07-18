@@ -1,0 +1,136 @@
+{
+  "vault_version": "1.0",
+  "exported_at": "2026-07-18T00:00:00Z",
+  "business_profile": {
+    "owner": {
+      "name": "",
+      "email": "",
+      "photo_url": "",
+      "website": "",
+      "social_links": "",
+      "contact_hours": "",
+      "preferred_contact": "",
+      "vcard_url": "https://drive.google.com/file/d/106tU2Yq-cLq3OiCOkegRUlRfEqx0W2F9/view?usp=drivesdk"
+    },
+    "brand": {
+      "name": "CASH.BOT",
+      "logo_url": "",
+      "legal_entity": "SHINE RANKER LLC",
+      "niche": "AI prompting / training",
+      "local_service_area": "",
+      "online_products": "",
+      "affiliate_programs_promoted": "See tools[] — one record per program",
+      "sponsorships": "",
+      "domain_provider": "",
+      "next_domain_renewal": "",
+      "trademarks": "",
+      "press": "",
+      "achievements_url": "https://drive.google.com/file/d/1uMwCeMAjvWQLyRiHgi8waSY6t0_60Ber/view?usp=drivesdk",
+      "cloud_storage_url": "https://drive.google.com/drive/folders/1pwdr5ve7Z6ynbdGyqgMqQu9Kyec4fmpj"
+    },
+    "audience": {
+      "email_list_size": "",
+      "sms_list_size": "",
+      "groups_combined_size": "",
+      "facebook_group_url": "",
+      "whop_group_url": "",
+      "instagram_community_url": "",
+      "other_communities": "",
+      "customer_data_enriched": "",
+      "customer_data_tagged": ""
+    },
+    "content_assets": {
+      "brand_images": "",
+      "brand_videos": "",
+      "brand_written": "",
+      "prewritten_emails": "",
+      "automated_followup": "",
+      "daily_content": "",
+      "reviews": ""
+    },
+    "traffic_money": {
+      "organic_traffic": "",
+      "social_traffic": "",
+      "paid_traffic": "",
+      "avg_leadflow": "",
+      "avg_cashflow": "",
+      "avg_net_profit": "",
+      "platform_ad_spend": "",
+      "ad_platforms": "",
+      "hiring_marketing_spend": "",
+      "employee_spend": "",
+      "marketing_budget": "",
+      "profit_share_pct": "",
+      "trajectory": "up"
+    },
+    "stack": {
+      "websites": "https://cash.bot (source doc said 'cash.not' three times — assumed typo, verify)",
+      "social_profiles": "",
+      "paid_apps": "",
+      "free_tech": "",
+      "email_addresses": "",
+      "crm": "",
+      "analytics": "",
+      "keywords": ""
+    },
+    "kpis": {
+      "main_kpis": "",
+      "call_conversion_value": "",
+      "dm_conversion_value": "",
+      "lead_form_conversion_value": ""
+    },
+    "extra_context": "Converted from the CASH.BOT.REBOOT.HUMAN.API text document on 2026-07-18. Blank = was blank in the source."
+  },
+  "tools": [
+    {
+      "identity": { "name": "GoDaddy", "category": "Domain Registrars", "homepage": "https://www.godaddy.com", "rating": "", "still_relevant": "yes", "necessity_pct": "", "learned_pct": "", "profile_complete": "" },
+      "account": { "login_url": "", "email": "", "username": "", "credential_ref": "" },
+      "affiliate": { "link": "", "network": "CJ (Commission Junction)", "application_page": "https://public.cj.com/signup/publisher?advertiserId=1513033", "dashboard_url": "https://signin.cj.com/u/login", "email": "", "username": "", "payout_terms": "", "pending_payout_usd": "", "coupon_codes": "", "swipes_media_url": "", "allows_contact_downloads": "" },
+      "api": { "has_api": "", "free": "", "rate_limits": "", "access_page": "", "key_ref": "" },
+      "apps": { "ios": "", "mac": "", "android": "", "windows": "" },
+      "facts": { "requires_kyc": "", "works_outside_us": "", "free_trial": "", "usage_limits": "", "key_features": "" },
+      "contact": { "support_emails": "", "phones": "", "ceo_link": "" },
+      "notes": ""
+    },
+    {
+      "identity": { "name": "Name.com", "category": "Domain Registrars", "homepage": "https://www.name.com", "rating": "", "still_relevant": "yes", "necessity_pct": "50", "learned_pct": "20", "profile_complete": "" },
+      "account": { "login_url": "https://www.name.com/account/login", "email": "", "username": "", "credential_ref": "" },
+      "affiliate": { "link": "", "network": "", "application_page": "", "dashboard_url": "", "email": "", "username": "", "payout_terms": "", "pending_payout_usd": "0", "coupon_codes": "", "swipes_media_url": "", "allows_contact_downloads": "" },
+      "api": { "has_api": "yes", "free": "", "rate_limits": "", "access_page": "https://www.name.com/account/settings/api", "key_ref": "ROTATE FIRST — old key was pasted in plaintext in the source doc and must be treated as burned. Generate a new key, store it in your password manager, put the entry name here." },
+      "apps": { "ios": "", "mac": "", "android": "", "windows": "" },
+      "facts": { "requires_kyc": "", "works_outside_us": "", "free_trial": "", "usage_limits": "", "key_features": "" },
+      "contact": { "support_emails": "", "phones": "", "ceo_link": "" },
+      "notes": ""
+    },
+    {
+      "identity": { "name": "Whop", "category": "Social & Community Platforms", "homepage": "https://whop.com", "rating": "", "still_relevant": "yes", "necessity_pct": "", "learned_pct": "", "profile_complete": "" },
+      "account": { "login_url": "", "email": "", "username": "", "credential_ref": "" },
+      "affiliate": { "link": "", "network": "", "application_page": "", "dashboard_url": "", "email": "", "username": "", "payout_terms": "", "pending_payout_usd": "0", "coupon_codes": "", "swipes_media_url": "", "allows_contact_downloads": "" },
+      "api": { "has_api": "", "free": "", "rate_limits": "", "access_page": "", "key_ref": "" },
+      "apps": { "ios": "", "mac": "", "android": "", "windows": "" },
+      "facts": { "requires_kyc": "", "works_outside_us": "", "free_trial": "", "usage_limits": "", "key_features": "" },
+      "contact": { "support_emails": "", "phones": "", "ceo_link": "" },
+      "notes": "Source record was copy-paste contaminated (carried Name.com homepage, Name.com API page, Pictory login and Pictory affiliate URLs). All wrong-company values dropped — refill from the real Whop account."
+    },
+    {
+      "identity": { "name": "Pictory", "category": "AI Video", "homepage": "https://pictory.ai", "rating": "0", "still_relevant": "", "necessity_pct": "50", "learned_pct": "20", "profile_complete": "" },
+      "account": { "login_url": "https://pictory.ai/login", "email": "", "username": "", "credential_ref": "" },
+      "affiliate": { "link": "", "network": "", "application_page": "", "dashboard_url": "https://partners.pictory.ai/login", "email": "", "username": "", "payout_terms": "", "pending_payout_usd": "0", "coupon_codes": "", "swipes_media_url": "", "allows_contact_downloads": "" },
+      "api": { "has_api": "", "free": "", "rate_limits": "", "access_page": "", "key_ref": "" },
+      "apps": { "ios": "", "mac": "", "android": "", "windows": "" },
+      "facts": { "requires_kyc": "", "works_outside_us": "", "free_trial": "", "usage_limits": "", "key_features": "" },
+      "contact": { "support_emails": "", "phones": "", "ceo_link": "" },
+      "notes": "Rated 0/10 in source — candidate for the not-relevant pile; confirm before cutting."
+    },
+    {
+      "identity": { "name": "Opus Pro", "category": "AI Video", "homepage": "https://opus.pro", "rating": "10", "still_relevant": "yes", "necessity_pct": "", "learned_pct": "", "profile_complete": "" },
+      "account": { "login_url": "", "email": "", "username": "", "credential_ref": "" },
+      "affiliate": { "link": "https://opus.pro/?via=cashbot", "network": "", "application_page": "", "dashboard_url": "https://affiliates.opus.pro/login", "email": "", "username": "", "payout_terms": "", "pending_payout_usd": "", "coupon_codes": "", "swipes_media_url": "", "allows_contact_downloads": "" },
+      "api": { "has_api": "", "free": "", "rate_limits": "", "access_page": "", "key_ref": "" },
+      "apps": { "ios": "", "mac": "", "android": "", "windows": "" },
+      "facts": { "requires_kyc": "", "works_outside_us": "", "free_trial": "", "usage_limits": "", "key_features": "" },
+      "contact": { "support_emails": "", "phones": "", "ceo_link": "" },
+      "notes": "Rated 10/10 in source — flagship affiliate."
+    }
+  ]
+}

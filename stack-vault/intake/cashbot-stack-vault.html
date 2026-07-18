@@ -1,0 +1,644 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>CASH.BOT Stack Vault — Intake</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root{
+    --bg:#F4F7F4; --panel:#FFFFFF; --panel2:#EBF1EC; --ink:#131A15; --ink2:#5A6A5F;
+    --line:#D7E0D8; --accent:#17A05B; --accent-ink:#0C6B3B; --accent-soft:#DCF0E4;
+    --gold:#8F6A1E; --gold-soft:#F3E9D2; --danger:#B23A34; --danger-soft:#F6E2E0;
+    --mono:ui-monospace,"SF Mono","Cascadia Code","JetBrains Mono",Menlo,Consolas,monospace;
+    --sans:"Avenir Next",Avenir,Seravek,"Segoe UI",system-ui,sans-serif;
+    --r:10px; --shadow:0 1px 2px rgba(19,26,21,.06),0 4px 16px rgba(19,26,21,.05);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0C120E; --panel:#121A14; --panel2:#0F1611; --ink:#E4EDE6; --ink2:#8FA095;
+      --line:#233029; --accent:#31D882; --accent-ink:#8FEBBB; --accent-soft:#153823;
+      --gold:#D9B45C; --gold-soft:#2C2410; --danger:#E4746C; --danger-soft:#3A1D1A;
+      --shadow:0 1px 2px rgba(0,0,0,.4),0 4px 16px rgba(0,0,0,.3);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0C120E; --panel:#121A14; --panel2:#0F1611; --ink:#E4EDE6; --ink2:#8FA095;
+    --line:#233029; --accent:#31D882; --accent-ink:#8FEBBB; --accent-soft:#153823;
+    --gold:#D9B45C; --gold-soft:#2C2410; --danger:#E4746C; --danger-soft:#3A1D1A;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 4px 16px rgba(0,0,0,.3);
+  }
+  :root[data-theme="light"]{
+    --bg:#F4F7F4; --panel:#FFFFFF; --panel2:#EBF1EC; --ink:#131A15; --ink2:#5A6A5F;
+    --line:#D7E0D8; --accent:#17A05B; --accent-ink:#0C6B3B; --accent-soft:#DCF0E4;
+    --gold:#8F6A1E; --gold-soft:#F3E9D2; --danger:#B23A34; --danger-soft:#F6E2E0;
+    --shadow:0 1px 2px rgba(19,26,21,.06),0 4px 16px rgba(19,26,21,.05);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{background:var(--bg);color:var(--ink);font:16px/1.55 var(--sans)}
+  ::selection{background:var(--accent-soft)}
+  a{color:var(--accent-ink)}
+  button{font:inherit;cursor:pointer}
+  input,select,textarea{
+    font:14px/1.4 var(--mono);color:var(--ink);background:var(--panel2);
+    border:1px solid var(--line);border-radius:6px;padding:9px 11px;width:100%;
+  }
+  textarea{min-height:74px;resize:vertical}
+  input:focus,select:focus,textarea:focus,button:focus-visible{
+    outline:2px solid var(--accent);outline-offset:1px;border-color:var(--accent);
+  }
+  input.filled,select.filled,textarea.filled{border-left:3px solid var(--accent)}
+
+  .shell{display:grid;grid-template-columns:264px 1fr;min-height:100vh}
+  /* ---------- rail ---------- */
+  .rail{
+    border-right:1px solid var(--line);background:var(--panel);padding:22px 18px;
+    position:sticky;top:0;height:100vh;overflow-y:auto;display:flex;flex-direction:column;gap:20px;
+  }
+  .wordmark{font:700 15px/1.2 var(--mono);letter-spacing:.04em}
+  .wordmark .cash{color:var(--accent)}
+  .wordmark small{display:block;font-weight:400;color:var(--ink2);letter-spacing:.14em;margin-top:4px;font-size:10px;text-transform:uppercase}
+  .meter{background:var(--panel2);border:1px solid var(--line);border-radius:var(--r);padding:14px}
+  .meter .pct{font:700 30px/1 var(--mono);font-variant-numeric:tabular-nums}
+  .meter .lbl{font:11px/1.3 var(--mono);text-transform:uppercase;letter-spacing:.12em;color:var(--ink2);margin-top:2px}
+  .bar{height:6px;background:var(--line);border-radius:3px;margin-top:10px;overflow:hidden}
+  .bar i{display:block;height:100%;width:0;background:var(--accent);border-radius:3px;transition:width .25s}
+  @media (prefers-reduced-motion:reduce){.bar i{transition:none}}
+  .nav{display:flex;flex-direction:column;gap:2px}
+  .nav button{
+    display:flex;justify-content:space-between;align-items:center;gap:8px;width:100%;
+    background:none;border:0;border-radius:8px;padding:9px 10px;color:var(--ink);
+    font:600 13.5px/1.2 var(--sans);text-align:left;
+  }
+  .nav button:hover{background:var(--panel2)}
+  .nav button.on{background:var(--accent-soft);color:var(--accent-ink)}
+  .nav .cnt{font:11px/1 var(--mono);color:var(--ink2);font-variant-numeric:tabular-nums}
+  .savechip{font:11px/1 var(--mono);color:var(--ink2);letter-spacing:.08em;text-transform:uppercase}
+  .savechip.ok{color:var(--accent-ink)}
+
+  /* ---------- main ---------- */
+  .main{padding:28px 34px 90px;max-width:900px;width:100%}
+  .view{display:none}
+  .view.on{display:block}
+  h1{font:700 25px/1.2 var(--sans);margin:0 0 4px;text-wrap:balance}
+  .sub{color:var(--ink2);margin:0 0 22px;max-width:62ch}
+  h2{font:700 17px/1.3 var(--sans);margin:0}
+  .eyebrow{font:11px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--accent-ink);margin-bottom:6px}
+
+  .warn{
+    display:flex;gap:12px;align-items:flex-start;background:var(--danger-soft);
+    border:1px solid var(--danger);border-radius:var(--r);padding:13px 15px;margin:0 0 24px;
+  }
+  .warn b{color:var(--danger)}
+  .warn p{margin:0;font-size:14.5px;max-width:70ch}
+  .warn .sig{font:700 18px/1 var(--mono);color:var(--danger)}
+
+  .card{
+    background:var(--panel);border:1px solid var(--line);border-radius:var(--r);
+    box-shadow:var(--shadow);padding:20px;margin-bottom:18px;scroll-margin-top:16px;
+  }
+  .card header{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:14px}
+  .card header .cnt{font:12px/1 var(--mono);color:var(--ink2);font-variant-numeric:tabular-nums}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px 16px}
+  .grid .wide{grid-column:1/-1}
+  .fld label{display:block;font:600 11px/1.3 var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--ink2);margin-bottom:5px}
+  .fld .hint{font-size:12px;color:var(--ink2);margin-top:4px;line-height:1.4}
+  .fld.money input{color:var(--gold);font-weight:600}
+
+  /* ---------- tools ---------- */
+  .toolbar{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:18px}
+  .btn{
+    border:1px solid var(--line);background:var(--panel);color:var(--ink);
+    border-radius:8px;padding:10px 16px;font-weight:600;font-size:14px;
+  }
+  .btn:hover{border-color:var(--accent)}
+  .btn.pri{background:var(--accent);border-color:var(--accent);color:#08130C}
+  :root[data-theme="light"] .btn.pri{color:#fff}
+  @media (prefers-color-scheme: light){:root:not([data-theme="dark"]) .btn.pri{color:#fff}}
+  .btn.ghost{background:none}
+  .btn.danger{color:var(--danger);border-color:var(--danger)}
+  .tool{border-left:4px solid var(--accent)}
+  .tool>header{cursor:pointer;user-select:none;margin-bottom:0}
+  .tool.open>header{margin-bottom:14px}
+  .tool .tl{display:flex;align-items:center;gap:10px;min-width:0}
+  .tool .tname{font:700 16px/1.2 var(--sans);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .chip{font:11px/1 var(--mono);letter-spacing:.06em;background:var(--accent-soft);color:var(--accent-ink);border-radius:99px;padding:5px 10px;white-space:nowrap}
+  .tool .tr{display:flex;align-items:center;gap:12px;flex-shrink:0}
+  .minibar{width:64px;height:5px;background:var(--line);border-radius:3px;overflow:hidden}
+  .minibar i{display:block;height:100%;background:var(--accent)}
+  .tool .body{display:none}
+  .tool.open .body{display:block}
+  .tgroup{margin-top:16px}
+  .tgroup h3{font:600 12px/1 var(--mono);letter-spacing:.13em;text-transform:uppercase;color:var(--accent-ink);border-bottom:1px solid var(--line);padding-bottom:7px;margin:0 0 12px}
+  .rowbtns{display:flex;gap:8px;margin-top:16px;justify-content:flex-end}
+  .rowbtns .btn{padding:7px 12px;font-size:13px}
+  .empty{border:1px dashed var(--line);border-radius:var(--r);padding:34px;text-align:center;color:var(--ink2)}
+
+  /* ---------- export ---------- */
+  .xgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .xcard{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);padding:18px;display:flex;flex-direction:column;gap:8px}
+  .xcard p{margin:0;font-size:13.5px;color:var(--ink2)}
+  .xcard .btn{align-self:flex-start;margin-top:4px}
+  .stat{font:700 26px/1 var(--mono);font-variant-numeric:tabular-nums}
+  .stat small{font:400 11px/1 var(--mono);display:block;color:var(--ink2);letter-spacing:.1em;text-transform:uppercase;margin-top:6px}
+  .prompt{background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:12px 14px;font-size:13.5px;display:flex;gap:10px;justify-content:space-between;align-items:flex-start}
+  .prompt .btn{padding:5px 10px;font-size:12px;flex-shrink:0}
+  .toast{
+    position:fixed;bottom:20px;left:50%;transform:translateX(-50%);
+    background:var(--ink);color:var(--bg);font:600 13px/1 var(--mono);
+    padding:11px 18px;border-radius:99px;opacity:0;pointer-events:none;transition:opacity .2s;z-index:50;
+  }
+  .toast.on{opacity:1}
+
+  @media (max-width:840px){
+    .shell{grid-template-columns:1fr}
+    .rail{position:static;height:auto;flex-direction:row;flex-wrap:wrap;align-items:center;border-right:0;border-bottom:1px solid var(--line)}
+    .rail .meter{order:3;flex:1 1 100%;display:flex;align-items:center;gap:12px}
+    .rail .meter .bar{flex:1;margin-top:0}
+    .nav{flex-direction:row;flex:1;justify-content:flex-end}
+    .nav .cnt{display:none}
+    .main{padding:20px 16px 70px}
+    .grid,.xgrid{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+<div class="shell">
+  <aside class="rail">
+    <div class="wordmark"><span class="cash">CASH.BOT</span> ▚ STACK VAULT
+      <small>Whole stack · one file · AI-ready</small>
+    </div>
+    <div class="meter">
+      <div><span class="pct" id="pctAll">0%</span><div class="lbl">Vault complete</div></div>
+      <div class="bar"><i id="barAll"></i></div>
+    </div>
+    <nav class="nav" id="nav">
+      <button data-v="profile" class="on">Business Profile <span class="cnt" id="cntProfile"></span></button>
+      <button data-v="tools">Tool Records <span class="cnt" id="cntTools"></span></button>
+      <button data-v="export">Export &amp; Prompts</button>
+    </nav>
+    <div class="savechip" id="saveChip">autosave ready</div>
+  </aside>
+
+  <main class="main">
+    <div class="warn">
+      <span class="sig">⌀</span>
+      <p><b>No passwords. No API keys. Ever.</b> This form never asks for a secret and you must never type one anywhere in it — including notes. Fields marked <i>credential ref</i> take the <b>name of the entry in your password manager</b> (1Password, Bitwarden, iCloud Keychain), nothing more.</p>
+    </div>
+
+    <section class="view on" id="view-profile">
+      <div class="eyebrow">Step 1 of 3</div>
+      <h1>Business Profile</h1>
+      <p class="sub">Everything about the business itself. Fill what you can, skip what you can't — every field has a hint saying where the answer lives. It saves on your device as you type; close the tab and come back whenever.</p>
+      <div id="profileCards"></div>
+    </section>
+
+    <section class="view" id="view-tools">
+      <div class="eyebrow">Step 2 of 3</div>
+      <h1>Tool Records</h1>
+      <p class="sub">One card per app or affiliate program in your stack. Add every tool you pay for, earn from, or rely on. Blank fields export as <span style="font-family:var(--mono)">MISSING</span> — that's useful data, not failure.</p>
+      <div class="toolbar">
+        <button class="btn pri" id="addTool">+ Add tool</button>
+        <button class="btn ghost" id="collapseAll">Collapse all</button>
+      </div>
+      <div id="toolCards"></div>
+    </section>
+
+    <section class="view" id="view-export">
+      <div class="eyebrow">Step 3 of 3</div>
+      <h1>Export &amp; Prompts</h1>
+      <p class="sub">Two outputs: the JSON file is your source of truth (send it back, keep it, re-import it later); the Markdown is formatted for pasting straight into an AI chat together with a starter prompt.</p>
+      <div class="xgrid">
+        <div class="xcard"><span class="stat" id="statFields">0<small>fields filled</small></span></div>
+        <div class="xcard"><span class="stat" id="statTools">0<small>tool records</small></span></div>
+        <div class="xcard">
+          <h2>Vault file (JSON)</h2>
+          <p>Machine-readable master file. This is what you send back and what the form re-imports.</p>
+          <button class="btn pri" id="dlJson">Download stack-vault.json</button>
+        </div>
+        <div class="xcard">
+          <h2>AI-ready Markdown</h2>
+          <p>Copies your whole vault as structured Markdown with <span style="font-family:var(--mono)">MISSING</span> markers, ready to paste into Claude or ChatGPT.</p>
+          <button class="btn pri" id="cpMd">Copy for AI</button>
+        </div>
+        <div class="xcard">
+          <h2>Import a vault file</h2>
+          <p>Load a previously exported stack-vault.json to continue where it left off. Replaces what's currently in the form.</p>
+          <input type="file" id="impFile" accept=".json,application/json" style="padding:7px">
+        </div>
+        <div class="xcard">
+          <h2>Start over</h2>
+          <p>Wipes everything saved on this device. Download your JSON first — there is no undo.</p>
+          <button class="btn danger" id="wipe">Erase all data</button>
+        </div>
+      </div>
+      <h2 style="margin:26px 0 10px">Starter prompts</h2>
+      <div style="display:flex;flex-direction:column;gap:8px" id="prompts"></div>
+    </section>
+  </main>
+</div>
+<div class="toast" id="toast">Saved</div>
+
+<script>
+"use strict";
+/* ============ schema — single source of truth for form + exports ============ */
+const CATEGORIES = ["Domain Registrars","Hosting & Infrastructure","Social & Community Platforms","AI Video","AI Writing & Prompting","AI Audio & Voice","Design & Creative","Email & SMS Marketing","CRM & Sales","Automation & Integrations","Analytics & SEO","Payments & Finance","Marketplaces & E-commerce","Education & Courses","Other"];
+const YN = ["","yes","no"];
+const f = (id,label,type,hint,ph)=>({id,label,type:type||"text",hint:hint||"",ph:ph||""});
+
+const PROFILE = [
+ {id:"owner",title:"Owner Contact Card",fields:[
+  f("name","Name","text","","Jane Doe"),
+  f("email","Email","email","Best email to reach the owner"),
+  f("photo_url","Photo URL","url","Link to a current headshot"),
+  f("website","Website","url"),
+  f("social_links","Social links","area","One profile URL per line"),
+  f("contact_hours","Contact hours","text","Include timezone","9a–5p MST"),
+  f("preferred_contact","Preferred contact method","text","","Text, then email"),
+  f("vcard_url","vCard link","url","Contact card that opens on iPhone/Android")]},
+ {id:"brand",title:"Brand",fields:[
+  f("name","Brand name","text","","CASH.BOT"),
+  f("logo_url","Logo URL","url","Folder with logo files"),
+  f("legal_entity","Legal entity","text","LLC/corp exactly as registered","SHINE RANKER LLC"),
+  f("niche","Niche","text","One line: what you do, for whom","AI prompting / training"),
+  f("local_service_area","Local service area","text","Blank if online-only"),
+  f("online_products","Online products","area","One offer per line, with price"),
+  f("affiliate_programs_promoted","Programs promoted","area","Summary — full detail goes in Tool Records"),
+  f("sponsorships","Sponsorships","area"),
+  f("domain_provider","Domain provider","text","Where your domains live"),
+  f("next_domain_renewal","Next domain renewal","text","","2027-01-15"),
+  f("trademarks","Trademarks","text"),
+  f("press","Press","area","Links to mentions"),
+  f("achievements_url","Achievements URL","url","Proof folder"),
+  f("cloud_storage_url","Cloud storage URL","url","Master brand drive folder")]},
+ {id:"audience",title:"Audience",fields:[
+  f("email_list_size","Email list size","num","Check your email tool's subscriber count"),
+  f("sms_list_size","SMS list size","num"),
+  f("groups_combined_size","Groups combined size","num","All communities added together"),
+  f("facebook_group_url","Facebook group","url"),
+  f("whop_group_url","Whop group","url"),
+  f("instagram_community_url","Instagram community","url"),
+  f("other_communities","Other communities","area","One per line"),
+  f("customer_data_enriched","Customer data enriched?","text","yes/no + which tool"),
+  f("customer_data_tagged","Customer data tagged?","text","yes/no + how it's grouped")]},
+ {id:"content_assets",title:"Content & Assets",fields:[
+  f("brand_images","Brand images","url","Folder link"),
+  f("brand_videos","Brand videos","url","Folder link"),
+  f("brand_written","Written content","url","Folder link"),
+  f("prewritten_emails","Pre-written emails","url","Swipe folder link"),
+  f("automated_followup","Automated follow-up","text","Tool + which flows exist"),
+  f("daily_content","Daily content","text","What ships every day, and where"),
+  f("reviews","Reviews","text","Where they live + rough count")]},
+ {id:"traffic_money",title:"Traffic & Money (monthly)",fields:[
+  f("organic_traffic","Organic traffic","num","Search/analytics: monthly visits"),
+  f("social_traffic","Social traffic","num"),
+  f("paid_traffic","Paid traffic","num"),
+  f("avg_leadflow","Average lead-flow","num","New leads per month"),
+  f("avg_cashflow","Average cash-flow","money","Gross revenue per month, USD"),
+  f("avg_net_profit","Average net profit","money","USD"),
+  f("platform_ad_spend","Platform ad spend","money","USD per month"),
+  f("ad_platforms","Ad platforms","text","","Meta, TikTok, Google"),
+  f("hiring_marketing_spend","Hiring / marketing spend","money","USD per month"),
+  f("employee_spend","Employee spend","money","Payroll + contractors, USD per month"),
+  f("marketing_budget","Overall marketing budget","money","USD per month"),
+  f("profit_share_pct","% of profits shared","pct"),
+  f("trajectory","Trajectory","text","up / flat / down + one line why","up — list growing 10%/mo")]},
+ {id:"stack",title:"Stack",fields:[
+  f("websites","Websites","area","One URL per line"),
+  f("social_profiles","Social profiles","area","One URL per line"),
+  f("paid_apps","Paid apps","area","Names only — each gets a Tool Record"),
+  f("free_tech","Free tech","area"),
+  f("email_addresses","Email addresses","area","Brand inboxes in use"),
+  f("crm","CRM","text"),
+  f("analytics","Analytics","text","","GA4, Search Console"),
+  f("keywords","Keywords","area","What you rank or bid on")]},
+ {id:"kpis",title:"KPIs",fields:[
+  f("main_kpis","Main KPIs","area","The numbers you actually watch"),
+  f("call_conversion_value","Call conversion value","money","$ value of one booked call"),
+  f("dm_conversion_value","DM conversion value","money"),
+  f("lead_form_conversion_value","Lead form conversion value","money")]},
+ {id:"extra",title:"Extra Context",fields:[
+  f("extra_context","Anything else","area","Whatever the structure didn't ask for")]}
+];
+
+const TOOL = [
+ {id:"identity",title:"Identity",fields:[
+  f("name","Name","text","","Opus Pro"),
+  {id:"category",label:"Category",type:"cat",hint:"",ph:""},
+  f("homepage","Homepage","url"),
+  f("rating","Rating (0–10)","rating","Your honest score"),
+  {id:"still_relevant",label:"Still relevant?",type:"yn",hint:"Does it still belong in the stack?"},
+  f("necessity_pct","% necessity for avg person","pct"),
+  f("learned_pct","% of app learned","pct"),
+  {id:"profile_complete",label:"Profile built out?",type:"yn",hint:"Is your in-app profile complete?"}]},
+ {id:"account",title:"Account",fields:[
+  f("login_url","Login URL","url","Where you sign in"),
+  f("email","Account email","email"),
+  f("username","Account username","text"),
+  f("credential_ref","Credential ref","text","Password-manager entry name — never the password","1Password → “Opus Pro login”")]},
+ {id:"affiliate",title:"Affiliate",fields:[
+  f("link","Affiliate link","url","Your public referral link"),
+  f("network","Network / platform","text","","CJ, Impact, in-house"),
+  f("application_page","Application page","url"),
+  f("dashboard_url","Affiliate dashboard","url","Portal login"),
+  f("email","Affiliate email","email","If different from app account"),
+  f("username","Affiliate username","text"),
+  f("payout_terms","Payout terms","area","Schedule, %, conditions, bonuses"),
+  f("pending_payout_usd","Pending payout","money","USD currently pending"),
+  f("coupon_codes","Coupon codes","text"),
+  f("swipes_media_url","Swipes / media kit","url","Provided email swipes & media"),
+  {id:"allows_contact_downloads",label:"Contact downloads?",type:"yn",hint:"Can you export referred contacts?"}]},
+ {id:"api",title:"API",fields:[
+  {id:"has_api",label:"Has API?",type:"yn"},
+  {id:"free",label:"$0 tier?",type:"yn"},
+  f("rate_limits","Rate limits","text","Free/paid limits in one line"),
+  f("access_page","API access page","url","Where keys are managed"),
+  f("key_ref","API key ref","text","Password-manager entry name — never the key")]},
+ {id:"apps",title:"Apps",fields:[
+  f("ios","iOS","url"),f("mac","Mac","url"),f("android","Android","url"),f("windows","Windows","url")]},
+ {id:"facts",title:"Facts",fields:[
+  {id:"requires_kyc",label:"Requires KYC?",type:"yn"},
+  f("works_outside_us","Works outside US?","text","yes / no / notes"),
+  f("free_trial","Free trial","text","What + how long"),
+  f("usage_limits","Usage limits","text","Free vs paid"),
+  f("key_features","Key features / value","area","Tech, difficulty, main value")]},
+ {id:"contact",title:"Company Contact",fields:[
+  f("support_emails","Support emails","text"),
+  f("phones","Phones","text"),
+  f("ceo_link","CEO link","url","LinkedIn/X of the CEO")]},
+ {id:"notes",title:"Notes",fields:[
+  f("notes","Notes","area","Anything else about this tool")]}
+];
+
+const PROMPTS = [
+ "Rank every tool in this stack by (pending payout + payout %) vs % learned. Tell me the 5 affiliate programs I'm leaving the most money on and the first action for each.",
+ "List every record with MISSING affiliate fields and generate the exact steps to apply for each program, using the application page URLs.",
+ "Based on my business profile and this stack, write my next 7 days of content, one tool per day, using my affiliate link for each.",
+ "Which tools are rated under 5 or marked not relevant? Draft the cancel/downgrade checklist and estimate monthly savings."
+];
+
+/* ============ state ============ */
+const KEY="cashbot-stack-vault-v1";
+let state={profile:{},tools:[]};
+let uid=1;
+const store={
+  get(){try{return JSON.parse(localStorage.getItem(KEY))}catch(e){return null}},
+  set(v){try{localStorage.setItem(KEY,JSON.stringify(v));return true}catch(e){return false}},
+  del(){try{localStorage.removeItem(KEY)}catch(e){}}
+};
+const saved=store.get();
+if(saved&&saved.profile){state=saved;uid=(state.tools.reduce((m,t)=>Math.max(m,t.id||0),0))+1;}
+
+/* ============ helpers ============ */
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+let saveT;
+function save(){
+  clearTimeout(saveT);
+  saveT=setTimeout(()=>{
+    const ok=store.set(state);
+    const c=$("#saveChip");
+    c.textContent=ok?"saved "+new Date().toLocaleTimeString():"autosave unavailable — export often";
+    c.classList.toggle("ok",ok);
+  },350);
+}
+function toast(msg){const t=$("#toast");t.textContent=msg;t.classList.add("on");setTimeout(()=>t.classList.remove("on"),1600);}
+
+function control(field,val,name){
+  const v=esc(val), n=esc(name), filled=val?" filled":"";
+  if(field.type==="area") return `<textarea class="inp${filled}" name="${n}" placeholder="${esc(field.ph)}">${v}</textarea>`;
+  if(field.type==="yn")   return `<select class="inp${filled}" name="${n}">${YN.map(o=>`<option value="${o}"${o===val?" selected":""}>${o||"—"}</option>`).join("")}</select>`;
+  if(field.type==="cat")  return `<select class="inp${filled}" name="${n}"><option value="">—</option>${CATEGORIES.map(o=>`<option${o===val?" selected":""}>${o}</option>`).join("")}</select>`;
+  const attrs={rating:'inputmode="numeric" min="0" max="10" type="number"',pct:'inputmode="numeric" min="0" max="100" type="number"',money:'inputmode="decimal" type="text"',num:'inputmode="numeric" type="text"',url:'type="url"',email:'type="email"',text:'type="text"'}[field.type]||'type="text"';
+  return `<input class="inp${filled}" ${attrs} name="${n}" value="${v}" placeholder="${esc(field.ph)}">`;
+}
+function fieldHtml(field,val,name){
+  const wide=field.type==="area"?" wide":"";
+  const money=field.type==="money"?" money":"";
+  return `<div class="fld${wide}${money}"><label>${esc(field.label)}</label>${control(field,val,name)}${field.hint?`<div class="hint">${esc(field.hint)}</div>`:""}</div>`;
+}
+const gcount=(fields,bag)=>{let d=0;for(const fd of fields) if((bag[fd.id]||"").toString().trim())d++;return d;};
+
+/* ============ render: profile ============ */
+function renderProfile(){
+  $("#profileCards").innerHTML=PROFILE.map(g=>{
+    const bag=state.profile[g.id]||{};
+    return `<div class="card" id="pg-${g.id}"><header><h2>${esc(g.title)}</h2><span class="cnt" data-cnt="${g.id}">${gcount(g.fields,bag)}/${g.fields.length}</span></header>
+      <div class="grid">${g.fields.map(fd=>fieldHtml(fd,bag[fd.id]||"",`p.${g.id}.${fd.id}`)).join("")}</div></div>`;
+  }).join("");
+}
+
+/* ============ render: tools ============ */
+function toolCount(t){let d=0,n=0;for(const g of TOOL){n+=g.fields.length;d+=gcount(g.fields,(t.v[g.id]||{}));}return{d,n};}
+function renderTools(){
+  const host=$("#toolCards");
+  if(!state.tools.length){host.innerHTML=`<div class="empty">No tools yet. Hit <b>+ Add tool</b> and start with the one that pays you the most.</div>`;return;}
+  host.innerHTML=state.tools.map(t=>{
+    const {d,n}=toolCount(t);
+    const name=(t.v.identity&&t.v.identity.name)||"Untitled tool";
+    const cat=(t.v.identity&&t.v.identity.category)||"";
+    return `<div class="card tool${t.open?" open":""}" data-tool="${t.id}">
+      <header data-toggle="${t.id}">
+        <div class="tl"><span class="tname">${esc(name)}</span>${cat?`<span class="chip">${esc(cat)}</span>`:""}</div>
+        <div class="tr"><span class="cnt">${d}/${n}</span><div class="minibar"><i style="width:${n?Math.round(d/n*100):0}%"></i></div><span aria-hidden="true">${t.open?"▾":"▸"}</span></div>
+      </header>
+      <div class="body">
+        ${TOOL.map(g=>`<div class="tgroup"><h3>${esc(g.title)}</h3><div class="grid">${g.fields.map(fd=>fieldHtml(fd,(t.v[g.id]||{})[fd.id]||"",`t.${t.id}.${g.id}.${fd.id}`)).join("")}</div></div>`).join("")}
+        <div class="rowbtns">
+          <button class="btn ghost" data-dup="${t.id}">Duplicate as blank</button>
+          <button class="btn danger" data-del="${t.id}">Delete</button>
+        </div>
+      </div></div>`;
+  }).join("");
+}
+
+/* ============ totals ============ */
+function totals(){
+  let d=0,n=0;
+  for(const g of PROFILE){n+=g.fields.length;d+=gcount(g.fields,(state.profile[g.id]||{}));}
+  const pd=d,pn=n;
+  for(const t of state.tools){const c=toolCount(t);d+=c.d;n+=c.n;}
+  const pct=n?Math.round(d/n*100):0;
+  $("#pctAll").textContent=pct+"%";
+  $("#barAll").style.width=pct+"%";
+  $("#cntProfile").textContent=pd+"/"+pn;
+  $("#cntTools").textContent=state.tools.length;
+  $("#statFields").firstChild.nodeValue=d;
+  $("#statTools").firstChild.nodeValue=state.tools.length;
+}
+
+/* ============ events ============ */
+document.addEventListener("input",e=>{
+  const el=e.target;
+  if(!el.name)return;
+  const parts=el.name.split(".");
+  if(parts[0]==="p"){
+    const[,g,id]=parts;
+    (state.profile[g]=state.profile[g]||{})[id]=el.value;
+    const grp=PROFILE.find(x=>x.id===g);
+    const cnt=document.querySelector(`[data-cnt="${g}"]`);
+    if(cnt)cnt.textContent=gcount(grp.fields,state.profile[g])+"/"+grp.fields.length;
+  }else if(parts[0]==="t"){
+    const[,tid,g,id]=parts;
+    const t=state.tools.find(x=>x.id===+tid);
+    if(!t)return;
+    (t.v[g]=t.v[g]||{})[id]=el.value;
+    if(g==="identity"&&id==="category"){
+      renderTools();totals();save();
+      return;
+    }
+    if(g==="identity"&&id==="name"){
+      const card=document.querySelector(`[data-tool="${tid}"]`);
+      if(card){card.querySelector(".tname").textContent=t.v.identity.name||"Untitled tool";}
+    }
+    const card=document.querySelector(`[data-tool="${tid}"]`);
+    if(card){const{d,n}=toolCount(t);card.querySelector(".tr .cnt").textContent=d+"/"+n;card.querySelector(".minibar i").style.width=Math.round(d/n*100)+"%";}
+  }
+  el.classList.toggle("filled",!!el.value.trim());
+  totals();save();
+});
+document.addEventListener("click",e=>{
+  const nav=e.target.closest("[data-v]");
+  if(nav){
+    document.querySelectorAll(".nav button").forEach(b=>b.classList.toggle("on",b===nav));
+    document.querySelectorAll(".view").forEach(v=>v.classList.toggle("on",v.id==="view-"+nav.dataset.v));
+    window.scrollTo({top:0});
+    return;
+  }
+  const tog=e.target.closest("[data-toggle]");
+  if(tog&&!e.target.closest("input,select,textarea,button")){
+    const t=state.tools.find(x=>x.id===+tog.dataset.toggle);
+    if(t){t.open=!t.open;renderTools();save();}
+    return;
+  }
+  if(e.target.dataset.del){
+    const t=state.tools.find(x=>x.id===+e.target.dataset.del);
+    const nm=(t&&t.v.identity&&t.v.identity.name)||"this tool";
+    if(confirm(`Delete ${nm}? No undo.`)){
+      state.tools=state.tools.filter(x=>x.id!==+e.target.dataset.del);
+      renderTools();totals();save();
+    }
+    return;
+  }
+  if(e.target.dataset.dup){
+    const src=state.tools.find(x=>x.id===+e.target.dataset.dup);
+    if(src){
+      state.tools.splice(state.tools.indexOf(src)+1,0,{id:uid++,open:true,v:{identity:{category:(src.v.identity||{}).category||""}}});
+      renderTools();totals();save();toast("Blank record added — same category only");
+    }
+    return;
+  }
+});
+$("#addTool").addEventListener("click",()=>{
+  state.tools.unshift({id:uid++,open:true,v:{}});
+  renderTools();totals();save();
+  const first=document.querySelector('#toolCards input[name$=".identity.name"]');
+  if(first)first.focus();
+});
+$("#collapseAll").addEventListener("click",()=>{state.tools.forEach(t=>t.open=false);renderTools();save();});
+
+/* ============ export ============ */
+function toJson(){
+  const bp={};
+  for(const g of PROFILE){
+    if(g.id==="extra"){bp.extra_context=(state.profile.extra||{}).extra_context||"";continue;}
+    bp[g.id]={};
+    for(const fd of g.fields)bp[g.id][fd.id]=(state.profile[g.id]||{})[fd.id]||"";
+  }
+  const tools=state.tools.map(t=>{
+    const o={};
+    for(const g of TOOL){
+      if(g.id==="notes"){o.notes=(t.v.notes||{}).notes||"";continue;}
+      o[g.id]={};
+      for(const fd of g.fields)o[g.id][fd.id]=(t.v[g.id]||{})[fd.id]||"";
+    }
+    return o;
+  });
+  return {vault_version:"1.0",exported_at:new Date().toISOString(),business_profile:bp,tools};
+}
+function fromJson(j){
+  if(!j||j.vault_version!=="1.0"||!j.business_profile)throw new Error("Not a v1.0 stack-vault file");
+  const p={};
+  for(const g of PROFILE){
+    if(g.id==="extra"){p.extra={extra_context:j.business_profile.extra_context||""};continue;}
+    p[g.id]={};
+    for(const fd of g.fields)p[g.id][fd.id]=String((j.business_profile[g.id]||{})[fd.id]??"");
+  }
+  const tools=(j.tools||[]).map(src=>{
+    const v={};
+    for(const g of TOOL){
+      if(g.id==="notes"){v.notes={notes:String(src.notes??"")};continue;}
+      v[g.id]={};
+      for(const fd of g.fields)v[g.id][fd.id]=String((src[g.id]||{})[fd.id]??"");
+    }
+    return {id:uid++,open:false,v};
+  });
+  state={profile:p,tools};
+}
+const MV=v=>(v&&String(v).trim())?String(v).trim():"MISSING";
+function toMd(){
+  const j=toJson();
+  let md=`# STACK VAULT — ${MV((j.business_profile.brand||{}).name)}\n`;
+  md+=`Exported ${j.exported_at}. Structured business + tool/affiliate data. \`MISSING\` marks fields not yet filled — treat gaps as actionable, and never ask me for passwords or API keys (they are stored outside this file by design).\n\n## BUSINESS PROFILE\n`;
+  for(const g of PROFILE){
+    if(g.id==="extra"){md+=`\n### Extra context\n${MV(j.business_profile.extra_context)}\n`;continue;}
+    md+=`\n### ${g.title}\n`;
+    for(const fd of g.fields)md+=`- ${fd.label}: ${MV(j.business_profile[g.id][fd.id])}\n`;
+  }
+  md+=`\n## TOOL RECORDS (${j.tools.length})\n`;
+  j.tools.forEach((t,i)=>{
+    md+=`\n---\n\n### ${i+1}. ${MV(t.identity.name)} — ${MV(t.identity.category)}\n`;
+    for(const g of TOOL){
+      if(g.id==="notes"){if(t.notes&&t.notes.trim())md+=`- Notes: ${t.notes.trim()}\n`;continue;}
+      for(const fd of g.fields)md+=`- ${g.title} / ${fd.label}: ${MV(t[g.id][fd.id])}\n`;
+    }
+  });
+  return md;
+}
+function copyText(txt,okMsg){
+  const done=()=>toast(okMsg);
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(done,()=>fallback());}
+  else fallback();
+  function fallback(){
+    const ta=document.createElement("textarea");ta.value=txt;document.body.appendChild(ta);ta.select();
+    try{document.execCommand("copy");done();}catch(e){toast("Copy blocked — use Download instead");}
+    ta.remove();
+  }
+}
+$("#dlJson").addEventListener("click",()=>{
+  const blob=new Blob([JSON.stringify(toJson(),null,2)],{type:"application/json"});
+  const a=document.createElement("a");
+  a.href=URL.createObjectURL(blob);a.download="stack-vault.json";a.click();
+  setTimeout(()=>URL.revokeObjectURL(a.href),4000);
+  toast("stack-vault.json downloaded");
+});
+$("#cpMd").addEventListener("click",()=>copyText(toMd(),"AI Markdown copied"));
+$("#impFile").addEventListener("change",e=>{
+  const file=e.target.files[0];
+  if(!file)return;
+  const r=new FileReader();
+  r.onload=()=>{
+    try{
+      fromJson(JSON.parse(r.result));
+      renderProfile();renderTools();totals();save();
+      toast("Vault imported");
+    }catch(err){toast("Import failed: "+err.message);}
+    e.target.value="";
+  };
+  r.readAsText(file);
+});
+$("#wipe").addEventListener("click",()=>{
+  if(confirm("Erase everything saved on this device? Download your JSON first — no undo.")){
+    store.del();state={profile:{},tools:[]};
+    renderProfile();renderTools();totals();
+    toast("Vault erased");
+  }
+});
+$("#prompts").innerHTML=PROMPTS.map(p=>`<div class="prompt"><span>${esc(p)}</span><button class="btn" data-p>Copy</button></div>`).join("");
+document.querySelectorAll("[data-p]").forEach((b,i)=>b.addEventListener("click",()=>copyText(PROMPTS[i],"Prompt copied")));
+
+/* ============ boot ============ */
+renderProfile();renderTools();totals();
+</script>
+</body>
+</html>
