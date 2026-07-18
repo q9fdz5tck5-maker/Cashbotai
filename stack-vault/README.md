@@ -20,11 +20,13 @@ This replaces the emoji-divider text document. Same information, three problems 
 
 ## The process you hand to people
 
-1. **Send them the form.** Email `cashbot-stack-vault.html` or send the link. They open it in any browser. It autosaves locally, so they can do it over days.
-2. **They fill in the Business Profile** — identity, brand, audience, traffic, money, stack, KPIs. Every field has a hint saying where to find the answer.
-3. **They add one Tool Record per app/affiliate program** — pick a category, fill what they know, skip what they don't. Blank fields are fine; the export marks them `MISSING` so the gaps are data too.
-4. **They export** — one click gives them `stack-vault.json` (send it back to you / keep as their source of truth) and one click copies **AI-ready Markdown** to paste straight into Claude/ChatGPT with any of the starter prompts below.
-5. **You (or they) re-import anytime.** The form's Import button loads a previous JSON, so the file is a living document, not a one-shot survey.
+The main path is **exports-first**: they don't type their data in, they download it and let an AI do the data entry.
+
+1. **A — Export.** They work through [EXPORT_CHECKLIST.md](EXPORT_CHECKLIST.md): download reports and take screenshots from their affiliate portals, email tool, analytics, payments, bank, phone. 20–30 minutes; partial is fine.
+2. **B — Build.** They open a **fresh chat** with any capable AI that accepts attachments (Claude recommended, default settings — the prompt works the same on any model because the rules and schema travel inside it), attach every export, and paste [MASTER_PROMPT.md](MASTER_PROMPT.md) verbatim.
+3. **C — Save.** The AI returns an inventory of what it read, the structured vault as JSON, a gap report, and a money analysis. They save the JSON block as `stack-vault.json` — that's the deliverable they send back, and what they re-attach next time to update.
+4. **Fallback — by hand.** No exports, or prefer typing? `cashbot-stack-vault.html` is the interactive form (autosaves, exports the same JSON), and the intake packet PDF has fillable pages plus the checklist and master prompt printed inside it.
+5. **Re-import anytime.** The form's Import button loads any `stack-vault.json`, so the file is a living document, not a one-shot survey.
 
 ## Starter prompts (paste after the exported Markdown)
 
