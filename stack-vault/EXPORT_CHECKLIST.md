@@ -1,6 +1,12 @@
-# Stack Vault — Export Checklist v1.0
+# Stack Vault — Export Checklist v2.0
 
-Grab these files first; the AI does the data entry. You don't need all of them — every file you attach fills more of the vault, and the AI's Gap Report will tell you what was worth adding. Screenshots are fine anywhere a proper export doesn't exist.
+The Master Prompt's wizard walks you through all of this from your phone — this page is the reference copy. You don't need everything; every source fills more of the vault, and the AI will tell you what's still worth adding.
+
+**Easiest first — connect instead of exporting.** If you're using Claude: Settings → Connectors → connect **Google Drive** (and Gmail if you're comfortable). The AI can then search your own files and receipts directly — zero exporting.
+
+**Second easiest — password LIST screenshots.** Your password manager's list screen is a ready-made inventory of every tool you use. iPhone: Passwords app (or Settings → Passwords) → screenshot the list, scrolling to capture every screen. Android: Chrome → Settings → Password Manager → same. **List view only — never tap into an entry and NEVER use the Export button.** Password exports are files full of real passwords; they must never be uploaded to any chat, ours included.
+
+Then grab whichever of these you can — screenshots are fine anywhere a proper export doesn't exist.
 
 **Name every file** `EXPORT_<platform>_<what>` (e.g. `EXPORT_cj_payouts.csv`, `EXPORT_ga4_traffic.pdf`). The names help the AI route the data.
 
@@ -20,6 +26,6 @@ Grab these files first; the AI does the data entry. You don't need all of them �
 | 10 | Domains | Registrar → domain list with renewal dates screenshot | `EXPORT_domains.png` |
 | 11 | CRM | Contacts count + tags/segments screenshot | `EXPORT_crm.png` |
 | 12 | Communities (Facebook group, Whop, Discord, IG) | Member-count screenshots + the invite links | `EXPORT_communities.png` |
-| 13 | Password manager | **Nothing.** Do not export it. You'll type entry *names* into the vault later if asked. |  |
+| 13 | Password manager | **Screenshots of the list screen only** (see above). Never the Export file. | `EXPORT_passwordlist_1.png` |
 
-Then: open a fresh AI chat, attach everything, paste the Master Prompt (`MASTER_PROMPT.md`, printed in the intake packet too), send. Save the JSON it returns as `stack-vault.json`.
+Then: open a fresh AI chat, paste the Master Prompt (`MASTER_PROMPT.md`, printed in the intake packet too), and send — the wizard takes it from there. When it's done, say `VAULT` and save the JSON it returns as `stack-vault.json`.
