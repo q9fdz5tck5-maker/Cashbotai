@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Digital Presence Audit — Oasis Beauty Lounge</title>
+<style>
+  :root{
+    --ink:#182726; --ink2:#445654; --ink3:#6b7c7a;
+    --teal:#1f6f6b; --teal-deep:#134744; --teal-track:#e2edeb;
+    --sand:#faf8f4; --line:#dde6e4; --card:#f4f8f7;
+    --good:#1e7a46; --good-bg:#e6f3ea;
+    --warn:#8a5a00; --warn-bg:#fdf1dc;
+    --serious:#a03d12; --serious-bg:#fbe9e0;
+    --crit:#a32c22; --crit-bg:#fae7e5;
+    --tbd:#4a5b7a; --tbd-bg:#e9edf5;
+  }
+  *{box-sizing:border-box; margin:0; padding:0; -webkit-print-color-adjust:exact; print-color-adjust:exact;}
+  html,body{font-family:'DejaVu Sans', Arial, sans-serif; color:var(--ink); font-size:10pt; line-height:1.42;}
+  @page{size:letter; margin:0;}
+  .page{width:8.5in; height:11in; padding:0.65in 0.7in; page-break-after:always; position:relative; background:#fff; overflow:hidden;}
+  .page:last-child{page-break-after:auto;}
+
+  h1{font-size:24pt; line-height:1.2; letter-spacing:-0.5px; color:var(--teal-deep);}
+  h2{font-size:15pt; color:var(--teal-deep); margin-bottom:4pt; letter-spacing:-0.2px;}
+  h3{font-size:10.5pt; color:var(--ink); margin:12pt 0 4pt;}
+  p{margin:0 0 7pt; color:var(--ink2);}
+  strong{color:var(--ink);}
+
+  .kicker{font-size:8pt; letter-spacing:2.2px; text-transform:uppercase; color:var(--teal); font-weight:bold; margin-bottom:6pt;}
+  .rule{height:3px; background:var(--teal); width:44pt; border-radius:2px; margin:10pt 0 14pt;}
+  .footer{position:absolute; bottom:0.42in; left:0.7in; right:0.7in; display:flex; justify-content:space-between; font-size:7.5pt; color:var(--ink3); border-top:1px solid var(--line); padding-top:6pt;}
+
+  table{width:100%; border-collapse:collapse; font-size:8.6pt; margin:4pt 0 8pt;}
+  th{text-align:left; font-size:7.6pt; text-transform:uppercase; letter-spacing:0.8px; color:var(--ink3); border-bottom:1.5px solid var(--teal); padding:3pt 6pt;}
+  td{padding:3.2pt 6pt; border-bottom:1px solid var(--line); vertical-align:top; color:var(--ink2);}
+  td:first-child{color:var(--ink); font-weight:bold;}
+  tr:nth-child(even) td{background:#fbfdfc;}
+
+  .badge{display:inline-block; font-size:7.3pt; font-weight:bold; letter-spacing:0.6px; padding:1.5pt 6pt; border-radius:8pt; white-space:nowrap;}
+  .b-ok{background:var(--good-bg); color:var(--good);}
+  .b-warn{background:var(--warn-bg); color:var(--warn);}
+  .b-serious{background:var(--serious-bg); color:var(--serious);}
+  .b-crit{background:var(--crit-bg); color:var(--crit);}
+  .b-tbd{background:var(--tbd-bg); color:var(--tbd);}
+
+  .meter-row{display:flex; align-items:center; gap:10pt; margin:7pt 0;}
+  .meter-label{width:150pt; font-size:9pt; font-weight:bold; color:var(--ink);}
+  .meter-track{flex:1; height:10pt; background:var(--teal-track); border-radius:4pt; overflow:hidden;}
+  .meter-fill{height:100%; background:var(--teal); border-radius:4pt 0 0 4pt;}
+  .meter-val{width:34pt; text-align:right; font-size:9.5pt; font-weight:bold; color:var(--teal-deep);}
+
+  .card{background:var(--card); border:1px solid var(--line); border-radius:6pt; padding:10pt 12pt; margin:8pt 0;}
+  .card h3{margin-top:0;}
+  .grid2{display:grid; grid-template-columns:1fr 1fr; gap:10pt;}
+  .callout{border-left:3.5px solid var(--teal); background:var(--sand); padding:8pt 12pt; margin:10pt 0; font-size:9pt; color:var(--ink2);}
+  .callout.crit{border-left-color:var(--crit); background:var(--crit-bg);}
+  .callout.warn{border-left-color:var(--warn); background:var(--warn-bg);}
+
+  .statgrid{display:grid; grid-template-columns:repeat(4,1fr); gap:8pt; margin:10pt 0;}
+  .stat{background:var(--card); border:1px solid var(--line); border-radius:6pt; padding:9pt 10pt;}
+  .stat .n{font-size:17pt; font-weight:bold; color:var(--teal-deep); line-height:1.1;}
+  .stat .l{font-size:7.4pt; text-transform:uppercase; letter-spacing:0.8px; color:var(--ink3); margin-top:2pt;}
+
+  .finding{margin:0 0 7pt; padding-left:10pt; border-left:2.5px solid var(--line);}
+  .finding.sev-crit{border-left-color:var(--crit);}
+  .finding.sev-serious{border-left-color:var(--serious);}
+  .finding.sev-warn{border-left-color:var(--warn);}
+  .finding .fh{font-weight:bold; color:var(--ink); font-size:9.4pt;}
+  .finding p{font-size:8.8pt; margin:1.5pt 0 0;}
+
+  ul{margin:0 0 8pt 14pt;} li{margin-bottom:3pt; color:var(--ink2); font-size:9pt;}
+  .small{font-size:8pt; color:var(--ink3);}
+  .mono{font-family:'DejaVu Sans Mono', monospace; font-size:8.2pt;}
+
+  /* cover */
+  .cover{background:linear-gradient(160deg, #0f3d3a 0%, #1f6f6b 60%, #2c8a80 100%); color:#fff; display:flex; flex-direction:column;}
+  .cover .kicker{color:#a8d8cf;}
+  .cover h1{color:#fff; font-size:30pt; margin:6pt 0 10pt;}
+  .cover .sub{font-size:12pt; color:#cfe8e2; max-width:5.4in;}
+  .coverbox{background:rgba(255,255,255,0.10); border:1px solid rgba(255,255,255,0.25); border-radius:8pt; padding:14pt 16pt; margin-top:auto; margin-bottom:24pt;}
+  .coverbox table{margin:0;}
+  .coverbox td{border:none; padding:2.5pt 8pt 2.5pt 0; color:#e8f4f0; background:none !important; font-size:9.5pt;}
+  .coverbox td:first-child{color:#a8d8cf; font-weight:bold; text-transform:uppercase; font-size:7.6pt; letter-spacing:1.2px; width:120pt; padding-top:4.5pt;}
+  .cover .meta{color:#a8d8cf; font-size:8.5pt; letter-spacing:1px;}
+</style>
+</head>
+<body>
+
+<!-- ===================== PAGE 1 : COVER ===================== -->
+<div class="page cover">
+  <div class="kicker">Digital Presence Audit &nbsp;|&nbsp; July 2026</div>
+  <h1>Oasis Beauty Lounge</h1>
+  <div class="sub">SEO &bull; Social Media &bull; Google Business Profile<br>
+  A public-visibility review of how customers find (and fail to find) your studio online — with a prioritized 90-day fix plan.</div>
+
+  <div class="coverbox">
+    <table>
+      <tr><td>Business</td><td>Oasis Beauty Lounge — boutique advanced-facial studio</td></tr>
+      <tr><td>Location</td><td>3225 N 75th St, Ste 110, Scottsdale, AZ 85251 (Old Town)</td></tr>
+      <tr><td>Website</td><td>oasisbeautyloungeaz.com</td></tr>
+      <tr><td>Phone / Email</td><td>(602) 901-7816 &nbsp;/&nbsp; oasisspa555@gmail.com</td></tr>
+      <tr><td>Audit scope</td><td>Search visibility, Google Business Profile, reviews, listings/citations, social media</td></tr>
+      <tr><td>Method</td><td>Publicly observable data only — no logins or internal analytics were accessed</td></tr>
+    </table>
+  </div>
+  <div class="meta">Prepared by CASH.BOT &nbsp;&bull;&nbsp; rebootbase@icloud.com &nbsp;&bull;&nbsp; Report date: July 20, 2026</div>
+</div>
+
+<!-- ===================== PAGE 2 : EXECUTIVE SUMMARY ===================== -->
+<div class="page">
+  <div class="kicker">Executive Summary</div>
+  <h2>Your studio is excellent. Online, it is nearly invisible.</h2>
+  <div class="rule"></div>
+
+  <p>We audited every public channel a potential client would use to discover a facial studio in Scottsdale.
+  The pattern is consistent: <strong>the business exists online, but it is not findable.</strong> Only three pages
+  of the website are indexed by Google, no social media profiles could be located, no customer reviews were found
+  on any platform, and an active Google Business Profile could not be verified from public search. Meanwhile,
+  similarly-named competitors (Oasis Face Bar, Oasis Beauty Bar) absorb the searches your name should be winning.</p>
+
+  <h3>Visibility scorecard <span class="small">(0–10, based on publicly observable signals — methodology on p. 9)</span></h3>
+  <div class="meter-row"><div class="meter-label">Website &amp; technical SEO</div><div class="meter-track"><div class="meter-fill" style="width:30%"></div></div><div class="meter-val">3/10</div></div>
+  <div class="meter-row"><div class="meter-label">Search visibility (SEO)</div><div class="meter-track"><div class="meter-fill" style="width:20%"></div></div><div class="meter-val">2/10</div></div>
+  <div class="meter-row"><div class="meter-label">Google Business Profile</div><div class="meter-track"><div class="meter-fill" style="width:10%"></div></div><div class="meter-val">1/10</div></div>
+  <div class="meter-row"><div class="meter-label">Reviews &amp; reputation</div><div class="meter-track"><div class="meter-fill" style="width:10%"></div></div><div class="meter-val">1/10</div></div>
+  <div class="meter-row"><div class="meter-label">Listings &amp; citations (NAP)</div><div class="meter-track"><div class="meter-fill" style="width:20%"></div></div><div class="meter-val">2/10</div></div>
+  <div class="meter-row"><div class="meter-label">Social media presence</div><div class="meter-track"><div class="meter-fill" style="width:0%"></div></div><div class="meter-val">0/10</div></div>
+
+  <div class="statgrid">
+    <div class="stat"><div class="n">3</div><div class="l">Pages indexed by Google</div></div>
+    <div class="stat"><div class="n">0</div><div class="l">Reviews found (all platforms)</div></div>
+    <div class="stat"><div class="n">0</div><div class="l">Social profiles found</div></div>
+    <div class="stat"><div class="n">1</div><div class="l">Authoritative citation (CareCredit)</div></div>
+  </div>
+
+  <h3>The three issues that matter most</h3>
+  <div class="finding sev-crit"><div class="fh">1. Google Business Profile gap <span class="badge b-crit">CRITICAL</span></div>
+  <p>No active, review-carrying Google listing could be verified. In local beauty, the Google map pack is where the
+  majority of new-client discovery happens — a missing or bare profile hands that traffic to competitors by default.</p></div>
+  <div class="finding sev-crit"><div class="fh">2. Zero review footprint <span class="badge b-crit">CRITICAL</span></div>
+  <p>We found no reviews on Google, Yelp, Facebook, or booking platforms. For a service judged on trust and results,
+  zero reviews is the single largest conversion blocker — and the fastest one to fix.</p></div>
+  <div class="finding sev-serious"><div class="fh">3. Brand-name collisions <span class="badge b-serious">SERIOUS</span></div>
+  <p>The natural Instagram handle (@oasis_beauty_lounge__) belongs to a salon in Amman, Jordan; the matching .com domain
+  belongs to a med spa in Amarillo, TX; and Oasis Face Bar / Oasis Beauty Bar operate nearby. Customers who search your
+  name are being routed to the wrong businesses.</p></div>
+
+  <div class="callout"><strong>The good news:</strong> every finding in this report is fixable without rebuilding the
+  business. Most items are configuration, claiming, and consistency work — a realistic 90-day effort (plan on p. 7).</div>
+
+  <div class="footer"><span>Digital Presence Audit — Oasis Beauty Lounge</span><span>Page 2 of 9</span></div>
+</div>
+
+<!-- ===================== PAGE 3 : WEBSITE & SEO AUDIT ===================== -->
+<div class="page">
+  <div class="kicker">Pillar 1</div>
+  <h2>Website &amp; SEO audit</h2>
+  <div class="rule"></div>
+
+  <p>The Shopify site is live, secure, and mobile-capable — the foundation is fine. The problem: it gives Google
+  almost nothing to rank.</p>
+
+  <div class="finding sev-crit"><div class="fh">S1 — Only 3 pages indexed <span class="badge b-crit">CRITICAL</span></div>
+  <p>Google's index contains just the homepage, /collections/all, and /cart. There are no service pages (facials,
+  peels, cryotherapy), no about page, no location page, no blog. Google cannot rank pages that do not exist.</p></div>
+
+  <div class="finding sev-serious"><div class="fh">S2 — Homepage title tag carries no keywords <span class="badge b-serious">SERIOUS</span></div>
+  <p>The indexed title is simply "Oasis Beauty Lounge." It should communicate service + city, e.g.
+  <em>"Oasis Beauty Lounge | Advanced Facials in Old Town Scottsdale, AZ."</em> This one line is the strongest
+  single ranking signal on the site.</p></div>
+
+  <div class="finding sev-serious"><div class="fh">S3 — Cart page is indexed <span class="badge b-serious">SERIOUS</span></div>
+  <p>/cart appearing in Google indicates index-hygiene gaps (missing noindex on utility pages). One-third of your
+  indexed footprint is a shopping cart — wasted crawl equity and a poor searcher experience.</p></div>
+
+  <div class="finding sev-serious"><div class="fh">S4 — Site blocks non-browser agents (HTTP 403) <span class="badge b-serious">SERIOUS</span></div>
+  <p>The site returned 403 Forbidden to every automated fetcher we used. Google renders it, but aggressive bot
+  protection can block SEO tools, link previews, and the AI search crawlers (ChatGPT, Perplexity, AI Overviews)
+  that "best facial near me" queries increasingly flow through. Review Shopify bot-protection settings.</p></div>
+
+  <div class="finding sev-warn"><div class="fh">S5 — No authority signals <span class="badge b-warn">ISSUE</span></div>
+  <p>No backlinks from local press, directories, or partners were found — even easy local links (Old Town
+  Scottsdale directory, chamber, suite-mates, CareCredit link-back) are missing.</p></div>
+
+  <div class="finding sev-warn"><div class="fh">S6 — Unverified technical items <span class="badge b-tbd">NEEDS ACCESS</span></div>
+  <p>Schema markup, Core Web Vitals, sitemap submission, Search Console and GA4 could not be checked from outside —
+  30-minute verifications once access is granted.</p></div>
+
+  <h3>Keyword opportunities to build pages around</h3>
+  <p class="small">Exact monthly volumes should be pulled with a keyword tool before content work; these targets are chosen from your actual service menu and location.</p>
+  <table>
+    <tr><th>Target keyword</th><th>Intent</th><th>Page that should rank</th><th>Exists today?</th></tr>
+    <tr><td>facials scottsdale az</td><td>High — service + city</td><td>Signature facials service page</td><td><span class="badge b-crit">NO</span></td></tr>
+    <tr><td>hydrafacial / hydro facial scottsdale</td><td>High — service + city</td><td>Hydration facial page</td><td><span class="badge b-crit">NO</span></td></tr>
+    <tr><td>chemical peel scottsdale</td><td>High — service + city</td><td>Peels page</td><td><span class="badge b-crit">NO</span></td></tr>
+    <tr><td>cryotherapy facial scottsdale</td><td>Medium — differentiator</td><td>Cryo facial page</td><td><span class="badge b-crit">NO</span></td></tr>
+    <tr><td>lifting / anti-aging facial old town scottsdale</td><td>High — signature service</td><td>Lifting facial page</td><td><span class="badge b-crit">NO</span></td></tr>
+    <tr><td>esthetician near me / best facial old town</td><td>High — map pack</td><td>Google Business Profile</td><td><span class="badge b-crit">GAP</span></td></tr>
+  </table>
+
+  <div class="footer"><span>Digital Presence Audit — Oasis Beauty Lounge</span><span>Page 3 of 9</span></div>
+</div>
+
+<!-- ===================== PAGE 4 : GOOGLE BUSINESS PROFILE ===================== -->
+<div class="page">
+  <div class="kicker">Pillar 2</div>
+  <h2>Google Business Profile &amp; local listings</h2>
+  <div class="rule"></div>
+
+  <div class="finding sev-crit"><div class="fh">G1 — Active Google Business Profile could not be verified <span class="badge b-crit">CRITICAL</span></div>
+  <p>Branded searches surface no Google listing with reviews, photos, or attributes — the profile is unclaimed,
+  unverified, suspended, or too bare to appear. Claiming it is the <strong>#1 action in this report</strong>: the
+  map pack drives more local beauty bookings than any other channel.</p></div>
+
+  <div class="finding sev-crit"><div class="fh">G2 — Zero Google reviews <span class="badge b-crit">CRITICAL</span></div>
+  <p>Competing facial studios in Scottsdale carry 20–120+ reviews. At zero, you lose ties on every "near me"
+  comparison regardless of how good the service is.</p></div>
+
+  <div class="finding sev-serious"><div class="fh">G3 — Shared-suite address risk <span class="badge b-serious">SERIOUS</span></div>
+  <p>Suite 110 at 3225 N 75th St is also publicly associated with Aloe Skin Aesthetics (a med spa). Google routinely
+  merges or suppresses same-category listings at one address. Your listing needs a distinct suite designation, its
+  own phone (you have one), consistent NAP, and suite-signage photos to survive verification.</p></div>
+
+  <div class="finding sev-warn"><div class="fh">G4 — Unusual hours must be entered deliberately <span class="badge b-warn">ISSUE</span></div>
+  <p>You are open Sunday and closed Saturday — the reverse of most competitors. That is a real advantage
+  ("facial open Sunday Scottsdale") but only if every listing states it correctly; a defaulted Sat/Sun schedule
+  would cause missed visits and negative reviews.</p></div>
+
+  <h3>Citation &amp; listing coverage (NAP consistency)</h3>
+  <table>
+    <tr><th>Platform</th><th>Status found</th><th>Action</th></tr>
+    <tr><td>Google Business Profile</td><td><span class="badge b-crit">UNVERIFIED</span></td><td>Claim/verify, complete 100% of profile, add booking link</td></tr>
+    <tr><td>CareCredit provider locator</td><td><span class="badge b-ok">LISTED</span></td><td>Confirm NAP matches exactly; add website link if missing</td></tr>
+    <tr><td>Yelp</td><td><span class="badge b-crit">MISSING</span></td><td>Create listing (heavily used for AZ spa searches)</td></tr>
+    <tr><td>Facebook Business Page</td><td><span class="badge b-crit">MISSING</span></td><td>Create — also required for Instagram business linkage &amp; ads</td></tr>
+    <tr><td>Bing Places</td><td><span class="badge b-crit">MISSING</span></td><td>Import from Google after GBP is verified</td></tr>
+    <tr><td>Apple Maps (Apple Business Connect)</td><td><span class="badge b-crit">MISSING</span></td><td>Register — iPhone-heavy Scottsdale market</td></tr>
+    <tr><td>Nextdoor</td><td><span class="badge b-crit">MISSING</span></td><td>Claim business page; neighborhood word-of-mouth</td></tr>
+    <tr><td>Booking marketplaces (Fresha / Booksy / StyleSeat)</td><td><span class="badge b-crit">MISSING</span></td><td>List on one — competitors are discoverable there today</td></tr>
+    <tr><td>YellowPages / MapQuest / data aggregators</td><td><span class="badge b-crit">MISSING</span></td><td>Push consistent NAP via aggregator once GBP is live</td></tr>
+    <tr><td>Old Town Scottsdale directory</td><td><span class="badge b-crit">MISSING</span></td><td>Request listing — free local link + citation</td></tr>
+  </table>
+
+  <div class="callout warn"><strong>Review engine (first 90 days):</strong> QR card at checkout linking straight to
+  the Google review form + same-day SMS follow-up. Target 20–30 reviews with 100% owner replies — typically enough
+  to move a new listing into the local pack.</div>
+
+  <div class="footer"><span>Digital Presence Audit — Oasis Beauty Lounge</span><span>Page 4 of 9</span></div>
+</div>
+
+<!-- ===================== PAGE 5 : SOCIAL MEDIA ===================== -->
+<div class="page">
+  <div class="kicker">Pillar 3</div>
+  <h2>Social media audit</h2>
+  <div class="rule"></div>
+
+  <div class="finding sev-crit"><div class="fh">M1 — No social profiles found on any platform <span class="badge b-crit">CRITICAL</span></div>
+  <p>Searches across Instagram, Facebook, TikTok, Pinterest, and YouTube found no accounts for this business.
+  Beauty is the most visual, social-driven local category there is — competitors win clients with before/after
+  content while the studio has no presence at all.</p></div>
+
+  <div class="finding sev-serious"><div class="fh">M2 — The obvious handles are already taken by strangers <span class="badge b-serious">SERIOUS</span></div>
+  <p>Anyone searching your exact name on social lands on unrelated businesses:</p></div>
+
+  <table>
+    <tr><th>Handle / property</th><th>Who actually owns it</th><th>Risk</th></tr>
+    <tr><td>@oasis_beauty_lounge__ (Instagram, 18K followers)</td><td>Salon in Amman, Jordan</td><td>Clients follow/DM the wrong account</td></tr>
+    <tr><td>oasisbeautylounge.com + "Oasis Beauty Lounge LLC" Facebook</td><td>Med spa in Amarillo, TX</td><td>Wrong pricing, wrong bookings, brand confusion</td></tr>
+    <tr><td>Oasis Face Bar (Scottsdale) / Oasis Beauty Bar (Phoenix)</td><td>Local competitors with active social + reviews</td><td>They absorb "oasis facial scottsdale" searches</td></tr>
+  </table>
+
+  <p><strong>Recommendation:</strong> register <span class="mono">@oasisbeautyloungeaz</span> (matching your domain)
+  on Instagram, TikTok, Facebook, Pinterest, and YouTube <em>this week</em>, even before posting begins — handle
+  squatting is cheap insurance, and the consistent "-az" suffix becomes the disambiguator across every channel.</p>
+
+  <h3>Recommended platform plan (beauty-niche priority order)</h3>
+  <table>
+    <tr><th>Platform</th><th>Priority</th><th>Cadence</th><th>Content focus</th></tr>
+    <tr><td>Instagram</td><td>1 — primary</td><td>3–4 posts/wk + daily stories</td><td>Before/after (with written client consent), treatment clips, results close-ups</td></tr>
+    <tr><td>Google Business posts</td><td>2</td><td>1–2/wk</td><td>Offers, openings, seasonal skin tips — feeds the map listing directly</td></tr>
+    <tr><td>TikTok</td><td>3</td><td>2–3/wk</td><td>Treatment ASMR, skin education, "what I'd do for your skin type"</td></tr>
+    <tr><td>Facebook Page</td><td>4</td><td>Mirror IG</td><td>Required for reviews, local groups, and future ads; low extra effort</td></tr>
+    <tr><td>Pinterest / YouTube Shorts</td><td>5 — later</td><td>Repurpose</td><td>Evergreen skincare content; compounding search traffic</td></tr>
+  </table>
+
+  <h3>Content pillars that fit this studio</h3>
+  <ul>
+    <li><strong>Proof:</strong> before/after texture, lifting, and hydration results (consent-based).</li>
+    <li><strong>Education:</strong> which of the three signature facials fits which skin goal — mirrors the site's own framing.</li>
+    <li><strong>Differentiators:</strong> Sunday availability, boutique 1-on-1 setting, CareCredit financing for treatment plans.</li>
+    <li><strong>Local:</strong> Old Town Scottsdale partnerships, neighborhood tags, geo-hashtags.</li>
+  </ul>
+
+  <div class="callout"><strong>Effort reality check:</strong> this plan is ~3–4 hours/week if content is captured
+  during normal treatments (film once, post five times). The first 90 days aim for presence and consistency, not
+  virality.</div>
+
+  <div class="footer"><span>Digital Presence Audit — Oasis Beauty Lounge</span><span>Page 5 of 9</span></div>
+</div>
+
+<!-- ===================== PAGE 6 : ROADMAP ===================== -->
+<div class="page">
+  <div class="kicker">Action Plan</div>
+  <h2>90-day roadmap</h2>
+  <div class="rule"></div>
+
+  <h3>Days 1–30 — Claim, fix, and stop the bleeding</h3>
+  <table>
+    <tr><th>#</th><th>Action</th><th>Impact</th><th>Effort</th></tr>
+    <tr><td>1</td><td>Claim + verify Google Business Profile; resolve shared-suite conflict; 100% profile completion (categories, services, hours incl. Sunday-open, photos, booking link)</td><td><span class="badge b-ok">VERY HIGH</span></td><td>2–4 hrs</td></tr>
+    <tr><td>2</td><td>Launch review engine: QR card at checkout + same-day SMS ask; owner replies to every review</td><td><span class="badge b-ok">VERY HIGH</span></td><td>1 hr setup</td></tr>
+    <tr><td>3</td><td>Register @oasisbeautyloungeaz on IG / TikTok / FB / Pinterest / YouTube</td><td><span class="badge b-ok">HIGH</span></td><td>1 hr</td></tr>
+    <tr><td>4</td><td>Rewrite homepage title/meta with service + city; noindex /cart</td><td><span class="badge b-ok">HIGH</span></td><td>1 hr</td></tr>
+    <tr><td>5</td><td>Install GA4 + Google Search Console; submit sitemap</td><td><span class="badge b-ok">HIGH</span></td><td>1–2 hrs</td></tr>
+  </table>
+
+  <h3>Days 31–60 — Build the surface area</h3>
+  <table>
+    <tr><th>#</th><th>Action</th><th>Impact</th><th>Effort</th></tr>
+    <tr><td>6</td><td>Publish 4–6 service pages (lifting, hydration, texture, peels, cryo) each targeting one keyword from p. 3</td><td><span class="badge b-ok">VERY HIGH</span></td><td>1–2 wks</td></tr>
+    <tr><td>7</td><td>Create Yelp, Facebook, Bing, Apple Maps, Nextdoor listings with identical NAP</td><td><span class="badge b-ok">HIGH</span></td><td>3–4 hrs</td></tr>
+    <tr><td>8</td><td>Begin Instagram cadence (3–4/wk) + weekly Google post</td><td><span class="badge b-ok">HIGH</span></td><td>3–4 hrs/wk</td></tr>
+    <tr><td>9</td><td>Add LocalBusiness/DaySpa schema + review Shopify bot-protection allowlist</td><td><span class="badge b-warn">MEDIUM</span></td><td>2 hrs</td></tr>
+  </table>
+
+  <h3>Days 61–90 — Compound</h3>
+  <table>
+    <tr><th>#</th><th>Action</th><th>Impact</th><th>Effort</th></tr>
+    <tr><td>10</td><td>Local links: Old Town directory, chamber, suite partners, CareCredit profile link, 1–2 local press/blog features</td><td><span class="badge b-ok">HIGH</span></td><td>Ongoing</td></tr>
+    <tr><td>11</td><td>List on one booking marketplace (Fresha or Booksy) to capture marketplace demand</td><td><span class="badge b-warn">MEDIUM</span></td><td>2–3 hrs</td></tr>
+    <tr><td>12</td><td>Publish 2 blog/education pages; start TikTok repurposing</td><td><span class="badge b-warn">MEDIUM</span></td><td>4 hrs</td></tr>
+    <tr><td>13</td><td>Checkpoint: 20–30 Google reviews, 10+ indexed pages, map-pack appearance for branded + 1 service query</td><td colspan="2">90-day success criteria</td></tr>
+  </table>
+
+  <div class="callout"><strong>Sequencing logic:</strong> GBP + reviews come first because they convert existing
+  demand immediately; SEO pages come second because they need weeks to rank; social compounds last but builds the
+  moat competitors can't copy — your actual results.</div>
+
+  <div class="footer"><span>Digital Presence Audit — Oasis Beauty Lounge</span><span>Page 6 of 9</span></div>
+</div>
+
+<!-- ===================== PAGE 7 : VARIABLES APPENDIX 1/2 ===================== -->
+<div class="page">
+  <div class="kicker">Appendix A (1 of 2)</div>
+  <h2>Full tracking variables — current state</h2>
+  <div class="rule"></div>
+  <p class="small">Every variable this program tracks, with its state as of July 19, 2026. OK = verified healthy &bull; ISSUE = verified problem &bull; MISSING = verified absent &bull; TBD = requires account access or tool run to measure.</p>
+
+  <div class="grid2">
+  <div>
+  <h3>Website &amp; technical</h3>
+  <table>
+    <tr><th>Variable</th><th>Value</th></tr>
+    <tr><td>Domain</td><td>oasisbeautyloungeaz.com <span class="badge b-ok">OK</span></td></tr>
+    <tr><td>SSL / HTTPS</td><td>Active <span class="badge b-ok">OK</span></td></tr>
+    <tr><td>Platform</td><td>Shopify <span class="badge b-ok">OK</span></td></tr>
+    <tr><td>Pages indexed</td><td>3 <span class="badge b-crit">ISSUE</span></td></tr>
+    <tr><td>Service pages</td><td>0 <span class="badge b-crit">MISSING</span></td></tr>
+    <tr><td>Blog</td><td>None <span class="badge b-crit">MISSING</span></td></tr>
+    <tr><td>Homepage title keywords</td><td>None <span class="badge b-crit">ISSUE</span></td></tr>
+    <tr><td>Cart noindex</td><td>Not set <span class="badge b-serious">ISSUE</span></td></tr>
+    <tr><td>Bot-protection 403s</td><td>Yes <span class="badge b-serious">ISSUE</span></td></tr>
+    <tr><td>Schema markup</td><td><span class="badge b-tbd">TBD</span></td></tr>
+    <tr><td>Core Web Vitals</td><td><span class="badge b-tbd">TBD</span></td></tr>
+    <tr><td>XML sitemap submitted</td><td><span class="badge b-tbd">TBD</span></td></tr>
+    <tr><td>GA4 installed</td><td><span class="badge b-tbd">TBD</span></td></tr>
+    <tr><td>Search Console</td><td><span class="badge b-tbd">TBD</span></td></tr>
+    <tr><td>Meta pixel / TikTok pixel</td><td><span class="badge b-tbd">TBD</span></td></tr>
+    <tr><td>Backlinks / referring domains</td><td>~0 found <span class="badge b-crit">ISSUE</span></td></tr>
+    <tr><td>Domain registrar / renewal</td><td><span class="badge b-tbd">TBD</span></td></tr>
+  </table>
+  </div>
+
+  <div>
+  <h3>Google Business Profile</h3>
+  <table>
+    <tr><th>Variable</th><th>Value</th></tr>
+    <tr><td>Listing claimed/verified</td><td><span class="badge b-crit">UNVERIFIED</span></td></tr>
+    <tr><td>Primary category</td><td><span class="badge b-tbd">TBD</span></td></tr>
+    <tr><td>Services menu</td><td><span class="badge b-tbd">TBD</span></td></tr>
+    <tr><td>Photo count</td><td><span class="badge b-tbd">TBD</span></td></tr>
+    <tr><td>Google posts</td><td>None found <span class="badge b-crit">MISSING</span></td></tr>
+    <tr><td>Q&amp;A monitored</td><td><span class="badge b-tbd">TBD</span></td></tr>
+    <tr><td>Booking link on listing</td><td><span class="badge b-tbd">TBD</span></td></tr>
+    <tr><td>Messaging enabled</td><td><span class="badge b-tbd">TBD</span></td></tr>
+    <tr><td>NAP consistency</td><td>1 citation only <span class="badge b-serious">ISSUE</span></td></tr>
+    <tr><td>Shared-address conflict</td><td>Aloe Skin Aesthetics <span class="badge b-serious">ISSUE</span></td></tr>
+    <tr><td>Hours accuracy (Sun open / Sat closed)</td><td>Verify everywhere <span class="badge b-warn">CHECK</span></td></tr>
+  </table>
+
+  <h3>Reviews &amp; reputation</h3>
+  <table>
+    <tr><th>Variable</th><th>Value</th></tr>
+    <tr><td>Google reviews / rating</td><td>0 found <span class="badge b-crit">MISSING</span></td></tr>
+    <tr><td>Yelp reviews</td><td>No listing <span class="badge b-crit">MISSING</span></td></tr>
+    <tr><td>Facebook reviews</td><td>No page <span class="badge b-crit">MISSING</span></td></tr>
+    <tr><td>Review response rate</td><td>N/A <span class="badge b-tbd">TBD</span></td></tr>
+    <tr><td>Review ask process</td><td>None found <span class="badge b-crit">MISSING</span></td></tr>
+  </table>
+  </div>
+  </div>
+
+  <div class="footer"><span>Digital Presence Audit — Oasis Beauty Lounge</span><span>Page 7 of 9</span></div>
+</div>
+
+<!-- ===================== PAGE 8 : VARIABLES APPENDIX 2/2 ===================== -->
+<div class="page">
+  <div class="kicker">Appendix A (2 of 2)</div>
+  <h2>Full tracking variables — continued</h2>
+  <div class="rule"></div>
+
+  <div class="grid2">
+  <div>
+  <h3>Social media</h3>
+  <table>
+    <tr><th>Variable</th><th>Value</th></tr>
+    <tr><td>Instagram account / followers</td><td>None found <span class="badge b-crit">MISSING</span></td></tr>
+    <tr><td>Facebook page / followers</td><td>None found <span class="badge b-crit">MISSING</span></td></tr>
+    <tr><td>TikTok account</td><td>None found <span class="badge b-crit">MISSING</span></td></tr>
+    <tr><td>Pinterest / YouTube</td><td>None found <span class="badge b-crit">MISSING</span></td></tr>
+    <tr><td>Handle @oasisbeautyloungeaz available</td><td>Register now <span class="badge b-warn">ACT</span></td></tr>
+    <tr><td>Posting cadence</td><td>0/wk <span class="badge b-crit">MISSING</span></td></tr>
+    <tr><td>Engagement rate</td><td>N/A <span class="badge b-tbd">TBD</span></td></tr>
+    <tr><td>Link-in-bio / booking funnel</td><td>N/A <span class="badge b-crit">MISSING</span></td></tr>
+    <tr><td>UGC / before-after consent process</td><td><span class="badge b-tbd">TBD</span></td></tr>
+  </table>
+  </div>
+
+  <div>
+  <h3>Conversion &amp; ops (owner input needed)</h3>
+  <table>
+    <tr><th>Variable</th><th>Value</th></tr>
+    <tr><td>Booking system / CRM</td><td><span class="badge b-tbd">TBD</span></td></tr>
+    <tr><td>Email &amp; SMS list sizes</td><td><span class="badge b-tbd">TBD</span></td></tr>
+    <tr><td>Automated follow-up</td><td><span class="badge b-tbd">TBD</span></td></tr>
+    <tr><td>Call / DM / form conversion values</td><td><span class="badge b-tbd">TBD</span></td></tr>
+    <tr><td>Avg lead-flow &amp; marketing budget</td><td><span class="badge b-tbd">TBD</span></td></tr>
+    <tr><td>Ad accounts (Google/Meta) active</td><td>No evidence <span class="badge b-warn">LIKELY NONE</span></td></tr>
+  </table>
+
+  <div class="callout"><strong>How to close the TBDs:</strong> a 20-minute working session with account access
+  (Google, Shopify, booking system) converts every TBD above into a measured baseline — the "before" snapshot the
+  90-day plan is graded against.</div>
+  </div>
+  </div>
+
+  <div class="footer"><span>Digital Presence Audit — Oasis Beauty Lounge</span><span>Page 8 of 9</span></div>
+</div>
+
+<!-- ===================== PAGE 9 : METHODOLOGY ===================== -->
+<div class="page">
+  <div class="kicker">Appendix B</div>
+  <h2>Methodology, sources &amp; scope</h2>
+  <div class="rule"></div>
+
+  <h3>How this audit was performed</h3>
+  <p>All findings come from publicly observable data collected July 19, 2026: search-engine indexes and snippets,
+  public directory listings, and platform searches. No website admin, analytics, ad accounts, or private data were
+  accessed. The website itself returns HTTP 403 to automated fetchers (noted as finding S4), so on-page checks were
+  reconstructed from search-index data; items that require inside access are marked TBD rather than guessed.</p>
+
+  <h3>How scores are calculated</h3>
+  <p>Each pillar is scored 0–10 against a standard local-business checklist (presence, completeness, consistency,
+  activity, authority). Scores are directional diagnostics for prioritization — not industry-benchmarked metrics.
+  Zero reviews, zero social profiles, and 3 indexed pages are verified counts; "unverified" means the item could
+  not be confirmed to exist from public search, which itself indicates a visibility problem.</p>
+
+  <h3>Sources</h3>
+  <ul>
+    <li>oasisbeautyloungeaz.com (homepage, /collections/all, /cart — via search index)</li>
+    <li>CareCredit provider locator — carecredit.com/doctor-locator/scottsdale-az/oasis-beauty-lounge-843fgx</li>
+    <li>Search-index results across Google/Bing for brand, address, phone, and email queries</li>
+    <li>Platform searches: Instagram, Facebook, TikTok, Yelp, Nextdoor, Groupon, Fresha, YellowPages, MapQuest</li>
+    <li>Address cross-reference: public listings for 3225 N 75th St, Scottsdale (LoopNet, Vitals, Waze, tenant sites)</li>
+  </ul>
+
+  <h3>Disambiguation note</h3>
+  <p>This report is careful to exclude similarly-named but unrelated businesses: the Amarillo, TX med spa at
+  oasisbeautylounge.com, the Amman (Jordan) salon at @oasis_beauty_lounge__, and the separate local operators
+  Oasis Face Bar and Oasis Beauty Bar. Any third-party report that cites those properties as yours is measuring
+  the wrong business.</p>
+
+  <h3>Suggested next step</h3>
+  <p>A 20-minute call is enough to (1) confirm Google Business Profile ownership status, (2) collect the TBD
+  variables on page 7, and (3) green-light the Days 1–30 actions — the two critical fixes (GBP + reviews) can be
+  live within a week.</p>
+
+  <div class="card">
+    <h3>Contact</h3>
+    <p style="margin:0">Prepared by <strong>CASH.BOT</strong> &nbsp;&bull;&nbsp; rebootbase@icloud.com<br>
+    <span class="small">Report generated July 20, 2026. Findings reflect public data as of the collection date and may change as listings are claimed or updated.</span></p>
+  </div>
+
+  <div class="footer"><span>Digital Presence Audit — Oasis Beauty Lounge</span><span>Page 9 of 9</span></div>
+</div>
+
+</body>
+</html>
