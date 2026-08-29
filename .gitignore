@@ -1,0 +1,15 @@
+# NEVER commit wallet keys
+.solana-trading-key
+*.key
+*keypair*
+
+# Runtime state
+.mint-blacklist.json
+
+# Dependencies
+node_modules/
+package-lock.json
+
+# Env files
+.env
+.env.*
