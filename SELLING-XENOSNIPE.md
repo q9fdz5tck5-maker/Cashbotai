@@ -1,169 +1,170 @@
-# Selling XENOSNIPE — Two-Tier Playbook
+# Selling XENOSNIPE — Two-SKU Playbook
 
-Strategy for selling the XENOSNIPE Solana market-intelligence agent in two forms:
-**(A)** the codebase alone, or **(B)** a turnkey managed server with an SEO-ready
-site, Claude Code installed locally on the VPS to administer it, and the
-read-only phone bridge.
+Two clean offers, both hands-off after delivery:
+
+- **SKU 1 — Codebase, $297.** They get the code and the prompt that built it.
+  They run it themselves and figure it out with their own Claude.
+- **SKU 2 — AI server setup.** The real product is "your own server with
+  Claude on it, reachable from your phone." Everyone wants one, almost nobody
+  can set one up, you can. XENOSNIPE is the demo proving the setup works
+  end-to-end.
+
+You are not selling trading help, profit, or ongoing hand-holding. You sell
+software and setup, hand over the keys, and walk away.
 
 ---
 
 ## 1. What you are actually selling
 
-Not returns. Not a money printer. You are selling **infrastructure and
-discipline**:
-
-- A live Solana mainnet terminal (MARKETS / SCANNER / PAPER / BOT) with
-  multi-timeframe charting, entry bands, targets/stops, and confidence-gated
+- A live Solana mainnet terminal (MARKETS / SCANNER / PAPER / BOT):
+  multi-timeframe charts, entry bands, targets/stops, confidence-gated
   signals that are willing to say **WAIT**.
-- A memecoin scanner that quotes **real round-trip cost per token at your
-  actual position size** (memecoins measured at 0.73–1.78% per leg vs 0.0089%
-  on SOL/USDC) and surfaces rug-check fields: `mintAuthority`,
-  `freezeAuthority`, pool liquidity, organic score, Token-2022 flag.
-- A hardened safety architecture: control port (4173) never tunneled, only the
+- A memecoin scanner that quotes **real round-trip cost per token at actual
+  position size** (memecoins measured at 0.73–1.78% per leg vs 0.0089% on
+  SOL/USDC) plus rug-check fields: `mintAuthority`, `freezeAuthority`, pool
+  liquidity, organic score, Token-2022 flag.
+- Hardened safety architecture: control port (4173) never tunneled, only the
   read-only port (4174) exposed to the phone; no real order without explicit
-  in-conversation approval; sells that would breach `FEE_RESERVE_SOL` are
-  refused; paper trader never touches the wallet.
-- An **AI-native build system**: the `PROMPT-TRADING.md` spec means the buyer's
-  own Claude can maintain, audit, and extend the bot. The codebase ships with
-  its own engineering brief.
-- Radical honesty baked into the UI: the backtest panel shows its own hit rate
-  and PnL *with a disclaimer telling you when the sample is too small to
-  trust*.
+  in-conversation approval; fee-reserve-breaching sells refused; paper trader
+  never touches the wallet.
+- **The build spec** (`PROMPT-TRADING.md`): the engineering brief Claude built
+  it from. This is what makes "$297, figure it out with Claude" a real offer
+  instead of a code dump — their Claude reads the spec and knows the system.
+- Honest UI: the backtest panel shows its own hit rate and PnL with a
+  disclaimer about small samples.
 
-## 2. The positioning angle
+## 2. What you are NOT selling (say it out loud)
 
-Every sniper bot on Telegram promises 100x and hides its numbers. Yours
-displays **33% hit rate, −3.94% cumulative** on a small sample and tells the
-user not to trust it yet. That is the pitch, not the flaw:
+- Not trading advice. Not signals-as-a-service. Not profit, returns, or ROI.
+- Not strategy tuning, not "help me win," not ongoing support.
+- Not custody: their wallet, their keys, their Anthropic account, their VPS
+  bill.
 
-> **"The only Solana sniper that tells you when NOT to trade."**
+This boundary is both your legal protection and your positioning. The honest
+backtest panel (33% hit rate, −3.94%, "don't trust small samples") is proof
+you're not selling a dream — lead with it.
 
-Supporting lines to reuse anywhere:
+## 3. SKU 1 — Codebase, $297 one-time
 
-- "It shows you the real cost of the trade before you take it — most memecoin
-  round trips are 1.5–3.5% before gas. This bot puts that number in the token
-  picker."
-- "Read-only on your phone by design. The port that can place orders is never
-  exposed to the internet."
-- "It refuses orders. On purpose. Wallet locked → clean refusal. Fee reserve
-  breach → refusal. No in-chat approval → refusal."
-- "Built and documented by Claude, for Claude — buy it and your own Claude can
-  keep building it."
+**The pitch:** "$297. You get the full source and the prompt spec that built
+it. Point Claude Code at the repo and figure it out. If you can't, this isn't
+for you."
 
-## 3. Offer structure
+- The price filters for self-sufficient buyers, so no support debt.
+- Non-exclusive license, personal use, no resale — one page, stated in the
+  listing.
+- Deliver via private repo invite after payment (escrow or a platform with
+  buyer protection).
+- Optional upsell for the stuck: one paid setup call, $100. Not included, not
+  advertised heavily — it exists so "I can't get it running" has an answer
+  that isn't a refund.
 
-### Tier A — Codebase license (one-time)
+## 4. SKU 2 — AI server setup
 
-**What they get:** full source, `PROMPT-TRADING.md` build spec, setup guide,
-paper-trading mode, scanner, signal engine, tunnel configs.
+**The pitch is bigger than the bot:** "Your own server with Claude living on
+it. It runs your apps, watches its own logs, fixes itself when you tell it
+to, and you talk to it from your phone. I set the whole thing up; here's mine
+running a live Solana trading terminal to prove it."
 
-- Non-exclusive license: **$297–$497** (recommend **$450**).
-- Exclusive buyout (you stop selling it): **$2,500–$5,000**.
-- Position the spec file as a feature: "the repo ships with the prompt that
-  built it — point Claude Code at it and extend the bot yourself."
+XENOSNIPE is the demo, not the product. That widens the market from "people
+who want a trading bot" to "anyone who's heard they should have their own AI
+server and has no idea how" — which is most people.
 
-### Tier B — Turnkey managed server (setup + monthly)
+**What's in the box (one-time setup, then it's theirs):**
 
-**What they get:**
+1. VPS provisioned and hardened: Ubuntu LTS, SSH keys only, firewall,
+   fail2ban; any control ports bound to localhost.
+2. Claude Code installed **under the buyer's own Anthropic account** — you
+   can't resell your subscription; you sell the installation and wiring.
+   `CLAUDE.md` at the root so their Claude knows the box.
+3. Phone bridge: stable tunnel or subdomain to a read-only dashboard —
+   the "server in your pocket" moment that closes the sale.
+4. Domain + clean landing/status page with proper meta tags, so the server
+   has a home instead of a random tunnel URL.
+5. XENOSNIPE deployed as the showcase app (or their app, if they have one).
+6. Handover doc: how to SSH in, how to talk to Claude on the box, how to
+   restart things, where the logs live. Then you're done.
 
-1. VPS provisioned and hardened (firewall, fail2ban, the 4173/4174 split
-   enforced — control port bound to localhost only).
-2. Domain + SEO-ready landing/status site on the VPS (fast static page, proper
-   meta/OG tags, indexed — their bot has a home, not a random tunnel URL).
-3. **Claude Code installed on the server under the buyer's own Anthropic
-   account** — it can administer the box, read logs, restart services, and
-   extend the bot using the shipped spec. (You cannot resell your own Claude
-   access; the buyer signs in with theirs. Sell the *installation and
-   configuration*, not the subscription.)
-4. Phone bridge: stable tunnel (or subdomain) to the read-only 4174 UI, so the
-   dashboard in their pocket looks exactly like your screenshot.
-5. Wallet stays theirs. You never hold keys. Document this loudly — it is a
-   selling point and it protects you.
+**Pricing:** $750–$1,000 one-time setup (recommend **$850**; VPS and
+Anthropic bills are theirs). Optional $99/mo maintenance only if *they* ask —
+the default is a clean handover with no ongoing obligation, which is exactly
+the "I'm not babysitting anyone" posture.
 
-- Setup fee: **$997–$1,497** (recommend **$1,250**).
-- Managed hosting/maintenance: **$99–$199/mo** (recommend **$149/mo**; VPS
-  cost is theirs or baked in).
-- Add-ons: custom strategy prompt tuning ($250/strategy), white-label rename
-  ($500).
+**Why two SKUs works:** $297 anchors the setup fee. Every "I can't set this
+up myself" objection to SKU 1 is the pitch for SKU 2 — and SKU 2 buyers
+don't even need to care about trading.
 
-### Why two tiers works
+## 5. Ready-to-use post copy
 
-Tier A anchors Tier B. The codebase buyer self-selects as technical; the
-server buyer is paying to skip DevOps. Most objections to A ("I can't set this
-up") are the pitch for B.
+**SKU 1 listing:**
 
-## 4. Ready-to-use post copy
+> XENOSNIPE — Solana mainnet trading terminal. Live charts, confidence-gated
+> signals that say WAIT, a scanner that shows the real round-trip cost of
+> every token before you buy, rug-check fields, paper trading, hardened
+> read-only phone dashboard. $297 gets you the full source plus the AI build
+> spec — point Claude Code at the repo and it knows the whole system. You run
+> it, you own it. Sold as-is as software: no profit claims, no support, your
+> wallet, your keys.
 
-**Marketplace / listing blurb:**
+**SKU 2 post:**
 
-> XENOSNIPE — Solana mainnet trading terminal with a conscience. Live charts,
-> confidence-gated signals that say WAIT, a memecoin scanner that shows the
-> real round-trip cost of every token before you buy, rug-check fields
-> (mint/freeze authority, Token-2022), paper trading, and a hardened
-> phone-viewable dashboard where the order-placing port is never exposed to
-> the internet. Ships with the full AI build spec so Claude Code can maintain
-> and extend it for you. Sold as software — no profit claims, your wallet,
-> your keys.
+> Everyone wants their own server with AI on it. Almost nobody can set one
+> up.
+>
+> I put Claude on a VPS: it deploys apps, reads its own logs, fixes what you
+> tell it to fix, and you talk to it from your phone. Mine runs a live Solana
+> trading terminal 24/7 — screenshot below is my phone.
+>
+> I'll build you one. Flat fee, your accounts, your keys, then it's yours.
 
-**X/Twitter thread opener:**
+**X thread opener (either SKU):**
 
 > I built a Solana sniper that refuses to trade.
 >
-> Wallet locked? Refuses. Fee reserve at risk? Refuses. No explicit approval
-> in chat? Refuses. Signal confidence 50/100? It says WAIT and shows you why.
+> Wallet locked? Refuses. Fee reserve at risk? Refuses. No explicit approval?
+> Refuses. Confidence 50/100? It says WAIT and shows you why.
 >
-> Now selling it two ways: code only, or a managed server with Claude running
-> on the box. 🧵
+> Selling the code for $297 — comes with the prompt that built it, so your
+> Claude can run it. Or I'll set up the whole server for you. 🧵
 
-**Reddit-style long post:** lead with the honest backtest panel screenshot,
-explain the cost-truth column ("most bots hide that a memecoin round trip is
-3%; mine puts it in the dropdown"), end with the two offers and "DM for
-either."
-
-## 5. Objection handling
+## 6. Objection handling
 
 | Objection | Answer |
 |---|---|
-| "Does it make money?" | "It's an intelligence and execution layer, sold as software. It shows you its own live hit rate and refuses low-confidence trades. Nobody selling you guaranteed returns is telling the truth." |
-| "Why is the backtest negative?" | "Because it's real and in-sample over a small window — and the UI says so. That honesty is the product. You get paper mode to build your own sample before risking anything." |
-| "Do you hold my keys?" | "Never. Wallet stays on your box, control port never leaves localhost, and the phone view is read-only by architecture, not by promise." |
-| "What about the Claude part?" | "You bring your own Anthropic account; I install and wire Claude Code into the server so it can administer the box and extend the bot from the shipped spec." |
-| "Can I resell it?" | Non-exclusive license: personal use, no resale. Put it in a one-page license. |
+| "Does it make money?" | "I'm not selling returns and won't pretend to. It's software — it even shows you its own hit rate on screen. You get paper mode to test before risking anything." |
+| "Why is the backtest negative?" | "Because it's real, in-sample, and small — and the UI says so. That honesty is the product." |
+| "Will you help me set it up?" (SKU 1) | "That's the $297 deal: you and your Claude figure it out — the build spec is included so Claude knows the system. If you want it done for you, that's the server setup." |
+| "Do you hold my keys / accounts?" | "Never. Your wallet, your Anthropic login, your VPS. I set it up, hand it over, and I'm out." |
+| "What if it breaks later?" (SKU 2) | "The handover doc covers the basics, and Claude is on the box — ask it. Ongoing maintenance is available but optional." |
 
-## 6. Guardrails (do these or the offer bites you)
+## 7. Guardrails
 
-- **Zero profit claims, ever.** No "ROI", no "passive income", no screenshots
-  of gains as marketing. Sell software + service. Performance claims around
-  trading tools invite regulatory and refund trouble.
-- Every listing carries: *"Software sold as-is for educational/technical use.
-  Not financial advice. Trading cryptocurrencies risks total loss."*
-- Buyer's own wallet, buyer's own Anthropic account, buyer's own exchange
-  risk. You never custody anything.
-- Use escrow or a platform with buyer/seller protection for codebase sales;
-  deliver via private repo invite.
-- For the managed tier, a simple service agreement: what "managed" covers
-  (uptime, updates, tunnel), what it doesn't (trading outcomes).
-- Keep the live demo read-only (4174) — exactly what the tunnel link already
-  does. Never expose 4173.
+- **Zero profit claims, ever.** No ROI, no "passive income," no gain
+  screenshots as marketing. You're already not helping them profit — make
+  sure the marketing never implies otherwise.
+- Every listing: *"Software sold as-is for educational/technical use. Not
+  financial advice. Trading cryptocurrencies risks total loss."*
+- SKU 1: escrow/platform protection, private repo invite, one-page license.
+- SKU 2: one-page scope sheet — what setup includes, what it doesn't
+  (trading outcomes, free lifetime support). Signed or acknowledged before
+  payment.
+- Buyer's own Anthropic account always — never share or resell yours.
+- Demo stays read-only on 4174. **Never expose 4173.**
 
-## 7. Server-tier delivery checklist
+## 8. SKU 2 delivery checklist
 
-1. Provision VPS (2 vCPU / 4GB is plenty), Ubuntu LTS, SSH keys only.
-2. Firewall: 80/443 open, 4173 bound to 127.0.0.1, 4174 behind the tunnel or
-   reverse proxy with auth.
-3. Deploy bot + dashboard, systemd units, log rotation.
-4. Domain, TLS, static landing page with proper meta tags (title,
-   description, OG image of the dashboard) so the product page indexes.
-5. Install Claude Code, buyer authenticates with their account; drop
-   `CLAUDE.md` + `PROMPT-TRADING.md` in the repo root so their Claude has the
-   full context.
-6. Stable phone bridge (named tunnel or subdomain) to the read-only UI.
-7. Handover doc: how to approve a live trade, how to lock the wallet, how to
-   ask Claude on the box to update the bot.
+1. VPS (2 vCPU / 4GB), Ubuntu LTS, SSH keys only.
+2. Firewall: 80/443 open; control ports on 127.0.0.1; dashboard behind
+   tunnel/reverse proxy.
+3. Deploy the showcase app, systemd units, log rotation.
+4. Domain, TLS, landing page with real meta/OG tags.
+5. Claude Code installed, buyer authenticates; `CLAUDE.md` +
+   `PROMPT-TRADING.md` in place.
+6. Stable phone bridge to the read-only UI.
+7. Handover doc; collect final payment; done.
 
 ---
 
-*Note: written from the dashboard screenshot and the `PROMPT-TRADING.md` spec
+*Written from the dashboard screenshot and the `PROMPT-TRADING.md` spec
 visible in it; the trycloudflare link wasn't reachable from this environment
-(egress-blocked), and the original post text wasn't available — splice your
-post's voice into the copy blocks above.*
+(egress-blocked). Splice your original post's voice into the copy blocks.*
