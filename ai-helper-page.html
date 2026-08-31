@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Your own AI helper that builds websites and apps for you. One-time setup, plain English, no computer skills needed.">
+<title>Your Own AI Helper</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap">
+<style>
+  :root {
+    --ground: #FBFAF6;
+    --surface: #FFFFFF;
+    --ink: #23292E;
+    --muted: #59636B;
+    --line: #E4E1D8;
+    --accent: #14695B;
+    --accent-deep: #0E5248;
+    --accent-soft: #E7F1EC;
+    --highlight: #FFF6DF;
+    --highlight-edge: #E8D9A8;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #171B1E;
+      --surface: #21262B;
+      --ink: #ECEEE9;
+      --muted: #A8B0AC;
+      --line: #363D42;
+      --accent: #5FC2A9;
+      --accent-deep: #7BD2BC;
+      --accent-soft: #21332E;
+      --highlight: #2E2A1D;
+      --highlight-edge: #57503A;
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground: #171B1E;
+    --surface: #21262B;
+    --ink: #ECEEE9;
+    --muted: #A8B0AC;
+    --line: #363D42;
+    --accent: #5FC2A9;
+    --accent-deep: #7BD2BC;
+    --accent-soft: #21332E;
+    --highlight: #2E2A1D;
+    --highlight-edge: #57503A;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--ground);
+    color: var(--ink);
+    font-family: "Atkinson Hyperlegible", "Verdana", system-ui, sans-serif;
+    font-size: 19px;
+    line-height: 1.65;
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 680px; margin: 0 auto; padding: 48px 22px 80px; }
+  h1, h2, h3 {
+    font-family: "Fraunces", "Georgia", serif;
+    line-height: 1.15;
+    text-wrap: balance;
+    color: var(--ink);
+  }
+  h1 { font-size: 2.5rem; font-weight: 700; margin: 18px 0 14px; }
+  h2 { font-size: 1.7rem; font-weight: 600; margin: 0 0 16px; }
+  h3 { font-size: 1.15rem; font-weight: 600; margin: 0 0 6px; }
+  p { margin: 0 0 16px; }
+  section { margin-top: 56px; }
+  .kicker {
+    display: inline-block;
+    font-weight: 700;
+    font-size: 0.95rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .lede { font-size: 1.25rem; color: var(--muted); }
+  .speak {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 22px 24px;
+    margin: 26px 0;
+  }
+  .speak .label { font-size: 0.95rem; font-weight: 700; color: var(--accent); margin-bottom: 12px; }
+  .bubble {
+    background: var(--accent-soft);
+    border-radius: 16px 16px 16px 4px;
+    padding: 12px 18px;
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+    font-style: italic;
+    width: fit-content;
+    max-width: 100%;
+  }
+  .bubble:last-child { margin-bottom: 0; }
+  .speak .after { margin: 14px 0 0; font-size: 1.05rem; }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 24px 26px;
+  }
+  ol.steps { list-style: none; counter-reset: s; margin: 0; padding: 0; }
+  ol.steps li {
+    counter-increment: s;
+    display: flex; gap: 18px;
+    padding: 16px 0;
+    border-top: 1px solid var(--line);
+    font-size: 1.05rem;
+  }
+  ol.steps li:first-child { border-top: none; padding-top: 0; }
+  ol.steps li:last-child { padding-bottom: 0; }
+  ol.steps li::before {
+    content: counter(s);
+    flex: none;
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: var(--surface);
+    font-family: "Fraunces", serif;
+    font-weight: 700;
+    font-size: 1.2rem;
+    display: grid; place-items: center;
+    margin-top: 2px;
+  }
+  ul.gets { list-style: none; margin: 0; padding: 0; }
+  ul.gets li {
+    padding: 13px 0 13px 38px;
+    border-top: 1px solid var(--line);
+    position: relative;
+    font-size: 1.05rem;
+  }
+  ul.gets li:first-child { border-top: none; padding-top: 0; }
+  ul.gets li:last-child { padding-bottom: 0; }
+  ul.gets li::before {
+    content: "✓";
+    position: absolute; left: 4px; top: 12px;
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 1.25rem;
+  }
+  ul.gets li:first-child::before { top: -1px; }
+  .price-card { text-align: center; }
+  .price-big {
+    font-family: "Fraunces", serif;
+    font-size: 3.2rem;
+    font-weight: 700;
+    color: var(--accent-deep);
+    line-height: 1.1;
+    margin: 6px 0 4px;
+  }
+  .price-sub { font-size: 1.05rem; color: var(--muted); margin-bottom: 18px; }
+  .honest {
+    background: var(--highlight);
+    border: 1px solid var(--highlight-edge);
+    border-radius: 12px;
+    padding: 18px 22px;
+    text-align: left;
+    font-size: 1.02rem;
+    margin-top: 8px;
+  }
+  .honest strong { display: block; margin-bottom: 6px; }
+  .qa { border-top: 1px solid var(--line); padding: 16px 0; }
+  .qa:first-child { border-top: none; padding-top: 0; }
+  .qa:last-child { padding-bottom: 0; }
+  .qa .q { font-weight: 700; margin-bottom: 5px; font-size: 1.05rem; }
+  .qa .a { margin: 0; color: var(--muted); font-size: 1.02rem; }
+  .cta {
+    background: var(--accent);
+    color: #FFFFFF;
+    border-radius: 16px;
+    padding: 34px 30px;
+    text-align: center;
+    margin-top: 60px;
+  }
+  .cta h2 { color: #FFFFFF; margin-bottom: 10px; }
+  .cta p { color: #E4F2ED; font-size: 1.1rem; }
+  .cta .contact {
+    display: inline-block;
+    background: #FFFFFF;
+    color: var(--accent-deep);
+    font-weight: 700;
+    font-size: 1.2rem;
+    border-radius: 10px;
+    padding: 14px 26px;
+    margin-top: 8px;
+  }
+  .cta .small { font-size: 0.95rem; margin: 14px 0 0; color: #C9E4DB; }
+  .footnote {
+    margin-top: 44px;
+    padding-top: 18px;
+    border-top: 1px solid var(--line);
+    font-size: 0.9rem;
+    color: var(--muted);
+  }
+  :focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <span class="kicker">A patient helper, not a computer class</span>
+    <h1>Want a website? Just ask for one.</h1>
+    <p class="lede">I set you up with your own AI helper. You tell it what you want — in plain English, right from your phone — and it builds it for you while you watch.</p>
+
+    <div class="speak">
+      <div class="label">You really do just say things like:</div>
+      <div class="bubble">"Make me a website for my quilting business."</div>
+      <div class="bubble">"Add the photos from our trip to the top."</div>
+      <div class="bubble">"Make the letters bigger and the colors softer."</div>
+      <p class="after">…and it does it. No classes. No code. No waiting on anybody.</p>
+    </div>
+  </header>
+
+  <section>
+    <h2>How it works</h2>
+    <div class="card">
+      <ol class="steps">
+        <li>We meet — at your kitchen table or over the phone. I do all the technical setup, once. Everything goes under <strong>your</strong> name and <strong>your</strong> passwords.</li>
+        <li>We build your first page <strong>together</strong>. Takes about an hour. You leave having already done it once.</li>
+        <li>It's yours. Your helper is on duty day and night, and you can talk to it from your phone, anywhere.</li>
+      </ol>
+    </div>
+  </section>
+
+  <section>
+    <h2>What you get</h2>
+    <div class="card">
+      <ul class="gets">
+        <li><strong>Your own AI helper</strong> — under your own account. Truly yours, not rented from me.</li>
+        <li><strong>Your own spot on the internet</strong> — a little always-on computer where your websites and projects live.</li>
+        <li><strong>Your own web address</strong> — yourname.com, or whatever you like.</li>
+        <li><strong>Phone access</strong> — talk to your helper from anywhere, like sending a text.</li>
+        <li><strong>A one-page cheat sheet in big print</strong> — how to ask for things, who you pay for what, and what to do if something looks wrong. (Hint: you just tell the helper, "Something looks wrong — please fix it.")</li>
+        <li><strong>A lesson with me</strong> — we build your first page together, step by step.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>What it costs</h2>
+    <div class="card price-card">
+      <div class="price-big">$600</div>
+      <p class="price-sub">One time. That's the whole setup, the lesson, and the cheat sheet.</p>
+      <div class="honest">
+        <strong>The honest fine print, in regular-size print:</strong>
+        Keeping it running costs about $30–40 a month — roughly the price of two coffees a week. That money goes straight to the AI company and the internet company, on your own card, in your own name. <strong>None of it comes to me.</strong> After setup day, I don't make another penny unless you ask me for more help.
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Common questions</h2>
+    <div class="card">
+      <div class="qa">
+        <p class="q">Do I need to know computers?</p>
+        <p class="a">If you can send a text message, you can do this.</p>
+      </div>
+      <div class="qa">
+        <p class="q">Is this like that ChatGPT thing?</p>
+        <p class="a">Same idea — but yours doesn't just talk. It actually builds your website and keeps it running.</p>
+      </div>
+      <div class="qa">
+        <p class="q">What if it breaks?</p>
+        <p class="a">Tell your helper, "Something looks wrong, please fix it." That's genuinely the answer. And I'm reachable if you ever want a human.</p>
+      </div>
+      <div class="qa">
+        <p class="q">Is my stuff safe?</p>
+        <p class="a">Everything is under your accounts and your passwords — the helper, the computer, the web address. Nothing depends on me, and nobody can take it from you.</p>
+      </div>
+      <div class="qa">
+        <p class="q">What can it make besides websites?</p>
+        <p class="a">Simple apps and tools, letters and flyers, photo pages for the family, a page for your club or church group. If you can describe it, ask for it.</p>
+      </div>
+      <div class="qa">
+        <p class="q">Why can't I just do this myself?</p>
+        <p class="a">You could — the same way you could change your own transmission. I've done the setup many times, and I'll have you up and running in an afternoon.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="cta">
+    <h2>See it before you spend a dime</h2>
+    <p>I'll show you mine building a website, live, on my phone — then hand it to you and let <em>you</em> tell it what to do. Takes two minutes.</p>
+    <span class="contact">Call or text: (your number here)</span>
+    <p class="small">No pressure, no contract, no monthly fees to me. If the two-minute demo doesn't wow you, we shake hands and part friends.</p>
+  </div>
+
+  <p class="footnote">Sold as a one-time setup service. The AI helper is a tool — I make no promises about business results, and ongoing costs are billed to you directly by the AI and hosting companies at their standard rates.</p>
+</div>
+
+</body>
+</html>
