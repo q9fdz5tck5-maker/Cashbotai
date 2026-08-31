@@ -1,170 +1,146 @@
-# Selling XENOSNIPE — Two-SKU Playbook
+# The Simple Offer — "Your Own AI That Builds Things For You"
 
-Two clean offers, both hands-off after delivery:
+The buyer: someone who's heard about AI, wants a website or an app, and has
+no idea where to start. Don't sell them a server. Don't sell them a trading
+bot. Sell them a helper.
 
-- **SKU 1 — Codebase, $297.** They get the code and the prompt that built it.
-  They run it themselves and figure it out with their own Claude.
-- **SKU 2 — AI server setup.** The real product is "your own server with
-  Claude on it, reachable from your phone." Everyone wants one, almost nobody
-  can set one up, you can. XENOSNIPE is the demo proving the setup works
-  end-to-end.
+**The one-liner:**
 
-You are not selling trading help, profit, or ongoing hand-holding. You sell
-software and setup, hand over the keys, and walk away.
+> "I'll set you up with your own AI assistant that builds websites and apps
+> for you. You just tell it what you want — from your phone — and watch it
+> work. I do all the technical setup. It's yours, and it never expires."
 
 ---
 
-## 1. What you are actually selling
+## 1. Words to use / words to ban
 
-- A live Solana mainnet terminal (MARKETS / SCANNER / PAPER / BOT):
-  multi-timeframe charts, entry bands, targets/stops, confidence-gated
-  signals that are willing to say **WAIT**.
-- A memecoin scanner that quotes **real round-trip cost per token at actual
-  position size** (memecoins measured at 0.73–1.78% per leg vs 0.0089% on
-  SOL/USDC) plus rug-check fields: `mintAuthority`, `freezeAuthority`, pool
-  liquidity, organic score, Token-2022 flag.
-- Hardened safety architecture: control port (4173) never tunneled, only the
-  read-only port (4174) exposed to the phone; no real order without explicit
-  in-conversation approval; fee-reserve-breaching sells refused; paper trader
-  never touches the wallet.
-- **The build spec** (`PROMPT-TRADING.md`): the engineering brief Claude built
-  it from. This is what makes "$297, figure it out with Claude" a real offer
-  instead of a code dump — their Claude reads the spec and knows the system.
-- Honest UI: the backtest panel shows its own hit rate and PnL with a
-  disclaimer about small samples.
-
-## 2. What you are NOT selling (say it out loud)
-
-- Not trading advice. Not signals-as-a-service. Not profit, returns, or ROI.
-- Not strategy tuning, not "help me win," not ongoing support.
-- Not custody: their wallet, their keys, their Anthropic account, their VPS
-  bill.
-
-This boundary is both your legal protection and your positioning. The honest
-backtest panel (33% hit rate, −3.94%, "don't trust small samples") is proof
-you're not selling a dream — lead with it.
-
-## 3. SKU 1 — Codebase, $297 one-time
-
-**The pitch:** "$297. You get the full source and the prompt spec that built
-it. Point Claude Code at the repo and figure it out. If you can't, this isn't
-for you."
-
-- The price filters for self-sufficient buyers, so no support debt.
-- Non-exclusive license, personal use, no resale — one page, stated in the
-  listing.
-- Deliver via private repo invite after payment (escrow or a platform with
-  buyer protection).
-- Optional upsell for the stuck: one paid setup call, $100. Not included, not
-  advertised heavily — it exists so "I can't get it running" has an answer
-  that isn't a refund.
-
-## 4. SKU 2 — AI server setup
-
-**The pitch is bigger than the bot:** "Your own server with Claude living on
-it. It runs your apps, watches its own logs, fixes itself when you tell it
-to, and you talk to it from your phone. I set the whole thing up; here's mine
-running a live Solana trading terminal to prove it."
-
-XENOSNIPE is the demo, not the product. That widens the market from "people
-who want a trading bot" to "anyone who's heard they should have their own AI
-server and has no idea how" — which is most people.
-
-**What's in the box (one-time setup, then it's theirs):**
-
-1. VPS provisioned and hardened: Ubuntu LTS, SSH keys only, firewall,
-   fail2ban; any control ports bound to localhost.
-2. Claude Code installed **under the buyer's own Anthropic account** — you
-   can't resell your subscription; you sell the installation and wiring.
-   `CLAUDE.md` at the root so their Claude knows the box.
-3. Phone bridge: stable tunnel or subdomain to a read-only dashboard —
-   the "server in your pocket" moment that closes the sale.
-4. Domain + clean landing/status page with proper meta tags, so the server
-   has a home instead of a random tunnel URL.
-5. XENOSNIPE deployed as the showcase app (or their app, if they have one).
-6. Handover doc: how to SSH in, how to talk to Claude on the box, how to
-   restart things, where the logs live. Then you're done.
-
-**Pricing:** $750–$1,000 one-time setup (recommend **$850**; VPS and
-Anthropic bills are theirs). Optional $99/mo maintenance only if *they* ask —
-the default is a clean handover with no ongoing obligation, which is exactly
-the "I'm not babysitting anyone" posture.
-
-**Why two SKUs works:** $297 anchors the setup fee. Every "I can't set this
-up myself" objection to SKU 1 is the pitch for SKU 2 — and SKU 2 buyers
-don't even need to care about trading.
-
-## 5. Ready-to-use post copy
-
-**SKU 1 listing:**
-
-> XENOSNIPE — Solana mainnet trading terminal. Live charts, confidence-gated
-> signals that say WAIT, a scanner that shows the real round-trip cost of
-> every token before you buy, rug-check fields, paper trading, hardened
-> read-only phone dashboard. $297 gets you the full source plus the AI build
-> spec — point Claude Code at the repo and it knows the whole system. You run
-> it, you own it. Sold as-is as software: no profit claims, no support, your
-> wallet, your keys.
-
-**SKU 2 post:**
-
-> Everyone wants their own server with AI on it. Almost nobody can set one
-> up.
->
-> I put Claude on a VPS: it deploys apps, reads its own logs, fixes what you
-> tell it to fix, and you talk to it from your phone. Mine runs a live Solana
-> trading terminal 24/7 — screenshot below is my phone.
->
-> I'll build you one. Flat fee, your accounts, your keys, then it's yours.
-
-**X thread opener (either SKU):**
-
-> I built a Solana sniper that refuses to trade.
->
-> Wallet locked? Refuses. Fee reserve at risk? Refuses. No explicit approval?
-> Refuses. Confidence 50/100? It says WAIT and shows you why.
->
-> Selling the code for $297 — comes with the prompt that built it, so your
-> Claude can run it. Or I'll set up the whole server for you. 🧵
-
-## 6. Objection handling
-
-| Objection | Answer |
+| Say this | Never say this |
 |---|---|
-| "Does it make money?" | "I'm not selling returns and won't pretend to. It's software — it even shows you its own hit rate on screen. You get paper mode to test before risking anything." |
-| "Why is the backtest negative?" | "Because it's real, in-sample, and small — and the UI says so. That honesty is the product." |
-| "Will you help me set it up?" (SKU 1) | "That's the $297 deal: you and your Claude figure it out — the build spec is included so Claude knows the system. If you want it done for you, that's the server setup." |
-| "Do you hold my keys / accounts?" | "Never. Your wallet, your Anthropic login, your VPS. I set it up, hand it over, and I'm out." |
-| "What if it breaks later?" (SKU 2) | "The handover doc covers the basics, and Claude is on the box — ask it. Ongoing maintenance is available but optional." |
+| "Your own AI assistant" | Claude Code, LLM, agent |
+| "Your own little computer on the internet, always on" | VPS, server, Ubuntu, SSH |
+| "You talk to it from your phone" | tunnel, port, dashboard bridge |
+| "It builds your website while you watch" | deploy, repo, git |
+| "I set it up once, then it's yours" | provisioning, configuration |
+| "About $30–40 a month to keep it running (paid to the AI company and the computer company, not me)" | API keys, subscription tiers |
 
-## 7. Guardrails
+## 2. The pitch (flyer / Facebook post / word of mouth)
 
-- **Zero profit claims, ever.** No ROI, no "passive income," no gain
-  screenshots as marketing. You're already not helping them profit — make
-  sure the marketing never implies otherwise.
-- Every listing: *"Software sold as-is for educational/technical use. Not
-  financial advice. Trading cryptocurrencies risks total loss."*
-- SKU 1: escrow/platform protection, private repo invite, one-page license.
-- SKU 2: one-page scope sheet — what setup includes, what it doesn't
-  (trading outcomes, free lifetime support). Signed or acknowledged before
-  payment.
-- Buyer's own Anthropic account always — never share or resell yours.
-- Demo stays read-only on 4174. **Never expose 4173.**
+> **Want a website but don't know computers? You don't need to anymore.**
+>
+> I set up your own personal AI assistant. It lives on your own little
+> computer on the internet — always on, always yours. You talk to it like a
+> person: "Make me a website for my quilting business." "Add my photos."
+> "Change the colors." And it does it, while you watch, right from your
+> phone.
+>
+> No classes. No code. No monthly fees to me.
+>
+> I do the setup once, show you how to talk to it, and hand you the keys.
+> One flat price. After that it costs about the price of two coffees a week
+> to keep running (paid directly to the AI company — not me).
+>
+> Want to see it first? I'll show you mine building something, live.
 
-## 8. SKU 2 delivery checklist
+## 3. What they get (say it exactly this simply)
 
-1. VPS (2 vCPU / 4GB), Ubuntu LTS, SSH keys only.
-2. Firewall: 80/443 open; control ports on 127.0.0.1; dashboard behind
-   tunnel/reverse proxy.
-3. Deploy the showcase app, systemd units, log rotation.
-4. Domain, TLS, landing page with real meta/OG tags.
-5. Claude Code installed, buyer authenticates; `CLAUDE.md` +
-   `PROMPT-TRADING.md` in place.
-6. Stable phone bridge to the read-only UI.
-7. Handover doc; collect final payment; done.
+1. **Your own AI assistant** — set up under your own account, so it's truly
+   yours, not rented from me.
+2. **Your own spot on the internet** — a little always-on computer where your
+   websites and apps live.
+3. **Your own web address** — yourname.com, whatever you like.
+4. **Phone access** — talk to your assistant from anywhere.
+5. **A one-page cheat sheet** — in big print: how to ask for a website, how
+   to ask for changes, who to pay for what, and what to do if something looks
+   wrong ("just ask the assistant to fix it").
+6. **A live lesson** — 30–60 minutes where we build their first page
+   together so they leave having already done it once.
+
+## 4. Price
+
+- **Flat setup: $500–$750** (pick one number and keep it round — "$600,
+  done" beats a range). Includes the lesson and the cheat sheet.
+- **Their ongoing costs, stated up front:** roughly $20/mo to the AI company
+  + $10–20/mo for the internet computer, paid by them directly. Set both up
+  in *their* name with *their* card during setup. This is your honesty
+  moment and it builds trust: "I don't make a penny after setup."
+- **Optional care plan: $49/mo** — "I check on it monthly and I'm a phone
+  call away." For this audience, many will want it. Offer it *after* the
+  handover, not as pressure during the sale.
+- The $297 codebase listing stays alive as a separate offer for technical
+  buyers; it never appears in this pitch.
+
+## 5. The demo that closes the sale
+
+Nothing you say beats 60 seconds of showing. On your phone, in front of
+them:
+
+1. Open your assistant. Say (voice, ideally): "Make a simple website for a
+   bakery called Rosie's, with a photo section and a phone number."
+2. Let them watch it appear.
+3. Hand them the phone: "You try. Ask it to change something."
+
+The moment it does what *they* said, the sale is done. This is also why the
+phone bridge matters — the demo happens anywhere: kitchen table, church
+hall, RV park.
+
+## 6. Plain-language FAQ (rehearse these)
+
+- **"Do I need to know computers?"** — "If you can send a text message, you
+  can do this."
+- **"Is this like that ChatGPT thing?"** — "Same idea, but yours doesn't
+  just talk — it actually builds and keeps your website running."
+- **"What does it cost after?"** — "About $30–40 a month, paid straight to
+  the companies that run the AI and the computer. Nothing to me, unless you
+  want the care plan."
+- **"What if it breaks?"** — "Tell the assistant 'something looks wrong,
+  please fix it.' That's genuinely the answer. And I'm reachable."
+- **"Can my grandkids mess with it?"** — "It's under your accounts and your
+  passwords. Yours."
+- **"Why can't I just do this myself?"** — "You could, the same way you
+  could change your own transmission. I've done it fifty times and I'll have
+  you running in an afternoon."
+
+## 7. Where to sell it
+
+Not on crypto Twitter. This buyer is at: Facebook groups (local community,
+hobby, small business), Nextdoor, senior centers and libraries (offer a free
+"intro to AI" hour — the setup sells itself), church bulletins, farmers
+markets, word of mouth from the first three happy customers. Charge the
+first three less in exchange for a referral and a photo testimonial.
+
+## 8. Your side of the deal (private — the actual delivery)
+
+1. Small VPS in their name (or yours with billing passthrough — prefer
+   theirs), Ubuntu LTS, SSH keys, firewall, fail2ban.
+2. Claude Code installed, authenticated to **their** Anthropic account
+   (create it with them at the kitchen table; their card).
+3. Simple always-on chat/phone access to the assistant (the piece you
+   already know how to wire — the read-only + approval split you built for
+   XENOSNIPE is your hardening template).
+4. Their domain, TLS, and a starter site the assistant can edit.
+5. `CLAUDE.md` on the box written for THIS user: "The owner is
+   non-technical. Explain everything simply. Never delete without asking.
+   Keep the site backed up."
+6. Backups on a schedule; test a restore before handover.
+7. Big-print cheat sheet + the live lesson. Collect payment. Done.
+
+## 9. Guardrails
+
+- Everything in **their** name: AI account, server bill, domain. You hold
+  nothing, so nothing dies with you and nobody accuses you of holding
+  anything hostage.
+- Never promise "it can do anything." Promise: websites, simple apps,
+  writing help, photos organized into pages. Under-promise; the assistant
+  will over-deliver on its own.
+- No profit/business-success claims — you're selling a tool and a setup
+  service, not outcomes.
+- Scope sheet in plain English, one page: what setup includes, what the
+  care plan includes, what their monthly costs are and who they pay.
+- This audience gets targeted by scammers constantly. Being the visibly
+  honest one — their accounts, their passwords, flat fee, costs disclosed —
+  is your entire brand. Protect it.
 
 ---
 
-*Written from the dashboard screenshot and the `PROMPT-TRADING.md` spec
-visible in it; the trycloudflare link wasn't reachable from this environment
-(egress-blocked). Splice your original post's voice into the copy blocks.*
+*The XENOSNIPE trading terminal stays out of this pitch entirely; it remains
+the tech-buyer demo and the separate $297 codebase listing.*
