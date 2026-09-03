@@ -83,7 +83,19 @@ one is missing, rather than shipping a silent slide.
 
 ### Layouts
 
-`title` · `bullets` · `stats` · `compare` · `quote` · `pricing` · `faq` · `cta`
+`title` · `bullets` · `stats` · `compare` · `quote` · `myth` · `pricing` · `faq` · `cta`
+
+`myth` is the false-belief beat — state the lie, stamp it wrong, replace it
+with the truth:
+
+```json
+{ "layout": "myth",
+  "kicker": "Secret 1 of 3",
+  "lie": "\"Shipping a website is a 14-step nightmare.\"",
+  "stamp": "WRONG",
+  "truth": "The truth: shipping is one sentence.",
+  "narration": "…" }
+```
 
 Wrap text in `[ACCENT]…[/ACCENT]` to colour it. Layout fields are documented by
 example in `projects/example/project.json`, and `src/deck.js` is the reference.
@@ -105,6 +117,37 @@ rather than spelled. Longest key wins, so `"site.com/order"` beats `"site.com"`.
 It is a convenience, not legal review. Set your own rules with `tts.compliance`,
 or `"applyCompliance": false` to disable. What you claim in a sales asset is
 yours to get right.
+
+## Importing an existing deck
+
+If you already have hand-built decks, `tools/import-deck.js` converts one into
+a project config. Narration is carried across verbatim; headings, kickers,
+stats, bullets and myth beats are mapped where recognised.
+
+```bash
+node tools/import-deck.js \
+  --html      path/to/webinar-3secrets-v8.html \
+  --narration path/to/narration-3sv8.json \
+  --name      three-secrets-v8 \
+  --out       projects/three-secrets-v8/project.json
+```
+
+It reports what it produced and lists anything it could not classify, so you
+know exactly which slides to review:
+
+```
+Imported 37 slides -> projects/three-secrets-v8/project.json
+Narration: 2164 words (~14 min spoken)
+Layouts: stats=1 title=30 bullets=1 myth=3 cta=2
+```
+
+Override the class names with `--selector-slide`, `--selector-title`,
+`--selector-lie` and friends if a deck uses different markup. It is a
+structural import, not a pixel-perfect one — expect to adjust layouts
+afterwards, which is the point: after importing once, the deck is data.
+
+`projects/three-secrets-v8/` is a real 37-slide deck imported this way, kept
+as a second worked example.
 
 ## Performance
 

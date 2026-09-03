@@ -75,6 +75,17 @@ const layouts = {
       ${s.attribution ? `<div class="attribution">${rich(s.attribution)}</div>` : ''}
     </div>`,
 
+  // The false-belief beat: state the lie the audience holds, stamp it wrong,
+  // replace it with the truth. Core to the Perfect Webinar structure.
+  myth: (s) => `
+    <div class="wrap center">
+      ${s.kicker ? `<div class="kicker">${esc(s.kicker)}</div>` : ''}
+      <div class="myth-lie">${rich(s.lie)}</div>
+      <div class="myth-stamp">${esc(s.stamp || 'WRONG')}</div>
+      <div class="myth-truth">${rich(s.truth)}</div>
+      ${s.sub ? `<p class="sub">${rich(s.sub)}</p>` : ''}
+    </div>`,
+
   pricing: (s) => `
     <div class="wrap">
       ${s.kicker ? `<div class="kicker">${esc(s.kicker)}</div>` : ''}
@@ -159,6 +170,13 @@ function css(cfg) {
   .col li{font-size:27px;line-height:1.35}
   .col-total{margin-top:30px;padding-top:26px;border-top:1px solid rgba(255,255,255,.14);
     font-family:${mono};font-size:38px;font-weight:800}
+  .myth-lie{font-size:50px;line-height:1.25;font-weight:700;color:${muted};
+    max-width:1400px;margin:0 auto;font-style:italic}
+  .myth-stamp{display:inline-block;margin:34px 0;font-family:${mono};font-size:34px;
+    font-weight:800;letter-spacing:.18em;color:#ff2d55;border:4px solid #ff2d55;
+    border-radius:10px;padding:10px 32px;transform:rotate(-3deg)}
+  .myth-truth{font-size:56px;line-height:1.2;font-weight:800;color:${accent};
+    max-width:1400px;margin:0 auto}
   blockquote{font-size:56px;line-height:1.25;font-weight:700;max-width:1400px;margin:0 auto}
   .attribution{font-family:${mono};font-size:24px;color:${muted};margin-top:38px}
   .tiers{display:flex;gap:32px}

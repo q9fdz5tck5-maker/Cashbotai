@@ -39,7 +39,7 @@ function deepMerge(base, override) {
 }
 
 const LAYOUTS = new Set([
-  'title', 'bullets', 'stats', 'compare', 'quote', 'pricing', 'faq', 'cta',
+  'title', 'bullets', 'stats', 'compare', 'quote', 'myth', 'pricing', 'faq', 'cta',
 ]);
 
 function validate(cfg, file) {
