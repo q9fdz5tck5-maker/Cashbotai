@@ -1,0 +1,107 @@
+{
+  "name": "voice-test",
+  "title": "Voice Test — first three slides",
+  "brand": {
+    "product": "Webinar Forge",
+    "accent": "#ff7a18",
+    "background": "#0a0a0c",
+    "text": "#f2f4f8",
+    "muted": "#8b93a3"
+  },
+  "voice": {
+    "name": "myvoice",
+    "engine": "chatterbox",
+    "exaggeration": 0.15,
+    "cfgWeight": 0.5
+  },
+  "video": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "padSeconds": 1,
+    "fadeSeconds": 0.5,
+    "crf": 23,
+    "preset": "medium"
+  },
+  "tts": {
+    "applyCompliance": true,
+    "pronunciation": {
+      "webinarforge.com/get": "webinar forge dot com slash get",
+      "webinarforge.com": "webinar forge dot com",
+      "project.json": "project dot Jason",
+      "webinar-forge": "webinar forge",
+      "CLAUDE.md": "Claude dot M D",
+      "JSONL": "Jason L",
+      "JSON": "Jason",
+      "HTTPS": "H T T P S",
+      "HTML": "H T M L",
+      "ffmpeg": "F F M peg",
+      "nginx": "engine ex",
+      "MP4": "M P four",
+      "CUDA": "koo duh",
+      "npm": "N P M",
+      "TLS": "T L S"
+    }
+  },
+  "slides": [
+    {
+      "layout": "title",
+      "kicker": "Free Training",
+      "headline": "This Webinar Was Built By [ACCENT]The Thing It Is Selling[/ACCENT]",
+      "sub": "Every slide. The voice reading them. The page you are watching it on. One config file, one command, one server nobody bills me for.",
+      "narration": "Before I tell you anything about what this is, I want you to notice something about what you are already looking at. This slide. The voice reading it to you. The page this video is sitting inside. None of it was shot in a studio. Nobody edited it. I did not open a video editor one single time. I wrote one file, I ran one command, and this came out the other end. That is the entire pitch, and you are already inside the proof of it. So let me show you how it works."
+    },
+    {
+      "layout": "stats",
+      "kicker": "This Exact Webinar",
+      "headline": "What it took to make [ACCENT]what you are watching[/ACCENT]",
+      "stats": [
+        {
+          "value": "39",
+          "label": "slides, written as data"
+        },
+        {
+          "value": "1",
+          "label": "config file, start to finish"
+        },
+        {
+          "value": "$0",
+          "label": "per month to run it"
+        }
+      ],
+      "narration": "Here are the real numbers behind this video. Thirty nine slides, and not one of them is hand written markup. They are entries in a list. One config file holds all of it, the slides, every word of the narration, and the sales page you are on right now. And the running cost is zero dollars a month, because it renders on a machine I already pay for anyway. No account. No key. No per render fee. Hold on to that last number, because we are coming back to it later and it is the whole argument."
+    },
+    {
+      "layout": "title",
+      "kicker": "What You Will Walk Away With",
+      "headline": "By the end of this you will know [ACCENT]exactly[/ACCENT] how to make one",
+      "sub": "For your product. In your voice. On your own server.",
+      "narration": "So here is what I am going to do with the next twenty five minutes. I am going to take the three beliefs that stop most people from ever making a webinar, and I am going to break them one at a time. And for each one I will show you the specific piece of this tool that does the breaking. By the end you will know what a webinar actually costs to produce when you own the machine that makes it. Not as a theory. You are watching the answer play right now."
+    }
+  ],
+  "landing": {
+    "title": "Webinar Forge — The Webinar That Built Itself",
+    "description": "A zip you run on your own server. It clones your voice locally, builds the deck, renders the narrated video, and generates the page that sells it. No keys, no accounts, no monthly bill.",
+    "sections": [
+      {
+        "type": "hero",
+        "kicker": "Free Training · About 25 Minutes",
+        "headline": "This Page And The Video On It Were Built By [ACCENT]The Thing They Are Selling[/ACCENT]",
+        "sub": "One config file. One command. A narrated webinar in your own cloned voice, and the sales page around it — rendered on a server nobody bills you for.",
+        "gate": false,
+        "gateTitle": "Watch the training",
+        "gateButton": "Watch It Now",
+        "gatePlaceholder": "you@yourdomain.com",
+        "gateNote": "Your address is appended to a file on this server. Nothing is mailed anywhere — this tool does not send email, and that is the point.",
+        "cta": {
+          "label": "Skip ahead to what is in it",
+          "href": "#offer"
+        }
+      }
+    ],
+    "footer": [
+      "Webinar Forge is a self-hosted tool. It does not process payments, send email, or terminate HTTPS — see the FAQ above.",
+      "[PLACEHOLDER — before going live: set your price, replace every # link with your checkout URL, replace the testimonials with real ones, and add your own refund terms and legal footer here.]"
+    ]
+  }
+}

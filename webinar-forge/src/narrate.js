@@ -4,6 +4,7 @@
 const fs = require('fs');
 const path = require('path');
 const { execFileSync } = require('child_process');
+const crypto = require('crypto');
 const { normalize } = require('./textnorm');
 const log = require('./log');
 
@@ -91,6 +92,29 @@ function durationOf(ffprobe, file) {
   }
 }
 
+// A cached MP3's existence says nothing about *what* was said or *who* said it.
+// Each MP3 gets a sidecar stamp recording the narration hash and the voice
+// settings that produced it, so editing narration or switching voices
+// invalidates the cache instead of silently reusing the previous audio.
+function stampFor(text, voice) {
+  return {
+    hash: crypto.createHash('sha256').update(text).digest('hex'),
+    voice: voice.name,
+    engine: voice.engine,
+    exaggeration: voice.exaggeration,
+    cfgWeight: voice.cfgWeight,
+  };
+}
+
+function stampMatches(stampPath, stamp) {
+  try {
+    const prev = JSON.parse(fs.readFileSync(stampPath, 'utf8'));
+    return Object.keys(stamp).every((k) => prev[k] === stamp[k]);
+  } catch {
+    return false;
+  }
+}
+
 async function narrateAll(cfg, dirs, bins, { force = false } = {}) {
   const voice = cfg.voice;
   await assertReady(voice.name);
@@ -108,19 +132,22 @@ async function narrateAll(cfg, dirs, bins, { force = false } = {}) {
       const slide = cfg.slides[i];
       const num = String(slide.index).padStart(3, '0');
       const mp3Path = path.join(dirs.audio, `${num}-${slide.id}.mp3`);
-
-      if (!force && fs.existsSync(mp3Path) && fs.statSync(mp3Path).size > 1024) {
-        const d = durationOf(bins.ffprobe, mp3Path);
-        log.info(`[${num}] cached (${d.toFixed(1)}s)`);
-        results[i] = { id: slide.id, index: slide.index, mp3Path, duration: d, cached: true };
-        continue;
-      }
+      const stampPath = `${mp3Path}.json`;
 
       const text = normalize(slide.narration, {
         pronunciation: cfg.tts.pronunciation,
         compliance: cfg.tts.compliance || undefined,
         applyCompliance: cfg.tts.applyCompliance,
       });
+      const stamp = stampFor(text, voice);
+
+      if (!force && fs.existsSync(mp3Path) && fs.statSync(mp3Path).size > 1024 &&
+          stampMatches(stampPath, stamp)) {
+        const d = durationOf(bins.ffprobe, mp3Path);
+        log.info(`[${num}] cached (${d.toFixed(1)}s)`);
+        results[i] = { id: slide.id, index: slide.index, mp3Path, duration: d, cached: true };
+        continue;
+      }
 
       const words = text.split(/\s+/).filter(Boolean).length;
       log.info(`[${num}] synthesizing ${words} words…`);
@@ -131,6 +158,8 @@ async function narrateAll(cfg, dirs, bins, { force = false } = {}) {
       fs.writeFileSync(wavPath, wavBuf);
       wavToMp3(bins.ffmpeg, wavPath, mp3Path, cfg.video.audioBitrate);
       fs.unlinkSync(wavPath);
+
+      fs.writeFileSync(stampPath, JSON.stringify(stamp, null, 2));
 
       const duration = durationOf(bins.ffprobe, mp3Path);
       const wall = ((Date.now() - t0) / 1000).toFixed(1);
