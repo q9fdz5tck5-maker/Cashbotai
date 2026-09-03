@@ -1,6 +1,7 @@
 # Quickstart
 
-Five minutes to a rendered webinar, assuming a fresh Ubuntu or Debian server.
+Five minutes to a live webinar funnel — presentation, voice, video and landing
+page — on a fresh Ubuntu or Debian server.
 
 ## 1. Unpack and install
 
@@ -47,7 +48,34 @@ node bin/webinar-forge init projects/my-webinar
 node bin/webinar-forge build projects/my-webinar/project.json
 ```
 
-Output lands in `output/<project-name>/dist/<project-name>.mp4`.
+You get:
+
+```
+output/my-webinar/
+  dist/my-webinar.mp4      the rendered webinar
+  site/index.html          the sales landing page
+  site/my-webinar.mp4      the video it plays
+```
+
+## 6. Put it online
+
+```bash
+node bin/webinar-forge serve projects/my-webinar/project.json --port 8080
+```
+
+Opens on http://localhost:8080 — landing page, video with seeking, and email
+capture. See who signed up:
+
+```bash
+node bin/webinar-forge leads projects/my-webinar/project.json
+```
+
+For a public domain, put nginx or Caddy in front for TLS, or copy `site/` to
+any static host.
+
+Before going live, edit in `project.json`:
+- the pricing CTA `href` values (they ship as `#` placeholders) → your checkout
+- the `landing.footer` disclaimer text
 
 ## Docker instead
 

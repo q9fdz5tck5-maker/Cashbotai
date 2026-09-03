@@ -1,8 +1,9 @@
 # webinar-forge
 
-A webinar generator. One JSON config in, one narrated MP4 out, using a locally
-cloned voice. Runs entirely on this server — no external API calls, no cloud
-TTS, no account needed.
+A complete webinar funnel generator. One JSON config in; out comes a slide
+presentation, narration in a locally cloned voice, a rendered MP4, and a sales
+landing page that plays it. Runs entirely on this server — no external API
+calls, no cloud TTS, no account needed.
 
 If you are Claude working in this repo, this file is what you need to help the
 operator. Read `README.md` for full detail.
@@ -11,8 +12,12 @@ operator. Read `README.md` for full detail.
 
 ```bash
 node bin/webinar-forge build projects/<name>/project.json
-# -> output/<name>/dist/<name>.mp4
+node bin/webinar-forge serve projects/<name>/project.json --port 8080
 ```
+
+`build` produces `output/<name>/site/` — an `index.html` landing page plus the
+`<name>.mp4` beside it. That folder is the deployable unit: serve it with the
+built-in server, or copy it to any static host / nginx root.
 
 ## First-run checklist
 
@@ -43,7 +48,11 @@ project.json
   ├─ 1. src/deck.js      slides[]   -> deck.html
   ├─ 2. src/narrate.js   narration  -> voice engine (:5651) -> audio/*.mp3
   ├─ 3. src/capture.js   deck.html  -> chromium -> slides/*.png
-  └─ 4. src/video.js     png + mp3  -> ffmpeg   -> dist/<name>.mp4
+  ├─ 4. src/video.js     png + mp3  -> ffmpeg   -> dist/<name>.mp4
+  └─ 5. src/landing.js   landing[]  -> site/index.html + site/<name>.mp4
+
+src/serve.js hosts site/ — page, video with Range/seek support, and
+POST /register which appends opt-ins to output/<name>/registrations.jsonl.
 ```
 
 Every stage caches, keyed to slide id. Editing one slide's narration
@@ -56,7 +65,13 @@ Everything lives in one `project.json`. Slides are data, not HTML — do not
 hand-write deck markup. Each slide needs a `layout` and a `narration`; the
 build refuses to start if either is missing.
 
-Layouts: `title` `bullets` `stats` `compare` `quote` `myth` `pricing` `faq` `cta`
+Slide layouts: `title` `bullets` `stats` `compare` `quote` `myth` `pricing`
+`faq` `cta` — defined in `src/deck.js`.
+
+Landing sections (under `landing.sections`, each with a `type`): `hero`
+`proof` `problem` `features` `stack` `pricing` `testimonials` `faq` `cta` —
+defined in `src/landing.js`. `hero` with `"gate": true` hides the video behind
+an email opt-in.
 
 `projects/example/project.json` is a small annotated example.
 `projects/three-secrets-v8/project.json` is a real 37-slide deck.
@@ -106,8 +121,20 @@ A sample is all anyone needs to generate unlimited speech in that person's
 voice. Each operator adds their own. Do not commit or bundle samples unless the
 person they belong to agreed to that specific distribution.
 
+## Serving and leads
+
+```bash
+node bin/webinar-forge serve projects/<name>/project.json --port 8080
+node bin/webinar-forge leads projects/<name>/project.json
+```
+
+The server is Node stdlib only. It serves the page, streams the MP4 with Range
+support so viewers can seek, and captures opt-ins. It does **not** terminate
+TLS — put nginx or Caddy in front for a public domain.
+
 ## Not included
 
-There is no landing page builder, no video hosting/player page, no email
-campaign step and no checkout. This package generates the webinar video and
-stops. Say so plainly if the operator asks for those.
+No email sending (leads land in a JSONL file for the operator to export), and
+no payment processing — pricing CTAs are plain links the operator points at
+their own Stripe/PayPal/checkout URL. Say so plainly rather than implying
+either exists.

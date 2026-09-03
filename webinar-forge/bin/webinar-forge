@@ -20,6 +20,9 @@ const USAGE = `
 webinar-forge — build a narrated webinar video from a project config
 
   webinar-forge build <project.json> [options]
+  webinar-forge landing <project.json>       (re)build just the landing page
+  webinar-forge serve <project.json>         host the page + video locally
+  webinar-forge leads <project.json>         show captured registrations
   webinar-forge doctor                       check this machine can build
   webinar-forge voices                       list voices installed on the engine
   webinar-forge add-voice <name> <sample>    install a voice sample (wav/mp3, 10-30s)
@@ -29,6 +32,8 @@ Options
   --output <dir>    where to write artifacts        (default ./output)
   --force           rebuild everything, ignore cache
   --only <stage>    stop after: deck | narrate | capture
+  --port <n>        serve on this port                (default 8080)
+  --host <addr>     serve bind address                (default 0.0.0.0)
 
 Environment (or .env)
   VOICE_ENGINE_URL   default http://127.0.0.1:5651
@@ -44,6 +49,8 @@ function parseArgs(argv) {
     if (a === '--force') flags.force = true;
     else if (a === '--output') flags.output = argv[++i];
     else if (a === '--only') flags.only = argv[++i];
+    else if (a === '--port') flags.port = parseInt(argv[++i], 10);
+    else if (a === '--host') flags.host = argv[++i];
     else if (a === '-h' || a === '--help') flags.help = true;
     else positional.push(a);
   }
@@ -122,6 +129,44 @@ async function cmdAddVoice(name, samplePath) {
   console.log(`Use it by setting  "voice": { "name": "${safe}" }  in your project.json`);
 }
 
+function siteDirs(configPath, flags) {
+  const config = require('../src/config');
+  const { workDirs } = require('../src/pipeline');
+  const cfg = config.load(configPath);
+  const outRoot = path.resolve(flags.output || process.env.OUTPUT_DIR || path.join(ROOT, 'output'));
+  const dirs = workDirs(cfg, outRoot);
+  return { cfg, dirs, registrations: path.join(dirs.work, 'registrations.jsonl') };
+}
+
+async function cmdServe(configPath, flags) {
+  if (!configPath) throw new Error('Usage: webinar-forge serve <project.json>');
+  const { cfg, dirs, registrations } = siteDirs(configPath, flags);
+  const { serve } = require('../src/serve');
+  serve({
+    dir: dirs.site,
+    port: flags.port || parseInt(process.env.PORT || '8080', 10),
+    host: flags.host || process.env.HOST || '0.0.0.0',
+    registrationsPath: registrations,
+    videoName: `${cfg.name}.mp4`,
+  });
+}
+
+function cmdLeads(configPath, flags) {
+  if (!configPath) throw new Error('Usage: webinar-forge leads <project.json>');
+  const { registrations } = siteDirs(configPath, flags);
+  if (!fs.existsSync(registrations)) {
+    console.log(`No registrations yet (${registrations}).`);
+    return;
+  }
+  const rows = fs.readFileSync(registrations, 'utf8').split('\n').filter(Boolean)
+    .map((l) => { try { return JSON.parse(l); } catch { return null; } })
+    .filter(Boolean);
+  const unique = [...new Map(rows.map((r) => [r.email, r])).values()];
+  console.log(`${rows.length} registration(s), ${unique.length} unique\n`);
+  for (const r of unique) console.log(`  ${r.at}  ${r.email}`);
+  console.log(`\nRaw: ${registrations}`);
+}
+
 function cmdInit(dir) {
   if (!dir) throw new Error('Usage: webinar-forge init <dir>');
   const target = path.resolve(dir);
@@ -151,6 +196,14 @@ async function main() {
       await build(positional[1], flags);
       break;
     }
+    case 'landing': {
+      if (!positional[1]) throw new Error('Usage: webinar-forge landing <project.json>');
+      const { buildLandingOnly } = require('../src/pipeline');
+      await buildLandingOnly(positional[1], flags);
+      break;
+    }
+    case 'serve':  await cmdServe(positional[1], flags); break;
+    case 'leads':  cmdLeads(positional[1], flags); break;
     case 'doctor':    await cmdDoctor(); break;
     case 'voices':    await cmdVoices(); break;
     case 'add-voice': await cmdAddVoice(positional[1], positional[2]); break;

@@ -1,11 +1,13 @@
 # webinar-forge
 
-Turns a JSON config into a narrated webinar video: slide deck, cloned-voice
-narration, rendered MP4. One command, repeatable, no Mac required.
+Turns a JSON config into a complete webinar funnel: slide presentation,
+narration in your own cloned voice, a rendered MP4, and a sales landing page
+that plays it. One command, repeatable, runs on your own server.
 
 ```bash
 node bin/webinar-forge build projects/my-webinar/project.json
-# -> output/my-webinar/dist/my-webinar.mp4
+node bin/webinar-forge serve projects/my-webinar/project.json
+# -> http://localhost:8080
 ```
 
 This is a portable repackaging of a pipeline that previously existed as a set
@@ -25,8 +27,14 @@ project.json
     │
     ├─ 3. capture        deck.html ──► chromium ──►  slides/NNN.png
     │
-    └─ 4. build video    png + mp3 ──► ffmpeg  ──►  dist/<name>.mp4
+    ├─ 4. build video    png + mp3 ──► ffmpeg  ──►  dist/<name>.mp4
+    │
+    └─ 5. landing page   landing[] ──────────────►  site/index.html
+                                                    site/<name>.mp4
 ```
+
+`site/` is the deployable unit — one page plus the video. Serve it with the
+built-in server, or copy it to any static host.
 
 Every stage caches. Re-running only redoes what changed, so fixing one line of
 narration re-synthesizes one slide instead of the whole deck. `--force` ignores
@@ -51,6 +59,12 @@ webinar-forge build <project.json>       build a webinar
   --output <dir>                         artifact directory (default ./output)
   --force                                ignore all caches
   --only deck|narrate|capture            stop after a stage
+
+webinar-forge landing <project.json>     rebuild just the landing page
+webinar-forge serve <project.json>       host the page + video
+  --port <n>                             default 8080
+  --host <addr>                          default 0.0.0.0
+webinar-forge leads <project.json>       show captured registrations
 
 webinar-forge doctor                     check this machine can build
 webinar-forge voices                     list installed voices
@@ -148,6 +162,47 @@ afterwards, which is the point: after importing once, the deck is data.
 
 `projects/three-secrets-v8/` is a real 37-slide deck imported this way, kept
 as a second worked example.
+
+## The landing page
+
+Set a `landing` block in the same `project.json` and `build` emits `site/`.
+Sections are data, in the order you list them:
+
+| `type` | What it renders |
+|---|---|
+| `hero` | Headline, sub, and the webinar video. `"gate": true` hides it behind an email opt-in. |
+| `proof` | A row of number tiles |
+| `problem` | Pain points as a struck list |
+| `features` | Numbered cards |
+| `stack` | Value stack with line items, struck total, and price reveal |
+| `pricing` | Tier cards with their own CTA links |
+| `testimonials` | Quote cards |
+| `faq` | Collapsible questions |
+| `cta` | Closing call to action |
+
+The page is one self-contained HTML file — inline CSS and JS, no CDN, no build
+step, no external requests. It renders on a phone and works with JS disabled
+unless the hero is gated.
+
+### Serving it
+
+```bash
+node bin/webinar-forge serve projects/my-webinar/project.json --port 8080
+```
+
+Node stdlib only. Serves the page, streams the MP4 with HTTP Range support so
+viewers can seek, and accepts `POST /register`. Opt-ins append to
+`output/<name>/registrations.jsonl`; read them with `webinar-forge leads`.
+
+It does **not** terminate TLS. For a public domain put nginx or Caddy in front,
+or copy `site/` to any static host and drop the gate.
+
+### What the funnel does not do
+
+- **No email sending.** Leads land in a JSONL file; export them to whatever you
+  already send with.
+- **No payment processing.** Pricing CTAs are plain links — point them at your
+  own Stripe, PayPal or checkout URL. The example ships with `#` placeholders.
 
 ## Performance
 

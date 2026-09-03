@@ -38,6 +38,10 @@ function deepMerge(base, override) {
   return out;
 }
 
+const LANDING_SECTIONS = new Set([
+  'hero', 'proof', 'problem', 'features', 'stack', 'pricing', 'testimonials', 'faq', 'cta',
+]);
+
 const LAYOUTS = new Set([
   'title', 'bullets', 'stats', 'compare', 'quote', 'myth', 'pricing', 'faq', 'cta',
 ]);
@@ -64,6 +68,20 @@ function validate(cfg, file) {
     });
   }
   if (cfg.video && cfg.video.fps && cfg.video.fps < 1) errors.push('video.fps must be >= 1.');
+
+  // The landing page is optional; validate it only when present.
+  if (cfg.landing) {
+    if (!Array.isArray(cfg.landing.sections) || cfg.landing.sections.length === 0) {
+      errors.push('"landing.sections" must be a non-empty array when "landing" is set.');
+    } else {
+      cfg.landing.sections.forEach((sec, i) => {
+        if (!sec.type) errors.push(`landing section ${i + 1}: missing "type".`);
+        else if (!LANDING_SECTIONS.has(sec.type)) {
+          errors.push(`landing section ${i + 1}: unknown type "${sec.type}". Known: ${[...LANDING_SECTIONS].join(', ')}.`);
+        }
+      });
+    }
+  }
 
   if (errors.length) {
     throw new Error(`Invalid project config (${where}):\n  - ${errors.join('\n  - ')}`);
@@ -101,4 +119,4 @@ function load(configPath) {
   return cfg;
 }
 
-module.exports = { load, DEFAULTS, LAYOUTS };
+module.exports = { load, DEFAULTS, LAYOUTS, LANDING_SECTIONS };

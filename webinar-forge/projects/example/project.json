@@ -1,7 +1,6 @@
 {
   "name": "example-webinar",
-  "title": "Example — Cloud Workstation Launch",
-
+  "title": "Example \u2014 Cloud Workstation Launch",
   "brand": {
     "product": "YOUR PRODUCT",
     "accent": "#f5c518",
@@ -9,14 +8,12 @@
     "text": "#f2f4f8",
     "muted": "#8b93a3"
   },
-
   "voice": {
     "name": "mock",
     "engine": "chatterbox",
     "exaggeration": 0.15,
     "cfgWeight": 0.5
   },
-
   "video": {
     "width": 1920,
     "height": 1080,
@@ -25,7 +22,6 @@
     "crf": 23,
     "preset": "medium"
   },
-
   "tts": {
     "applyCompliance": true,
     "pronunciation": {
@@ -33,7 +29,6 @@
       "yourproduct.com": "your product dot com"
     }
   },
-
   "slides": [
     {
       "layout": "title",
@@ -47,9 +42,18 @@
       "kicker": "The Real Cost",
       "headline": "What a typical stack costs",
       "stats": [
-        { "value": "$252", "label": "per month, five tools" },
-        { "value": "$3,024", "label": "per year" },
-        { "value": "$9,072", "label": "over three years" }
+        {
+          "value": "$252",
+          "label": "per month, five tools"
+        },
+        {
+          "value": "$3,024",
+          "label": "per year"
+        },
+        {
+          "value": "$9,072",
+          "label": "over three years"
+        }
       ],
       "narration": "Let me show you what most people are paying. A site builder is thirty nine dollars a month. Email is forty nine. Analytics is fifty. Lead tools are ninety nine. Storage is fifteen. Add it up and you are at two hundred fifty two dollars every month, over three thousand a year. Here is the part that stings. After three years you have spent more than nine thousand dollars and you own nothing. Cancel any one of them and your data, your templates, your workflows are gone."
     },
@@ -58,7 +62,7 @@
       "kicker": "The Alternative",
       "headline": "Everything, in [ACCENT]one place[/ACCENT]",
       "bullets": [
-        "Site builder with AI — describe it, deploy it",
+        "Site builder with AI \u2014 describe it, deploy it",
         "Analytics with no cookie banners and no third-party scripts",
         "Email campaigns with no per-contact pricing",
         "File storage, lead capture, and an API gateway",
@@ -101,20 +105,35 @@
           "name": "Personal",
           "price": "$97",
           "was": "$297",
-          "features": ["Site builder, 3 sites", "Analytics dashboard", "File manager", "Status monitor"]
+          "features": [
+            "Site builder, 3 sites",
+            "Analytics dashboard",
+            "File manager",
+            "Status monitor"
+          ]
         },
         {
           "name": "Business",
           "price": "$297",
           "was": "$697",
           "featured": true,
-          "features": ["Everything in Personal", "Email campaigns", "Lead management", "Unlimited sites"]
+          "features": [
+            "Everything in Personal",
+            "Email campaigns",
+            "Lead management",
+            "Unlimited sites"
+          ]
         },
         {
           "name": "Enterprise",
           "price": "$997",
           "was": "$1,997",
-          "features": ["Everything in Business", "White label rights", "Full source access", "Setup call"]
+          "features": [
+            "Everything in Business",
+            "White label rights",
+            "Full source access",
+            "Setup call"
+          ]
         }
       ],
       "footnote": "One-time payment, not a subscription. Results vary by business and effort.",
@@ -125,10 +144,22 @@
       "kicker": "Straight Answers",
       "headline": "The questions you are already asking",
       "items": [
-        { "q": "Do I need technical skills?", "a": "No. Sign up, log in, and you are live. There is nothing to install." },
-        { "q": "What if I already have a website?", "a": "Keep it. Build additional sites alongside it, or migrate when you are ready." },
-        { "q": "What devices does it work on?", "a": "Anything with a browser. Mac, Windows, tablet, phone." },
-        { "q": "What if it does not work for me?", "a": "Reach out and we will help you get set up personally." }
+        {
+          "q": "Do I need technical skills?",
+          "a": "No. Sign up, log in, and you are live. There is nothing to install."
+        },
+        {
+          "q": "What if I already have a website?",
+          "a": "Keep it. Build additional sites alongside it, or migrate when you are ready."
+        },
+        {
+          "q": "What devices does it work on?",
+          "a": "Anything with a browser. Mac, Windows, tablet, phone."
+        },
+        {
+          "q": "What if it does not work for me?",
+          "a": "Reach out and we will help you get set up personally."
+        }
       ],
       "narration": "Let me answer the questions I know you are thinking. Do you need technical skills? No. You sign up, you log in, and you are live. There is nothing to install. What if you already have a website? Keep it. You can build additional sites alongside it or migrate when you are ready. What devices does it work on? Anything with a browser, so Mac, Windows, tablet or phone. And what if it does not work for you? Reach out and we will help you get set up personally."
     },
@@ -142,5 +173,208 @@
       "footnote": "Backed by our 30-day satisfaction policy.",
       "narration": "Everything you just saw. The site builder, analytics, email, files, leads, the API gateway. One platform, every device, one payment. Founding pricing closes soon and this is the lowest price it will ever be. If you have been paying hundreds a month for tools you do not even own, this is your chance to change that. Go to your product dot com slash order right now. That is your product dot com slash order. Get your access today."
     }
-  ]
+  ],
+  "landing": {
+    "title": "One Login. Every Tool. \u2014 Free Training",
+    "description": "How to replace a stack of monthly subscriptions with a single workstation you own.",
+    "sections": [
+      {
+        "type": "hero",
+        "kicker": "Free Live Training",
+        "headline": "One Login. [ACCENT]Every Tool.[/ACCENT]",
+        "sub": "How to replace a stack of monthly subscriptions with a single workstation you own \u2014 and keep it after you stop paying.",
+        "gate": true,
+        "gateTitle": "Watch the free training",
+        "gateButton": "Watch Now",
+        "gateNote": "We email you the replay link. No spam, unsubscribe any time.",
+        "cta": {
+          "label": "See The Pricing",
+          "href": "#offer"
+        }
+      },
+      {
+        "type": "proof",
+        "stats": [
+          {
+            "value": "$252",
+            "label": "average monthly SaaS spend replaced"
+          },
+          {
+            "value": "$3,024",
+            "label": "per year, on tools you never own"
+          },
+          {
+            "value": "1",
+            "label": "login instead of five"
+          }
+        ]
+      },
+      {
+        "type": "problem",
+        "kicker": "The Real Cost",
+        "headline": "You are renting your whole business",
+        "body": "Five tools, five bills, five logins \u2014 and none of it is yours. Here is what that actually looks like:",
+        "points": [
+          "Site builder, email, analytics, CRM, storage \u2014 each with its own bill",
+          "Every price rises whenever the vendor decides it should",
+          "Your data sits across five companies you do not control",
+          "Cancel one and the templates, workflows and history go with it",
+          "Three years in, you have spent over $9,000 and own nothing"
+        ]
+      },
+      {
+        "type": "features",
+        "kicker": "What You Get",
+        "headline": "Everything, in [ACCENT]one place[/ACCENT]",
+        "items": [
+          {
+            "title": "AI Site Builder",
+            "body": "Describe the page you want and it builds it. Edit by clicking. Deploy instantly \u2014 no DNS, no FTP."
+          },
+          {
+            "title": "Analytics",
+            "body": "Real-time traffic on every site you ship. No cookie banners, no third-party scripts, data stays yours."
+          },
+          {
+            "title": "Email Campaigns",
+            "body": "Build a campaign, pick a list, send. No per-contact pricing that punishes you for growing."
+          },
+          {
+            "title": "Files & Leads",
+            "body": "Your own storage plus automatic lead capture and scoring, wired into everything else."
+          }
+        ]
+      },
+      {
+        "type": "stack",
+        "kicker": "The Offer",
+        "headline": "What is included",
+        "items": [
+          {
+            "name": "AI Site Builder + hosting",
+            "value": "$468/yr value"
+          },
+          {
+            "name": "Analytics dashboard",
+            "value": "$600/yr value"
+          },
+          {
+            "name": "Email campaign system",
+            "value": "$588/yr value"
+          },
+          {
+            "name": "Lead capture and scoring",
+            "value": "$1,188/yr value"
+          },
+          {
+            "name": "File storage and API gateway",
+            "value": "$180/yr value"
+          }
+        ],
+        "totalLabel": "Total replaced per year",
+        "totalValue": "$3,024",
+        "priceLabel": "Your price today",
+        "price": "$97",
+        "priceNote": "One time. Not per month. Yours after you stop paying.",
+        "cta": {
+          "label": "Get Access Now",
+          "href": "#pricing",
+          "note": "Backed by our 30-day satisfaction policy."
+        }
+      },
+      {
+        "type": "pricing",
+        "kicker": "Founding Pricing",
+        "headline": "Three ways in",
+        "tiers": [
+          {
+            "name": "Personal",
+            "price": "$97",
+            "was": "$297",
+            "features": [
+              "Site builder, 3 sites",
+              "Analytics dashboard",
+              "File manager",
+              "Status monitor"
+            ],
+            "cta": {
+              "label": "Choose Personal",
+              "href": "#"
+            }
+          },
+          {
+            "name": "Business",
+            "price": "$297",
+            "was": "$697",
+            "featured": true,
+            "badge": "Most popular",
+            "features": [
+              "Everything in Personal",
+              "Email campaigns",
+              "Lead management",
+              "Unlimited sites"
+            ],
+            "cta": {
+              "label": "Choose Business",
+              "href": "#"
+            }
+          },
+          {
+            "name": "Enterprise",
+            "price": "$997",
+            "was": "$1,997",
+            "features": [
+              "Everything in Business",
+              "White label rights",
+              "Full source access",
+              "Setup call"
+            ],
+            "cta": {
+              "label": "Choose Enterprise",
+              "href": "#"
+            }
+          }
+        ],
+        "footnote": "One-time payment, not a subscription. Replace the # links with your own checkout URLs."
+      },
+      {
+        "type": "faq",
+        "kicker": "Straight Answers",
+        "headline": "Questions you are already asking",
+        "items": [
+          {
+            "q": "Do I need technical skills?",
+            "a": "No. Sign up, log in, and you are live. There is nothing to install."
+          },
+          {
+            "q": "What if I already have a website?",
+            "a": "Keep it. Build additional sites alongside it, or migrate when you are ready."
+          },
+          {
+            "q": "What devices does it work on?",
+            "a": "Anything with a browser \u2014 Mac, Windows, tablet or phone."
+          },
+          {
+            "q": "What if it does not work for me?",
+            "a": "Reach out within 30 days and we will help you get set up, or refund you."
+          }
+        ]
+      },
+      {
+        "type": "cta",
+        "kicker": "Last Thing",
+        "headline": "Founding pricing [ACCENT]closes soon[/ACCENT]",
+        "sub": "This is the lowest this will ever be. After the deadline, prices go up.",
+        "cta": {
+          "label": "Get Access Now",
+          "href": "#pricing"
+        },
+        "footnote": "Backed by our 30-day satisfaction policy."
+      }
+    ],
+    "footer": [
+      "Results vary by business and effort. Nothing here is a guarantee of income.",
+      "Replace this footer text and the checkout links with your own before going live."
+    ]
+  }
 }
