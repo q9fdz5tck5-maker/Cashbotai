@@ -76,7 +76,7 @@
       "kicker": "What You Will Walk Away With",
       "headline": "By the end of this you will know [ACCENT]exactly[/ACCENT] how to make one",
       "sub": "For your product. In your voice. On your own server.",
-      "narration": "So here is what I am going to do with the next twenty five minutes. I am going to take the three beliefs that stop most people from ever making a webinar, and I am going to break them one at a time. And for each one I will show you the specific piece of this tool that does the breaking. By the end you will know what a webinar actually costs to produce when you own the machine that makes it. Not as a theory. You are watching the answer play right now."
+      "narration": "So here is what I am going to do with the next twenty minutes. I am going to take the three beliefs that stop most people from ever making a webinar, and I am going to break them one at a time. And for each one I will show you the specific piece of this tool that does the breaking. By the end you will know what a webinar actually costs to produce when you own the machine that makes it. Not as a theory. You are watching the answer play right now."
     },
     {
       "layout": "title",
@@ -566,7 +566,7 @@
       "button": "Get Webinar Forge",
       "url": "webinarforge.com/get",
       "footnote": "[PLACEHOLDER — your checkout link and refund terms go here.]",
-      "narration": "So here is where I will leave it with you. Every other sales page has to convince you that the product works. I do not have to, because you have been staring at the output of it for the last twenty five minutes. This video. This voice. The slide you are reading right now, and the page it is sitting inside. All of it came out of one config file and one command, on a server that nobody sends me a bill for. If you have something worth selling and no webinar sitting in front of it, this is the shortest distance between those two facts. Go to webinarforge.com/get and pick it up."
+      "narration": "So here is where I will leave it with you. Every other sales page has to convince you that the product works. I do not have to, because you have been staring at the output of it for the last twenty minutes. This video. This voice. The slide you are reading right now, and the page it is sitting inside. All of it came out of one config file and one command, on a server that nobody sends me a bill for. If you have something worth selling and no webinar sitting in front of it, this is the shortest distance between those two facts. Go to webinarforge.com/get and pick it up."
     }
   ],
   "landing": {
@@ -575,7 +575,7 @@
     "sections": [
       {
         "type": "hero",
-        "kicker": "Free Training · About 25 Minutes",
+        "kicker": "Free Training · About 20 Minutes",
         "headline": "This Page And The Video On It Were Built By [ACCENT]The Thing They Are Selling[/ACCENT]",
         "sub": "One config file. One command. A narrated webinar in your own cloned voice, and the sales page around it — rendered on a server nobody bills you for.",
         "gate": true,
