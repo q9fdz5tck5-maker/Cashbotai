@@ -511,7 +511,7 @@
       "tiers": [
         {
           "name": "Webinar Forge — the complete zip",
-          "price": "[YOUR PRICE]",
+          "price": "$297",
           "was": "$5,404 value",
           "featured": true,
           "features": [
@@ -527,7 +527,7 @@
           ]
         }
       ],
-      "footnote": "[PLACEHOLDER — set your price and your refund terms here before this goes live.]",
+      "footnote": "Text (805) 453-3586 to buy.",
       "narration": "Which brings us to what it costs. Everything I have just shown you is one zip file, one time. Not a subscription, not a seat, not a per render fee. You download it, you put it on your server, and it is yours in the same plain way that a hammer is yours. The number is on the screen. Hold it next to four thousand two hundred and forty eight dollars a year, and then remember that the year after that one, and the year after that, it is still zero."
     },
     {
@@ -563,10 +563,10 @@
       "kicker": "Last Thing",
       "headline": "The proof is [ACCENT]the thing you are watching[/ACCENT]",
       "sub": "This video, this voice, and the page around it came out of one config file on a server nobody bills me for. Yours can too.",
-      "button": "Get Webinar Forge",
-      "url": "webinarforge.com/get",
-      "footnote": "[PLACEHOLDER — your checkout link and refund terms go here.]",
-      "narration": "So here is where I will leave it with you. Every other sales page has to convince you that the product works. I do not have to, because you have been staring at the output of it for the last twenty five minutes. This video. This voice. The slide you are reading right now, and the page it is sitting inside. All of it came out of one config file and one command, on a server that nobody sends me a bill for. If you have something worth selling and no webinar sitting in front of it, this is the shortest distance between those two facts. Go to webinarforge.com/get and pick it up."
+      "button": "Text To Buy",
+      "url": "(805) 453-3586",
+      "footnote": "Text (805) 453-3586 to buy.",
+      "narration": "So here is where I will leave it with you. Every other sales page has to convince you that the product works. I do not have to, because you have been staring at the output of it for the last twenty minutes. This video. This voice. The slide you are reading right now, and the page it is sitting inside. All of it came out of one config file and one command, on a server that nobody sends me a bill for. If you have something worth selling and no webinar sitting in front of it, this is the shortest distance between those two facts. Text me at eight zero five, four five three, three five eight six, and I will get you set up."
     }
   ],
   "landing": {
