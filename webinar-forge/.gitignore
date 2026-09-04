@@ -6,3 +6,8 @@ engine/voices/*.wav
 .env
 output/*/segments/
 output/*/dist/*-mobile.mp4
+output/*/dist/*-tiny.mp4
+# Full-quality master render is regenerable via `node bin/webinar-forge build`.
+# Only the compressed -small.mp4 (used by the site) is tracked.
+output/*/dist/*.mp4
+!output/*/dist/*-small.mp4
