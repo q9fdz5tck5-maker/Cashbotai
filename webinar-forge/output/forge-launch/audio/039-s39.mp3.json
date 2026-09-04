@@ -1,6 +1,6 @@
 {
   "hash": "d0a568cc309bfc34916cceb256112aea467e1aea617b12e85319ddc8a7cc5195",
-  "voice": "mock",
+  "voice": "myvoice",
   "engine": "chatterbox",
   "exaggeration": 0.15,
   "cfgWeight": 0.5
