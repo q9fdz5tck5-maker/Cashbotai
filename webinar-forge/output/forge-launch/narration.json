@@ -1,0 +1,275 @@
+[
+  {
+    "id": "s1",
+    "index": 1,
+    "mp3Path": "/home/user/Cashbotai/webinar-forge/output/forge-launch/audio/001-s1.mp3",
+    "duration": 27.794286,
+    "cached": true
+  },
+  {
+    "id": "s2",
+    "index": 2,
+    "mp3Path": "/home/user/Cashbotai/webinar-forge/output/forge-launch/audio/002-s2.mp3",
+    "duration": 35.082449,
+    "cached": true
+  },
+  {
+    "id": "s3",
+    "index": 3,
+    "mp3Path": "/home/user/Cashbotai/webinar-forge/output/forge-launch/audio/003-s3.mp3",
+    "duration": 29.283265,
+    "cached": true
+  },
+  {
+    "id": "s4",
+    "index": 4,
+    "mp3Path": "/home/user/Cashbotai/webinar-forge/output/forge-launch/audio/004-s4.mp3",
+    "duration": 48.796735,
+    "cached": true
+  },
+  {
+    "id": "s5",
+    "index": 5,
+    "mp3Path": "/home/user/Cashbotai/webinar-forge/output/forge-launch/audio/005-s5.mp3",
+    "duration": 32.026122,
+    "cached": true
+  },
+  {
+    "id": "s6",
+    "index": 6,
+    "mp3Path": "/home/user/Cashbotai/webinar-forge/output/forge-launch/audio/006-s6.mp3",
+    "duration": 29.753469,
+    "cached": true
+  },
+  {
+    "id": "s7",
+    "index": 7,
+    "mp3Path": "/home/user/Cashbotai/webinar-forge/output/forge-launch/audio/007-s7.mp3",
+    "duration": 32.705306,
+    "cached": true
+  },
+  {
+    "id": "s8",
+    "index": 8,
+    "mp3Path": "/home/user/Cashbotai/webinar-forge/output/forge-launch/audio/008-s8.mp3",
+    "duration": 22.386939,
+    "cached": true
+  },
+  {
+    "id": "s9",
+    "index": 9,
+    "mp3Path": "/home/user/Cashbotai/webinar-forge/output/forge-launch/audio/009-s9.mp3",
+    "duration": 27.350204,
+    "cached": true
+  },
+  {
+    "id": "s10",
+    "index": 10,
+    "mp3Path": "/home/user/Cashbotai/webinar-forge/output/forge-launch/audio/010-s10.mp3",
+    "duration": 23.327347,
+    "cached": true
+  },
+  {
+    "id": "s11",
+    "index": 11,
+    "mp3Path": "/home/user/Cashbotai/webinar-forge/output/forge-launch/audio/011-s11.mp3",
+    "duration": 21.786122,
+    "cached": true
+  },
+  {
+    "id": "s12",
+    "index": 12,
+    "mp3Path": "/home/user/Cashbotai/webinar-forge/output/forge-launch/audio/012-s12.mp3",
+    "duration": 33.880816,
+    "cached": true
+  },
+  {
+    "id": "s13",
+    "index": 13,
+    "mp3Path": "/home/user/Cashbotai/webinar-forge/output/forge-launch/audio/013-s13.mp3",
+    "duration": 32.339592,
+    "cached": true
+  },
+  {
+    "id": "s14",
+    "index": 14,
+    "mp3Path": "/home/user/Cashbotai/webinar-forge/output/forge-launch/audio/014-s14.mp3",
+    "duration": 33.671837,
+    "cached": true
+  },
+  {
+    "id": "s15",
+    "index": 15,
+    "mp3Path": "/home/user/Cashbotai/webinar-forge/output/forge-launch/audio/015-s15.mp3",
+    "duration": 31.268571,
+    "cached": true
+  },
+  {
+    "id": "s16",
+    "index": 16,
+    "mp3Path": "/home/user/Cashbotai/webinar-forge/output/forge-launch/audio/016-s16.mp3",
+    "duration": 19.226122,
+    "cached": true
+  },
+  {
+    "id": "s17",
+    "index": 17,
+    "mp3Path": "/home/user/Cashbotai/webinar-forge/output/forge-launch/audio/017-s17.mp3",
+    "duration": 34.951837,
+    "cached": true
+  },
+  {
+    "id": "s18",
+    "index": 18,
+    "mp3Path": "/home/user/Cashbotai/webinar-forge/output/forge-launch/audio/018-s18.mp3",
+    "duration": 32.835918,
+    "cached": true
+  },
+  {
+    "id": "s19",
+    "index": 19,
+    "mp3Path": "/home/user/Cashbotai/webinar-forge/output/forge-launch/audio/019-s19.mp3",
+    "duration": 27.872653,
+    "cached": true
+  },
+  {
+    "id": "s20",
+    "index": 20,
+    "mp3Path": "/home/user/Cashbotai/webinar-forge/output/forge-launch/audio/020-s20.mp3",
+    "duration": 22.648163,
+    "cached": true
+  },
+  {
+    "id": "s21",
+    "index": 21,
+    "mp3Path": "/home/user/Cashbotai/webinar-forge/output/forge-launch/audio/021-s21.mp3",
+    "duration": 26.096327,
+    "cached": true
+  },
+  {
+    "id": "s22",
+    "index": 22,
+    "mp3Path": "/home/user/Cashbotai/webinar-forge/output/forge-launch/audio/022-s22.mp3",
+    "duration": 30.667755,
+    "cached": true
+  },
+  {
+    "id": "s23",
+    "index": 23,
+    "mp3Path": "/home/user/Cashbotai/webinar-forge/output/forge-launch/audio/023-s23.mp3",
+    "duration": 32.261224,
+    "cached": true
+  },
+  {
+    "id": "s24",
+    "index": 24,
+    "mp3Path": "/home/user/Cashbotai/webinar-forge/output/forge-launch/audio/024-s24.mp3",
+    "duration": 30.458776,
+    "cached": true
+  },
+  {
+    "id": "s25",
+    "index": 25,
+    "mp3Path": "/home/user/Cashbotai/webinar-forge/output/forge-launch/audio/025-s25.mp3",
+    "duration": 38.19102,
+    "cached": true
+  },
+  {
+    "id": "s26",
+    "index": 26,
+    "mp3Path": "/home/user/Cashbotai/webinar-forge/output/forge-launch/audio/026-s26.mp3",
+    "duration": 26.801633,
+    "cached": true
+  },
+  {
+    "id": "s27",
+    "index": 27,
+    "mp3Path": "/home/user/Cashbotai/webinar-forge/output/forge-launch/audio/027-s27.mp3",
+    "duration": 25.051429,
+    "cached": true
+  },
+  {
+    "id": "s28",
+    "index": 28,
+    "mp3Path": "/home/user/Cashbotai/webinar-forge/output/forge-launch/audio/028-s28.mp3",
+    "duration": 26.98449,
+    "cached": true
+  },
+  {
+    "id": "s29",
+    "index": 29,
+    "mp3Path": "/home/user/Cashbotai/webinar-forge/output/forge-launch/audio/029-s29.mp3",
+    "duration": 26.801633,
+    "cached": true
+  },
+  {
+    "id": "s30",
+    "index": 30,
+    "mp3Path": "/home/user/Cashbotai/webinar-forge/output/forge-launch/audio/030-s30.mp3",
+    "duration": 29.857959,
+    "cached": true
+  },
+  {
+    "id": "s31",
+    "index": 31,
+    "mp3Path": "/home/user/Cashbotai/webinar-forge/output/forge-launch/audio/031-s31.mp3",
+    "duration": 29.857959,
+    "cached": true
+  },
+  {
+    "id": "s32",
+    "index": 32,
+    "mp3Path": "/home/user/Cashbotai/webinar-forge/output/forge-launch/audio/032-s32.mp3",
+    "duration": 32.731429,
+    "cached": true
+  },
+  {
+    "id": "s33",
+    "index": 33,
+    "mp3Path": "/home/user/Cashbotai/webinar-forge/output/forge-launch/audio/033-s33.mp3",
+    "duration": 29.074286,
+    "cached": true
+  },
+  {
+    "id": "s34",
+    "index": 34,
+    "mp3Path": "/home/user/Cashbotai/webinar-forge/output/forge-launch/audio/034-s34.mp3",
+    "duration": 31.686531,
+    "cached": true
+  },
+  {
+    "id": "s35",
+    "index": 35,
+    "mp3Path": "/home/user/Cashbotai/webinar-forge/output/forge-launch/audio/035-s35.mp3",
+    "duration": 30.014694,
+    "cached": true
+  },
+  {
+    "id": "s36",
+    "index": 36,
+    "mp3Path": "/home/user/Cashbotai/webinar-forge/output/forge-launch/audio/036-s36.mp3",
+    "duration": 29.570612,
+    "cached": true
+  },
+  {
+    "id": "s37",
+    "index": 37,
+    "mp3Path": "/home/user/Cashbotai/webinar-forge/output/forge-launch/audio/037-s37.mp3",
+    "duration": 27.010612,
+    "cached": true
+  },
+  {
+    "id": "s38",
+    "index": 38,
+    "mp3Path": "/home/user/Cashbotai/webinar-forge/output/forge-launch/audio/038-s38.mp3",
+    "duration": 37.590204,
+    "cached": true
+  },
+  {
+    "id": "s39",
+    "index": 39,
+    "mp3Path": "/home/user/Cashbotai/webinar-forge/output/forge-launch/audio/039-s39.mp3",
+    "duration": 35.996735,
+    "cached": true
+  }
+]

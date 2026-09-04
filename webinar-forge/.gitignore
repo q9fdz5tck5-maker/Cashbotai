@@ -1,0 +1,8 @@
+node_modules/
+engine/.venv/
+engine/__pycache__/
+engine/data/
+engine/voices/*.wav
+.env
+output/*/segments/
+output/*/dist/*-mobile.mp4

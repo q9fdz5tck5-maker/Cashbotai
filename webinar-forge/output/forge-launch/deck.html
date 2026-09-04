@@ -1,0 +1,707 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Webinar Forge — Built By The Thing It Sells</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:#0a0a0c;color:#f2f4f8;font-family:'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;width:1920px;height:1080px;overflow:hidden}
+  .slide{position:absolute;inset:0;display:none;padding:96px 120px;
+    background:radial-gradient(ellipse at 50% -20%, rgba(255,255,255,.06), transparent 60%), #0a0a0c}
+  .slide.active{display:flex;align-items:center}
+  .wrap{width:100%}
+  .center{text-align:center}
+  .kicker{font-family:'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;font-size:22px;letter-spacing:.22em;text-transform:uppercase;
+    color:#ff7a18;margin-bottom:28px}
+  h1{font-size:82px;line-height:1.08;font-weight:800;letter-spacing:-.02em}
+  h2{font-size:60px;line-height:1.12;font-weight:800;letter-spacing:-.015em;margin-bottom:44px}
+  .accent{color:#ff7a18}
+  .sub{font-size:32px;line-height:1.45;color:#8b93a3;margin-top:32px;max-width:1180px;
+    margin-left:auto;margin-right:auto}
+  .bullets{list-style:none;display:flex;flex-direction:column;gap:26px}
+  .bullets li{font-size:34px;line-height:1.4;padding-left:52px;position:relative}
+  .bullets li::before{content:'';position:absolute;left:0;top:.55em;width:22px;height:3px;background:#ff7a18}
+  .stats{display:flex;gap:56px;justify-content:center;flex-wrap:wrap;margin-top:24px}
+  .stat{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);
+    border-radius:18px;padding:40px 52px;min-width:280px}
+  .stat-value{font-family:'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;font-size:66px;font-weight:800;color:#ff7a18}
+  .stat-label{font-size:22px;color:#8b93a3;margin-top:12px;line-height:1.35}
+  .compare{display:flex;gap:40px}
+  .col{flex:1;border-radius:18px;padding:40px;border:1px solid rgba(255,255,255,.09);
+    background:rgba(255,255,255,.03)}
+  .col-win{border-color:#ff7a18;background:rgba(245,197,24,.07)}
+  .col-title{font-family:'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;font-size:24px;letter-spacing:.12em;text-transform:uppercase;
+    margin-bottom:28px;color:#8b93a3}
+  .col-win .col-title{color:#ff7a18}
+  .col ul{list-style:none;display:flex;flex-direction:column;gap:18px}
+  .col li{font-size:27px;line-height:1.35}
+  .col-total{margin-top:30px;padding-top:26px;border-top:1px solid rgba(255,255,255,.14);
+    font-family:'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;font-size:38px;font-weight:800}
+  .myth-lie{font-size:50px;line-height:1.25;font-weight:700;color:#8b93a3;
+    max-width:1400px;margin:0 auto;font-style:italic}
+  .myth-stamp{display:inline-block;margin:34px 0;font-family:'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;font-size:34px;
+    font-weight:800;letter-spacing:.18em;color:#ff2d55;border:4px solid #ff2d55;
+    border-radius:10px;padding:10px 32px;transform:rotate(-3deg)}
+  .myth-truth{font-size:56px;line-height:1.2;font-weight:800;color:#ff7a18;
+    max-width:1400px;margin:0 auto}
+  blockquote{font-size:56px;line-height:1.25;font-weight:700;max-width:1400px;margin:0 auto}
+  .attribution{font-family:'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;font-size:24px;color:#8b93a3;margin-top:38px}
+  .tiers{display:flex;gap:32px}
+  .tier{flex:1;border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:38px;
+    background:rgba(255,255,255,.03)}
+  .tier.featured{border-color:#ff7a18;background:rgba(245,197,24,.08)}
+  .tier-name{font-family:'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;font-size:22px;letter-spacing:.14em;text-transform:uppercase;color:#8b93a3}
+  .tier-price{font-size:64px;font-weight:800;margin:16px 0 4px;color:#ff7a18}
+  .tier-was{font-size:22px;color:#8b93a3;text-decoration:line-through;margin-bottom:22px}
+  .tier ul{list-style:none;display:flex;flex-direction:column;gap:13px;margin-top:20px}
+  .tier li{font-size:22px;line-height:1.35;color:#f2f4f8}
+  .faq{display:flex;flex-direction:column;gap:32px}
+  .qa .q{font-size:32px;font-weight:700;margin-bottom:10px}
+  .qa .a{font-size:26px;line-height:1.45;color:#8b93a3}
+  .cta-btn{display:inline-block;margin-top:44px;background:#ff7a18;color:#000;font-weight:800;
+    font-size:38px;padding:26px 62px;border-radius:14px}
+  .cta-url{font-family:'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;font-size:32px;color:#8b93a3;margin-top:28px}
+  .footnote{font-size:20px;color:#8b93a3;margin-top:34px;line-height:1.4}
+  .brandmark{position:absolute;bottom:44px;left:120px;font-family:'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;font-size:19px;
+    color:#8b93a3;letter-spacing:.1em}
+  .slideno{position:absolute;bottom:44px;right:120px;font-family:'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;font-size:19px;color:#8b93a3}
+  </style>
+</head>
+<body>
+<section class="slide" id="s1">
+      
+    <div class="wrap center">
+      <div class="kicker">Free Training</div>
+      <h1>This Webinar Was Built By <span class="accent">The Thing It Is Selling</span></h1>
+      <p class="sub">Every slide. The voice reading them. The page you are watching it on. One config file, one command, one server nobody bills me for.</p>
+    </div>
+      <div class="brandmark">Webinar Forge</div>
+      <div class="slideno">1 / 39</div>
+    </section>
+<section class="slide" id="s2">
+      
+    <div class="wrap center">
+      <div class="kicker">This Exact Webinar</div>
+      <h2>What it took to make <span class="accent">what you are watching</span></h2>
+      <div class="stats">
+        
+        <div class="stat">
+          <div class="stat-value">39</div>
+          <div class="stat-label">slides, written as data</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">1</div>
+          <div class="stat-label">config file, start to finish</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">$0</div>
+          <div class="stat-label">per month to run it</div>
+        </div>
+      </div>
+    </div>
+      <div class="brandmark">Webinar Forge</div>
+      <div class="slideno">2 / 39</div>
+    </section>
+<section class="slide" id="s3">
+      
+    <div class="wrap center">
+      <div class="kicker">What You Will Walk Away With</div>
+      <h1>By the end of this you will know <span class="accent">exactly</span> how to make one</h1>
+      <p class="sub">For your product. In your voice. On your own server.</p>
+    </div>
+      <div class="brandmark">Webinar Forge</div>
+      <div class="slideno">3 / 39</div>
+    </section>
+<section class="slide" id="s4">
+      
+    <div class="wrap center">
+      <div class="kicker">How This Started</div>
+      <h1>I built this for <span class="accent">one</span> webinar. Then I could not build the second.</h1>
+      <p class="sub">The first one worked. That was the problem.</p>
+    </div>
+      <div class="brandmark">Webinar Forge</div>
+      <div class="slideno">4 / 39</div>
+    </section>
+<section class="slide" id="s5">
+      
+    <div class="wrap">
+      <div class="kicker">Why The Second One Was Impossible</div>
+      <h2>Everything was welded to the <span class="accent">first</span> one</h2>
+      <ul class="bullets">
+        <li>A hand-written HTML deck — 96 kilobytes of markup, per webinar</li>
+        <li>A build script hardcoded to that deck's slide count and class names</li>
+        <li>Binary paths pointing at one specific laptop, in one home folder</li>
+        <li>A capture step that spawned a server on a fixed port and collided with itself</li>
+        <li>Change one line of narration and the whole thing re-rendered from zero</li>
+      </ul>
+    </div>
+      <div class="brandmark">Webinar Forge</div>
+      <div class="slideno">5 / 39</div>
+    </section>
+<section class="slide" id="s6">
+      
+    <div class="wrap center">
+      <div class="kicker">The Turn</div>
+      <h1>So I stopped writing decks. I started writing <span class="accent">data</span>.</h1>
+      <p class="sub">A slide is not markup. It is a layout name and a few fields.</p>
+    </div>
+      <div class="brandmark">Webinar Forge</div>
+      <div class="slideno">6 / 39</div>
+    </section>
+<section class="slide" id="s7">
+      
+    <div class="wrap center">
+      <div class="kicker">And Then This Happened</div>
+      <h1>The tool started building its own <span class="accent">sales page</span> too</h1>
+      <p class="sub">Same file. Same command. The deck, the video, and the page that sells it.</p>
+    </div>
+      <div class="brandmark">Webinar Forge</div>
+      <div class="slideno">7 / 39</div>
+    </section>
+<section class="slide" id="s8">
+      
+    <div class="wrap center">
+      <div class="kicker">Before The Secrets</div>
+      <h1>One belief is in the way. <span class="accent">Everything else falls with it.</span></h1>
+      
+    </div>
+      <div class="brandmark">Webinar Forge</div>
+      <div class="slideno">8 / 39</div>
+    </section>
+<section class="slide" id="s9">
+      
+    <div class="wrap center">
+      <blockquote>&quot;Making a webinar is a production. I do not have the setup, I do not have the voice for it, and the tools that would do it for me cost more every month than the thing I am trying to sell.&quot;</blockquote>
+      <div class="attribution">— roughly what everybody says</div>
+    </div>
+      <div class="brandmark">Webinar Forge</div>
+      <div class="slideno">9 / 39</div>
+    </section>
+<section class="slide" id="s10">
+      
+    <div class="wrap center">
+      <div class="kicker">The One Domino</div>
+      <h1>If a webinar is <span class="accent">one file and one command</span>, the rest stops mattering</h1>
+      <p class="sub">So that is the one we knock over first.</p>
+    </div>
+      <div class="brandmark">Webinar Forge</div>
+      <div class="slideno">10 / 39</div>
+    </section>
+<section class="slide" id="s11">
+      
+    <div class="wrap center">
+      <div class="kicker">Secret 1 of 3</div>
+      <h1>The <span class="accent">Vehicle</span></h1>
+      <p class="sub">What making a webinar actually costs you in effort.</p>
+    </div>
+      <div class="brandmark">Webinar Forge</div>
+      <div class="slideno">11 / 39</div>
+    </section>
+<section class="slide" id="s12">
+      
+    <div class="wrap center">
+      <div class="kicker">Secret 1 of 3</div>
+      <div class="myth-lie">&quot;Making a webinar means a studio, a camera, and a week.&quot;</div>
+      <div class="myth-stamp">WRONG</div>
+      <div class="myth-truth">The truth: it is <span class="accent">one config file</span> and <span class="accent">one command</span>.</div>
+      <p class="sub">No studio. No camera. Not a week.</p>
+    </div>
+      <div class="brandmark">Webinar Forge</div>
+      <div class="slideno">12 / 39</div>
+    </section>
+<section class="slide" id="s13">
+      
+    <div class="wrap">
+      <div class="kicker">Inside The File</div>
+      <h2>The whole webinar, in <span class="accent">plain text</span></h2>
+      <ul class="bullets">
+        <li>A brand block — your product name and your colours</li>
+        <li>A voice block — which cloned voice reads it, and how steady</li>
+        <li>A slides list — a layout name, a few fields, and what to say</li>
+        <li>A landing block — the page sections, in the order they appear</li>
+        <li>A pronunciation map — so your domain gets spoken, not spelled</li>
+      </ul>
+    </div>
+      <div class="brandmark">Webinar Forge</div>
+      <div class="slideno">13 / 39</div>
+    </section>
+<section class="slide" id="s14">
+      
+    <div class="wrap center">
+      <div class="kicker">The Command</div>
+      <h1><span class="accent">build</span> — and then you have a funnel</h1>
+      <p class="sub">Deck, narration, capture, video, landing page. One pass, and every stage caches.</p>
+    </div>
+      <div class="brandmark">Webinar Forge</div>
+      <div class="slideno">14 / 39</div>
+    </section>
+<section class="slide" id="s15">
+      
+    <div class="wrap">
+      <div class="kicker">Same Webinar, Two Ways</div>
+      <h2>By hand versus <span class="accent">as data</span></h2>
+      <div class="compare">
+        
+        <div class="col col-lose">
+          <div class="col-title">How I made the first one</div>
+          <ul><li>Hand-write a 96 KB deck</li><li>Write a build script for that deck</li><li>Record narration in one sitting</li><li>Fluff a sentence, do the whole pass again</li><li>Start from nothing for webinar two</li></ul>
+          <div class="col-total">About a week, every time</div>
+        </div>
+        <div class="col col-win">
+          <div class="col-title">How this one was made</div>
+          <ul><li>Write slides as a list of layouts</li><li>Run one command</li><li>Narration is written, never performed</li><li>Fix one line, re-render one slide</li><li>Copy the file for webinar two</li></ul>
+          <div class="col-total">An afternoon, then minutes</div>
+        </div>
+      </div>
+    </div>
+      <div class="brandmark">Webinar Forge</div>
+      <div class="slideno">15 / 39</div>
+    </section>
+<section class="slide" id="s16">
+      
+    <div class="wrap center">
+      <div class="kicker">Secret 2 of 3</div>
+      <h1>The <span class="accent">Internal</span> One</h1>
+      <p class="sub">This is the objection people do not say out loud.</p>
+    </div>
+      <div class="brandmark">Webinar Forge</div>
+      <div class="slideno">16 / 39</div>
+    </section>
+<section class="slide" id="s17">
+      
+    <div class="wrap center">
+      <div class="kicker">Secret 2 of 3</div>
+      <div class="myth-lie">&quot;I would have to be on camera, and I hate my voice on video.&quot;</div>
+      <div class="myth-stamp">WRONG</div>
+      <div class="myth-truth">The truth: a <span class="accent">30-second sample</span> records once and narrates forever.</div>
+      <p class="sub">You are never on camera. And you never do a second take.</p>
+    </div>
+      <div class="brandmark">Webinar Forge</div>
+      <div class="slideno">17 / 39</div>
+    </section>
+<section class="slide" id="s18">
+      
+    <div class="wrap">
+      <div class="kicker">How The Voice Works</div>
+      <h2>Cloned <span class="accent">on your machine</span>, not in somebody's cloud</h2>
+      <ul class="bullets">
+        <li>Ten to thirty seconds of clean speech is the entire sample</li>
+        <li>The model runs locally — your voice never leaves your server</li>
+        <li>Delivery is tuned steady for a long deck, not theatrical</li>
+        <li>Every slide is synthesized separately, so every slide is editable separately</li>
+        <li>No key, no per-character billing, no usage cap</li>
+      </ul>
+    </div>
+      <div class="brandmark">Webinar Forge</div>
+      <div class="slideno">18 / 39</div>
+    </section>
+<section class="slide" id="s19">
+      
+    <div class="wrap center">
+      <div class="kicker">The Part That Changes Everything</div>
+      <h2>What it costs to <span class="accent">fix a sentence</span></h2>
+      <div class="stats">
+        
+        <div class="stat">
+          <div class="stat-value">1</div>
+          <div class="stat-label">slide re-synthesized</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">38</div>
+          <div class="stat-label">slides left untouched</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">0</div>
+          <div class="stat-label">times you re-record anything</div>
+        </div>
+      </div>
+    </div>
+      <div class="brandmark">Webinar Forge</div>
+      <div class="slideno">19 / 39</div>
+    </section>
+<section class="slide" id="s20">
+      
+    <div class="wrap center">
+      <div class="kicker">Secret 2, Settled</div>
+      <h1>You are not <span class="accent">performing</span>. You are writing.</h1>
+      <p class="sub">And writing is the part you have already been doing your whole life.</p>
+    </div>
+      <div class="brandmark">Webinar Forge</div>
+      <div class="slideno">20 / 39</div>
+    </section>
+<section class="slide" id="s21">
+      
+    <div class="wrap center">
+      <div class="kicker">Secret 3 of 3</div>
+      <h1>The <span class="accent">External</span> One</h1>
+      <p class="sub">This is the objection that is completely reasonable.</p>
+    </div>
+      <div class="brandmark">Webinar Forge</div>
+      <div class="slideno">21 / 39</div>
+    </section>
+<section class="slide" id="s22">
+      
+    <div class="wrap center">
+      <div class="kicker">Secret 3 of 3</div>
+      <div class="myth-lie">&quot;Every tool that does this bills me monthly and owns my work.&quot;</div>
+      <div class="myth-stamp">WRONG</div>
+      <div class="myth-truth">The truth: it runs on <span class="accent">hardware you already pay for</span>, and you <span class="accent">keep it</span>.</div>
+      <p class="sub">It is a zip file. It runs on your server. There is nothing to cancel.</p>
+    </div>
+      <div class="brandmark">Webinar Forge</div>
+      <div class="slideno">22 / 39</div>
+    </section>
+<section class="slide" id="s23">
+      
+    <div class="wrap center">
+      <div class="kicker">What The Rented Version Costs</div>
+      <h2>Four subscriptions to do what <span class="accent">one zip</span> does</h2>
+      <div class="stats">
+        
+        <div class="stat">
+          <div class="stat-value">$354</div>
+          <div class="stat-label">per month, typical stack</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">$4,248</div>
+          <div class="stat-label">per year, every year</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">$12,744</div>
+          <div class="stat-label">over three years, owning nothing</div>
+        </div>
+      </div>
+    </div>
+      <div class="brandmark">Webinar Forge</div>
+      <div class="slideno">23 / 39</div>
+    </section>
+<section class="slide" id="s24">
+      
+    <div class="wrap">
+      <div class="kicker">Side By Side</div>
+      <h2>Renting the stack versus <span class="accent">owning the machine</span></h2>
+      <div class="compare">
+        
+        <div class="col col-lose">
+          <div class="col-title">Four subscriptions</div>
+          <ul><li>Four bills, four logins, four dashboards</li><li>Your voice sample lives on their servers</li><li>Per-render and per-character fees</li><li>Prices move when they decide</li><li>Stop paying and the videos stop playing</li></ul>
+          <div class="col-total">$354 / month, forever</div>
+        </div>
+        <div class="col col-win">
+          <div class="col-title">One zip on your server</div>
+          <ul><li>One folder, one command</li><li>Your voice sample never leaves your machine</li><li>Render it a hundred times, same cost</li><li>Nothing to reprice, nothing to renew</li><li>Stop paying and nothing happens at all</li></ul>
+          <div class="col-total">$0 / month once you have it</div>
+        </div>
+      </div>
+    </div>
+      <div class="brandmark">Webinar Forge</div>
+      <div class="slideno">24 / 39</div>
+    </section>
+<section class="slide" id="s25">
+      
+    <div class="wrap">
+      <div class="kicker">What It Does Not Do</div>
+      <h2>Four things I want you to hear <span class="accent">before</span> the offer</h2>
+      <ul class="bullets">
+        <li>It does not process payments — buy buttons are plain links to your checkout</li>
+        <li>It does not send email — opt-ins land in a file for you to export</li>
+        <li>It does not terminate HTTPS — put nginx or Caddy in front for a public domain</li>
+        <li>The voice engine has no authentication — keep it on loopback</li>
+      </ul>
+    </div>
+      <div class="brandmark">Webinar Forge</div>
+      <div class="slideno">25 / 39</div>
+    </section>
+<section class="slide" id="s26">
+      
+    <div class="wrap center">
+      <div class="kicker">So</div>
+      <h1>That is the argument. Here is <span class="accent">what is in the box.</span></h1>
+      <p class="sub">Nine pieces. Each one priced against what you would otherwise rent.</p>
+    </div>
+      <div class="brandmark">Webinar Forge</div>
+      <div class="slideno">26 / 39</div>
+    </section>
+<section class="slide" id="s27">
+      
+    <div class="wrap center">
+      <div class="kicker">In The Box · 1 of 9</div>
+      <h2>The <span class="accent">local voice cloning engine</span></h2>
+      <div class="stats">
+        
+        <div class="stat">
+          <div class="stat-value">$1,188</div>
+          <div class="stat-label">per year — what cloud voice cloning costs</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">$1,188</div>
+          <div class="stat-label">running total</div>
+        </div>
+      </div>
+    </div>
+      <div class="brandmark">Webinar Forge</div>
+      <div class="slideno">27 / 39</div>
+    </section>
+<section class="slide" id="s28">
+      
+    <div class="wrap center">
+      <div class="kicker">In The Box · 2 of 9</div>
+      <h2>The <span class="accent">presentation builder</span> — nine layouts</h2>
+      <div class="stats">
+        
+        <div class="stat">
+          <div class="stat-value">$588</div>
+          <div class="stat-label">per year — deck software</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">$1,776</div>
+          <div class="stat-label">running total</div>
+        </div>
+      </div>
+    </div>
+      <div class="brandmark">Webinar Forge</div>
+      <div class="slideno">28 / 39</div>
+    </section>
+<section class="slide" id="s29">
+      
+    <div class="wrap center">
+      <div class="kicker">In The Box · 3 of 9</div>
+      <h2>The <span class="accent">video renderer</span></h2>
+      <div class="stats">
+        
+        <div class="stat">
+          <div class="stat-value">$708</div>
+          <div class="stat-label">per year — render and hosting fees</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">$2,484</div>
+          <div class="stat-label">running total</div>
+        </div>
+      </div>
+    </div>
+      <div class="brandmark">Webinar Forge</div>
+      <div class="slideno">29 / 39</div>
+    </section>
+<section class="slide" id="s30">
+      
+    <div class="wrap center">
+      <div class="kicker">In The Box · 4 of 9</div>
+      <h2>The <span class="accent">landing page builder</span> — nine section types</h2>
+      <div class="stats">
+        
+        <div class="stat">
+          <div class="stat-value">$1,164</div>
+          <div class="stat-label">per year — page builder subscription</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">$3,648</div>
+          <div class="stat-label">running total</div>
+        </div>
+      </div>
+    </div>
+      <div class="brandmark">Webinar Forge</div>
+      <div class="slideno">30 / 39</div>
+    </section>
+<section class="slide" id="s31">
+      
+    <div class="wrap center">
+      <div class="kicker">In The Box · 5 of 9</div>
+      <h2>The <span class="accent">built-in host</span> with email capture</h2>
+      <div class="stats">
+        
+        <div class="stat">
+          <div class="stat-value">$468</div>
+          <div class="stat-label">per year — landing host with opt-ins</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">$4,116</div>
+          <div class="stat-label">running total</div>
+        </div>
+      </div>
+    </div>
+      <div class="brandmark">Webinar Forge</div>
+      <div class="slideno">31 / 39</div>
+    </section>
+<section class="slide" id="s32">
+      
+    <div class="wrap center">
+      <div class="kicker">In The Box · 6 of 9</div>
+      <h2>The <span class="accent">legacy deck importer</span></h2>
+      <div class="stats">
+        
+        <div class="stat">
+          <div class="stat-value">$297</div>
+          <div class="stat-label">one-time — a manual conversion you skip</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">$4,413</div>
+          <div class="stat-label">running total</div>
+        </div>
+      </div>
+    </div>
+      <div class="brandmark">Webinar Forge</div>
+      <div class="slideno">32 / 39</div>
+    </section>
+<section class="slide" id="s33">
+      
+    <div class="wrap center">
+      <div class="kicker">In The Box · 7 of 9</div>
+      <h2>The <span class="accent">Docker setup</span></h2>
+      <div class="stats">
+        
+        <div class="stat">
+          <div class="stat-value">$197</div>
+          <div class="stat-label">one-time — an afternoon of setup you skip</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">$4,610</div>
+          <div class="stat-label">running total</div>
+        </div>
+      </div>
+    </div>
+      <div class="brandmark">Webinar Forge</div>
+      <div class="slideno">33 / 39</div>
+    </section>
+<section class="slide" id="s34">
+      
+    <div class="wrap center">
+      <div class="kicker">In The Box · 8 of 9</div>
+      <h2>The <span class="accent">37-slide reference deck</span></h2>
+      <div class="stats">
+        
+        <div class="stat">
+          <div class="stat-value">$497</div>
+          <div class="stat-label">one-time — a real deck to pace against</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">$5,107</div>
+          <div class="stat-label">running total</div>
+        </div>
+      </div>
+    </div>
+      <div class="brandmark">Webinar Forge</div>
+      <div class="slideno">34 / 39</div>
+    </section>
+<section class="slide" id="s35">
+      
+    <div class="wrap center">
+      <div class="kicker">In The Box · 9 of 9</div>
+      <h2><span class="accent">CLAUDE.md</span> — so your own Claude sets it up for you</h2>
+      <div class="stats">
+        
+        <div class="stat">
+          <div class="stat-value">$297</div>
+          <div class="stat-label">one-time — setup, handled</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">$5,404</div>
+          <div class="stat-label">running total</div>
+        </div>
+      </div>
+    </div>
+      <div class="brandmark">Webinar Forge</div>
+      <div class="slideno">35 / 39</div>
+    </section>
+<section class="slide" id="s36">
+      
+    <div class="wrap">
+      <div class="kicker">Add It Up</div>
+      <h2>What the box is worth versus <span class="accent">what renting costs</span></h2>
+      <div class="compare">
+        
+        <div class="col col-lose">
+          <div class="col-title">Renting the same capability</div>
+          <ul><li>Webinar software — $99 / mo</li><li>Video hosting — $59 / mo</li><li>Page builder — $97 / mo</li><li>Voice cloning service — $99 / mo</li></ul>
+          <div class="col-total">$4,248 every year</div>
+        </div>
+        <div class="col col-win">
+          <div class="col-title">What is in the zip</div>
+          <ul><li>Voice engine, deck builder, renderer</li><li>Page builder, host, importer</li><li>Docker setup, 37-slide reference deck</li><li>CLAUDE.md so setup is asked, not read</li></ul>
+          <div class="col-total">$5,404 total value</div>
+        </div>
+      </div>
+    </div>
+      <div class="brandmark">Webinar Forge</div>
+      <div class="slideno">36 / 39</div>
+    </section>
+<section class="slide" id="s37">
+      
+    <div class="wrap">
+      <div class="kicker">The Price</div>
+      <h2>One time. <span class="accent">Not monthly.</span></h2>
+      <div class="tiers">
+        
+        <div class="tier featured">
+          <div class="tier-name">Webinar Forge — the complete zip</div>
+          <div class="tier-price">[YOUR PRICE]</div>
+          <div class="tier-was">$5,404 value</div>
+          <ul><li>Local voice cloning engine</li><li>Presentation builder — 9 layouts</li><li>Video renderer</li><li>Landing page builder — 9 section types</li><li>Built-in host with email capture</li><li>Legacy deck importer</li><li>Docker setup</li><li>37-slide reference deck</li><li>CLAUDE.md setup guide</li></ul>
+        </div>
+      </div>
+      <p class="footnote">[PLACEHOLDER — set your price and your refund terms here before this goes live.]</p>
+    </div>
+      <div class="brandmark">Webinar Forge</div>
+      <div class="slideno">37 / 39</div>
+    </section>
+<section class="slide" id="s38">
+      
+    <div class="wrap">
+      <div class="kicker">Straight Answers</div>
+      <h2>The questions you are <span class="accent">already asking</span></h2>
+      <div class="faq">
+        
+        <div class="qa">
+          <div class="q">Do I need a graphics card?</div>
+          <div class="a">No. It auto-detects CUDA or Apple silicon and falls back to your processor. CPU works — it is just slower, so start with a short deck.</div>
+        </div>
+        <div class="qa">
+          <div class="q">Does my voice sample leave my machine?</div>
+          <div class="a">No. The model runs locally, and samples are excluded from anything you redistribute.</div>
+        </div>
+        <div class="qa">
+          <div class="q">Can I use it for more than one webinar?</div>
+          <div class="a">Yes. Copy the config, change the words. No per-render fee, no cap, no seat count.</div>
+        </div>
+        <div class="qa">
+          <div class="q">Does it take payments or send email?</div>
+          <div class="a">No to both. Buy buttons are plain links to your checkout, and opt-ins land in a file for you to export.</div>
+        </div>
+        <div class="qa">
+          <div class="q">What about webinars I already built by hand?</div>
+          <div class="a">The importer converts them. Narration carries across verbatim and it lists anything it could not classify.</div>
+        </div>
+      </div>
+    </div>
+      <div class="brandmark">Webinar Forge</div>
+      <div class="slideno">38 / 39</div>
+    </section>
+<section class="slide" id="s39">
+      
+    <div class="wrap center">
+      <div class="kicker">Last Thing</div>
+      <h1>The proof is <span class="accent">the thing you are watching</span></h1>
+      <p class="sub">This video, this voice, and the page around it came out of one config file on a server nobody bills me for. Yours can too.</p>
+      <div class="cta-btn">Get Webinar Forge</div>
+      <div class="cta-url">webinarforge.com/get</div>
+      <p class="footnote">[PLACEHOLDER — your checkout link and refund terms go here.]</p>
+    </div>
+      <div class="brandmark">Webinar Forge</div>
+      <div class="slideno">39 / 39</div>
+    </section>
+<script>
+  // Capture driver. capture.js calls showSlide(id) over CDP; the ?slide= param
+  // is only so a human can eyeball one slide in a browser.
+  function showSlide(id) {
+    document.querySelectorAll('.slide.active').forEach(function (el) {
+      el.classList.remove('active');
+    });
+    var el = document.getElementById(id);
+    if (el) el.classList.add('active');
+    return !!el;
+  }
+  var params = new URLSearchParams(location.search);
+  var first = params.get('slide') || document.querySelector('.slide').id;
+  showSlide(first);
+</script>
+</body>
+</html>
