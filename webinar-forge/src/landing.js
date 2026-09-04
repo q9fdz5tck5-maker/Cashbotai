@@ -179,6 +179,46 @@ const sections = {
       </div>
     </section>`,
 
+  // Risk reversal. The terms are the operator's to write and to honour — this
+  // renderer never supplies a default policy, because a guarantee nobody
+  // intends to pay out is a refund dispute wearing a conversion-rate costume.
+  // Omitting the section is the correct state when there is no real policy.
+  guarantee: (s) => `
+    <section class="band">
+      <div class="inner narrow center">
+        ${s.kicker ? `<div class="kicker">${esc(s.kicker)}</div>` : ''}
+        <div class="guarantee">
+          ${s.badge ? `<div class="guarantee-badge">${rich(s.badge)}</div>` : ''}
+          <h2>${rich(s.headline)}</h2>
+          ${s.body ? `<p class="lede">${rich(s.body)}</p>` : ''}
+          ${(s.terms || []).length ? `
+          <ul class="guarantee-terms">
+            ${(s.terms || []).map((t) => `<li>${rich(t)}</li>`).join('')}
+          </ul>` : ''}
+        </div>
+        ${btn(s.cta, 'btn btn-lg')}
+        ${s.footnote ? `<p class="footnote">${rich(s.footnote)}</p>` : ''}
+      </div>
+    </section>`,
+
+  // Honest scarcity: counts down to one real timestamp in `until` (ISO 8601).
+  // There is deliberately no evergreen mode. A timer that restarts for each
+  // visitor states something false about availability, and it is precisely the
+  // pattern that gets a page reported — so this renders a real deadline or it
+  // renders no clock at all. After the date passes it shows `expiredText`
+  // rather than looping.
+  deadline: (s) => `
+    <section class="band band-deadline">
+      <div class="inner narrow center">
+        ${s.kicker ? `<div class="kicker">${esc(s.kicker)}</div>` : ''}
+        <h2>${rich(s.headline)}</h2>
+        ${s.reason ? `<p class="lede">${rich(s.reason)}</p>` : ''}
+        ${s.until ? `<div class="countdown" data-until="${esc(s.until)}" data-expired="${esc(s.expiredText || 'Enrolment for this round has closed.')}" hidden></div>` : ''}
+        ${btn(s.cta, 'btn btn-lg')}
+        ${s.footnote ? `<p class="footnote">${rich(s.footnote)}</p>` : ''}
+      </div>
+    </section>`,
+
   cta: (s) => `
     <section class="band band-cta">
       <div class="inner narrow center">
@@ -313,7 +353,22 @@ function css(cfg) {
   footer{padding:48px 0;border-top:1px solid rgba(255,255,255,.07);
     color:${muted};font-size:14px;text-align:center}
   footer p{max-width:760px;margin:0 auto 10px}
-  @media(max-width:640px){.band{padding:52px 0}.hero{padding:60px 0 44px}}
+  .guarantee{border:1px solid ${accent}55;border-radius:16px;padding:36px 28px;background:#ffffff05;margin-bottom:28px}
+  .guarantee-badge{display:inline-block;border:2px solid ${accent};color:${accent};border-radius:999px;
+    padding:8px 20px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:.78rem;margin-bottom:18px}
+  .guarantee h2{margin:0 0 12px}
+  .guarantee-terms{list-style:none;padding:0;margin:20px auto 0;max-width:38rem;text-align:left}
+  .guarantee-terms li{position:relative;padding:8px 0 8px 30px;color:${muted};line-height:1.55}
+  .guarantee-terms li:before{content:"";position:absolute;left:6px;top:.95em;width:10px;height:2px;background:${accent}}
+  .band-deadline{border-top:1px solid ${accent}33;border-bottom:1px solid ${accent}33}
+  .countdown{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin:22px 0 26px}
+  .countdown .unit{min-width:84px;border:1px solid #ffffff1a;border-radius:12px;padding:14px 10px;background:#ffffff08}
+  .countdown .num{display:block;font-size:2.1rem;font-weight:800;line-height:1;color:${accent};
+    font-variant-numeric:tabular-nums}
+  .countdown .lbl{display:block;margin-top:6px;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:${muted}}
+  .countdown.expired{font-size:1.05rem;color:${muted}}
+  @media(max-width:640px){.band{padding:52px 0}.hero{padding:60px 0 44px}
+    .guarantee{padding:26px 18px}.countdown .unit{min-width:68px}.countdown .num{font-size:1.6rem}}
   `;
 }
 
@@ -332,6 +387,7 @@ function render(cfg) {
   cfg.__videoSrc = L.videoSrc || `${cfg.name}.mp4`;
   const body = list.map((s) => sections[s.type](s, cfg)).join('\n');
   const gated = list.some((s) => s.type === 'hero' && s.gate);
+  const counting = list.some((s) => s.type === 'deadline' && s.until);
 
   return `<!doctype html>
 <html lang="en">
@@ -389,6 +445,46 @@ ${gated ? `<script>
       reveal();
     });
   });
+})();
+</script>` : ''}
+${counting ? `<script>
+// Counts down to the real timestamp in data-until. When it passes, the clock
+// is replaced by data-expired — it never loops back round, because a timer
+// that restarts per visitor claims something untrue about availability.
+(function () {
+  var els = document.querySelectorAll('.countdown[data-until]');
+  if (!els.length) return;
+
+  function pad(n) { return (n < 10 ? '0' : '') + n; }
+  function unit(n, label) {
+    return '<span class="unit"><span class="num">' + pad(n) + '</span>' +
+           '<span class="lbl">' + label + '</span></span>';
+  }
+
+  function tick() {
+    var now = Date.now();
+    for (var i = 0; i < els.length; i++) {
+      var el = els[i];
+      var end = Date.parse(el.getAttribute('data-until'));
+      if (isNaN(end)) { el.hidden = true; continue; }
+      el.hidden = false;
+      var left = Math.floor((end - now) / 1000);
+      if (left <= 0) {
+        el.className = 'countdown expired';
+        el.textContent = el.getAttribute('data-expired') || '';
+        continue;
+      }
+      var d = Math.floor(left / 86400);
+      var h = Math.floor((left % 86400) / 3600);
+      var m = Math.floor((left % 3600) / 60);
+      var s = left % 60;
+      el.innerHTML = (d > 0 ? unit(d, 'days') : '') +
+        unit(h, 'hours') + unit(m, 'minutes') + unit(s, 'seconds');
+    }
+  }
+
+  tick();
+  setInterval(tick, 1000);
 })();
 </script>` : ''}
 </body>

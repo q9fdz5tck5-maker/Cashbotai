@@ -177,6 +177,8 @@ Sections are data, in the order you list them:
 | `stack` | Value stack with line items, struck total, and price reveal |
 | `pricing` | Tier cards with their own CTA links |
 | `testimonials` | Quote cards |
+| `guarantee` | Risk reversal — badge, headline, and your refund terms. No default policy: it renders only what you write, because a guarantee you will not honour is a refund dispute, not a conversion tactic. |
+| `deadline` | Counts down to one real ISO timestamp in `until`, then shows `expiredText`. No evergreen mode — a per-visitor resetting clock misstates availability. |
 | `faq` | Collapsible questions |
 | `cta` | Closing call to action |
 

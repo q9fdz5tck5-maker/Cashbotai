@@ -69,9 +69,20 @@ Slide layouts: `title` `bullets` `stats` `compare` `quote` `myth` `pricing`
 `faq` `cta` — defined in `src/deck.js`.
 
 Landing sections (under `landing.sections`, each with a `type`): `hero`
-`proof` `problem` `features` `stack` `pricing` `testimonials` `faq` `cta` —
-defined in `src/landing.js`. `hero` with `"gate": true` hides the video behind
-an email opt-in.
+`proof` `problem` `features` `stack` `pricing` `testimonials` `guarantee`
+`deadline` `faq` `cta` — defined in `src/landing.js`. `hero` with
+`"gate": true` hides the video behind an email opt-in.
+
+`guarantee` and `deadline` state facts about your business, so they have no
+defaults and stay out of a page until you fill them in:
+
+- `guarantee` renders whatever refund terms you supply (`badge`, `headline`,
+  `body`, `terms[]`). It never invents a policy — write only what you will
+  actually honour.
+- `deadline` counts down to one real ISO timestamp in `until`, and shows
+  `expiredText` once it passes. There is no evergreen or per-visitor reset
+  mode, on purpose: a clock that restarts for each viewer states something
+  untrue about availability.
 
 `projects/example/project.json` is a small annotated example.
 `projects/three-secrets-v8/project.json` is a real 37-slide deck.

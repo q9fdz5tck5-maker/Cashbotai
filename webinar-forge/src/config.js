@@ -39,7 +39,8 @@ function deepMerge(base, override) {
 }
 
 const LANDING_SECTIONS = new Set([
-  'hero', 'proof', 'problem', 'features', 'stack', 'pricing', 'testimonials', 'faq', 'cta',
+  'hero', 'proof', 'problem', 'features', 'stack', 'pricing', 'testimonials',
+  'guarantee', 'deadline', 'faq', 'cta',
 ]);
 
 const LAYOUTS = new Set([

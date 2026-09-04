@@ -7,9 +7,16 @@
 //   2. compliance     - strip claim language you do not want in a sales asset
 // Both are config-driven so each deployment sets its own.
 
+// Order matters: the article-aware rule runs first so "an iron-clad guarantee"
+// does not become "an satisfaction policy", and the replacement never carries a
+// hardcoded term length ("30-day") that would double up against copy already
+// saying "a 30-day money-back guarantee".
 const DEFAULT_COMPLIANCE = [
-  { pattern: '\\b(money.?back guarantee|satisfaction guarantee|100% guarantee|iron.?clad guarantee)\\b', replace: '30-day satisfaction policy' },
+  { pattern: '\\ban?\\s+(?:money.?back|satisfaction|100%|iron.?clad)\\s+guarantee\\b', replace: 'a satisfaction policy' },
+  { pattern: '\\b(?:money.?back|satisfaction|100%|iron.?clad)\\s+guarantee\\b', replace: 'satisfaction policy' },
   { pattern: '\\bguaranteed\\b', replace: 'backed by our satisfaction policy' },
+  { pattern: '\\ban\\s+guarantee\\b', replace: 'a satisfaction policy' },
+  { pattern: '\\bguarantees\\b', replace: 'satisfaction policies' },
   { pattern: '\\bguarantee[sd]?\\b', replace: 'satisfaction policy' },
 ];
 
