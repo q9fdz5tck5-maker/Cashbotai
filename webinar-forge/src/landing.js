@@ -58,6 +58,10 @@ const sections = {
       </div>
     </section>`,
 
+  // `footnote` exists so a substantiated revenue figure can carry its qualifier
+  // in the same block as the number. A results claim and its "this is mine, not
+  // a promise about yours" disclaimer must not be separated — put them in
+  // different sections and the disclaimer stops doing its job.
   proof: (s) => `
     <section class="band proof">
       <div class="inner">
@@ -69,6 +73,7 @@ const sections = {
             <div class="proof-label">${rich(st.label)}</div>
           </div>`).join('')}
         </div>
+        ${s.footnote ? `<p class="footnote">${rich(s.footnote)}</p>` : ''}
       </div>
     </section>`,
 
