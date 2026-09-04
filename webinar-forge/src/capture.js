@@ -7,14 +7,40 @@
 
 const fs = require('fs');
 const path = require('path');
+const crypto = require('crypto');
 const log = require('./log');
+
+// A PNG's existence says nothing about what is drawn on it. Editing a slide's
+// on-screen copy costs nothing to re-render, so it is the most common edit
+// there is — and without a content stamp the old image is kept and the change
+// silently never reaches the video. Keyed per slide so editing one headline
+// re-captures one image rather than all of them.
+function slideStamp(cfg, slide) {
+  return crypto.createHash('sha256').update(JSON.stringify({
+    slide,
+    size: [cfg.video.width, cfg.video.height],
+    brand: cfg.brand || null,
+  })).digest('hex');
+}
+
+function stampMatches(stampPath, stamp) {
+  try {
+    return fs.readFileSync(stampPath, 'utf8').trim() === stamp;
+  } catch {
+    return false;
+  }
+}
+
+function isFresh(cfg, slide, png, force) {
+  return !force && fs.existsSync(png) && stampMatches(`${png}.sig`, slideStamp(cfg, slide));
+}
 
 async function captureSlides(cfg, dirs, bins, { force = false } = {}) {
   fs.mkdirSync(dirs.slides, { recursive: true });
 
   const pending = cfg.slides.filter((s) => {
     const png = path.join(dirs.slides, `${String(s.index).padStart(3, '0')}-${s.id}.png`);
-    return force || !fs.existsSync(png);
+    return !isFresh(cfg, s, png, force);
   });
 
   if (pending.length === 0) {
@@ -52,7 +78,7 @@ async function captureSlides(cfg, dirs, bins, { force = false } = {}) {
     for (const slide of cfg.slides) {
       const num = String(slide.index).padStart(3, '0');
       const png = path.join(dirs.slides, `${num}-${slide.id}.png`);
-      if (!force && fs.existsSync(png)) {
+      if (isFresh(cfg, slide, png, force)) {
         log.info(`[${num}] cached ${slide.id}.png`);
         continue;
       }
@@ -62,6 +88,7 @@ async function captureSlides(cfg, dirs, bins, { force = false } = {}) {
 
       await new Promise((r) => setTimeout(r, 120));
       await page.screenshot({ path: png, type: 'png' });
+      fs.writeFileSync(`${png}.sig`, slideStamp(cfg, slide));
       log.ok(`[${num}] ${slide.id}.png`);
     }
   } finally {

@@ -507,7 +507,7 @@
     {
       "layout": "pricing",
       "kicker": "The Price",
-      "headline": "One time. [ACCENT]Not monthly.[/ACCENT]",
+      "headline": "Build it yourself, or [ACCENT]have it built.[/ACCENT]",
       "tiers": [
         {
           "name": "Webinar Forge \u2014 the complete folder",
@@ -525,10 +525,21 @@
             "37-slide reference webinar",
             "Setup guide your own Claude reads"
           ]
+        },
+        {
+          "name": "Done For You \u2014 I build it",
+          "price": "$997",
+          "features": [
+            "Everything in the $297 folder, installed and running",
+            "I write all 39 slides from notes you send me",
+            "Your voice, cloned from one short recording",
+            "Finished video and sales page, ready to publish",
+            "One round of revisions"
+          ]
         }
       ],
       "footnote": "Text (805) 453-3586 to buy. 30-day refund, no questions asked.",
-      "narration": "Which brings us to what it costs. Everything I have just shown you is one folder, one payment, one time. Not a subscription. Not a seat. Not a fee every time you make a video. You download it, you put it on your computer, and it is yours in the same plain way that a hammer is yours. The number is on the screen. Two hundred and ninety seven dollars. Hold that up next to four thousand two hundred and forty eight dollars a year. And then remember that next year it is still zero, and the year after that it is still zero. And you are not taking a risk to find that out. You get thirty days. Build a webinar with it, and if you decide it was not worth two hundred and ninety seven dollars to you, you send me one email and I refund you, and you keep the webinar you already made. I would rather you had it and it worked than I had your money and you had a doubt. To buy it, you text me. The number is right there on the screen."
+      "narration": "Which brings us to what it costs. Everything I have just shown you is one folder, one payment, one time. Not a subscription. Not a seat. Not a fee every time you make a video. You download it, you put it on your computer, and it is yours in the same plain way that a hammer is yours. The number is on the screen. Two hundred and ninety seven dollars. Hold that up next to four thousand two hundred and forty eight dollars a year. And then remember that next year it is still zero, and the year after that it is still zero. And if you would rather not write it yourself at all, there is a second option on that screen. Nine hundred and ninety seven, and I build the whole thing for you from notes you send me. And you are not taking a risk to find that out. You get thirty days. Build a webinar with it, and if you decide it was not worth two hundred and ninety seven dollars to you, you send me one email and I refund you, and you keep the webinar you already made. I would rather you had it and it worked than I had your money and you had a doubt. To buy it, you text me. The number is right there on the screen."
     },
     {
       "layout": "faq",
@@ -709,7 +720,7 @@
       {
         "type": "pricing",
         "kicker": "The Offer",
-        "headline": "One folder. [ACCENT]One payment.[/ACCENT]",
+        "headline": "Build it yourself, or [ACCENT]have it built.[/ACCENT]",
         "tiers": [
           {
             "name": "Webinar Forge \u2014 Complete",
@@ -732,9 +743,24 @@
               "label": "Text To Buy",
               "href": "sms:+18054533586"
             }
+          },
+          {
+            "name": "Done For You \u2014 I Build It",
+            "price": "$997",
+            "features": [
+              "Everything in the $297 folder, installed and running",
+              "I write all 39 slides from notes you send me",
+              "Your voice, cloned from one short recording",
+              "Finished video and sales page, ready to publish",
+              "One round of revisions"
+            ],
+            "cta": {
+              "label": "Text To Buy",
+              "href": "sms:+18054533586"
+            }
           }
         ],
-        "footnote": "Text (805) 453-3586 to buy. One-time payment \u2014 no subscription."
+        "footnote": "Text (805) 453-3586 to buy either one. One-time payment \u2014 no subscription. 30-day refund on both."
       },
       {
         "type": "guarantee",
