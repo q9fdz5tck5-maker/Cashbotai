@@ -1,6 +1,6 @@
 {
   "name": "forge-launch",
-  "title": "Webinar Forge — Built By The Thing It Sells",
+  "title": "Webinar Forge \u2014 Built By The Thing It Sells",
   "brand": {
     "product": "Webinar Forge",
     "accent": "#ff7a18",
@@ -90,7 +90,7 @@
       "kicker": "Why The Second One Was Impossible",
       "headline": "Everything was welded to the [ACCENT]first[/ACCENT] one",
       "bullets": [
-        "A hand-written HTML deck — 96 kilobytes of markup, per webinar",
+        "A hand-written HTML deck \u2014 96 kilobytes of markup, per webinar",
         "A build script hardcoded to that deck's slide count and class names",
         "Binary paths pointing at one specific laptop, in one home folder",
         "A capture step that spawned a server on a fixed port and collided with itself",
@@ -121,7 +121,7 @@
     {
       "layout": "quote",
       "quote": "\"Making a webinar is a production. I do not have the setup, I do not have the voice for it, and the tools that would do it for me cost more every month than the thing I am trying to sell.\"",
-      "attribution": "— roughly what everybody says",
+      "attribution": "\u2014 roughly what everybody says",
       "narration": "That is it. Near enough word for word, that is the wall. And I want you to notice something about it. That is not one objection. That is three separate objections stacked on top of each other, wearing a trench coat, pretending to be one. One of them is about the work. One of them is about you. And one of them is about the tools. Every single one of the three is wrong, and I am going to take them down in that order."
     },
     {
@@ -152,18 +152,18 @@
       "kicker": "Inside The File",
       "headline": "The whole webinar, in [ACCENT]plain text[/ACCENT]",
       "bullets": [
-        "A brand block — your product name and your colours",
-        "A voice block — which cloned voice reads it, and how steady",
-        "A slides list — a layout name, a few fields, and what to say",
-        "A landing block — the page sections, in the order they appear",
-        "A pronunciation map — so your domain gets spoken, not spelled"
+        "A brand block \u2014 your product name and your colours",
+        "A voice block \u2014 which cloned voice reads it, and how steady",
+        "A slides list \u2014 a layout name, a few fields, and what to say",
+        "A landing block \u2014 the page sections, in the order they appear",
+        "A pronunciation map \u2014 so your domain gets spoken, not spelled"
       ],
       "narration": "So what is actually inside that file. A brand block, which is your product name and your colours. A voice block, saying which cloned voice reads the deck and how steady you want the delivery to be. A slides list, where every slide is a layout name, a few fields, and the words you want spoken over it. A landing block, which is your page sections in the order you want them. And a pronunciation map, so the voice says your domain out loud instead of spelling it at people letter by letter. That is the file. That is all of it."
     },
     {
       "layout": "title",
       "kicker": "The Command",
-      "headline": "[ACCENT]build[/ACCENT] — and then you have a funnel",
+      "headline": "[ACCENT]build[/ACCENT] \u2014 and then you have a funnel",
       "sub": "Deck, narration, capture, video, landing page. One pass, and every stage caches.",
       "narration": "And then you run one word. Build. Behind that one word, five things happen in order. Your slides become a deck. Your narration goes to the voice engine and comes back as audio. A browser opens the deck and photographs every slide at full size. Those pictures and that audio become a video file. And your landing block becomes a finished page with the video already sitting in it. Every stage remembers what it already did. Change one line and it redoes that one line's worth of work."
     },
@@ -217,7 +217,7 @@
       "headline": "Cloned [ACCENT]on your machine[/ACCENT], not in somebody's cloud",
       "bullets": [
         "Ten to thirty seconds of clean speech is the entire sample",
-        "The model runs locally — your voice never leaves your server",
+        "The model runs locally \u2014 your voice never leaves your server",
         "Delivery is tuned steady for a long deck, not theatrical",
         "Every slide is synthesized separately, so every slide is editable separately",
         "No key, no per-character billing, no usage cap"
@@ -320,10 +320,10 @@
       "kicker": "What It Does Not Do",
       "headline": "Four things I want you to hear [ACCENT]before[/ACCENT] the offer",
       "bullets": [
-        "It does not process payments — buy buttons are plain links to your checkout",
-        "It does not send email — opt-ins land in a file for you to export",
-        "It does not terminate HTTPS — put nginx or Caddy in front for a public domain",
-        "The voice engine has no authentication — keep it on loopback"
+        "It does not process payments \u2014 buy buttons are plain links to your checkout",
+        "It does not send email \u2014 opt-ins land in a file for you to export",
+        "It does not terminate HTTPS \u2014 put nginx or Caddy in front for a public domain",
+        "The voice engine has no authentication \u2014 keep it on loopback"
       ],
       "narration": "And before I open the box, I want to tell you what is not in it, because you are going to find out anyway and I would much rather you heard it from me now. It does not process payments. The buy buttons are plain links and you point them at your own checkout. It does not send email. When somebody opts in, their address lands in a file on your server and you export it into whatever you already send with. It does not handle HTTPS, so for a public domain you put nginx or Caddy in front of it. And the voice engine has no password, so you keep it on loopback. None of that is difficult. All of it is honest."
     },
@@ -336,12 +336,12 @@
     },
     {
       "layout": "stats",
-      "kicker": "In The Box · 1 of 9",
+      "kicker": "In The Box \u00b7 1 of 9",
       "headline": "The [ACCENT]local voice cloning engine[/ACCENT]",
       "stats": [
         {
           "value": "$1,188",
-          "label": "per year — what cloud voice cloning costs"
+          "label": "per year \u2014 what cloud voice cloning costs"
         },
         {
           "value": "$1,188",
@@ -352,12 +352,12 @@
     },
     {
       "layout": "stats",
-      "kicker": "In The Box · 2 of 9",
-      "headline": "The [ACCENT]presentation builder[/ACCENT] — nine layouts",
+      "kicker": "In The Box \u00b7 2 of 9",
+      "headline": "The [ACCENT]presentation builder[/ACCENT] \u2014 nine layouts",
       "stats": [
         {
           "value": "$588",
-          "label": "per year — deck software"
+          "label": "per year \u2014 deck software"
         },
         {
           "value": "$1,776",
@@ -368,12 +368,12 @@
     },
     {
       "layout": "stats",
-      "kicker": "In The Box · 3 of 9",
+      "kicker": "In The Box \u00b7 3 of 9",
       "headline": "The [ACCENT]video renderer[/ACCENT]",
       "stats": [
         {
           "value": "$708",
-          "label": "per year — render and hosting fees"
+          "label": "per year \u2014 render and hosting fees"
         },
         {
           "value": "$2,484",
@@ -384,12 +384,12 @@
     },
     {
       "layout": "stats",
-      "kicker": "In The Box · 4 of 9",
-      "headline": "The [ACCENT]landing page builder[/ACCENT] — nine section types",
+      "kicker": "In The Box \u00b7 4 of 9",
+      "headline": "The [ACCENT]landing page builder[/ACCENT] \u2014 nine section types",
       "stats": [
         {
           "value": "$1,164",
-          "label": "per year — page builder subscription"
+          "label": "per year \u2014 page builder subscription"
         },
         {
           "value": "$3,648",
@@ -400,12 +400,12 @@
     },
     {
       "layout": "stats",
-      "kicker": "In The Box · 5 of 9",
+      "kicker": "In The Box \u00b7 5 of 9",
       "headline": "The [ACCENT]built-in host[/ACCENT] with email capture",
       "stats": [
         {
           "value": "$468",
-          "label": "per year — landing host with opt-ins"
+          "label": "per year \u2014 landing host with opt-ins"
         },
         {
           "value": "$4,116",
@@ -416,12 +416,12 @@
     },
     {
       "layout": "stats",
-      "kicker": "In The Box · 6 of 9",
+      "kicker": "In The Box \u00b7 6 of 9",
       "headline": "The [ACCENT]legacy deck importer[/ACCENT]",
       "stats": [
         {
           "value": "$297",
-          "label": "one-time — a manual conversion you skip"
+          "label": "one-time \u2014 a manual conversion you skip"
         },
         {
           "value": "$4,413",
@@ -432,12 +432,12 @@
     },
     {
       "layout": "stats",
-      "kicker": "In The Box · 7 of 9",
+      "kicker": "In The Box \u00b7 7 of 9",
       "headline": "The [ACCENT]Docker setup[/ACCENT]",
       "stats": [
         {
           "value": "$197",
-          "label": "one-time — an afternoon of setup you skip"
+          "label": "one-time \u2014 an afternoon of setup you skip"
         },
         {
           "value": "$4,610",
@@ -448,12 +448,12 @@
     },
     {
       "layout": "stats",
-      "kicker": "In The Box · 8 of 9",
+      "kicker": "In The Box \u00b7 8 of 9",
       "headline": "The [ACCENT]37-slide reference deck[/ACCENT]",
       "stats": [
         {
           "value": "$497",
-          "label": "one-time — a real deck to pace against"
+          "label": "one-time \u2014 a real deck to pace against"
         },
         {
           "value": "$5,107",
@@ -464,12 +464,12 @@
     },
     {
       "layout": "stats",
-      "kicker": "In The Box · 9 of 9",
-      "headline": "[ACCENT]CLAUDE.md[/ACCENT] — so your own Claude sets it up for you",
+      "kicker": "In The Box \u00b7 9 of 9",
+      "headline": "[ACCENT]CLAUDE.md[/ACCENT] \u2014 so your own Claude sets it up for you",
       "stats": [
         {
           "value": "$297",
-          "label": "one-time — setup, handled"
+          "label": "one-time \u2014 setup, handled"
         },
         {
           "value": "$5,404",
@@ -485,10 +485,10 @@
       "left": {
         "title": "Renting the same capability",
         "items": [
-          "Webinar software — $99 / mo",
-          "Video hosting — $59 / mo",
-          "Page builder — $97 / mo",
-          "Voice cloning service — $99 / mo"
+          "Webinar software \u2014 $99 / mo",
+          "Video hosting \u2014 $59 / mo",
+          "Page builder \u2014 $97 / mo",
+          "Voice cloning service \u2014 $99 / mo"
         ],
         "total": "$4,248 every year"
       },
@@ -510,15 +510,15 @@
       "headline": "One time. [ACCENT]Not monthly.[/ACCENT]",
       "tiers": [
         {
-          "name": "Webinar Forge — the complete zip",
+          "name": "Webinar Forge \u2014 the complete zip",
           "price": "$297",
           "was": "$5,404 value",
           "featured": true,
           "features": [
             "Local voice cloning engine",
-            "Presentation builder — 9 layouts",
+            "Presentation builder \u2014 9 layouts",
             "Video renderer",
-            "Landing page builder — 9 section types",
+            "Landing page builder \u2014 9 section types",
             "Built-in host with email capture",
             "Legacy deck importer",
             "Docker setup",
@@ -537,7 +537,7 @@
       "items": [
         {
           "q": "Do I need a graphics card?",
-          "a": "No. It auto-detects CUDA or Apple silicon and falls back to your processor. CPU works — it is just slower, so start with a short deck."
+          "a": "No. It auto-detects CUDA or Apple silicon and falls back to your processor. CPU works \u2014 it is just slower, so start with a short deck."
         },
         {
           "q": "Does my voice sample leave my machine?",
@@ -570,19 +570,19 @@
     }
   ],
   "landing": {
-    "title": "Webinar Forge — The Webinar That Built Itself",
+    "title": "Webinar Forge \u2014 The Webinar That Built Itself",
     "description": "A zip you run on your own server. It clones your voice locally, builds the deck, renders the narrated video, and generates the page that sells it. No keys, no accounts, no monthly bill.",
     "sections": [
       {
         "type": "hero",
-        "kicker": "Free Training · About 25 Minutes",
+        "kicker": "Free Training \u00b7 About 25 Minutes",
         "headline": "This Page And The Video On It Were Built By [ACCENT]The Thing They Are Selling[/ACCENT]",
-        "sub": "One config file. One command. A narrated webinar in your own cloned voice, and the sales page around it — rendered on a server nobody bills you for.",
+        "sub": "One config file. One command. A narrated webinar in your own cloned voice, and the sales page around it \u2014 rendered on a server nobody bills you for.",
         "gate": true,
         "gateTitle": "Watch the training",
         "gateButton": "Watch It Now",
         "gatePlaceholder": "you@yourdomain.com",
-        "gateNote": "Your address is appended to a file on this server. Nothing is mailed anywhere — this tool does not send email, and that is the point.",
+        "gateNote": "Your address is appended to a file on this server. Nothing is mailed anywhere \u2014 this tool does not send email, and that is the point.",
         "cta": {
           "label": "Skip ahead to what is in it",
           "href": "#offer"
@@ -618,7 +618,7 @@
           "\"Making a webinar means a studio, a camera, and a week I do not have.\"",
           "\"I would have to be on camera, and I hate my voice on video.\"",
           "\"Every tool that does this bills me monthly and owns my work.\"",
-          "So the webinar never gets made — and the thing you sell keeps getting explained one conversation at a time.",
+          "So the webinar never gets made \u2014 and the thing you sell keeps getting explained one conversation at a time.",
           "Meanwhile the four subscriptions that would do it for you come to $354 a month, whether you ever publish anything or not."
         ]
       },
@@ -629,7 +629,7 @@
         "items": [
           {
             "title": "A studio becomes a text file",
-            "body": "Slides are data — a layout name and a few fields. Nine layouts cover every beat of a Perfect Webinar: title, bullets, stats, compare, quote, myth, pricing, FAQ, CTA. You never write markup, and webinar number two starts by copying the file."
+            "body": "Slides are data \u2014 a layout name and a few fields. Nine layouts cover every beat of a Perfect Webinar: title, bullets, stats, compare, quote, myth, pricing, FAQ, CTA. You never write markup, and webinar number two starts by copying the file."
           },
           {
             "title": "A camera becomes 30 seconds of audio",
@@ -641,7 +641,7 @@
           },
           {
             "title": "Fixing a sentence costs one slide",
-            "body": "Every stage caches against the slide's own id. Change one line of narration and that one slide re-synthesizes — the other 38 are skipped. Insert a slide in the middle and the rest of the deck stays valid."
+            "body": "Every stage caches against the slide's own id. Change one line of narration and that one slide re-synthesizes \u2014 the other 38 are skipped. Insert a slide in the middle and the rest of the deck stays valid."
           },
           {
             "title": "The page comes out of the same file",
@@ -659,19 +659,19 @@
         "headline": "Nine pieces, priced against [ACCENT]what you would otherwise rent[/ACCENT]",
         "items": [
           {
-            "name": "Local voice cloning engine — runs on your hardware",
+            "name": "Local voice cloning engine \u2014 runs on your hardware",
             "value": "$1,188/yr value"
           },
           {
-            "name": "Presentation builder — 9 slide layouts",
+            "name": "Presentation builder \u2014 9 slide layouts",
             "value": "$588/yr value"
           },
           {
-            "name": "Video renderer — slides + narration to MP4",
+            "name": "Video renderer \u2014 slides + narration to MP4",
             "value": "$708/yr value"
           },
           {
-            "name": "Landing page builder — 9 section types",
+            "name": "Landing page builder \u2014 9 section types",
             "value": "$1,164/yr value"
           },
           {
@@ -683,7 +683,7 @@
             "value": "$297 value"
           },
           {
-            "name": "Docker setup — Dockerfile and compose file",
+            "name": "Docker setup \u2014 Dockerfile and compose file",
             "value": "$197 value"
           },
           {
@@ -691,19 +691,19 @@
             "value": "$497 value"
           },
           {
-            "name": "CLAUDE.md — your own Claude sets it up",
+            "name": "CLAUDE.md \u2014 your own Claude sets it up",
             "value": "$297 value"
           }
         ],
         "totalLabel": "Total value",
         "totalValue": "$5,404",
-        "priceLabel": "Your price today — one time",
+        "priceLabel": "Your price today \u2014 one time",
         "price": "[YOUR PRICE]",
-        "priceNote": "One payment, not a subscription. Renting the same four capabilities runs $354/month — $4,248 every year, for as long as you keep making webinars.",
+        "priceNote": "One payment, not a subscription. Renting the same four capabilities runs $354/month \u2014 $4,248 every year, for as long as you keep making webinars.",
         "cta": {
-          "label": "Get Webinar Forge",
-          "href": "#",
-          "note": "[PLACEHOLDER LINK — point this at your own checkout URL.]"
+          "label": "Text To Buy",
+          "href": "sms:+18054533586",
+          "note": "Text (805) 453-3586 to buy. One-time payment \u2014 no subscription."
         }
       },
       {
@@ -712,16 +712,16 @@
         "headline": "One zip. [ACCENT]One payment.[/ACCENT]",
         "tiers": [
           {
-            "name": "Webinar Forge — Complete",
-            "price": "[YOUR PRICE]",
+            "name": "Webinar Forge \u2014 Complete",
+            "price": "$297",
             "was": "$5,404 value",
             "featured": true,
             "badge": "Everything, one file",
             "features": [
               "Local voice cloning engine",
-              "Presentation builder — 9 layouts",
+              "Presentation builder \u2014 9 layouts",
               "Video renderer",
-              "Landing page builder — 9 section types",
+              "Landing page builder \u2014 9 section types",
               "Built-in host with email capture",
               "Legacy deck importer",
               "Docker setup",
@@ -729,34 +729,12 @@
               "CLAUDE.md setup guide"
             ],
             "cta": {
-              "label": "Get Webinar Forge",
-              "href": "#"
+              "label": "Text To Buy",
+              "href": "sms:+18054533586"
             }
           }
         ],
-        "footnote": "[PLACEHOLDER — the link above is not a checkout. Replace the # with your own Stripe, PayPal or checkout URL, and set your refund terms, before this page goes live.]"
-      },
-      {
-        "type": "testimonials",
-        "headline": "What people are saying",
-        "items": [
-          {
-            "quote": "[PLACEHOLDER — replace with a real quote from a real person who has used the tool, in their own words, with their permission.]",
-            "name": "[Name]",
-            "role": "[What they do]"
-          },
-          {
-            "quote": "[PLACEHOLDER — a second real quote goes here. Specifics beat praise: what they built, how long it took, what it replaced.]",
-            "name": "[Name]",
-            "role": "[What they do]"
-          },
-          {
-            "quote": "[PLACEHOLDER — a third real quote goes here. If you do not have three yet, delete the extras rather than inventing them.]",
-            "name": "[Name]",
-            "role": "[What they do]"
-          }
-        ],
-        "disclaimer": "[PLACEHOLDER SECTION — nothing above is a real testimonial. Replace all three with genuine quotes from people who have used Webinar Forge, with their permission, or delete this entire section from project.json before publishing.]"
+        "footnote": "Text (805) 453-3586 to buy. One-time payment \u2014 no subscription."
       },
       {
         "type": "faq",
@@ -765,7 +743,7 @@
         "items": [
           {
             "q": "Do I need a graphics card?",
-            "a": "No. The engine auto-detects CUDA or Apple silicon and falls back to your CPU. CPU works — it is just slower, so start with a short deck before committing to a 40-slide one."
+            "a": "No. The engine auto-detects CUDA or Apple silicon and falls back to your CPU. CPU works \u2014 it is just slower, so start with a short deck before committing to a 40-slide one."
           },
           {
             "q": "Does my voice sample leave my machine?",
@@ -797,7 +775,7 @@
           },
           {
             "q": "How long does a build take?",
-            "a": "Voice synthesis dominates. For a 40-slide deck: roughly 5–15 minutes on a CUDA GPU, 15–40 on Apple silicon, hours on CPU alone. Video render is 3–15 minutes depending on hardware."
+            "a": "Voice synthesis dominates. For a 40-slide deck: roughly 5\u201315 minutes on a CUDA GPU, 15\u201340 on Apple silicon, hours on CPU alone. Video render is 3\u201315 minutes depending on hardware."
           }
         ]
       },
@@ -807,15 +785,16 @@
         "headline": "You have [ACCENT]already seen it work[/ACCENT]",
         "sub": "The video at the top of this page, the voice reading it, and this page itself all came out of one config file and one command. Nothing here is a mockup.",
         "cta": {
-          "label": "Get Webinar Forge",
-          "href": "#"
+          "label": "Text To Buy",
+          "href": "sms:+18054533586"
         },
-        "footnote": "[PLACEHOLDER — checkout link and refund terms go here.]"
+        "footnote": "Text (805) 453-3586 to buy. One-time payment \u2014 no subscription.",
+        "label": "Text To Buy",
+        "href": "sms:+18054533586"
       }
     ],
     "footer": [
-      "Webinar Forge is a self-hosted tool. It does not process payments, send email, or terminate HTTPS — see the FAQ above.",
-      "[PLACEHOLDER — before going live: set your price, replace every # link with your checkout URL, replace the testimonials with real ones, and add your own refund terms and legal footer here.]"
+      "Webinar Forge is a self-hosted tool. It does not process payments, send email, or terminate HTTPS."
     ]
   }
 }
