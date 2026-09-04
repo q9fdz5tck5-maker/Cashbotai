@@ -117,7 +117,73 @@ Shipped and tested, inert until you supply the content:
   guarantee" into "an satisfaction policy". Any guarantee you add would have
   been *spoken* as broken English. That is repaired.
 
-## 5. The honest part
+## 5. Decisions taken, and what they change
+
+| question | decision | status |
+| --- | --- | --- |
+| Checkout | Stripe and PayPal are not available | Needs a merchant-of-record — see below |
+| Price | Hold $297, add a done-for-you upsell | Needs a DFY price to wire in |
+| Guarantee | 30-day full refund | **Shipped** — landing section + slide 37 narration |
+| Deadline | No real deadline | **Correctly skipped** — no clock without something at the end of it |
+
+### Checkout without Stripe or PayPal
+
+The thing that unblocks this is a **merchant of record**. An MoR platform is
+the legal seller of your product: it owns the transaction, collects and remits
+tax, and absorbs fraud and compliance liability. Practically, that means **you
+do not need your own Stripe or PayPal merchant account** — theirs is the
+account being used.
+
+Established options for a $297 digital product: **Paddle** (largest, software-
+focused), **Lemon Squeezy** (creator/indie-focused, no monthly fee),
+**FastSpring** (digital goods, 200+ regions), **2Checkout** (190+ countries),
+**Freemius**, **Dodo Payments**.
+
+Caveat worth stating plainly: an MoR still runs its own approval. If Stripe and
+PayPal declined for a reason that follows you — a prohibited category, a
+chargeback history — an MoR may decline too. If the reason was jurisdictional,
+account-level, or simply not having a merchant account, an MoR solves it
+outright.
+
+CTAs in this tool are already plain links, so switching is a one-field change
+per CTA once a URL exists. Nothing needs to be rebuilt.
+
+### The done-for-you upsell — and why it should be priced HIGH
+
+DFY does not scale like software; it is capacity-limited. That inverts the
+usual pricing instinct. Assuming 12 hours to deliver one done-for-you webinar:
+
+| DFY price | attach | AOV | buyers for $1M | visitors | DFY units | delivery hours |
+| ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| $997 | 12% | $417 | 2,401 | 400,026 | 289 | 3,457 |
+| $997 | 8% | $377 | 2,655 | 442,369 | 213 | 2,549 |
+| $1,997 | 8% | $457 | 2,190 | 364,889 | 176 | 2,102 |
+| **$2,997** | **8%** | **$537** | **1,864** | **310,506** | **150** | **1,789** |
+| $2,997 | 12% | $657 | 1,523 | 253,818 | 183 | 2,193 |
+
+Compare row 1 and row 4. **$997 at a 12% attach is nearly double the delivery
+work of $2,997 at 8%, for a smaller revenue contribution.** With a
+capacity-limited offer, a higher price is strictly better on every axis that
+matters — fewer clients, more revenue per client, less of your calendar sold.
+
+3,457 hours is more than a full-time year of delivery. 1,789 is still a lot.
+Price DFY high enough that the delivery load is survivable, or cap the number
+of slots.
+
+### The one place SMS is genuinely the right tool
+
+This is the useful consequence of the checkout constraint.
+
+- **$297 core:** ~3,368 text conversations. SMS is a ceiling here. Needs an MoR
+  checkout.
+- **$2,997 DFY:** ~150–220 conversations *a year* — three or four a week. High
+  ticket sells better by conversation than by button anyway.
+
+So the honest architecture is not "replace SMS." It is **automate the $297 and
+keep SMS for the done-for-you**, where a human conversation is an asset rather
+than a bottleneck.
+
+## 6. The honest part
 
 I can build the machine. I cannot promise the number.
 
