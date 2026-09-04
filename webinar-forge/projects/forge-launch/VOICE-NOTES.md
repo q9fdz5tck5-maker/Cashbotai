@@ -55,23 +55,69 @@ a CUDA GPU.
 
 ---
 
-## Lever B — the pronunciation dictionary (surgical, free)
+## Lever B — the pronunciation dictionary — measured, and there is nothing to do
 
-`cfg.tts.pronunciation` maps a string to a phonetic respelling. This is the
-right tool for the two or three specific words where the accent lands hardest,
-*after* you have heard a render.
+`cfg.tts.pronunciation` maps a string to a phonetic respelling. It is the right
+tool for the two or three specific words where delivery pulls a word far enough
+off standard English that a listener has to work to catch it.
 
-Do this **after** a test build, not before — respelling a word you have not
-actually heard go wrong usually makes it worse. Listen, note the exact words,
-then add entries like:
+**This was measured against the finished render rather than guessed at.** All
+39 slides were transcribed with a general-purpose speech recogniser
+(faster-whisper `small.en`) and the transcript diffed word by word against the
+exact string that was sent to the voice engine. The logic: where a clone's
+delivery distorts a word, a recogniser trained on general English tends to
+mishear that word, and a word misheard *repeatedly* is a real problem worth
+respelling.
 
-```json
-"oil":   "oyl",
-"about": "uh bout"
+Result across 4,854 spoken words:
+
+| category | count | is it a sound problem? |
+| --- | --- | --- |
+| Numbers written as digits (`"ninety seven"` → `97`) | ~30 | No — heard correctly, written differently |
+| British spelling (`realised`, `colours`, `favour`) | 3 | No — identical sound |
+| Compounding (`sign ups` → `signups`, `any time` → `anytime`) | 4 | No — identical sound |
+| Contractions (`I am` → `I'm`) | 3 | No |
+| Genuine sound-level mishearings | ~10 | Yes, but see below |
+
+That last row is **10 instances in 4,854 words — 0.2%** — and **not one word
+was misheard more than once**. `one`→`worn`, `sat`→`set`, `bills`→`builds`,
+`close`→`clothes`: each appears exactly once, in one context, and each is the
+kind of confusion a recogniser makes on clean human speech too.
+
+There is no word where delivery systematically breaks down, so **there is
+nothing to respell** and the dictionary was left alone.
+
+Two useful side findings:
+
+- The three entries still exercised by this script all verified as *working*:
+  `CUDA`→"koo duh" came back as "cuda", `TLS`→"t l s" as "tls", and the `nginx`
+  →"engine ex" entry as "engine x". The dictionary is earning its place.
+- Read honestly, this measures **intelligibility, not accent**. A recogniser is
+  built to be robust to accents, so a clean transcript does not prove the accent
+  is gone — it proves the accent is not costing you comprehension on any word.
+  Which is precisely the thing this lever can fix. So if you want the accent
+  itself reduced, **Lever A is the only thing that will move it.**
+
+To redo this measurement after re-recording the sample:
+
+```bash
+python3 -m venv /tmp/asrvenv && /tmp/asrvenv/bin/pip install faster-whisper
+# then transcribe output/forge-launch/audio/*.mp3 and diff against the
+# narration run through src/textnorm.js, which is what the engine actually sees
 ```
 
-**Cost:** only the slides containing that word re-synthesize. This is the cheap
-lever, which is why it comes after the sample and before the parameters.
+**Cost if you do add an entry:** only the slides containing that word
+re-synthesize. This is the cheap lever, which is why it comes after the sample
+and before the parameters.
+
+### One unrelated thing the transcript surfaced
+
+The script uses British spellings — `realised`, `colours`, `favour` — against a
+US phone number and dollar pricing. They sound identical, so this matters only
+for the words printed **on screen**, never for narration. Changing a spelling
+inside a `narration` field would re-synthesize that slide for zero audible
+difference, so don't. Left as-is: it is pre-existing house style, and it is
+your call, not a defect.
 
 ---
 
