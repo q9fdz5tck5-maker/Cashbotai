@@ -1,0 +1,48 @@
+{
+  "_comment": [
+    "Your server inventory. Copy to fleet.servers.json and fill in.",
+    "The hub reads this to answer 'which box could absorb this queue?'.",
+    "Credentials are OPTIONAL and only used by tooling you run yourself --",
+    "the fleet never needs SSH to dispatch work, because workers dial out.",
+    "Keep the real file out of git: it is already in .gitignore."
+  ],
+  "servers": [
+    {
+      "name": "audio-01",
+      "host": "203.0.113.10",
+      "roles": ["audio"],
+      "slots": 2,
+      "provider": "solidseovps",
+      "notes": "4 vCPU / 8 GB - piper voices installed at /opt/voices",
+      "ssh": {
+        "user": "root",
+        "port": 22,
+        "key_file": "~/.ssh/solidseo_id_ed25519"
+      }
+    },
+    {
+      "name": "video-01",
+      "host": "203.0.113.11",
+      "roles": ["video"],
+      "slots": 1,
+      "provider": "solidseovps",
+      "notes": "8 vCPU - ffmpeg render box, 1 slot so renders get the whole CPU"
+    },
+    {
+      "name": "webinar-01",
+      "host": "203.0.113.12",
+      "roles": ["webinar", "general"],
+      "slots": 2,
+      "provider": "solidseovps",
+      "notes": "Hosts the webinar builder app and runs composite jobs"
+    },
+    {
+      "name": "workshop-desktop",
+      "host": "192.168.1.50",
+      "roles": ["video"],
+      "slots": 1,
+      "provider": "local",
+      "notes": "Machine on the home LAN - reaches the hub outbound, no port forwarding"
+    }
+  ]
+}
