@@ -20,6 +20,7 @@ the measured audio length, which only exists after the speech is generated.
 import os
 
 from . import render as render_handler
+from . import slides as slide_maker
 from . import tts as tts_handler
 from .common import HandlerError, require_binary, run_command, safe_join
 
@@ -35,6 +36,8 @@ def run(payload, ctx):
     title = payload.get("title") or "webinar"
     engine = payload.get("engine", "piper")
     voice = payload.get("voice")
+    resolution = payload.get("resolution", "1920x1080")
+    theme = payload.get("theme", "dark")
 
     slides = []
     audio_parts = []
@@ -44,7 +47,10 @@ def run(payload, ctx):
         narration = (section.get("narration") or "").strip()
         image = section.get("image")
         if not image:
-            raise HandlerError("section %d has no 'image'" % index)
+            # No picture supplied: draw one from the section's own words. This
+            # is what lets a webinar be written as prose rather than assembled
+            # from slides someone made in another program first.
+            image = _draw_slide(section, index, ctx, resolution, theme)
 
         if narration:
             ctx.log("section %d/%d: generating narration" % (index + 1, len(sections)))
@@ -80,7 +86,7 @@ def run(payload, ctx):
         "mode": "slideshow",
         "slides": slides,
         "audio": combined_audio,
-        "resolution": payload.get("resolution", "1920x1080"),
+        "resolution": resolution,
         "fps": payload.get("fps", 30),
         "output": "%s.mp4" % _slug(title),
         "timeout": payload.get("timeout", 7200),
@@ -93,6 +99,28 @@ def run(payload, ctx):
         "narration_seconds": round(total_narration, 2),
     })
     return result
+
+
+def _draw_slide(section, index, ctx, resolution, theme):
+    """Render a section's words into a slide image and return its path.
+
+    Two shapes are accepted. ``kind: "diagram"`` lays out labelled boxes joined
+    by arrows -- the only way to show one thing feeding another. Anything else
+    is a title/subtitle/bullets slide.
+    """
+    output = safe_join(ctx.workdir, "slide_%03d.png" % index)
+    theme = section.get("theme") or theme
+    if (section.get("kind") or "").lower() == "diagram":
+        return slide_maker.render_diagram(
+            section, output, ctx, resolution=resolution, theme=theme)
+    if not any(section.get(k) for k in ("title", "subtitle", "bullets")):
+        raise HandlerError(
+            "section %d has no 'image' and no words to draw one from. Give it "
+            "an image path, or a title/bullets, or kind='diagram' with boxes."
+            % index
+        )
+    return slide_maker.render_slide(
+        section, output, ctx, resolution=resolution, theme=theme)
 
 
 class _SilentArtifacts:

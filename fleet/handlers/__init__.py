@@ -9,6 +9,7 @@ with the message attached.
 
 from .render import run as render_run
 from .shell import run as shell_run
+from .slides import run as deck_run
 from .tts import run as tts_run
 from .webinar import run as webinar_run
 
@@ -16,6 +17,7 @@ from .webinar import run as webinar_run
 REGISTRY = {
     "tts": tts_run,
     "render": render_run,
+    "deck": deck_run,
     "webinar": webinar_run,
     "shell": shell_run,
 }

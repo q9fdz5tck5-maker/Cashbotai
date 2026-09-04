@@ -5,6 +5,7 @@ Run from the repository root:
     python3 -m unittest discover -s fleet/tests -v
 """
 
+import json
 import os
 import shutil
 import sys
@@ -19,6 +20,7 @@ sys.path.insert(0, REPO_ROOT)
 sys.path.insert(0, FLEET_DIR)
 
 from fleet.drivers import load as load_driver          # noqa: E402
+from fleet.handlers.common import HandlerError        # noqa: E402
 from fleet.fleetlib import models                      # noqa: E402
 from fleet.fleetlib.autoscale import Autoscaler        # noqa: E402
 from fleet.fleetlib.models import Job                  # noqa: E402
@@ -376,3 +378,120 @@ class TestBinaryArtifactRoundTrip(unittest.TestCase):
                          "leftover request body corrupted a later request")
         self.assertEqual(statuses[0], 200, "first claim should get the job")
         self.assertTrue(all(s in (200, 204) for s in statuses), statuses)
+
+
+class TestSlideGeneration(unittest.TestCase):
+    """The webinar generator has to turn words into pictures.
+
+    These assert the wiring and the guard rails rather than the pixels: the
+    suite is meant to run on a checkout with no ffmpeg and no fixtures, so
+    anything that would shell out is checked for the error it raises instead.
+    """
+
+    def test_deck_kind_is_registered(self):
+        # A handler that exists but is not in the registry is invisible to
+        # every agent, which is exactly what happened before this test.
+        from fleet import handlers
+        self.assertIn("deck", handlers.REGISTRY)
+        self.assertTrue(callable(handlers.get("deck")))
+
+    def test_unknown_kind_lists_what_is_available(self):
+        from fleet import handlers
+        with self.assertRaises(KeyError) as caught:
+            handlers.get("nope")
+        self.assertIn("deck", str(caught.exception))
+
+    def test_theme_lookup_rejects_unknown_names(self):
+        from fleet.handlers import slides
+        self.assertEqual(slides.theme_for("dark"), slides.THEMES["dark"])
+        with self.assertRaises(HandlerError):
+            slides.theme_for("chartreuse")
+
+    def test_arrow_glyphs_can_fall_back_to_ascii(self):
+        # A font without the geometric-shapes block renders a tofu box rather
+        # than failing, so the ASCII set has to stay reachable.
+        from fleet.handlers import slides
+        self.assertEqual(slides.arrow_glyphs()["right"], "▶")
+        self.assertEqual(slides.arrow_glyphs(ascii_only=True)["right"], ">")
+
+    def test_slide_with_no_words_is_refused(self):
+        from fleet.handlers import slides
+        with self.assertRaises(HandlerError) as caught:
+            slides.render_slide({}, "/tmp/x.png", _FakeCtx("/tmp"))
+        self.assertIn("title", str(caught.exception))
+
+    def test_diagram_with_nothing_to_draw_is_refused(self):
+        from fleet.handlers import slides
+        with self.assertRaises(HandlerError):
+            slides.render_diagram({}, "/tmp/x.png", _FakeCtx("/tmp"))
+
+    def test_diagram_refuses_more_boxes_than_read_at_a_glance(self):
+        from fleet.handlers import slides
+        spec = {"title": "too many", "boxes": [{"label": str(i)} for i in range(6)]}
+        with self.assertRaises(HandlerError) as caught:
+            slides.render_diagram(spec, "/tmp/x.png", _FakeCtx("/tmp"))
+        self.assertIn("5 boxes", str(caught.exception))
+
+    def test_webinar_section_needs_either_a_picture_or_words(self):
+        # The old handler demanded an 'image'; a section carrying only prose
+        # should now be drawable, and only an empty section should fail.
+        from fleet.handlers import webinar
+        with self.assertRaises(HandlerError) as caught:
+            webinar._draw_slide({}, 0, _FakeCtx("/tmp"), "1920x1080", "dark")
+        message = str(caught.exception)
+        self.assertIn("no 'image'", message)
+        self.assertIn("bullets", message)
+
+
+class TestShippedWebinarScript(unittest.TestCase):
+    """The tutorial script is a deliverable, so it is checked like one."""
+
+    SCRIPT = os.path.join(os.path.dirname(os.path.dirname(
+        os.path.abspath(__file__))), "webinars", "what-is-this.json")
+
+    def setUp(self):
+        if not os.path.exists(self.SCRIPT):
+            self.skipTest("shipped webinar script not present")
+        with open(self.SCRIPT, "r", encoding="utf-8") as handle:
+            self.script = json.load(handle)
+
+    def test_every_section_is_renderable_and_narrated(self):
+        for index, section in enumerate(self.script["sections"]):
+            self.assertTrue(
+                section.get("image") or section.get("title")
+                or section.get("bullets") or section.get("boxes")
+                or section.get("outputs"),
+                "section %d has nothing to draw" % index)
+            self.assertTrue((section.get("narration") or "").strip(),
+                            "section %d has no narration" % index)
+
+    def test_affiliate_link_is_present_and_exact(self):
+        # Typo'd once, this credits nobody. Assert the whole string.
+        blob = json.dumps(self.script)
+        self.assertIn("https://my.solidvps.com/aff.php?aff=579", blob)
+
+    def test_stays_in_plain_words(self):
+        # The whole point of this video is that it uses no jargon.
+        spoken = " ".join((s.get("narration") or "")
+                          for s in self.script["sections"]).lower()
+        for word in ("ssh", "daemon", "systemd", "port forward", "payload",
+                     "api", "token", "sudo"):
+            self.assertNotIn(word, spoken,
+                             "narration says %r, which a beginner will not know"
+                             % word)
+
+
+class _FakeCtx:
+    """Just enough job context to exercise a handler's guard rails."""
+
+    def __init__(self, workdir):
+        self.workdir = workdir
+
+    def log(self, message):
+        pass
+
+    def fetch(self, spec):
+        return spec
+
+    def artifact(self, path):
+        return {"local": path}

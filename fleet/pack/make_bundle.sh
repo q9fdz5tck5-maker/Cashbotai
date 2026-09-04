@@ -44,9 +44,19 @@ mkdir -p "$STAGE/$BUNDLE"
 
 echo "==> Staging fleet source"
 for item in fleet_hub.py fleet_agent.py fleet.py fleetlib handlers drivers \
-            deploy pack tests __init__.py README.md fleet.servers.example.json; do
+            deploy pack tests webinars __init__.py fleet.servers.example.json; do
     [[ -e "$FLEET_DIR/$item" ]] && cp -r "$FLEET_DIR/$item" "$STAGE/$BUNDLE/"
 done
+
+# The two files a person actually opens go at the top level, not inside pack/.
+cp "$FLEET_DIR/pack/setup.sh" "$STAGE/$BUNDLE/setup.sh"
+cp "$FLEET_DIR/pack/START-HERE.txt" "$STAGE/$BUNDLE/START-HERE.txt"
+chmod +x "$STAGE/$BUNDLE/setup.sh"
+# README.md is written for someone who already knows the words. Keep it, but
+# not as the thing a newcomer opens first.
+[[ -f "$FLEET_DIR/README.md" ]] && cp "$FLEET_DIR/README.md" "$STAGE/$BUNDLE/TECHNICAL.md"
+# Rendered videos are output, not source; they would dwarf the archive.
+rm -rf "$STAGE/$BUNDLE/webinars/out"
 
 # Never ship caches, state, or someone's live credentials.
 find "$STAGE/$BUNDLE" -name '__pycache__' -type d -prune -exec rm -rf {} + 2>/dev/null || true
@@ -59,53 +69,46 @@ if [[ -n "$INCLUDE_INVENTORY" && -f "$FLEET_DIR/../fleet.servers.json" ]]; then
 fi
 
 cat > "$STAGE/$BUNDLE/INSTALL.md" <<'EOF'
-# Install your own fleet
+# Install
 
-You need one machine that other machines can reach (the **hub**), and any
-number of worker machines. Workers can be VPS boxes, spare desktops, or
-anything on your home network -- they only make outbound connections, so they
-need no port forwarding and no public IP.
+Open **START-HERE.txt** first. It is one page and it is the whole thing.
 
-## 1. The hub
+The short version:
 
-On a server with a public DNS name:
+1. On the computer that the others will reach, run `sudo bash setup.sh`
+   and choose 1.
+2. It prints one line. Paste that line on every other computer.
 
-    sudo bash deploy/bootstrap_hub.sh --domain hub.yourdomain.com
-
-It prints three values. Save them; they are shown once.
-
-Port 443 is not a stylistic choice. If you intend to drive this from the
-Claude app, the hub must answer on 443 -- it is the only outbound port that
-environment permits.
-
-No public server? Run the hub on your LAN and use `--no-tls`, then drive it
-from a machine on the same network.
-
-## 2. Each worker
-
-    sudo bash deploy/bootstrap_agent.sh \
-        --hub https://hub.yourdomain.com \
-        --enroll-token <the enroll token> \
-        --name video-01 --roles video --slots 2
-
-Give each box the role matching its job: `audio`, `video`, `webinar`, or your
-own names. A box only ever receives work for roles it declares.
-
-## 3. Drive it
-
-    export FLEET_HUB=https://hub.yourdomain.com
-    export FLEET_TOKEN=<the admin token>
-
-    python3 fleet.py preflight     # confirms reachability, names the problem
-    python3 fleet.py status
-    python3 fleet.py webinar my-script.json
-
-## Adding your own work types
-
-`handlers/` holds one module per job kind. Write a function
-`run(payload, ctx) -> dict`, register it in `handlers/__init__.py`, and every
-worker that picks up the bundle can run it.
+That is all of it. `TECHNICAL.md` explains how it works underneath and how to
+add your own kinds of work.
 EOF
+
+# ---------------------------------------------------------------------------
+# Refuse to ship secrets.
+#
+# The bundle is meant to be handed to other people, so "it carries no tokens"
+# has to be something the build enforces rather than something we remember to
+# check. A leaked admin token would let whoever received the archive queue work
+# on the sender's machines.
+echo "==> Checking the bundle carries no secrets"
+LEAKS=""
+if grep -rIlE 'FLEET_(ADMIN|ENROLL)_TOKEN=.+' "$STAGE/$BUNDLE" 2>/dev/null | grep -v '\.sh$' | grep -q .; then
+    LEAKS="$LEAKS\n  - a file assigns FLEET_ADMIN_TOKEN or FLEET_ENROLL_TOKEN a value"
+fi
+if [[ -z "$INCLUDE_INVENTORY" ]] && [[ -e "$STAGE/$BUNDLE/fleet.servers.json" ]]; then
+    LEAKS="$LEAKS\n  - fleet.servers.json (your server list) is present"
+fi
+for stray in fleet-agent.json fleet.db MY-FLEET-DETAILS.txt; do
+    if find "$STAGE/$BUNDLE" -name "$stray" -print -quit 2>/dev/null | grep -q .; then
+        LEAKS="$LEAKS\n  - $stray is present"
+    fi
+done
+if [[ -n "$LEAKS" ]]; then
+    echo "ERROR: refusing to build. This bundle would ship secrets:" >&2
+    printf "$LEAKS\n" >&2
+    exit 1
+fi
+echo "    clean"
 
 echo "==> Building archives"
 mkdir -p "$OUT_DIR"

@@ -109,6 +109,7 @@ if you actually want one.
 |---|---|---|
 | `tts` | voice from text (piper, espeak, or any REST voice API) | piper or espeak-ng |
 | `render` | slideshow / concat / transcode / raw ffmpeg | ffmpeg |
+| `deck` | slide images from text -- titles, bullets, box diagrams | ffmpeg + DejaVu fonts |
 | `webinar` | narrate a script *and* cut it to slides, one job | both |
 | `shell` | a command on a worker | opt-in per box |
 
@@ -133,6 +134,33 @@ holding the admin token can run code on every box that enables it.
 Omit `duration` and each slide is held for exactly as long as its narration
 runs. That is why narration and render are one job rather than two: the render
 needs the measured audio length, which only exists once the speech is made.
+
+You do not have to make the slides first. A section with no `image` is drawn
+from its own words -- give it a `title`, a `subtitle` and `bullets`, or set
+`kind` to `diagram` for labelled boxes joined by arrows:
+
+```json
+{
+  "kind": "diagram",
+  "title": "Then it feeds itself",
+  "boxes": [
+    {"label": "Website", "note": "gets made"},
+    {"label": "Video", "note": "about the website"}
+  ],
+  "arrows": "loop",
+  "loop_label": "what comes out becomes what goes in next",
+  "narration": "What comes out of one becomes what goes into the next."
+}
+```
+
+Slides are drawn with ffmpeg's `drawbox` and `drawtext` and nothing else, so a
+worker still needs no Pillow, no headless browser, and no fonts beyond
+`fonts-dejavu-core`. Arrowheads are the geometric-shapes glyphs; pass
+`ascii_arrows` on a box whose font lacks them, since a missing glyph renders as
+an empty box rather than failing.
+
+`webinars/what-is-this.json` is the tutorial script this repository ships. The
+video explaining the fleet is produced by the fleet, from that file.
 
 ## Scaling
 
@@ -163,11 +191,23 @@ Write your own by subclassing `CapacityDriver` — two methods.
 bash pack/make_bundle.sh --out dist/
 ```
 
-Produces a ~40 KB archive with the hub, the agents, the installers and an
-`INSTALL.md`. It carries no tokens and, unless you pass
-`--include-inventory`, no server list. Whoever receives it runs one script and
-has their own private fleet on their own machines — VPS boxes, spare desktops,
-anything on their LAN.
+Produces a ~64 KB archive. At its root sit the only two files the recipient
+opens: `START-HERE.txt`, one page in plain words, and `setup.sh`.
+
+```bash
+sudo bash setup.sh          # asks: main computer, or helper?
+```
+
+It asks two questions, runs the right installer, and — on the main box —
+saves `MY-FLEET-DETAILS.txt` and prints the ready-to-paste line for every
+helper, with the token already filled in. Nobody has to know what a hub, a role
+or a service is in order to end up with a working fleet.
+
+The build **refuses to produce an archive that carries secrets**: it greps the
+staged tree for assigned tokens, a `fleet.servers.json`, and stray agent state,
+and fails rather than shipping them. "No tokens in the bundle" is enforced by
+the build, not remembered. Pass `--include-inventory` to include your server
+list on purpose.
 
 ## Adding your own work
 
@@ -209,7 +249,8 @@ when its lease expires.
 python3 -m unittest discover -s fleet/tests -t . -v
 ```
 
-33 tests, no network and no fixtures required. They cover role isolation, the
+44 tests, no network and no fixtures required. They cover role isolation, the
 concurrent-claim race (twelve threads against one queue, asserting no job is
 ever handed out twice), lease reclamation, retry semantics, autoscaler maths,
-and a binary artifact round trip through a live hub using all 256 byte values.
+a binary artifact round trip through a live hub using all 256 byte values, and
+the slide-generation guard rails.

@@ -1,0 +1,100 @@
+{
+  "title": "What this is",
+  "engine": "piper",
+  "resolution": "1920x1080",
+  "theme": "dark",
+  "sections": [
+    {
+      "title": "Your computers, working for you",
+      "subtitle": "cash.bot",
+      "narration": "Let me show you what this is, in about two minutes, with no technical words."
+    },
+    {
+      "title": "Right now, you have one computer",
+      "bullets": [
+        "It does one thing at a time.",
+        "When it is busy, you wait.",
+        "When you close the lid, it stops."
+      ],
+      "narration": "Right now you probably have one computer. It does one thing at a time. When it is busy, you wait. And when you close the lid, everything stops."
+    },
+    {
+      "kind": "diagram",
+      "title": "Now picture four computers instead",
+      "boxes": [
+        {"label": "Email", "note": "writes and sends"},
+        {"label": "Video", "note": "makes videos"},
+        {"label": "Pictures", "note": "draws images"},
+        {"label": "Voice", "note": "speaks out loud"}
+      ],
+      "caption": "Each one runs a free AI that is very good at exactly one job.",
+      "narration": "Now picture four computers instead. Each one runs a free A I that is very good at exactly one job. One writes and sends your email. One makes videos. One draws pictures. One speaks out loud."
+    },
+    {
+      "kind": "diagram",
+      "title": "You just talk to it",
+      "person": true,
+      "boxes": [
+        {"label": "You say what you want", "note": "in plain words, like a text message"}
+      ],
+      "caption": "No buttons to learn. No setup screens. You type what you want.",
+      "narration": "You do not have to learn any of it. You just say what you want, in plain words, like sending a text message."
+    },
+    {
+      "kind": "diagram",
+      "title": "And out comes the work",
+      "outputs": [
+        "Your new website",
+        "A finished video, with a voice reading it",
+        "Pictures to go with it",
+        "Emails going out to your list"
+      ],
+      "caption": "The computers do the work. You look at the result.",
+      "narration": "And out comes the work. Your new website. A finished video with a voice reading it. Pictures to go with it. Emails going out to your list. The computers do the work. You just look at the result."
+    },
+    {
+      "kind": "diagram",
+      "title": "Then it feeds itself",
+      "boxes": [
+        {"label": "Website", "note": "gets made"},
+        {"label": "Video", "note": "about the website"},
+        {"label": "Emails", "note": "sharing the video"}
+      ],
+      "arrows": "loop",
+      "loop_label": "what comes out becomes what goes in next",
+      "narration": "Then the good part. What comes out of one becomes what goes into the next. The website gets made. A video gets made about the website. Emails go out sharing the video. It keeps going around."
+    },
+    {
+      "title": "Why this is easy to set up",
+      "bullets": [
+        "The computers call out to you. Nothing calls in to them.",
+        "So there is nothing to open up on your internet box at home.",
+        "An old desktop in your closet works. So does a rented computer.",
+        "If one restarts, it joins back by itself."
+      ],
+      "narration": "Here is why it is easy. The computers reach out to you. Nothing reaches in to them. So there is nothing to open up or change on your internet box at home. An old desktop sitting in your closet works fine. So does a rented computer. And if one of them restarts, it joins back by itself."
+    },
+    {
+      "title": "One more thing",
+      "subtitle": "This video was made by the thing it just described.",
+      "bullets": [
+        "The words were read out loud by one of the computers.",
+        "The slides were drawn by one of the computers.",
+        "Nobody opened a video editor."
+      ],
+      "narration": "One more thing. This video was made by the thing it just described. The words you are hearing were read out loud by one of the computers. The slides you are looking at were drawn by one of the computers. Nobody opened a video editor."
+    },
+    {
+      "title": "Want to try it",
+      "bullets": [
+        "You need one computer other computers can reach.",
+        "Then add as many helpers as you like.",
+        "Need computers? Use the link below.",
+        "https://my.solidvps.com/aff.php?aff=579"
+      ],
+      "subtitle": "cash.bot",
+      "duration": 9,
+      "narration": "Want to try it. You need one computer that the others can reach, and then you add as many helpers as you like. If you need computers to run this on, the link on this slide is where I get mine."
+    }
+  ]
+}
