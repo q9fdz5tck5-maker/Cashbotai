@@ -15,7 +15,7 @@
 const fs = require('fs');
 const os = require('os');
 const path = require('path');
-const { execFileSync } = require('child_process');
+const { execFileSync, spawnSync } = require('child_process');
 const config = require('../src/config');
 const { workDirs } = require('../src/pipeline');
 const { requireAll } = require('../src/paths');
@@ -25,14 +25,16 @@ const { requireAll } = require('../src/paths');
 const MIN_PSNR_DB = 30;
 
 function psnr(ffmpeg, a, b) {
-  const out = execFileSync(ffmpeg, [
+  const result = spawnSync(ffmpeg, [
     '-hide_banner', '-nostats',
     '-i', a, '-i', b,
     '-filter_complex', '[0:v][1:v]psnr',
     '-f', 'null', '-',
-  ], { stdio: ['ignore', 'ignore', 'pipe'] }).toString();
+  ], { stdio: ['ignore', 'pipe', 'pipe'] });
+
+  const out = result.stderr ? result.stderr.toString() : result.stdout ? result.stdout.toString() : '';
   const m = out.match(/average:([0-9.]+|inf)/);
-  if (!m) throw new Error(`could not read PSNR from ffmpeg output:\n${out.slice(-400)}`);
+  if (!m) throw new Error(`could not read PSNR from ffmpeg:\n${out.slice(-400)}`);
   return m[1] === 'inf' ? Infinity : parseFloat(m[1]);
 }
 
