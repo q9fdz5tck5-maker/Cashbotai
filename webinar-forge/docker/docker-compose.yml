@@ -1,0 +1,47 @@
+# Two services sharing one image: the long-running voice engine, and a
+# one-shot builder you invoke per webinar.
+#
+#   docker compose -f docker/docker-compose.yml up -d engine
+#   docker compose -f docker/docker-compose.yml run --rm build projects/example/project.json
+#
+# Voices, projects and output are bind-mounted, so nothing you care about
+# lives inside the container.
+
+services:
+  engine:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    image: webinar-forge:latest
+    container_name: webinar-forge-engine
+    restart: unless-stopped
+    # Loopback-only by default: the engine has no auth. Change to "5651:5651"
+    # only behind an authenticating reverse proxy.
+    ports:
+      - "127.0.0.1:5651:5651"
+    volumes:
+      - ../engine/voices:/app/engine/voices
+      - engine-data:/app/engine/data
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request;urllib.request.urlopen('http://127.0.0.1:5651/health')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  build:
+    image: webinar-forge:latest
+    depends_on:
+      engine:
+        condition: service_healthy
+    environment:
+      VOICE_ENGINE_URL: http://engine:5651
+      RENDER_CONCURRENCY: "4"
+      TTS_CONCURRENCY: "1"
+    volumes:
+      - ../projects:/app/projects
+      - ../output:/app/output
+    entrypoint: ["node", "bin/webinar-forge", "build"]
+
+volumes:
+  engine-data:

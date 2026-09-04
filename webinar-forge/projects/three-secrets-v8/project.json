@@ -1,0 +1,352 @@
+{
+  "name": "three-secrets-v8",
+  "title": "3 Secrets Inside cash.bot — v8 (Pitch + Live Tutorial)",
+  "brand": {
+    "product": "YOUR PRODUCT",
+    "accent": "#f5c518"
+  },
+  "voice": {
+    "name": "mock",
+    "engine": "chatterbox",
+    "exaggeration": 0.15,
+    "cfgWeight": 0.5
+  },
+  "video": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "padSeconds": 1
+  },
+  "tts": {
+    "applyCompliance": true,
+    "pronunciation": {}
+  },
+  "slides": [
+    {
+      "layout": "stats",
+      "kicker": "THE HOOK",
+      "headline": "119 Working Apps. 60 Days. One Person.",
+      "stats": [
+        {
+          "value": "119",
+          "label": "119"
+        },
+        {
+          "value": "Live",
+          "label": "Live Apps"
+        },
+        {
+          "value": "60",
+          "label": "60"
+        },
+        {
+          "value": "Days",
+          "label": "Days"
+        },
+        {
+          "value": "11",
+          "label": "11"
+        },
+        {
+          "value": "Paying",
+          "label": "Paying"
+        },
+        {
+          "value": "$5,235",
+          "label": "$5,235"
+        },
+        {
+          "value": "Collected",
+          "label": "Collected"
+        }
+      ],
+      "id": "s1",
+      "narration": "Alright. Hundred nineteen working apps. Sixty days. One person. Eleven paying customers. Five thousand two hundred thirty five dollars collected. Real money. Real people. No dev team. No bootcamp. No agency. Every green tile on this dashboard, I shipped it. I'm going to show you the three secrets hiding inside the cash dot bot login box. And by the end, you'll know exactly how one sentence ships software that earns."
+    },
+    {
+      "layout": "title",
+      "kicker": "BEFORE WE START",
+      "headline": "Let Me Call The Shots You Haven't Fired Yet",
+      "sub": "Yeah. Me too. All of that. Let me get it out of the way — then you decide if the next ten minutes are worth it.",
+      "id": "s2",
+      "narration": "You're probably thinking this is another bootcamp pitch. That I'm flipping you into a coaching upsell. That the app is broken. That I'll disappear in six months. That the voice you're hearing right now is fake. Yeah. Me too. All of that. So let me just get it out of the way, and then you decide if the next ten minutes are worth it."
+    },
+    {
+      "layout": "bullets",
+      "kicker": "WHO THIS IS FOR",
+      "headline": "If You've Typed A Google Search, You Qualify.",
+      "bullets": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "id": "s3",
+      "narration": "If you've typed a Google search, you qualify. If you've paid a developer and got forty percent of what you asked for, yeah, I've been there. If you've opened fourteen tabs at eleven PM trying to ship one website, fourteen tabs, stay. If none of that sounds like you, close this. No hard feelings. For everyone else, how would your week change if shipping took sixty seconds?"
+    },
+    {
+      "layout": "title",
+      "kicker": "ORIGIN",
+      "headline": "I'm Chase. Not A Developer. I Paid $8,000 Once — Got 40%.",
+      "sub": "No CS degree. No computer-science background. I paid a guy eight grand once. Got forty percent of what I asked for. It was brutal. So I started over with AI. One app at a time. That's how we got to 119. 4 paying last week. 11 this week. It's moving.",
+      "id": "s4",
+      "narration": "Real quick. I'm Chase. Not a developer. No CS degree. I paid a guy eight thousand dollars once. Got forty percent of what I asked for. It was brutal. So I started over with AI. One app at a time. That's how we got to a hundred nineteen. Four paying last week. Eleven this week. It's moving. It works. And I can hand you the same keys."
+    },
+    {
+      "layout": "title",
+      "kicker": "THE BIG DOMINO",
+      "headline": "One Belief. Everything Else Falls.",
+      "sub": "That's the whole domino. Knock it over, the rest falls. Everything from here defends that one line. Watch.",
+      "id": "s5",
+      "narration": "If I can get you to believe you can ship software that earns money this week by typing one sentence into a box, every other objection disappears. That's the whole domino. Knock it over, and the rest falls. Everything from here on defends that one line. Watch."
+    },
+    {
+      "layout": "title",
+      "kicker": "HERE'S THE WHOLE MAP — FREE",
+      "headline": "6 Tabs. One Login. Four Of Them Are The Secrets.",
+      "sub": "Close this right now and you already know where to look. I'm showing you what's inside anyway — the tabs only matter if you know what they unlock.",
+      "id": "s6",
+      "narration": "Here's the whole map, free. Six tabs. One login. Dashboard, Code, Files, Analytics, Desktop, Community. Four of those six tabs are the three secrets. You could close this video right now and know where to look. I'm going to show you what's inside them anyway, because the tabs only matter if you know what they unlock."
+    },
+    {
+      "layout": "myth",
+      "kicker": "SECRET 1 OF 3",
+      "lie": "\"Shipping a website is a 14-step nightmare.\"",
+      "stamp": "WRONG",
+      "truth": "The truth: shipping is one sentence. Two words. 60 seconds.",
+      "sub": "Sounds like you've paid for hosting, paid for a domain, paid for a deploy tool — and still couldn't get the thing online. Yeah. Me too. They sold you a nightmare. Let me prove the fix.",
+      "id": "s7",
+      "narration": "Secret one. It sounds like you've paid for hosting, paid for a domain, paid for a deploy tool, and still couldn't get the thing online. Yeah. Me too. They sold you a fourteen step nightmare. The truth? Shipping is one sentence. Type two words. Wait sixty seconds. Your site is live. Let me prove it."
+    },
+    {
+      "layout": "title",
+      "kicker": "TWO WORDS. LIVE URL.",
+      "headline": "Watch: cb deploy",
+      "sub": "Real web address. Real HTTPS. Real world. Works on your phone in a coffee shop. No DNS record. No FTP upload. No four-hour Google rabbit hole. That's right — it's that simple.",
+      "id": "s8",
+      "narration": "Watch. I type cb deploy. That's it. Two words. Forty seven seconds later, live. Real web address. Real HTTPS. Real world. You can do this on your phone in a coffee shop. No DNS record. No FTP upload. No four hour Google rabbit hole. Two words. Live URL. That's right, it's that simple. That's secret one."
+    },
+    {
+      "layout": "title",
+      "kicker": "WHAT IT WOULD COST YOU",
+      "headline": "Secret 1: $29/mo Retail",
+      "sub": "Plus your weekends gluing it together. Secret 1 alone is worth the whole app.",
+      "id": "s9",
+      "narration": "Buy those pieces separately. Hosting, domains, deploy orchestration. You're at twenty nine bucks a month. Three hundred forty eight a year. Plus your weekends gluing it together. In here? Two words. Zero extra. Secret one alone is worth the whole app."
+    },
+    {
+      "layout": "myth",
+      "kicker": "SECRET 2 OF 3",
+      "lie": "\"You shipped a site and had no idea if anyone visited.\"",
+      "stamp": "WRONG",
+      "truth": "The truth: tracking is already on. You didn't paste a thing.",
+      "sub": "Seems like tracking setup felt like a whole second job. Yeah, it was. When you ship with cb deploy, the tracking is already on. It already knows it's yours. And it's counting.",
+      "id": "s10",
+      "narration": "Secret two. It seems like you shipped a site once and had no idea if anyone visited. That tracking setup felt like a whole second job. Yeah, it was. The truth? When you ship with cb deploy, the tracking is already on. You didn't paste a thing. It already knows it's yours. And it's counting."
+    },
+    {
+      "layout": "title",
+      "kicker": "THE ANALYTICS TAB",
+      "headline": "Every Site. One Dropdown. Real-Time.",
+      "sub": "How would it feel to see your first live visitor?",
+      "id": "s11",
+      "narration": "This is the analytics tab. Every site you've ever shipped, in one dropdown. Pick a site. See visitors in real time. Per site, all sites, today, this week, this month. Zero setup. You didn't paste a tracking code. You didn't sign up for a tool. You shipped, the numbers started appearing. How would it feel to see your first live visitor?"
+    },
+    {
+      "layout": "title",
+      "kicker": "WHAT IT WOULD COST YOU",
+      "headline": "Secret 2: $49/mo Retail",
+      "sub": "And none of those tools talk to each other. That's Secret 2.",
+      "id": "s12",
+      "narration": "Stack it. Plausible per site plus Mixpanel plus the setup hours, forty nine a month. Five eighty eight a year. And none of those tools talk to each other. In here, it's a tab. It's already on. That's secret two."
+    },
+    {
+      "layout": "myth",
+      "kicker": "SECRET 3 OF 3",
+      "lie": "\"You need a $3,000 laptop. Or a team. Or a bootcamp.\"",
+      "stamp": "WRONG",
+      "truth": "The truth: you need a browser and a tribe. Both already inside.",
+      "sub": "Desktop tab = real Linux machine in the browser. Community tab = every other builder in here. You're not alone at 11pm anymore.",
+      "id": "s13",
+      "narration": "Secret three. It sounds like you think you need a three thousand dollar laptop. Or a team. Or a boot camp. None of that. The truth? You need a browser and a tribe. Both are already inside. The desktop tab gives you a real Linux machine in the browser. The community tab puts you next to every other builder in here."
+    },
+    {
+      "layout": "title",
+      "kicker": "DESKTOP + COMMUNITY",
+      "headline": "Real Ubuntu. Real People. One Tab Each.",
+      "sub": "That's right. You're in a room full of builders.",
+      "id": "s14",
+      "narration": "Here's a real Ubuntu Linux desktop. In a browser tab. On any device. Laptop, phone, library computer. And here's the community tab. Every other person building in here. You get stuck at two AM, you post. Somebody else already hit that wall. You're not alone at eleven PM anymore. That's right. You're in a room full of builders."
+    },
+    {
+      "layout": "title",
+      "kicker": "WHAT IT WOULD COST YOU",
+      "headline": "Secret 3: $177/mo Retail",
+      "sub": "And none of those four things know each other exist.",
+      "id": "s15",
+      "narration": "Stack it. Linux cloud machine, twenty seven a month. Real paid builder community, ninety nine. Claude Pro for the coding help, twenty. Email blaster, thirty one. A hundred seventy seven a month, and none of those four things know each other exist. In here, they're one login."
+    },
+    {
+      "layout": "title",
+      "kicker": "THE WHOLE STACK",
+      "headline": "Retail Total: $3,060 / yr Every Year. Forever.",
+      "sub": "And none of them talk to each other.",
+      "id": "s16",
+      "narration": "Here's the whole stack retail. Hosting and deploy, three forty eight. Analytics, five eighty eight. Linux desktop, three twenty four. Builder community, eleven eighty eight. AI coding help, two forty. Email blaster, three seventy two. Three thousand sixty dollars a year. Every year. Forever. And none of them talk to each other."
+    },
+    {
+      "layout": "title",
+      "kicker": "BEFORE PRICE",
+      "headline": "Let Me Call The Last Shots You Haven't Fired Yet",
+      "sub": "All fair. All on me to answer. Here's the offer, built to make every one of those wrong.",
+      "id": "s17",
+      "narration": "Before we talk price, let me call the shots you haven't fired yet. You're thinking, what if I suck at this? What if it doesn't work for my idea? What if Chase bails in six months? What if I pay and still can't ship? All fair. All on me to answer. So here's the rest of the offer, built to make every one of those wrong."
+    },
+    {
+      "layout": "title",
+      "kicker": "YOUR PRICE",
+      "headline": "Not $3,060 A Year. Not Monthly. $519. Once. Lifetime.",
+      "sub": "Every tab. Every secret. Every app I ship from here forward — yours. Today's price is the floor. Tomorrow it costs more. Day after, more again. The 11 already in never pay a penny more.",
+      "id": "s18",
+      "narration": "Here it is. Not three thousand sixty a year. Not a monthly sub. One oh seven to start. Five oh seven for a dedicated box. Once. Lifetime. Every tab, every secret, every app I ship from here forward, yours. Here's the catch. Price goes up two dollars every single day. Today's number is the lowest this offer will ever be. Tomorrow it costs more. Day after, more again. Eleven builders already locked theirs at today's rate. They never pay again. You're watching the floor leave."
+    },
+    {
+      "layout": "cta",
+      "kicker": "YOUR MOVE",
+      "headline": "Would It Be Ridiculous To Try This For A Week?",
+      "sub": "Is it a bad idea to reclaim $3,060 a year in SaaS and get a tribe and a Linux desktop for $519?",
+      "button": "CLAIM YOUR SEAT → $519",
+      "id": "s19",
+      "narration": "Would it be ridiculous to try this for a week? If you can't ship one site with one sentence in seven days, email me. I refund you personally. Not a ticket. Not a bot. Me. The guy who built this. Is it a bad idea to reclaim three grand a year in SaaS and get a tribe and a Linux desktop for five oh seven? Click. Start. I'll see you inside."
+    },
+    {
+      "layout": "title",
+      "headline": "Let Me Show You Inside The Login Box",
+      "sub": "Same offer at the end. Same $519. You just get to see it run before you decide.",
+      "id": "s20",
+      "narration": "Alright. Everything I just said, let me show you inside. Same login box. Six tabs. Dashboard. Code. Files. Analytics. Desktop. Community. I'm opening it right now and walking you through every piece, click by click. Same offer at the end. Same five oh seven. You just get to see it run before you decide."
+    },
+    {
+      "layout": "title",
+      "headline": "Upgrade To MAX Plan Once. Stays Forever.",
+      "sub": "That's how it should have always worked.",
+      "id": "s21",
+      "narration": "Click MAX. That's your plan toggle, right inside code. Upgrade yourself to the max plan so your AI isn't throttled. Here's the thing. Once you set this, it stays persistent. You don't re-log in every morning. You don't re-upgrade. You set it one time. It remembers. That's how it should have always worked."
+    },
+    {
+      "layout": "title",
+      "headline": "Integrations: Claude · Railway · Google · GitHub",
+      "sub": "Your AI actually has hands now.",
+      "id": "s22",
+      "narration": "Here's integrations. Four boxes. Claude. Railway. Google. GitHub. Click each one, sign in, and your AI now has the keys. OAuth for most of them. Railway is a manual token for right now, I'll show you in a second. Every API key you set here drops into your dot E N V file. Persistent across sessions. Your AI actually has hands now."
+    },
+    {
+      "layout": "title",
+      "headline": "OpenRouter: 300 Models One Pipe. You Choose.",
+      "sub": "No surprise downgrades. You're in control.",
+      "id": "s23",
+      "narration": "Open router. This is what Replit actually uses. Check it out. Three hundred active models in one pipe. Here's the problem. When they sell you credits, they pick the model. Usually the free one. That's why your outputs come back bad. You never even knew what model you were using. Here, you choose. Every prompt. No surprise downgrades. You're in control."
+    },
+    {
+      "layout": "title",
+      "headline": "Your Whole Business: Under $20 A Month",
+      "sub": "That's the new economy. One login. Two words.",
+      "id": "s24",
+      "narration": "Sounds like hosting this app costs me thousands. Here's the truth. This entire thing. Every customer. Every tab. Runs on a five dollar a month Railway plan. Your whole business, hosted, for under twenty bucks a month. That's the new economy. You don't need a data center. You need one login and two words."
+    },
+    {
+      "layout": "title",
+      "headline": "Railway Token: Set Once, Never Again",
+      "sub": "Now when AI says push this live — it actually can.",
+      "id": "s25",
+      "narration": "Here's Railway. Open railway dot com. Settings. Tokens. Name it cashbot. Click create. Copy the token. Come back into cash dot bot. Paste it in the box. Press save. Done. Now when your AI says push this live, it actually can. No more no railway token error. Persistent. Set once. Never again."
+    },
+    {
+      "layout": "title",
+      "headline": "Claude Login — Two Words Inside The Terminal",
+      "sub": "Not an API rental. No markup. No per-token meter. That's right — you own the subscription.",
+      "id": "s26",
+      "narration": "Claude login. Type those two words in the terminal. It opens a sign in URL. Click it. Authorize. It hands you an auth code. Paste the code back in terminal. Press enter. You're in. Using your own twenty dollar Claude Pro account. Not an API rental. No markup. No per token meter. That's right. You own the subscription."
+    },
+    {
+      "layout": "title",
+      "headline": "Terminal Isn't Scary. Two Commands.",
+      "sub": "Most AIs won't let you touch this. Here it's yours. Read it. Edit it. Own the brain.",
+      "id": "s27",
+      "narration": "You're thinking terminal is scary. Type L S. That lists everything in your current folder. Type cat CLAUDE dot M D. That shows you the file that actually commands your AI. Most AIs won't let you touch this. They set it for you and hide it. Here, it's yours. You can read it. You can edit it. You own the brain."
+    },
+    {
+      "layout": "title",
+      "headline": "\"Make Me A Website About Monkeys \"",
+      "sub": "Real HTTPS. Real world. Two words. Live URL.",
+      "id": "s28",
+      "narration": "One sentence. Watch. Make me a website about monkeys and push it live to Railway. That's it. Hit enter. Your AI goes. Builds a folder. Writes the site. Hits the Railway API. Hands you back a live URL. Sixty seconds. Real HTTPS. Real world. Two words. Live URL. And your site is up."
+    },
+    {
+      "layout": "title",
+      "headline": "Don't Tell The AI How. Tell It What It Looks Like.",
+      "sub": "Describe the outcome. Not the steps.",
+      "id": "s29",
+      "narration": "Here's the golden rule nobody tells you. Don't tell the AI how to build the thing. Tell the AI what the thing looks like when it's done. You type this, you see that. This button does this. When the form submits, this screen appears. The more visual you are, the better the output. Every time. No exceptions."
+    },
+    {
+      "layout": "title",
+      "headline": "Full Power Of Claude From Your Phone",
+      "sub": "I don't think really anybody does this. You're carrying a developer in your pocket.",
+      "id": "s30",
+      "narration": "Close the tab. Walk away. Your session keeps running. Pick up your phone, same session. Borrow a library computer, same session. You have the full power of Claude from your phone, from anywhere. I don't think really anybody does this. Not Replit. Not Lovable. Not any of the big names. You're carrying a developer in your pocket now."
+    },
+    {
+      "layout": "title",
+      "headline": "100+ Apps. One Skill File Each.",
+      "sub": "Every app in here. Expert already.",
+      "id": "s31",
+      "narration": "Hundred plus apps. Each one has its own skill file. Meaning Claude is already pre-trained on every single one. Voice cloning phone calls, free. Email blasts, free. Website builder, free. When you ask to plug one in, the AI already knows the app. It doesn't start from zero. It starts from expert. Every app in here, expert already."
+    },
+    {
+      "layout": "title",
+      "headline": "Gmail. iMessage. Instagram. One Pane.",
+      "sub": "A full-time assistant, already built in.",
+      "id": "s32",
+      "narration": "Gmail. iMessage. Instagram. WhatsApp. All in one pane. The AI scores every lead. This one's worth answering, this one's cold, this person hasn't heard back in four days. It drafts replies. You approve. You hit send. One morning command, your whole inbox answered. That's a full time assistant, already built in."
+    },
+    {
+      "layout": "title",
+      "headline": "Every Customer. Vectorized.",
+      "sub": "Same intel I run on my own business. Yours.",
+      "id": "s33",
+      "narration": "Every customer, vectorized. One click on a name, you get a full profile. Every email. Every login. Every touchpoint. When they first bought. When they last opened. I use this exact tool right now to remember what we talked about last time. I'm handing it to you. Same intel I run on my own business. Yours."
+    },
+    {
+      "layout": "title",
+      "headline": "11 Already Paid. $5,235 Collected. It Will Also Crash On You Sometimes.",
+      "sub": "I'm not dressing this up. Early means early. You're here early because the price is early. The 11 already in didn't wait.",
+      "id": "s34",
+      "narration": "Real talk. Eleven people already paid. Five grand collected. They log in every day. It runs. It will also crash on you sometimes. I push updates every hour, and sometimes the push doesn't fully take and something breaks. When that happens, refresh. Log back in. It holds. By tomorrow the terminal's rock solid. I'm not gonna dress this up. Early means early. You're here early because the price is early. Eleven builders didn't wait. They're in."
+    },
+    {
+      "layout": "title",
+      "headline": "That's The Inside. Same Offer. Now You've Seen It Run.",
+      "sub": "Same $519. Once. Lifetime.",
+      "id": "s35",
+      "narration": "Alright. That's the inside. Same offer I showed you at the start. Same five hundred seven dollars. Once. Lifetime. Only now, you've seen it run. You've seen the login. You've seen the terminal. You've seen the integrations. You've seen one sentence ship a site. Everything you were about to ask, you just watched me answer live."
+    },
+    {
+      "layout": "title",
+      "kicker": "PRICE, ONE MORE TIME",
+      "headline": "$3,060 / yr Stack. $519. Once. Lifetime.",
+      "sub": "Same software. Same tabs. Every app I ship from here forward — yours. Built by me on a $5/mo plan. Passed straight to you at today's founder price. Tomorrow's price is higher.",
+      "id": "s36",
+      "narration": "Three thousand sixty dollars a year. That's the retail stack. Every year. Forever. Or five hundred seven dollars. Once. Lifetime. Same software. Same tabs. Same apps I'll ship from here forward. Every one of them, yours. Built by me on a five dollar a month plan. Passed straight to you at founder's price."
+    },
+    {
+      "layout": "cta",
+      "kicker": "YOUR MOVE",
+      "headline": "Is It Ridiculous To Try One Sentence For A Week?",
+      "sub": "Is it a bad idea to reclaim $3,060 a year? 11 builders already clicked. Today's price is the floor. Tomorrow: +$2. Day after: +$2 again.",
+      "button": "CLAIM YOUR SEAT → $119–$519",
+      "id": "s37",
+      "narration": "Is it ridiculous to try one sentence for a week? Is it a bad idea to reclaim three grand a year? Eleven builders clicked already. Today's price is the lowest this offer ever gets. Tomorrow it costs more. Click the button. Start. If you can't ship a site in seven days, email me. I refund you personally. Not a ticket. Not a bot. Me. The guy who built this. See you inside."
+    }
+  ]
+}

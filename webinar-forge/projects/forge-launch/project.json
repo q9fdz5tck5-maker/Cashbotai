@@ -1,0 +1,821 @@
+{
+  "name": "forge-launch",
+  "title": "Webinar Forge — Built By The Thing It Sells",
+  "brand": {
+    "product": "Webinar Forge",
+    "accent": "#ff7a18",
+    "background": "#0a0a0c",
+    "text": "#f2f4f8",
+    "muted": "#8b93a3"
+  },
+  "voice": {
+    "name": "myvoice",
+    "engine": "chatterbox",
+    "exaggeration": 0.15,
+    "cfgWeight": 0.5
+  },
+  "video": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "padSeconds": 1,
+    "fadeSeconds": 0.5,
+    "crf": 23,
+    "preset": "medium"
+  },
+  "tts": {
+    "applyCompliance": true,
+    "pronunciation": {
+      "webinarforge.com/get": "webinar forge dot com slash get",
+      "webinarforge.com": "webinar forge dot com",
+      "project.json": "project dot Jason",
+      "webinar-forge": "webinar forge",
+      "CLAUDE.md": "Claude dot M D",
+      "JSONL": "Jason L",
+      "JSON": "Jason",
+      "HTTPS": "H T T P S",
+      "HTML": "H T M L",
+      "ffmpeg": "F F M peg",
+      "nginx": "engine ex",
+      "MP4": "M P four",
+      "CUDA": "koo duh",
+      "npm": "N P M",
+      "TLS": "T L S"
+    }
+  },
+  "slides": [
+    {
+      "layout": "title",
+      "kicker": "Free Training",
+      "headline": "This Webinar Was Built By [ACCENT]The Thing It Is Selling[/ACCENT]",
+      "sub": "Every slide. The voice reading them. The page you are watching it on. One config file, one command, one server nobody bills me for.",
+      "narration": "Before I tell you anything about what this is, I want you to notice something about what you are already looking at. This slide. The voice reading it to you. The page this video is sitting inside. None of it was shot in a studio. Nobody edited it. I did not open a video editor one single time. I wrote one file, I ran one command, and this came out the other end. That is the entire pitch, and you are already inside the proof of it. So let me show you how it works."
+    },
+    {
+      "layout": "stats",
+      "kicker": "This Exact Webinar",
+      "headline": "What it took to make [ACCENT]what you are watching[/ACCENT]",
+      "stats": [
+        {
+          "value": "39",
+          "label": "slides, written as data"
+        },
+        {
+          "value": "1",
+          "label": "config file, start to finish"
+        },
+        {
+          "value": "$0",
+          "label": "per month to run it"
+        }
+      ],
+      "narration": "Here are the real numbers behind this video. Thirty nine slides, and not one of them is hand written markup. They are entries in a list. One config file holds all of it, the slides, every word of the narration, and the sales page you are on right now. And the running cost is zero dollars a month, because it renders on a machine I already pay for anyway. No account. No key. No per render fee. Hold on to that last number, because we are coming back to it later and it is the whole argument."
+    },
+    {
+      "layout": "title",
+      "kicker": "What You Will Walk Away With",
+      "headline": "By the end of this you will know [ACCENT]exactly[/ACCENT] how to make one",
+      "sub": "For your product. In your voice. On your own server.",
+      "narration": "So here is what I am going to do with the next twenty five minutes. I am going to take the three beliefs that stop most people from ever making a webinar, and I am going to break them one at a time. And for each one I will show you the specific piece of this tool that does the breaking. By the end you will know what a webinar actually costs to produce when you own the machine that makes it. Not as a theory. You are watching the answer play right now."
+    },
+    {
+      "layout": "title",
+      "kicker": "How This Started",
+      "headline": "I built this for [ACCENT]one[/ACCENT] webinar. Then I could not build the second.",
+      "sub": "The first one worked. That was the problem.",
+      "narration": "Let me tell you where this came from, because it did not start life as a product. I needed one webinar. So I did what everybody does. I hand wrote the slide deck as a single web page, I wrote a build script for that one specific deck, and I got it finished. It worked. It looked good. I was pleased with myself. And then about two weeks later I needed a second webinar, I sat down to make it, and I realised I could not. Not without doing the whole thing over. Let me show you why."
+    },
+    {
+      "layout": "bullets",
+      "kicker": "Why The Second One Was Impossible",
+      "headline": "Everything was welded to the [ACCENT]first[/ACCENT] one",
+      "bullets": [
+        "A hand-written HTML deck — 96 kilobytes of markup, per webinar",
+        "A build script hardcoded to that deck's slide count and class names",
+        "Binary paths pointing at one specific laptop, in one home folder",
+        "A capture step that spawned a server on a fixed port and collided with itself",
+        "Change one line of narration and the whole thing re-rendered from zero"
+      ],
+      "narration": "Here is what I was actually staring at. A ninety six kilobyte page I had typed by hand, for one webinar. A build script that knew that deck's exact slide count and its exact class names, which meant it worked for that deck and absolutely nothing else. File paths pointing at one laptop, in one home folder, on one operating system. And a capture step that started a little web server on a fixed port, so two builds running at once fought each other for it. To make a second webinar I would have had to do every bit of that again."
+    },
+    {
+      "layout": "title",
+      "kicker": "The Turn",
+      "headline": "So I stopped writing decks. I started writing [ACCENT]data[/ACCENT].",
+      "sub": "A slide is not markup. It is a layout name and a few fields.",
+      "narration": "And that is the moment it clicked. A slide is not a page of markup. A slide is a shape with your words in it. A headline slide. A bullet slide. A side by side comparison. Those same shapes repeat in every webinar anyone has ever given. So I wrote the shapes one time, and after that a slide was just a layout name, a handful of fields, and what to say over it. Nine layouts covered every slide I had ever built by hand. And the second webinar took an afternoon."
+    },
+    {
+      "layout": "title",
+      "kicker": "And Then This Happened",
+      "headline": "The tool started building its own [ACCENT]sales page[/ACCENT] too",
+      "sub": "Same file. Same command. The deck, the video, and the page that sells it.",
+      "narration": "Then I pushed it one step further, because a video on its own does not sell anything. It needs a page around it. So I gave the page exactly the same treatment. Nine section types, listed in whatever order you want them, living in the same file as the slides. Which means the page you are looking at right now came out of the same config that produced this video, in the same run of the same command. The webinar and the funnel around it are one file. That is not a demonstration. That is the thing you are inside of."
+    },
+    {
+      "layout": "title",
+      "kicker": "Before The Secrets",
+      "headline": "One belief is in the way. [ACCENT]Everything else falls with it.[/ACCENT]",
+      "narration": "Now, I have shown this to enough people to know exactly what happens next. It is never a question about the software. Nobody asks me about the software. It is always a belief, it is almost always the same one, and until that belief moves, nothing else I say is going to land. So let me put it on the screen in the words people actually use when they say it to me."
+    },
+    {
+      "layout": "quote",
+      "quote": "\"Making a webinar is a production. I do not have the setup, I do not have the voice for it, and the tools that would do it for me cost more every month than the thing I am trying to sell.\"",
+      "attribution": "— roughly what everybody says",
+      "narration": "That is it. Near enough word for word, that is the wall. And I want you to notice something about it. That is not one objection. That is three separate objections stacked on top of each other, wearing a trench coat, pretending to be one. One of them is about the work. One of them is about you. And one of them is about the tools. Every single one of the three is wrong, and I am going to take them down in that order."
+    },
+    {
+      "layout": "title",
+      "kicker": "The One Domino",
+      "headline": "If a webinar is [ACCENT]one file and one command[/ACCENT], the rest stops mattering",
+      "sub": "So that is the one we knock over first.",
+      "narration": "Because those three are not equal. One of them holds the other two up. If making a webinar genuinely is a week long production, then yes, everything else follows and you probably should not bother. But if it is one file and one command, then the camera question and the monthly bill question both change shape completely. So that is the domino. Knock that one over and the other two fall on their own. Secret number one."
+    },
+    {
+      "layout": "title",
+      "kicker": "Secret 1 of 3",
+      "headline": "The [ACCENT]Vehicle[/ACCENT]",
+      "sub": "What making a webinar actually costs you in effort.",
+      "narration": "Secret number one is about the vehicle. Not about you, not about money yet. Just about the work itself. What does it genuinely take, in hours and in equipment, to put a narrated webinar in front of another human being. Here is what almost everybody believes, and here is where almost everybody stops."
+    },
+    {
+      "layout": "myth",
+      "kicker": "Secret 1 of 3",
+      "lie": "\"Making a webinar means a studio, a camera, and a week.\"",
+      "stamp": "WRONG",
+      "truth": "The truth: it is [ACCENT]one config file[/ACCENT] and [ACCENT]one command[/ACCENT].",
+      "sub": "No studio. No camera. Not a week.",
+      "narration": "Making a webinar means a studio, a camera, and a week. That is the belief, and I understand where it comes from, because for a long time that is exactly what it meant. But it is wrong. It is one config file and one command. You write the slides as data and the narration as text, in the same file, and then you run build. What comes back is a rendered video and a page to put it on. There is no studio anywhere in that sentence. There is no camera in that sentence. And it is not a week."
+    },
+    {
+      "layout": "bullets",
+      "kicker": "Inside The File",
+      "headline": "The whole webinar, in [ACCENT]plain text[/ACCENT]",
+      "bullets": [
+        "A brand block — your product name and your colours",
+        "A voice block — which cloned voice reads it, and how steady",
+        "A slides list — a layout name, a few fields, and what to say",
+        "A landing block — the page sections, in the order they appear",
+        "A pronunciation map — so your domain gets spoken, not spelled"
+      ],
+      "narration": "So what is actually inside that file. A brand block, which is your product name and your colours. A voice block, saying which cloned voice reads the deck and how steady you want the delivery to be. A slides list, where every slide is a layout name, a few fields, and the words you want spoken over it. A landing block, which is your page sections in the order you want them. And a pronunciation map, so the voice says your domain out loud instead of spelling it at people letter by letter. That is the file. That is all of it."
+    },
+    {
+      "layout": "title",
+      "kicker": "The Command",
+      "headline": "[ACCENT]build[/ACCENT] — and then you have a funnel",
+      "sub": "Deck, narration, capture, video, landing page. One pass, and every stage caches.",
+      "narration": "And then you run one word. Build. Behind that one word, five things happen in order. Your slides become a deck. Your narration goes to the voice engine and comes back as audio. A browser opens the deck and photographs every slide at full size. Those pictures and that audio become a video file. And your landing block becomes a finished page with the video already sitting in it. Every stage remembers what it already did. Change one line and it redoes that one line's worth of work."
+    },
+    {
+      "layout": "compare",
+      "kicker": "Same Webinar, Two Ways",
+      "headline": "By hand versus [ACCENT]as data[/ACCENT]",
+      "left": {
+        "title": "How I made the first one",
+        "items": [
+          "Hand-write a 96 KB deck",
+          "Write a build script for that deck",
+          "Record narration in one sitting",
+          "Fluff a sentence, do the whole pass again",
+          "Start from nothing for webinar two"
+        ],
+        "total": "About a week, every time"
+      },
+      "right": {
+        "title": "How this one was made",
+        "items": [
+          "Write slides as a list of layouts",
+          "Run one command",
+          "Narration is written, never performed",
+          "Fix one line, re-render one slide",
+          "Copy the file for webinar two"
+        ],
+        "total": "An afternoon, then minutes"
+      },
+      "narration": "Put the two next to each other. On the left, how I made my first one. Hand write the deck. Write a build script for that deck and no other. Record the narration in one sitting, and if you fluff a sentence near the end, do the whole pass again. And when you want a second webinar, start from nothing. On the right, how this one was made. Slides are a list. One command. The narration is written, so fixing a sentence is typing, not performing. And webinar number two starts by copying the file."
+    },
+    {
+      "layout": "title",
+      "kicker": "Secret 2 of 3",
+      "headline": "The [ACCENT]Internal[/ACCENT] One",
+      "sub": "This is the objection people do not say out loud.",
+      "narration": "So that is the vehicle handled. Secret number two is a completely different kind of objection, and it is the one people almost never say to me directly. They tell me they are busy. They tell me they will get to it next quarter. But underneath, it is this one, and if you have ever felt it yourself you already know exactly what I am about to put on the screen."
+    },
+    {
+      "layout": "myth",
+      "kicker": "Secret 2 of 3",
+      "lie": "\"I would have to be on camera, and I hate my voice on video.\"",
+      "stamp": "WRONG",
+      "truth": "The truth: a [ACCENT]30-second sample[/ACCENT] records once and narrates forever.",
+      "sub": "You are never on camera. And you never do a second take.",
+      "narration": "I would have to be on camera, and I hate my voice on video. That is the one. And here is why it is wrong on both halves. You are never on camera at all, because the slides are the picture. The whole format is the picture. And as for your voice, you record about thirty seconds of clean speech, one time. The engine clones it locally, on your own machine, and from that point on it reads anything you type in that voice. You are not performing. You are typing. There is no take two, because there was never a take one."
+    },
+    {
+      "layout": "bullets",
+      "kicker": "How The Voice Works",
+      "headline": "Cloned [ACCENT]on your machine[/ACCENT], not in somebody's cloud",
+      "bullets": [
+        "Ten to thirty seconds of clean speech is the entire sample",
+        "The model runs locally — your voice never leaves your server",
+        "Delivery is tuned steady for a long deck, not theatrical",
+        "Every slide is synthesized separately, so every slide is editable separately",
+        "No key, no per-character billing, no usage cap"
+      ],
+      "narration": "Let me be specific about that, because voice cloning is a phrase you are right to be careful about. The sample is ten to thirty seconds of clean speech. The model runs on your own hardware, which means your voice is never uploaded anywhere, and the sample is deliberately kept out of anything you hand to somebody else. The delivery is tuned steady rather than dramatic on purpose, because across thirty nine slides, theatrical becomes exhausting. And there is no key, no per character bill and no cap, because there is nothing on the other end to do the billing."
+    },
+    {
+      "layout": "stats",
+      "kicker": "The Part That Changes Everything",
+      "headline": "What it costs to [ACCENT]fix a sentence[/ACCENT]",
+      "stats": [
+        {
+          "value": "1",
+          "label": "slide re-synthesized"
+        },
+        {
+          "value": "38",
+          "label": "slides left untouched"
+        },
+        {
+          "value": "0",
+          "label": "times you re-record anything"
+        }
+      ],
+      "narration": "And this is the part I did not expect to matter nearly as much as it does. When you spot a clumsy sentence on slide twenty two, you change that sentence, and you run build again. One slide gets re synthesized. The other thirty eight are already done, so they are skipped entirely. Nothing gets re recorded, because nothing was ever recorded. And that single fact is the whole difference between a webinar you keep improving until it is genuinely good, and a webinar you ship once and never touch again because fixing it hurts too much."
+    },
+    {
+      "layout": "title",
+      "kicker": "Secret 2, Settled",
+      "headline": "You are not [ACCENT]performing[/ACCENT]. You are writing.",
+      "sub": "And writing is the part you have already been doing your whole life.",
+      "narration": "So take the entire camera problem and set it down, because it is not yours to carry. You are not performing anything. You are writing, and then a machine reads it back to people. If you can write an email explaining why somebody should buy the thing you sell, you can write this webinar, because that is all the narration field ever is. That is secret number two. Which brings us neatly to the one that actually costs people money."
+    },
+    {
+      "layout": "title",
+      "kicker": "Secret 3 of 3",
+      "headline": "The [ACCENT]External[/ACCENT] One",
+      "sub": "This is the objection that is completely reasonable.",
+      "narration": "Secret number three, and I want to say something up front about this one. It is not a silly objection. It is completely reasonable, and the people who hold it are usually the ones who have already been burned once. If you have ever built something inside somebody else's platform and then watched the price move, or the terms change, or the export button quietly disappear underneath you, then this is the objection you are already thinking."
+    },
+    {
+      "layout": "myth",
+      "kicker": "Secret 3 of 3",
+      "lie": "\"Every tool that does this bills me monthly and owns my work.\"",
+      "stamp": "WRONG",
+      "truth": "The truth: it runs on [ACCENT]hardware you already pay for[/ACCENT], and you [ACCENT]keep it[/ACCENT].",
+      "sub": "It is a zip file. It runs on your server. There is nothing to cancel.",
+      "narration": "Every tool that does this bills me monthly and owns my work. That has been true, and that is precisely why this thing is built the way it is. What you get is a zip file. You put it on your own server and it runs there. The voice engine is on your machine. The renderer is on your machine. The page it produces is one self contained file that belongs to you. Nothing phones home, because there is nothing to phone. And there is no account to cancel, because there was never an account."
+    },
+    {
+      "layout": "stats",
+      "kicker": "What The Rented Version Costs",
+      "headline": "Four subscriptions to do what [ACCENT]one zip[/ACCENT] does",
+      "stats": [
+        {
+          "value": "$354",
+          "label": "per month, typical stack"
+        },
+        {
+          "value": "$4,248",
+          "label": "per year, every year"
+        },
+        {
+          "value": "$12,744",
+          "label": "over three years, owning nothing"
+        }
+      ],
+      "narration": "Let me put real numbers on the rented version of this. Webinar software runs around ninety nine dollars a month. Video hosting that does not stamp somebody else's branding across your player is about fifty nine. A page builder good enough to actually sell with is about ninety seven. And a voice or text to speech service with cloning is another ninety nine. That is three hundred and fifty four dollars every single month. Four thousand two hundred and forty eight a year. Over three years, twelve thousand seven hundred and forty four dollars, and at the end of it you own none of it."
+    },
+    {
+      "layout": "compare",
+      "kicker": "Side By Side",
+      "headline": "Renting the stack versus [ACCENT]owning the machine[/ACCENT]",
+      "left": {
+        "title": "Four subscriptions",
+        "items": [
+          "Four bills, four logins, four dashboards",
+          "Your voice sample lives on their servers",
+          "Per-render and per-character fees",
+          "Prices move when they decide",
+          "Stop paying and the videos stop playing"
+        ],
+        "total": "$354 / month, forever"
+      },
+      "right": {
+        "title": "One zip on your server",
+        "items": [
+          "One folder, one command",
+          "Your voice sample never leaves your machine",
+          "Render it a hundred times, same cost",
+          "Nothing to reprice, nothing to renew",
+          "Stop paying and nothing happens at all"
+        ],
+        "total": "$0 / month once you have it"
+      },
+      "narration": "Side by side. Four bills, four logins and four dashboards, against one folder and one command. Your voice sample sitting on somebody else's servers, against your voice sample never leaving your machine at all. Per render and per character fees, against rendering the same webinar a hundred times for the same nothing. But the last row is the one that actually matters. On the left, when you stop paying, your videos stop playing. On the right, when you stop paying, absolutely nothing happens, because you already have it."
+    },
+    {
+      "layout": "bullets",
+      "kicker": "What It Does Not Do",
+      "headline": "Four things I want you to hear [ACCENT]before[/ACCENT] the offer",
+      "bullets": [
+        "It does not process payments — buy buttons are plain links to your checkout",
+        "It does not send email — opt-ins land in a file for you to export",
+        "It does not terminate HTTPS — put nginx or Caddy in front for a public domain",
+        "The voice engine has no authentication — keep it on loopback"
+      ],
+      "narration": "And before I open the box, I want to tell you what is not in it, because you are going to find out anyway and I would much rather you heard it from me now. It does not process payments. The buy buttons are plain links and you point them at your own checkout. It does not send email. When somebody opts in, their address lands in a file on your server and you export it into whatever you already send with. It does not handle HTTPS, so for a public domain you put nginx or Caddy in front of it. And the voice engine has no password, so you keep it on loopback. None of that is difficult. All of it is honest."
+    },
+    {
+      "layout": "title",
+      "kicker": "So",
+      "headline": "That is the argument. Here is [ACCENT]what is in the box.[/ACCENT]",
+      "sub": "Nine pieces. Each one priced against what you would otherwise rent.",
+      "narration": "So that is the whole argument, and it is three sentences long. Making a webinar is one file and one command. You are never on camera and you never do a second take. And it runs on hardware you already pay for. Now let me open the box and show you the nine things you actually get, one at a time. And next to each one I am going to put what you would pay somewhere else for that same job, so that the number at the end is not a number I invented."
+    },
+    {
+      "layout": "stats",
+      "kicker": "In The Box · 1 of 9",
+      "headline": "The [ACCENT]local voice cloning engine[/ACCENT]",
+      "stats": [
+        {
+          "value": "$1,188",
+          "label": "per year — what cloud voice cloning costs"
+        },
+        {
+          "value": "$1,188",
+          "label": "running total"
+        }
+      ],
+      "narration": "Number one. The voice engine. This is the piece that clones your voice from a short sample and then narrates anything you write in it, running entirely on your own hardware. It finds your graphics card if you have one and falls back to the processor if you do not. A cloud text to speech service with voice cloning runs about ninety nine dollars a month, so call this one eleven hundred and eighty eight dollars a year. Running total, eleven hundred and eighty eight."
+    },
+    {
+      "layout": "stats",
+      "kicker": "In The Box · 2 of 9",
+      "headline": "The [ACCENT]presentation builder[/ACCENT] — nine layouts",
+      "stats": [
+        {
+          "value": "$588",
+          "label": "per year — deck software"
+        },
+        {
+          "value": "$1,776",
+          "label": "running total"
+        }
+      ],
+      "narration": "Number two. The presentation builder. Nine layouts. Title, bullets, stats, compare, quote, myth, pricing, questions and call to action. Between them they cover every slide in this deck, and every slide in the thirty seven slide one that ships alongside it. You never touch markup once. Deck software runs about forty nine a month, so five hundred and eighty eight a year. Running total, seventeen hundred and seventy six."
+    },
+    {
+      "layout": "stats",
+      "kicker": "In The Box · 3 of 9",
+      "headline": "The [ACCENT]video renderer[/ACCENT]",
+      "stats": [
+        {
+          "value": "$708",
+          "label": "per year — render and hosting fees"
+        },
+        {
+          "value": "$2,484",
+          "label": "running total"
+        }
+      ],
+      "narration": "Number three. The video renderer. It opens your deck in a browser, photographs every slide at full resolution, lines each picture up against its own piece of audio, and stitches the lot into one video file with clean fades between the slides. It renders slides in parallel, and you can turn that down if you are on a small server. Render and hosting fees run about fifty nine a month, so seven hundred and eight a year. Running total, twenty four hundred and eighty four."
+    },
+    {
+      "layout": "stats",
+      "kicker": "In The Box · 4 of 9",
+      "headline": "The [ACCENT]landing page builder[/ACCENT] — nine section types",
+      "stats": [
+        {
+          "value": "$1,164",
+          "label": "per year — page builder subscription"
+        },
+        {
+          "value": "$3,648",
+          "label": "running total"
+        }
+      ],
+      "narration": "Number four. The landing page builder. Nine section types. Hero, proof, problem, features, stack, pricing, testimonials, questions and close. You list the ones you want in the order you want them, and it writes one self contained page with the video already embedded in it. Styles inline, no external requests, nothing loading off somebody else's network. A page builder good enough to sell with is around ninety seven a month, so eleven hundred and sixty four a year. Running total, thirty six hundred and forty eight."
+    },
+    {
+      "layout": "stats",
+      "kicker": "In The Box · 5 of 9",
+      "headline": "The [ACCENT]built-in host[/ACCENT] with email capture",
+      "stats": [
+        {
+          "value": "$468",
+          "label": "per year — landing host with opt-ins"
+        },
+        {
+          "value": "$4,116",
+          "label": "running total"
+        }
+      ],
+      "narration": "Number five. The host. One command serves the page and streams the video with seeking, so people can scrub through it instead of sitting there waiting. It catches opt ins from the gate on the page and appends them to a file you can read any time you like. It is written against the standard library only, so there is nothing extra to install and nothing to keep updated. A hosted landing page with opt in capture runs about thirty nine a month, so four hundred and sixty eight a year. Running total, forty one hundred and sixteen."
+    },
+    {
+      "layout": "stats",
+      "kicker": "In The Box · 6 of 9",
+      "headline": "The [ACCENT]legacy deck importer[/ACCENT]",
+      "stats": [
+        {
+          "value": "$297",
+          "label": "one-time — a manual conversion you skip"
+        },
+        {
+          "value": "$4,413",
+          "label": "running total"
+        }
+      ],
+      "narration": "Number six. The importer, and this one exists purely because of my own mess. If you already have hand built webinar pages sitting in a folder somewhere, you point the importer at one along with your narration file, and it converts the whole deck into a config. It carries your narration across word for word, it maps the headings and the bullet slides and the myth beats, and then it tells you exactly which slides it could not classify so you know where to look. Call it two hundred and ninety seven. Running total, forty four hundred and thirteen."
+    },
+    {
+      "layout": "stats",
+      "kicker": "In The Box · 7 of 9",
+      "headline": "The [ACCENT]Docker setup[/ACCENT]",
+      "stats": [
+        {
+          "value": "$197",
+          "label": "one-time — an afternoon of setup you skip"
+        },
+        {
+          "value": "$4,610",
+          "label": "running total"
+        }
+      ],
+      "narration": "Number seven. The Docker setup. A Dockerfile and a compose file, so that if you would rather not install ffmpeg and a browser and a Python environment directly on your host, you simply do not have to. The compose file publishes the voice engine on loopback only, which is the safe default, and I would leave it exactly that way. Call that an afternoon of your life you do not spend, so a hundred and ninety seven. Running total, forty six hundred and ten."
+    },
+    {
+      "layout": "stats",
+      "kicker": "In The Box · 8 of 9",
+      "headline": "The [ACCENT]37-slide reference deck[/ACCENT]",
+      "stats": [
+        {
+          "value": "$497",
+          "label": "one-time — a real deck to pace against"
+        },
+        {
+          "value": "$5,107",
+          "label": "running total"
+        }
+      ],
+      "narration": "Number eight. And if you have never written one of these before, this may quietly be the most useful thing in the whole box. A real thirty seven slide webinar, complete, in config form. Not a toy example. Around twenty one hundred words of narration, roughly fourteen minutes spoken. So when you are sitting in front of an empty file wondering how long a hook is meant to run, or where exactly the secrets go, you open that one and you copy the shape. Call it four hundred and ninety seven. Running total, fifty one hundred and seven."
+    },
+    {
+      "layout": "stats",
+      "kicker": "In The Box · 9 of 9",
+      "headline": "[ACCENT]CLAUDE.md[/ACCENT] — so your own Claude sets it up for you",
+      "stats": [
+        {
+          "value": "$297",
+          "label": "one-time — setup, handled"
+        },
+        {
+          "value": "$5,404",
+          "label": "running total"
+        }
+      ],
+      "narration": "And number nine. There is a file in the zip called CLAUDE.md, and what it does is explain this entire system to an A I coding assistant. So you open the folder in Claude Code, and it already knows the setup order, which command to run first, what every layout expects, and which mistakes to avoid. You do not sit down and read the manual. You ask, and the thing answering you has already read it. Call that two hundred and ninety seven. Running total, five thousand four hundred and four."
+    },
+    {
+      "layout": "compare",
+      "kicker": "Add It Up",
+      "headline": "What the box is worth versus [ACCENT]what renting costs[/ACCENT]",
+      "left": {
+        "title": "Renting the same capability",
+        "items": [
+          "Webinar software — $99 / mo",
+          "Video hosting — $59 / mo",
+          "Page builder — $97 / mo",
+          "Voice cloning service — $99 / mo"
+        ],
+        "total": "$4,248 every year"
+      },
+      "right": {
+        "title": "What is in the zip",
+        "items": [
+          "Voice engine, deck builder, renderer",
+          "Page builder, host, importer",
+          "Docker setup, 37-slide reference deck",
+          "CLAUDE.md so setup is asked, not read"
+        ],
+        "total": "$5,404 total value"
+      },
+      "narration": "So let us add it up honestly. On the left, the rented version. Ninety nine a month for webinar software. Fifty nine for video hosting. Ninety seven for a page builder. Ninety nine for a voice service. Four thousand two hundred and forty eight dollars a year, and that number comes back again every year, for as long as you want to keep making webinars. On the right, the nine pieces you just watched me open, at five thousand four hundred and four. And that one is not a yearly number, because it is not a rental."
+    },
+    {
+      "layout": "pricing",
+      "kicker": "The Price",
+      "headline": "One time. [ACCENT]Not monthly.[/ACCENT]",
+      "tiers": [
+        {
+          "name": "Webinar Forge — the complete zip",
+          "price": "$297",
+          "was": "$5,404 value",
+          "featured": true,
+          "features": [
+            "Local voice cloning engine",
+            "Presentation builder — 9 layouts",
+            "Video renderer",
+            "Landing page builder — 9 section types",
+            "Built-in host with email capture",
+            "Legacy deck importer",
+            "Docker setup",
+            "37-slide reference deck",
+            "CLAUDE.md setup guide"
+          ]
+        }
+      ],
+      "footnote": "Text (805) 453-3586 to buy.",
+      "narration": "Which brings us to what it costs. Everything I have just shown you is one zip file, one time. Not a subscription, not a seat, not a per render fee. You download it, you put it on your server, and it is yours in the same plain way that a hammer is yours. The number is on the screen. Hold it next to four thousand two hundred and forty eight dollars a year, and then remember that the year after that one, and the year after that, it is still zero."
+    },
+    {
+      "layout": "faq",
+      "kicker": "Straight Answers",
+      "headline": "The questions you are [ACCENT]already asking[/ACCENT]",
+      "items": [
+        {
+          "q": "Do I need a graphics card?",
+          "a": "No. It auto-detects CUDA or Apple silicon and falls back to your processor. CPU works — it is just slower, so start with a short deck."
+        },
+        {
+          "q": "Does my voice sample leave my machine?",
+          "a": "No. The model runs locally, and samples are excluded from anything you redistribute."
+        },
+        {
+          "q": "Can I use it for more than one webinar?",
+          "a": "Yes. Copy the config, change the words. No per-render fee, no cap, no seat count."
+        },
+        {
+          "q": "Does it take payments or send email?",
+          "a": "No to both. Buy buttons are plain links to your checkout, and opt-ins land in a file for you to export."
+        },
+        {
+          "q": "What about webinars I already built by hand?",
+          "a": "The importer converts them. Narration carries across verbatim and it lists anything it could not classify."
+        }
+      ],
+      "narration": "Let me answer what I already know you are thinking. Do you need a graphics card? No. It finds one if you have one, and falls back to your processor if you do not. The processor works, it is just slower, so start with a short deck. Does your voice sample leave your machine? No, and it is deliberately kept out of anything you hand to anybody else. Can you use it for more than one webinar? Yes, copy the file and change the words. Does it take payments or send email? No to both, and I would far rather tell you that now than let you find it out later."
+    },
+    {
+      "layout": "cta",
+      "kicker": "Last Thing",
+      "headline": "The proof is [ACCENT]the thing you are watching[/ACCENT]",
+      "sub": "This video, this voice, and the page around it came out of one config file on a server nobody bills me for. Yours can too.",
+      "button": "Text To Buy",
+      "url": "(805) 453-3586",
+      "footnote": "Text (805) 453-3586 to buy.",
+      "narration": "So here is where I will leave it with you. Every other sales page has to convince you that the product works. I do not have to, because you have been staring at the output of it for the last twenty minutes. This video. This voice. The slide you are reading right now, and the page it is sitting inside. All of it came out of one config file and one command, on a server that nobody sends me a bill for. If you have something worth selling and no webinar sitting in front of it, this is the shortest distance between those two facts. Text me at eight zero five, four five three, three five eight six, and I will get you set up."
+    }
+  ],
+  "landing": {
+    "title": "Webinar Forge — The Webinar That Built Itself",
+    "description": "A zip you run on your own server. It clones your voice locally, builds the deck, renders the narrated video, and generates the page that sells it. No keys, no accounts, no monthly bill.",
+    "sections": [
+      {
+        "type": "hero",
+        "kicker": "Free Training · About 25 Minutes",
+        "headline": "This Page And The Video On It Were Built By [ACCENT]The Thing They Are Selling[/ACCENT]",
+        "sub": "One config file. One command. A narrated webinar in your own cloned voice, and the sales page around it — rendered on a server nobody bills you for.",
+        "gate": true,
+        "gateTitle": "Watch the training",
+        "gateButton": "Watch It Now",
+        "gatePlaceholder": "you@yourdomain.com",
+        "gateNote": "Your address is appended to a file on this server. Nothing is mailed anywhere — this tool does not send email, and that is the point.",
+        "cta": {
+          "label": "Skip ahead to what is in it",
+          "href": "#offer"
+        }
+      },
+      {
+        "type": "proof",
+        "stats": [
+          {
+            "value": "39",
+            "label": "slides, written as data not markup"
+          },
+          {
+            "value": "1",
+            "label": "config file for deck, video and page"
+          },
+          {
+            "value": "$0",
+            "label": "per month to run it, forever"
+          },
+          {
+            "value": "0",
+            "label": "keys or accounts required"
+          }
+        ]
+      },
+      {
+        "type": "problem",
+        "kicker": "The Wall",
+        "headline": "Three objections wearing [ACCENT]one trench coat[/ACCENT]",
+        "body": "When somebody tells me they have not made a webinar, it is never about the software. Nobody asks about the software. It is one of these, and usually all of them at once:",
+        "points": [
+          "\"Making a webinar means a studio, a camera, and a week I do not have.\"",
+          "\"I would have to be on camera, and I hate my voice on video.\"",
+          "\"Every tool that does this bills me monthly and owns my work.\"",
+          "So the webinar never gets made — and the thing you sell keeps getting explained one conversation at a time.",
+          "Meanwhile the four subscriptions that would do it for you come to $354 a month, whether you ever publish anything or not."
+        ]
+      },
+      {
+        "type": "features",
+        "kicker": "What Replaces Them",
+        "headline": "Each objection has a [ACCENT]specific piece[/ACCENT] that kills it",
+        "items": [
+          {
+            "title": "A studio becomes a text file",
+            "body": "Slides are data — a layout name and a few fields. Nine layouts cover every beat of a Perfect Webinar: title, bullets, stats, compare, quote, myth, pricing, FAQ, CTA. You never write markup, and webinar number two starts by copying the file."
+          },
+          {
+            "title": "A camera becomes 30 seconds of audio",
+            "body": "Record one short clean sample. The model clones it on your own hardware and reads anything you type from then on. You are never on camera, and there is no second take because there was never a first."
+          },
+          {
+            "title": "A monthly bill becomes a folder",
+            "body": "It is a zip. It runs on your server. Voice engine, renderer and page generator all sit on your machine and nothing calls out to anyone. There is no account to cancel, because there was never an account."
+          },
+          {
+            "title": "Fixing a sentence costs one slide",
+            "body": "Every stage caches against the slide's own id. Change one line of narration and that one slide re-synthesizes — the other 38 are skipped. Insert a slide in the middle and the rest of the deck stays valid."
+          },
+          {
+            "title": "The page comes out of the same file",
+            "body": "Nine section types, listed in the order you want them. Output is one self-contained HTML file with the video already in it: inline styles, no external requests, no build step, renders on a phone."
+          },
+          {
+            "title": "Your existing decks come with you",
+            "body": "Point the importer at hand-built webinar HTML plus a narration file. It carries narration across verbatim, maps what it recognises, and tells you exactly which slides it could not classify."
+          }
+        ]
+      },
+      {
+        "type": "stack",
+        "kicker": "What Is In The Zip",
+        "headline": "Nine pieces, priced against [ACCENT]what you would otherwise rent[/ACCENT]",
+        "items": [
+          {
+            "name": "Local voice cloning engine — runs on your hardware",
+            "value": "$1,188/yr value"
+          },
+          {
+            "name": "Presentation builder — 9 slide layouts",
+            "value": "$588/yr value"
+          },
+          {
+            "name": "Video renderer — slides + narration to MP4",
+            "value": "$708/yr value"
+          },
+          {
+            "name": "Landing page builder — 9 section types",
+            "value": "$1,164/yr value"
+          },
+          {
+            "name": "Built-in host with email capture",
+            "value": "$468/yr value"
+          },
+          {
+            "name": "Legacy deck importer",
+            "value": "$297 value"
+          },
+          {
+            "name": "Docker setup — Dockerfile and compose file",
+            "value": "$197 value"
+          },
+          {
+            "name": "37-slide reference deck, complete",
+            "value": "$497 value"
+          },
+          {
+            "name": "CLAUDE.md — your own Claude sets it up",
+            "value": "$297 value"
+          }
+        ],
+        "totalLabel": "Total value",
+        "totalValue": "$5,404",
+        "priceLabel": "Your price today — one time",
+        "price": "[YOUR PRICE]",
+        "priceNote": "One payment, not a subscription. Renting the same four capabilities runs $354/month — $4,248 every year, for as long as you keep making webinars.",
+        "cta": {
+          "label": "Get Webinar Forge",
+          "href": "#",
+          "note": "[PLACEHOLDER LINK — point this at your own checkout URL.]"
+        }
+      },
+      {
+        "type": "pricing",
+        "kicker": "The Offer",
+        "headline": "One zip. [ACCENT]One payment.[/ACCENT]",
+        "tiers": [
+          {
+            "name": "Webinar Forge — Complete",
+            "price": "[YOUR PRICE]",
+            "was": "$5,404 value",
+            "featured": true,
+            "badge": "Everything, one file",
+            "features": [
+              "Local voice cloning engine",
+              "Presentation builder — 9 layouts",
+              "Video renderer",
+              "Landing page builder — 9 section types",
+              "Built-in host with email capture",
+              "Legacy deck importer",
+              "Docker setup",
+              "37-slide reference deck",
+              "CLAUDE.md setup guide"
+            ],
+            "cta": {
+              "label": "Get Webinar Forge",
+              "href": "#"
+            }
+          }
+        ],
+        "footnote": "[PLACEHOLDER — the link above is not a checkout. Replace the # with your own Stripe, PayPal or checkout URL, and set your refund terms, before this page goes live.]"
+      },
+      {
+        "type": "testimonials",
+        "headline": "What people are saying",
+        "items": [
+          {
+            "quote": "[PLACEHOLDER — replace with a real quote from a real person who has used the tool, in their own words, with their permission.]",
+            "name": "[Name]",
+            "role": "[What they do]"
+          },
+          {
+            "quote": "[PLACEHOLDER — a second real quote goes here. Specifics beat praise: what they built, how long it took, what it replaced.]",
+            "name": "[Name]",
+            "role": "[What they do]"
+          },
+          {
+            "quote": "[PLACEHOLDER — a third real quote goes here. If you do not have three yet, delete the extras rather than inventing them.]",
+            "name": "[Name]",
+            "role": "[What they do]"
+          }
+        ],
+        "disclaimer": "[PLACEHOLDER SECTION — nothing above is a real testimonial. Replace all three with genuine quotes from people who have used Webinar Forge, with their permission, or delete this entire section from project.json before publishing.]"
+      },
+      {
+        "type": "faq",
+        "kicker": "Straight Answers",
+        "headline": "Including the parts that are [ACCENT]not good news[/ACCENT]",
+        "items": [
+          {
+            "q": "Do I need a graphics card?",
+            "a": "No. The engine auto-detects CUDA or Apple silicon and falls back to your CPU. CPU works — it is just slower, so start with a short deck before committing to a 40-slide one."
+          },
+          {
+            "q": "Does my voice sample leave my machine?",
+            "a": "No. The model runs locally and nothing is uploaded. Samples are also excluded when you repackage the zip, because a sample is all anyone needs to generate unlimited speech in that person's voice."
+          },
+          {
+            "q": "Does it process payments?",
+            "a": "No. Pricing buttons are plain links. You point them at your own Stripe, PayPal or checkout URL."
+          },
+          {
+            "q": "Does it send email?",
+            "a": "No. Opt-ins from the gate append to a JSONL file on your server. Export them into whatever you already send with."
+          },
+          {
+            "q": "Does it handle HTTPS?",
+            "a": "No. The built-in server does not terminate TLS. For a public domain put nginx or Caddy in front of it, or copy the site folder to any static host."
+          },
+          {
+            "q": "Is the voice engine secured?",
+            "a": "It has no authentication. Anyone who can reach its port can synthesize any installed voice, so it binds to loopback by default. Keep it there unless you put an authenticating proxy in front of it."
+          },
+          {
+            "q": "Can I use it for more than one webinar?",
+            "a": "Yes. Copy the config and change the words. There is no per-render fee, no cap and no seat count."
+          },
+          {
+            "q": "What if I already built webinars by hand?",
+            "a": "The importer converts them. Narration carries across verbatim; headings, bullets, stats and myth beats are mapped where recognised, and anything it cannot classify is listed for you to review."
+          },
+          {
+            "q": "How long does a build take?",
+            "a": "Voice synthesis dominates. For a 40-slide deck: roughly 5–15 minutes on a CUDA GPU, 15–40 on Apple silicon, hours on CPU alone. Video render is 3–15 minutes depending on hardware."
+          }
+        ]
+      },
+      {
+        "type": "cta",
+        "kicker": "Last Thing",
+        "headline": "You have [ACCENT]already seen it work[/ACCENT]",
+        "sub": "The video at the top of this page, the voice reading it, and this page itself all came out of one config file and one command. Nothing here is a mockup.",
+        "cta": {
+          "label": "Get Webinar Forge",
+          "href": "#"
+        },
+        "footnote": "[PLACEHOLDER — checkout link and refund terms go here.]"
+      }
+    ],
+    "footer": [
+      "Webinar Forge is a self-hosted tool. It does not process payments, send email, or terminate HTTPS — see the FAQ above.",
+      "[PLACEHOLDER — before going live: set your price, replace every # link with your checkout URL, replace the testimonials with real ones, and add your own refund terms and legal footer here.]"
+    ]
+  }
+}
