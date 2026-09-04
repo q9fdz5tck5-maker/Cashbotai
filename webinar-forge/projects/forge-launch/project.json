@@ -527,8 +527,8 @@
           ]
         }
       ],
-      "footnote": "Text (805) 453-3586 to buy.",
-      "narration": "Which brings us to what it costs. Everything I have just shown you is one folder, one payment, one time. Not a subscription. Not a seat. Not a fee every time you make a video. You download it, you put it on your computer, and it is yours in the same plain way that a hammer is yours. The number is on the screen. Two hundred and ninety seven dollars. Hold that up next to four thousand two hundred and forty eight dollars a year. And then remember that next year it is still zero, and the year after that it is still zero. To buy it, you text me. The number is right there on the screen."
+      "footnote": "Text (805) 453-3586 to buy. 30-day refund, no questions asked.",
+      "narration": "Which brings us to what it costs. Everything I have just shown you is one folder, one payment, one time. Not a subscription. Not a seat. Not a fee every time you make a video. You download it, you put it on your computer, and it is yours in the same plain way that a hammer is yours. The number is on the screen. Two hundred and ninety seven dollars. Hold that up next to four thousand two hundred and forty eight dollars a year. And then remember that next year it is still zero, and the year after that it is still zero. And you are not taking a risk to find that out. You get thirty days. Build a webinar with it, and if you decide it was not worth two hundred and ninety seven dollars to you, you send me one email and I refund you, and you keep the webinar you already made. I would rather you had it and it worked than I had your money and you had a doubt. To buy it, you text me. The number is right there on the screen."
     },
     {
       "layout": "faq",
@@ -735,6 +735,24 @@
           }
         ],
         "footnote": "Text (805) 453-3586 to buy. One-time payment \u2014 no subscription."
+      },
+      {
+        "type": "guarantee",
+        "kicker": "Your Risk",
+        "badge": "30 Days",
+        "headline": "Build a webinar with it. If it was not worth $297, [ACCENT]take the money back and keep the webinar.[/ACCENT]",
+        "body": "You should not have to gamble $297 to find out whether this fits the way you actually work. So you do not.",
+        "terms": [
+          "Thirty days from the day you buy, for any reason you like.",
+          "You keep every webinar you already built with it. I am not taking those back.",
+          "One email. No form, no phone call, no \"what went wrong\" interrogation.",
+          "Refunds are handled by the person who built this, which is one person, which is me."
+        ],
+        "cta": {
+          "label": "Text To Buy",
+          "href": "sms:+18054533586",
+          "note": "Text (805) 453-3586 to buy. One-time payment \u2014 no subscription."
+        }
       },
       {
         "type": "faq",

@@ -7,8 +7,41 @@
 
 const fs = require('fs');
 const path = require('path');
+const crypto = require('crypto');
 const { execFile, execFileSync } = require('child_process');
 const log = require('./log');
+
+// A segment's existence says nothing about which audio or image is inside it.
+// Narration is cache-stamped in narrate.js, so editing one slide correctly
+// re-synthesizes that mp3 — but without the same treatment here the video stage
+// would reuse the segment built from the *previous* audio and silently ship a
+// video that does not contain the edit. Stamp each segment with its inputs.
+function inputSig(file) {
+  try {
+    const st = fs.statSync(file);
+    return `${path.basename(file)}:${st.size}:${Math.floor(st.mtimeMs)}`;
+  } catch {
+    return `${path.basename(file)}:missing`;
+  }
+}
+
+function segmentStamp(cfg, job) {
+  const v = cfg.video;
+  return crypto.createHash('sha256').update(JSON.stringify({
+    audio: inputSig(job.audio),
+    png: inputSig(job.png),
+    duration: job.duration.toFixed(3),
+    enc: [v.width, v.height, v.fps, v.crf, v.preset, v.audioBitrate, v.fadeSeconds],
+  })).digest('hex');
+}
+
+function stampMatches(stampPath, stamp) {
+  try {
+    return fs.readFileSync(stampPath, 'utf8').trim() === stamp;
+  } catch {
+    return false;
+  }
+}
 
 function run(bin, args) {
   return new Promise((resolve, reject) => {
@@ -75,13 +108,17 @@ async function buildVideo(cfg, dirs, bins, narration, { force = false } = {}) {
   async function worker() {
     while (cursor < jobs.length) {
       const job = jobs[cursor++];
-      if (!force && fs.existsSync(job.out) && fs.statSync(job.out).size > 1024) {
+      const stamp = segmentStamp(cfg, job);
+      const stampPath = `${job.out}.sig`;
+      if (!force && fs.existsSync(job.out) && fs.statSync(job.out).size > 1024 &&
+          stampMatches(stampPath, stamp)) {
         done++;
         log.info(`[${done}/${jobs.length}] cached seg-${job.num}.ts`);
         continue;
       }
       const t0 = Date.now();
       await run(bins.ffmpeg, segmentArgs(cfg, job.png, job.audio, job.duration, job.out));
+      fs.writeFileSync(stampPath, stamp);
       done++;
       const mb = (fs.statSync(job.out).size / 1048576).toFixed(1);
       log.ok(`[${done}/${jobs.length}] seg-${job.num}.ts ${job.duration.toFixed(1)}s ${mb}MB in ${((Date.now() - t0) / 1000).toFixed(1)}s`);
