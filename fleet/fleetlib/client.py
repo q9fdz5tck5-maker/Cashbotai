@@ -213,8 +213,14 @@ class FleetClient:
     def delete(self, path, params=None):
         return self.request("DELETE", path, params=params)
 
-    def post_bytes(self, path, data, headers=None, timeout=None):
-        """Upload raw bytes (artifacts) rather than a JSON document."""
+    def post_bytes(self, path, data, headers=None, timeout=None, raw=False):
+        """Upload raw bytes (artifacts) rather than a JSON document.
+
+        ``raw=True`` also returns the response undecoded, for services that
+        answer with audio or video instead of JSON. Decoding those as text
+        replaces every non-UTF-8 byte with U+FFFD, which corrupts the file
+        quietly rather than failing.
+        """
         url = self.prefix + path
         send_headers = {
             "Content-Type": "application/octet-stream",
@@ -232,9 +238,13 @@ class FleetClient:
         if timeout is not None:
             self.timeout = timeout
         try:
-            return self._send_with_retries("POST", url, data, send_headers)
+            result = self._send_with_retries("POST", url, data, send_headers,
+                                             decode=not raw)
         finally:
             self.timeout = previous
+        if raw and not isinstance(result, bytes):
+            raise FleetError(0, "expected binary, got %r" % type(result), url)
+        return result
 
     # -- diagnostics -----------------------------------------------------
 

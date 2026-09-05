@@ -495,3 +495,174 @@ class _FakeCtx:
 
     def artifact(self, path):
         return {"local": path}
+
+
+class TestVoiceClone(unittest.TestCase):
+    """engine=clone talks to a webinar-forge box holding the voice sample."""
+
+    def test_multipart_encodes_form_fields_and_drops_empties(self):
+        from fleet.handlers import tts
+        body, content_type = tts._multipart(
+            {"text": "hello", "voice": "myvoice", "cfg_weight": None})
+        self.assertTrue(content_type.startswith("multipart/form-data; boundary="))
+        boundary = content_type.split("boundary=", 1)[1]
+        text = body.decode("utf-8")
+        self.assertIn('name="text"', text)
+        self.assertIn("hello", text)
+        self.assertIn('name="voice"', text)
+        # An unset option must not be sent as the string "None", which the
+        # engine would try to parse as a float and reject.
+        self.assertNotIn("cfg_weight", text)
+        self.assertTrue(text.rstrip().endswith("--%s--" % boundary))
+
+    def test_multipart_survives_prose(self):
+        # Narration is user prose: quotes, newlines and non-ASCII all show up.
+        from fleet.handlers import tts
+        awkward = 'He said "hi" -- 100% sure\nnew line, café'
+        body, _ = tts._multipart({"text": awkward})
+        self.assertIn(awkward.encode("utf-8"), body)
+
+    def test_clone_without_an_address_says_what_to_set(self):
+        from fleet.handlers import tts
+        with self.assertRaises(HandlerError) as caught:
+            tts.run({"text": "hi", "engine": "clone"}, _FakeCtx("/tmp"))
+        self.assertIn("FLEET_VOICE_URL", str(caught.exception))
+
+    def test_clone_without_a_voice_name_says_where_to_look(self):
+        from fleet.handlers import tts
+        with self.assertRaises(HandlerError) as caught:
+            tts.run({"text": "hi", "engine": "clone",
+                     "api": {"url": "http://voice-01:8001"}}, _FakeCtx("/tmp"))
+        self.assertIn("/voices", str(caught.exception))
+
+    def test_unknown_engine_lists_clone(self):
+        from fleet.handlers import tts
+        with self.assertRaises(HandlerError) as caught:
+            tts.run({"text": "hi", "engine": "wishful"}, _FakeCtx("/tmp"))
+        self.assertIn("clone", str(caught.exception))
+
+
+def _parse_multipart(body, content_type):
+    """Minimal multipart reader, so the test does not need the `cgi` module.
+
+    `cgi` is gone in Python 3.13, and a test that dies on a newer interpreter
+    is worse than one that parses twenty lines by hand.
+    """
+    marker = "boundary="
+    if marker not in content_type:
+        return {}
+    boundary = ("--" + content_type.split(marker, 1)[1]).encode("utf-8")
+    fields = {}
+    for part in body.split(boundary):
+        if b"\r\n\r\n" not in part:
+            continue
+        head, _, value = part.partition(b"\r\n\r\n")
+        head = head.decode("utf-8", "replace")
+        if 'name="' not in head:
+            continue
+        name = head.split('name="', 1)[1].split('"', 1)[0]
+        fields[name] = value.rstrip(b"\r\n-").decode("utf-8", "replace")
+    return fields
+
+
+class TestVoiceCloneRoundTrip(unittest.TestCase):
+    """Drive engine=clone against a server speaking webinar-forge's API.
+
+    The real engine needs a GPU and multi-gigabyte model weights, so this
+    stands up something with the same wire contract -- multipart form in, raw
+    WAV out -- and checks the bytes survive. The failure this guards against
+    is a JSON error body being written to disk as a .wav and only surfacing
+    much later, inside ffprobe, with nothing pointing at the cause.
+    """
+
+    @classmethod
+    def setUpClass(cls):
+        from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+
+        # 44-byte WAV header plus silence: real enough to assert on, and it
+        # keeps the test independent of any speech binary being installed.
+        cls.audio = (b"RIFF" + (36 + 800).to_bytes(4, "little") + b"WAVEfmt "
+                     + (16).to_bytes(4, "little") + (1).to_bytes(2, "little")
+                     + (1).to_bytes(2, "little") + (22050).to_bytes(4, "little")
+                     + (44100).to_bytes(4, "little") + (2).to_bytes(2, "little")
+                     + (16).to_bytes(2, "little") + b"data"
+                     + (800).to_bytes(4, "little") + b"\x00" * 800)
+        received = {}
+
+        class Handler(BaseHTTPRequestHandler):
+            def log_message(self, *args):
+                pass
+
+            def do_POST(self):
+                length = int(self.headers.get("Content-Length", 0))
+                fields = _parse_multipart(
+                    self.rfile.read(length),
+                    self.headers.get("Content-Type", ""))
+                received.clear()
+                received.update(fields)
+                if received["voice"] != "myvoice":
+                    body = b'{"detail":"Voice not found."}'
+                    self.send_response(404)
+                    self.send_header("Content-Type", "application/json")
+                    self.send_header("Content-Length", str(len(body)))
+                    self.end_headers()
+                    self.wfile.write(body)
+                    return
+                self.send_response(200)
+                self.send_header("Content-Type", "audio/wav")
+                self.send_header("Content-Length", str(len(cls.audio)))
+                self.end_headers()
+                self.wfile.write(cls.audio)
+
+        cls.received = received
+        cls.httpd = ThreadingHTTPServer(("127.0.0.1", 0), Handler)
+        cls.port = cls.httpd.server_address[1]
+        cls.thread = threading.Thread(target=cls.httpd.serve_forever, daemon=True)
+        cls.thread.start()
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.httpd.shutdown()
+        cls.httpd.server_close()
+
+    def setUp(self):
+        self.workdir = tempfile.mkdtemp()
+        self.addCleanup(shutil.rmtree, self.workdir, True)
+        self.ctx = _FakeCtx(self.workdir)
+
+    def _url(self):
+        return "http://127.0.0.1:%d" % self.port
+
+    def test_audio_survives_the_round_trip_byte_for_byte(self):
+        from fleet.handlers import tts
+        result = tts.run({"text": "Words in my own voice.", "engine": "clone",
+                          "voice": "myvoice", "api": {"url": self._url()}},
+                         self.ctx)
+        with open(result["audio"]["local"], "rb") as handle:
+            written = handle.read()
+        self.assertEqual(written, self.audio, "audio was altered in transit")
+        self.assertEqual(result["voice"], "myvoice")
+        self.assertEqual(self.received["text"], "Words in my own voice.")
+
+    def test_the_reference_recording_never_leaves_the_engine_box(self):
+        # Only words and settings may cross the wire. If a sample path or the
+        # audio itself ever started riding along in the job, it would land in
+        # the hub database and in every worker's scratch directory.
+        from fleet.handlers import tts
+        tts.run({"text": "hello", "engine": "clone", "voice": "myvoice",
+                 "api": {"url": self._url()}}, self.ctx)
+        self.assertEqual(set(self.received), {"text", "voice", "engine"})
+        self.assertEqual(self.received["voice"], "myvoice",
+                         "the voice must travel as a name, not a path")
+        for name, value in self.received.items():
+            self.assertNotIn("/", value, "%s looks like a path" % name)
+            self.assertNotIn("RIFF", value, "%s carries audio" % name)
+
+    def test_a_json_error_is_not_written_out_as_audio(self):
+        from fleet.handlers import tts
+        with self.assertRaises(HandlerError) as caught:
+            tts.run({"text": "hello", "engine": "clone", "voice": "ghost",
+                     "api": {"url": self._url()}}, self.ctx)
+        self.assertIn("refused the request", str(caught.exception))
+        self.assertEqual(os.listdir(self.workdir), [],
+                         "a failed synthesis left a file behind")

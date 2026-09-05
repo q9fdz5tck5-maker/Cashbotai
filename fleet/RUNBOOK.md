@@ -42,6 +42,39 @@ The model is `en_US-amy-medium` from the `rhasspy/piper-voices` repository on
 HuggingFace. The script names `piper` as its engine but no voice path, so the
 script stays portable and the machine decides which voice it has.
 
+## Narrating in my own voice
+
+The tutorial video currently shipped in `webinars/out/` is narrated by
+**piper's stock `en_US-amy-medium`**, not by the clone. It was built before the
+clone path existed.
+
+To rebuild it in the real voice:
+
+1. On a box with a GPU, run the webinar-forge engine from
+   `claude/webinar-forge-video-rebuild-innj40` (`engine/requirements.txt`;
+   install the matching CUDA torch build first). Put `myvoice.wav` in
+   `engine/voices/` -- it lives on `claude/webinar-voice-synthesis-5pcn6y`.
+2. Give that box the `audio` role and point it at the engine:
+
+       FLEET_VOICE_URL=http://127.0.0.1:8001
+       FLEET_VOICE_NAME=myvoice
+
+3. Switch the script's engine and rebuild:
+
+       "engine": "clone", "voice": "myvoice"
+       python3 fleet.py webinar webinars/what-is-this.json
+
+Two things about the sample worth fixing while you are there. It is 84 seconds
+at 16 kHz; forge's own `voices/README.md` asks for 10-30 seconds at 24 kHz or
+better, because the clone copies pacing and energy and cannot recover detail
+that was never recorded. A shorter, cleaner, higher-rate take will sound
+markedly better than this one.
+
+**Chatterbox does not install in the Claude build sandbox.** `chatterbox-tts`
+pulls `antlr4-python3-runtime==4.9.3`, which ships no wheel and whose
+`setup.py` fails against modern setuptools. That is a sandbox limitation, not
+a fleet one -- the engine is meant to run on your CUDA box regardless.
+
 ## Not wired up
 
 The affiliate link is used directly, as

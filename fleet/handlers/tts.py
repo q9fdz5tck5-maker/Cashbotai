@@ -9,6 +9,9 @@ run and pay for:
             spend money on the real voice.
 ``http``    any REST voice API (ElevenLabs, OpenAI, PlayHT). You supply the
             URL, headers, and request shape, so no vendor is hard-coded.
+``clone``   your own voice, spoken by a webinar-forge engine box running
+            chatterbox or f5. The reference recording never leaves that
+            machine -- the job sends words and a voice *name*, nothing else.
 
 Payload:
     text            required, the words to speak
@@ -17,6 +20,7 @@ Payload:
     output          output filename (default speech.wav / .mp3 for http)
     speed           engine-specific rate multiplier
     api             for engine=http: {url, method, headers, body_template, audio_field}
+                    for engine=clone: {url, engine, exaggeration, cfg_weight}
 """
 
 import base64
@@ -39,9 +43,93 @@ def run(payload, ctx):
         return _espeak(payload, ctx, text)
     if engine == "http":
         return _http_api(payload, ctx, text)
+    if engine in ("clone", "forge"):
+        return _clone(payload, ctx, text)
     raise HandlerError(
-        "Unknown tts engine %r. Supported: piper, espeak, http." % engine
+        "Unknown tts engine %r. Supported: piper, espeak, http, clone." % engine
     )
+
+
+def _multipart(fields):
+    """Encode form fields the way FastAPI's ``Form(...)`` expects.
+
+    Written out by hand because the fleet is standard library only, and
+    because the alternative -- shelling out to curl -- would put the narration
+    text on a command line where it lands in the process table.
+    """
+    boundary = "----fleet%s" % base64.urlsafe_b64encode(os.urandom(12)).decode().strip("=")
+    lines = []
+    for name, value in fields.items():
+        if value is None:
+            continue
+        lines.append(("--%s\r\n" % boundary).encode("utf-8"))
+        lines.append(
+            ('Content-Disposition: form-data; name="%s"\r\n\r\n' % name).encode("utf-8")
+        )
+        lines.append(str(value).encode("utf-8"))
+        lines.append(b"\r\n")
+    lines.append(("--%s--\r\n" % boundary).encode("utf-8"))
+    return b"".join(lines), "multipart/form-data; boundary=%s" % boundary
+
+
+def _clone(payload, ctx, text):
+    """Speak in a cloned voice via a webinar-forge engine box.
+
+    The engine holds the reference recording and answers with raw WAV bytes.
+    Only the words and the voice's *name* cross the wire, so the sample stays
+    on the one machine that needs it rather than being copied into every job
+    record and every worker's scratch directory.
+    """
+    api = payload.get("api") or {}
+    url = (api.get("url") or os.environ.get("FLEET_VOICE_URL") or "").rstrip("/")
+    if not url:
+        raise HandlerError(
+            "engine=clone needs the voice engine's address: set payload.api.url "
+            "or FLEET_VOICE_URL on this worker (e.g. http://voice-01:8001)."
+        )
+    voice = payload.get("voice") or os.environ.get("FLEET_VOICE_NAME")
+    if not voice:
+        raise HandlerError(
+            "engine=clone needs a 'voice' name -- whichever sample is loaded "
+            "on the engine box. Ask it: GET %s/voices" % url
+        )
+
+    body, content_type = _multipart({
+        "text": text,
+        "voice": voice,
+        "engine": api.get("engine", "chatterbox"),
+        "exaggeration": api.get("exaggeration"),
+        "cfg_weight": api.get("cfg_weight"),
+    })
+
+    ctx.log("clone: %d characters as %r via %s" % (len(text), voice, url))
+    client = FleetClient(url, timeout=int(api.get("timeout", 1800)))
+    try:
+        audio = client.post_bytes("/synthesize", body,
+                                  headers={"Content-Type": content_type,
+                                           "Accept": "audio/wav"},
+                                  raw=True)
+    except FleetError as exc:
+        raise HandlerError(
+            "voice engine at %s refused the request: %s\n"
+            "Check it is running and that voice %r exists (GET %s/voices)."
+            % (url, exc, voice, url)
+        )
+    if not audio:
+        raise HandlerError("voice engine returned an empty response")
+    if audio[:4] != b"RIFF":
+        # A JSON error body decoded as audio would otherwise be written to
+        # disk as a .wav and fail much later, in ffprobe, with no clue why.
+        raise HandlerError(
+            "voice engine did not return WAV audio. First bytes: %r"
+            % audio[:80]
+        )
+
+    output = safe_join(ctx.workdir, payload.get("output") or "speech.wav")
+    with open(output, "wb") as handle:
+        handle.write(audio)
+    return _finish(ctx, output, engine="clone", voice=voice,
+                   characters=len(text))
 
 
 def _piper(payload, ctx, text):

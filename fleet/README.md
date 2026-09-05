@@ -107,7 +107,7 @@ if you actually want one.
 
 | Kind | Does | Needs |
 |---|---|---|
-| `tts` | voice from text (piper, espeak, or any REST voice API) | piper or espeak-ng |
+| `tts` | voice from text (piper, espeak, your cloned voice, or any REST voice API) | piper, espeak-ng, or a voice-engine box |
 | `render` | slideshow / concat / transcode / raw ffmpeg | ffmpeg |
 | `deck` | slide images from text -- titles, bullets, box diagrams | ffmpeg + DejaVu fonts |
 | `webinar` | narrate a script *and* cut it to slides, one job | both |
@@ -115,6 +115,28 @@ if you actually want one.
 
 `shell` is refused unless the agent was started with `--allow-shell`. Anyone
 holding the admin token can run code on every box that enables it.
+
+### Speaking in your own voice
+
+`engine: "clone"` narrates with a cloned voice served by a **webinar-forge
+engine box** (chatterbox or f5). That machine holds the reference recording;
+the job sends the words and the voice's *name*, and gets raw WAV back:
+
+```json
+{"engine": "clone", "voice": "myvoice",
+ "api": {"url": "http://voice-01:8001", "engine": "chatterbox"}}
+```
+
+Or set `FLEET_VOICE_URL` and `FLEET_VOICE_NAME` on the worker and omit the
+`api` block entirely.
+
+The sample never crosses the wire, so it never lands in the hub database or a
+worker's scratch directory -- a voice sample is all anyone needs to synthesize
+unlimited speech as that person. Ask the engine what it has loaded with
+`GET /voices`.
+
+The engine wants a GPU and multi-gigabyte weights, which is exactly the kind of
+thing one specialised box should own and the rest of the fleet should borrow.
 
 ### Webinar script
 
@@ -249,8 +271,9 @@ when its lease expires.
 python3 -m unittest discover -s fleet/tests -t . -v
 ```
 
-44 tests, no network and no fixtures required. They cover role isolation, the
+52 tests, no network and no fixtures required. They cover role isolation, the
 concurrent-claim race (twelve threads against one queue, asserting no job is
 ever handed out twice), lease reclamation, retry semantics, autoscaler maths,
-a binary artifact round trip through a live hub using all 256 byte values, and
-the slide-generation guard rails.
+a binary artifact round trip through a live hub using all 256 byte values, the
+slide-generation guard rails, and a voice-clone round trip against a server
+speaking the engine's wire format.
