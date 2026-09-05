@@ -604,90 +604,12 @@
       "id": "s36"
     },
     {
-      "layout": "pricing",
-      "kicker": "The Price",
-      "headline": "Build it yourself, or [ACCENT]have it built.[/ACCENT]",
-      "tiers": [
-        {
-          "name": "Webinar Forge \u2014 the complete folder",
-          "price": "$297",
-          "was": "$5,404 value",
-          "featured": true,
-          "features": [
-            "The voice that sounds like you",
-            "Slide builder \u2014 9 shapes",
-            "Video maker",
-            "Sales page builder \u2014 9 section types",
-            "Built-in web host with sign-up capture",
-            "Old webinar converter",
-            "One-step install",
-            "37-slide reference webinar",
-            "Setup guide your own Claude reads"
-          ]
-        },
-        {
-          "name": "Done For You \u2014 I build it",
-          "price": "$997",
-          "features": [
-            "Everything in the $297 folder, installed and running",
-            "I write all 39 slides from notes you send me",
-            "Your voice, cloned from one short recording",
-            "Finished video and sales page, ready to publish",
-            "One round of revisions"
-          ]
-        }
-      ],
-      "footnote": "Text (805) 453-3586 to buy. 30-day refund, no questions asked.",
-      "narration": "Which brings us to what it costs. Everything I have just shown you is one folder, one payment, one time. Not a subscription. Not a seat. Not a fee every time you make a video. You download it, you put it on your computer, and it is yours in the same plain way that a hammer is yours. The number is on the screen. Two hundred and ninety seven dollars. Hold that up next to four thousand two hundred and forty eight dollars a year. And then remember that next year it is still zero, and the year after that it is still zero. And if you would rather not write it yourself at all, there is a second option on that screen. Nine hundred and ninety seven, and I build the whole thing for you from notes you send me. And you are not taking a risk to find that out. You get thirty days. Build a webinar with it, and if you decide it was not worth two hundred and ninety seven dollars to you, you send me one email and I refund you, and you keep the webinar you already made. I would rather you had it and it worked than I had your money and you had a doubt. To buy it, you text me. The number is right there on the screen.",
-      "id": "s37"
-    },
-    {
-      "layout": "faq",
-      "kicker": "Straight Answers",
-      "headline": "The technical questions, answered [ACCENT]precisely[/ACCENT]",
-      "items": [
-        {
-          "q": "Do I need a GPU?",
-          "a": "No. The engine auto-detects CUDA, then Apple silicon, then falls back to CPU. CPU works but is slow \u2014 hours for a 40-slide deck. On a CUDA GPU, synthesis runs roughly 5-15 minutes and the video render 3-15."
-        },
-        {
-          "q": "Does my voice sample leave my machine?",
-          "a": "No. Inference is entirely local. Samples live in engine/voices/ and are excluded from the redistributable zip, because a sample is all anyone needs to generate unlimited speech in that voice."
-        },
-        {
-          "q": "Is the voice engine secured?",
-          "a": "It has no authentication. Anyone who can reach its port can synthesize any installed voice, so it binds to 127.0.0.1 by default. Keep it on loopback unless you put an authenticating proxy in front of it."
-        },
-        {
-          "q": "Does it terminate TLS?",
-          "a": "No. The built-in server does not terminate TLS. Put nginx or Caddy in front for a public domain, or copy the finished site folder to any static host."
-        },
-        {
-          "q": "Are there per-render limits?",
-          "a": "None. No per-render fee, no per-character billing, no seat count and no cap. Renders are bounded only by your own hardware."
-        }
-      ],
-      "narration": "Now the technical questions, and I am going to answer these precisely, because if you are asking them then you want the real answer and not a comforting one. Do you need a graphics card? No. It looks for a CUDA card first, then Apple silicon, then falls back to your processor. The processor does work, it is just slow. Hours, for a forty slide deck. On a proper graphics card you are looking at five to fifteen minutes for the narration, and three to fifteen for the video. Does your voice sample leave your machine? No. It all runs locally, and the samples are deliberately excluded from the folder you would ever pass on to somebody else, because one sample is all anybody needs to generate unlimited speech in that voice. Is the voice engine secured? No, and I want to be blunt with you about that. It has no authentication at all, so it binds to loopback only, and you should leave it exactly there unless you put an authenticating proxy in front of it. Does it terminate TLS? No. Put nginx or Caddy in front for a public domain, or copy the finished site folder onto any static host. And are there limits on how much you render? None. No per render fee, no per character billing, no seat count and no cap. The only limit is your own hardware.",
-      "id": "s38"
-    },
-    {
-      "layout": "cta",
-      "kicker": "Last Thing",
-      "headline": "The proof is [ACCENT]the thing you are watching[/ACCENT]",
-      "sub": "This video, this voice, and the page around it came out of one file and one sentence, on a computer nobody bills me for. Yours can too.",
-      "button": "Text To Buy",
-      "url": "(805) 453-3586",
-      "footnote": "Text (805) 453-3586 to buy.",
-      "narration": "So here is where I will leave it with you. Every other sales page has to convince you that the thing actually works. I do not have to do that, because you have been staring straight at the output of it for the last twenty minutes. This video. This voice, which is mine, copied from about thirty seconds of me talking. The slide you are reading right now. And the whole page it is all sitting inside. Every bit of it came out of one file and one sentence, on a computer that nobody sends me a bill for. Three hundred and fifty four dollars a month to rent that, or two hundred and ninety seven dollars, one time, to own it. If you have got something worth selling and no webinar sitting in front of it, this is the shortest distance between those two facts. So text me. Eight zero five, four five three, three five eight six. And I will get you set up today, while you are still holding the thought.",
-      "id": "s39"
-    },
-    {
       "id": "s44",
       "layout": "title",
-      "kicker": "One More Thing",
+      "kicker": "One More Piece In The Box",
       "headline": "Everything you just watched ran on [ACCENT]one computer[/ACCENT]",
       "sub": "I want to show you what happens when it is not one.",
-      "narration": "So that is the tool, and that is the offer, and if that is all you take from today then it is enough. But I would be leaving out the part that actually changed things for me, so I am going to keep you for a few more minutes. Everything you have watched for the last twenty minutes came off one computer. One machine, doing one job at a time, in order. The voice, then the slides, then the video, then the page. Each one waiting for the one in front of it to finish. That works. You have just watched it work. But there is a version of this where it is not one computer, and once I had seen that version I could not go back to the first one."
+      "narration": "Before I tell you what it costs, there is one more piece in the box, and it is the piece that changed how I use this thing. Everything you have watched for the last half hour came off one computer. One machine, doing one job at a time, in order. The voice, then the slides, then the video, then the page. Each one waiting for the one in front of it to finish. That works. You have just watched it work. But there is a version of this where it is not one computer, and once I had seen that version I could not go back to the first one. It is included in the number you are about to see, so I want you to know what it is before that number goes up on the screen."
     },
     {
       "id": "s45",
@@ -853,34 +775,17 @@
     },
     {
       "id": "s55",
-      "layout": "pricing",
+      "layout": "bullets",
       "kicker": "What This Part Costs",
-      "headline": "The fleet is [ACCENT]included[/ACCENT]. The only spend is machines.",
-      "tiers": [
-        {
-          "name": "The fleet software",
-          "price": "$0",
-          "featured": true,
-          "features": [
-            "Included, with nothing attached to it",
-            "No seat, no monthly, no limit on how many computers",
-            "Runs on hardware you already own",
-            "Delete the folder and it is gone \u2014 no account to close"
-          ]
-        },
-        {
-          "name": "Machines, only if you want more",
-          "price": "from $5/mo",
-          "features": [
-            "Per machine, per month \u2014 and only the ones you rent",
-            "Only if you have run out of computers at home",
-            "Start with one, add another when it is busy",
-            "Cancel any time \u2014 nothing lives only there"
-          ]
-        }
-      ],
-      "footnote": "You can run the whole thing on machines you already own and spend nothing at all.",
-      "narration": "So what does this part cost. Nothing. It comes with the tool. There is no second payment, there is no charge per computer, and there is no limit on how many you point at it. And I want to be straight about the one place money shows up, because I would rather say it than have you find it. If you run out of computers in your house, you can rent one, and they start at around five dollars a month. That is optional. You can run this entire thing on the machines already in your home and never spend a penny on it. And if you do rent one and then change your mind, you cancel it, and nothing is lost, because none of your work was living there. It was on your own machine the whole time."
+      "headline": "Nothing. It is [ACCENT]in the folder[/ACCENT] already.",
+      "narration": "So what does this part cost. Nothing. It comes with the tool. There is no second payment, there is no charge per computer, and there is no limit on how many you point at it. And I want to be straight about the one place money shows up, because I would rather say it than have you find it. If you run out of computers in your house, you can rent one, and they start at around five dollars a month. That is optional. You can run this entire thing on the machines already in your home and never spend a penny on it. And if you do rent one and then change your mind, you cancel it, and nothing is lost, because none of your work was living there. It was on your own machine the whole time.",
+      "bullets": [
+        "No second payment, no seat, no monthly",
+        "No limit on how many computers you point at it",
+        "Runs on hardware you already own \u2014 start there",
+        "The only money is renting a machine, and only if you run out of your own",
+        "Delete the folder and it is gone \u2014 no account to close"
+      ]
     },
     {
       "id": "s56",
@@ -908,15 +813,83 @@
       "narration": "Let me take the questions I would be asking. Do you need a graphics card. For your own cloned voice, yes, on one machine, and it wants a reasonable one. Everything else, the slides, the video, the pages, will run on anything. What if a computer dies halfway through a job. The job goes back on the list and another machine picks it up, so you lose a few minutes, you do not lose the work. Where does my data sit. On your machines. Your voice sample never leaves the machine that does the talking, it is not uploaded anywhere, and I am telling you that because it is the question I would want answered before I recorded myself. And how hard is it to get rid of. You delete the folder. There is no account to close and nothing to cancel."
     },
     {
-      "id": "s57",
+      "layout": "pricing",
+      "kicker": "The Price",
+      "headline": "Build it yourself, or [ACCENT]have it built.[/ACCENT]",
+      "tiers": [
+        {
+          "name": "Webinar Forge \u2014 the complete folder",
+          "price": "$297",
+          "was": "$5,404 value",
+          "featured": true,
+          "features": [
+            "The voice that sounds like you",
+            "Slide builder \u2014 9 shapes",
+            "Video maker",
+            "Sales page builder \u2014 9 section types",
+            "Built-in web host with sign-up capture",
+            "Old webinar converter",
+            "One-step install",
+            "37-slide reference webinar",
+            "Setup guide your own Claude reads",
+            "The fleet \u2014 run it across every computer you own"
+          ]
+        },
+        {
+          "name": "Done For You \u2014 I build it",
+          "price": "$997",
+          "features": [
+            "Everything in the $297 folder, installed and running",
+            "I write all 39 slides from notes you send me",
+            "Your voice, cloned from one short recording",
+            "Finished video and sales page, ready to publish",
+            "One round of revisions"
+          ]
+        }
+      ],
+      "footnote": "Text (805) 453-3586 to buy. 30-day refund, no questions asked. The fleet is included and is not counted in the $5,404.",
+      "narration": "Which brings us to what it costs. Everything I have just shown you is one folder, one payment, one time. Not a subscription. Not a seat. Not a fee every time you make a video. You download it, you put it on your computer, and it is yours in the same plain way that a hammer is yours. The number is on the screen. Two hundred and ninety seven dollars. Hold that up next to four thousand two hundred and forty eight dollars a year. And then remember that next year it is still zero, and the year after that it is still zero. And if you would rather not write it yourself at all, there is a second option on that screen. Nine hundred and ninety seven, and I build the whole thing for you from notes you send me. And you are not taking a risk to find that out. You get thirty days. Build a webinar with it, and if you decide it was not worth two hundred and ninety seven dollars to you, you send me one email and I refund you, and you keep the webinar you already made. I would rather you had it and it worked than I had your money and you had a doubt. To buy it, you text me. The number is right there on the screen.",
+      "id": "s37"
+    },
+    {
+      "layout": "faq",
+      "kicker": "Straight Answers",
+      "headline": "The technical questions, answered [ACCENT]precisely[/ACCENT]",
+      "items": [
+        {
+          "q": "Do I need a GPU?",
+          "a": "No. The engine auto-detects CUDA, then Apple silicon, then falls back to CPU. CPU works but is slow \u2014 hours for a 40-slide deck. On a CUDA GPU, synthesis runs roughly 5-15 minutes and the video render 3-15."
+        },
+        {
+          "q": "Does my voice sample leave my machine?",
+          "a": "No. Inference is entirely local. Samples live in engine/voices/ and are excluded from the redistributable zip, because a sample is all anyone needs to generate unlimited speech in that voice."
+        },
+        {
+          "q": "Is the voice engine secured?",
+          "a": "It has no authentication. Anyone who can reach its port can synthesize any installed voice, so it binds to 127.0.0.1 by default. Keep it on loopback unless you put an authenticating proxy in front of it."
+        },
+        {
+          "q": "Does it terminate TLS?",
+          "a": "No. The built-in server does not terminate TLS. Put nginx or Caddy in front for a public domain, or copy the finished site folder to any static host."
+        },
+        {
+          "q": "Are there per-render limits?",
+          "a": "None. No per-render fee, no per-character billing, no seat count and no cap. Renders are bounded only by your own hardware."
+        }
+      ],
+      "narration": "Now the technical questions, and I am going to answer these precisely, because if you are asking them then you want the real answer and not a comforting one. Do you need a graphics card? No. It looks for a CUDA card first, then Apple silicon, then falls back to your processor. The processor does work, it is just slow. Hours, for a forty slide deck. On a proper graphics card you are looking at five to fifteen minutes for the narration, and three to fifteen for the video. Does your voice sample leave your machine? No. It all runs locally, and the samples are deliberately excluded from the folder you would ever pass on to somebody else, because one sample is all anybody needs to generate unlimited speech in that voice. Is the voice engine secured? No, and I want to be blunt with you about that. It has no authentication at all, so it binds to loopback only, and you should leave it exactly there unless you put an authenticating proxy in front of it. Does it terminate TLS? No. Put nginx or Caddy in front for a public domain, or copy the finished site folder onto any static host. And are there limits on how much you render? None. No per render fee, no per character billing, no seat count and no cap. The only limit is your own hardware.",
+      "id": "s38"
+    },
+    {
       "layout": "cta",
-      "kicker": "Where To Start",
-      "headline": "Start with the computers [ACCENT]you already own[/ACCENT]",
-      "sub": "Download the folder. Run one line on the main machine, one line on each helper. That is the setup.",
-      "button": "Get Webinar Forge \u2014 $297",
-      "url": "cash.bot",
-      "footnote": "Run out of machines? Rent one: https://my.solidvps.com/aff.php?aff=579",
-      "narration": "So that is the whole of it. You get the tool that made this video, and you get the thing that runs it across as many computers as you care to give it, and that part costs you nothing extra. Start with what is already in your house. The desktop, the laptop, whatever is sitting there doing nothing useful. Download the folder, run one line on the main machine, run one line on each of the others, and you have finished setting up. If you ever get to the point where you have run out of machines, there is a link on the screen for renting one, and that is the only line in this entire presentation where you would spend money on hardware. Everything else, you already own. Go and use it."
+      "kicker": "Last Thing",
+      "headline": "The proof is [ACCENT]the thing you are watching[/ACCENT]",
+      "sub": "This video, this voice, and the page around it came out of one file and one sentence, on a computer nobody bills me for. Yours can too.",
+      "button": "Text To Buy",
+      "url": "(805) 453-3586",
+      "footnote": "Text (805) 453-3586 to buy.  \u00b7  Need more machines? https://my.solidvps.com/aff.php?aff=579",
+      "narration": "So here is where I will leave it with you. Every other sales page has to convince you that the thing actually works. I do not have to do that, because you have been staring straight at the output of it for the last twenty minutes. This video. This voice, which is mine, copied from about thirty seconds of me talking. The slide you are reading right now. And the whole page it is all sitting inside. Every bit of it came out of one file and one sentence, on a computer that nobody sends me a bill for. Three hundred and fifty four dollars a month to rent that, or two hundred and ninety seven dollars, one time, to own it. If you have got something worth selling and no webinar sitting in front of it, this is the shortest distance between those two facts. So text me. Eight zero five, four five three, three five eight six. And I will get you set up today, while you are still holding the thought.",
+      "id": "s39"
     }
   ],
   "landing": {
