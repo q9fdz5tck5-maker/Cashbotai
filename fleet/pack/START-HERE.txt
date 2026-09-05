@@ -1,0 +1,94 @@
+================================================================
+  START HERE
+================================================================
+
+WHAT THIS IS
+
+  A way to put several computers to work for you at once.
+
+  You end up with one MAIN computer and any number of HELPER
+  computers. You talk to the main one. The helpers do the work --
+  making videos, speaking words out loud, writing and sending
+  email, drawing pictures.
+
+  The helpers can be rented computers, or an old desktop sitting
+  in your closet, or both at the same time.
+
+
+WHAT YOU NEED
+
+  1. One computer with a web address that points at it.
+     This is the main one. A cheap rented computer is fine.
+
+  2. Any number of other computers. These need nothing special.
+     They do not need a web address. They do not need you to
+     change anything on your internet box at home.
+
+
+HOW TO SET IT UP
+
+  Step 1 -- on the MAIN computer, type this:
+
+      sudo bash setup.sh
+
+  It asks you two things and then does the rest. When it
+  finishes it saves a file called MY-FLEET-DETAILS.txt and
+  shows you one line to copy.
+
+  Step 2 -- on each HELPER computer, paste that line.
+
+  That is the whole setup. Repeat step 2 for every computer you
+  want to add. There is no step 3.
+
+
+HOW TO TELL IT WORKED
+
+  On the main computer, type:
+
+      fleet status
+
+  Every computer you added should be in the list, saying
+  "online". If one is missing, wait half a minute and look
+  again -- they check in every thirty seconds.
+
+  If something is wrong, type this instead:
+
+      fleet preflight
+
+  It tells you which of the three usual problems you have,
+  in words, instead of making you guess.
+
+
+A FEW THINGS WORTH KNOWING
+
+  You do not have to leave anything open. Once set up, each
+  computer works quietly in the background, and starts itself
+  again if the computer is restarted or loses power.
+
+  Nothing connects IN to your helper computers. They reach out
+  to the main one. That is why there is nothing to open up or
+  forward, and why a computer on your home network works just
+  as well as a rented one.
+
+  Your codes are in MY-FLEET-DETAILS.txt on the main computer.
+  Treat that file like a password. Anyone who has it can send
+  work to your computers.
+
+
+NEED COMPUTERS TO RUN THIS ON
+
+  This is where I get mine:
+
+      https://my.solidvps.com/aff.php?aff=579
+
+  That is an affiliate link -- if you sign up through it, it
+  supports this project at no extra cost to you.
+
+
+MORE DETAIL
+
+  TECHNICAL.md, if you want to know exactly how it works or
+  you want to add your own kind of work.
+
+  cash.bot
+================================================================

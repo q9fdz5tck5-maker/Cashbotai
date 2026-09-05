@@ -1,0 +1,13 @@
+# Real fleet credentials and inventory -- never commit these.
+fleet.servers.json
+fleet-agent.json
+fleet-data/
+fleet-work/
+*.db
+*.db-wal
+*.db-shm
+
+# Build output
+dist/
+__pycache__/
+*.pyc
