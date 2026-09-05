@@ -1,0 +1,173 @@
+{
+  "title": "What this is",
+  "engine": "piper",
+  "resolution": "1920x1080",
+  "theme": "dark",
+  "sections": [
+    {
+      "title": "Your computers, working for you",
+      "subtitle": "cash.bot",
+      "narration": "Let me show you what this is, in about three minutes, with no technical words."
+    },
+    {
+      "title": "Right now, you have one computer",
+      "bullets": [
+        "It does one thing at a time.",
+        "When it is busy, you wait.",
+        "When you close the lid, it stops."
+      ],
+      "narration": "Right now you probably have one computer. It does one thing at a time. When it is busy, you wait. And when you close the lid, everything stops."
+    },
+    {
+      "kind": "diagram",
+      "title": "Every computer runs a free A I",
+      "boxes": [
+        {
+          "label": "Email",
+          "note": "writes it and sends it"
+        },
+        {
+          "label": "Video",
+          "note": "makes videos"
+        },
+        {
+          "label": "Pictures",
+          "note": "draws images"
+        },
+        {
+          "label": "Voice",
+          "note": "speaks out loud"
+        }
+      ],
+      "caption": "One computer per job. Every one of them free. Every one of them good at exactly one thing.",
+      "narration": "Now picture four computers instead. Every one of them runs a free A I. And each one is set up to be very good at exactly one job. One writes your email and sends it. One makes videos. One draws pictures. One speaks out loud."
+    },
+    {
+      "kind": "diagram",
+      "title": "You do not have to learn any of it",
+      "person": true,
+      "boxes": [
+        {
+          "label": "You just talk to Claude",
+          "note": "in plain words, like sending a text message"
+        }
+      ],
+      "caption": "No buttons. No settings. No commands to remember.",
+      "narration": "Here is the part that matters. You do not have to learn any of it. You talk to Claude, in plain words, like sending a text message. There are no buttons to find and nothing to remember."
+    },
+    {
+      "kind": "diagram",
+      "title": "Claude picks the right computer",
+      "person": true,
+      "boxes": [
+        {
+          "label": "Claude",
+          "note": "works out who should do it"
+        },
+        {
+          "label": "Your computers",
+          "note": "get on with it"
+        }
+      ],
+      "arrows": "right",
+      "caption": "You say what you want. It decides which machine does the work.",
+      "narration": "You say what you want. Claude works out which of your computers should do it, and sends the work there. You never pick. That is the whole reason for having them specialise in the first place."
+    },
+    {
+      "kind": "diagram",
+      "title": "And out comes the work",
+      "outputs": [
+        "Your new website",
+        "A finished video, with a voice reading it",
+        "Pictures to go with it",
+        "Emails going out to your list"
+      ],
+      "caption": "The computers do the work. You look at the result.",
+      "narration": "And out comes the work. Number one, your new website. Number two, a finished video, with a voice reading it out. Number three, pictures to go with it. And number four, emails going out to your list. The computers do the work. You just look at the result."
+    },
+    {
+      "kind": "diagram",
+      "title": "Then it feeds itself",
+      "boxes": [
+        {
+          "label": "Website",
+          "note": "gets made"
+        },
+        {
+          "label": "Video",
+          "note": "about the website"
+        },
+        {
+          "label": "Emails",
+          "note": "sharing the video"
+        }
+      ],
+      "arrows": "loop",
+      "loop_label": "what comes out becomes what goes in next",
+      "narration": "Then the good part. What comes out of one becomes what goes into the next. The website gets made. A video gets made about the website. Emails go out sharing the video. And it keeps going around."
+    },
+    {
+      "title": "Why this is easy to set up",
+      "bullets": [
+        "The computers call out to you. Nothing calls in to them.",
+        "So there is nothing to open up on your internet box at home.",
+        "An old desktop in your closet works. So does a rented computer.",
+        "If one restarts, it joins back by itself."
+      ],
+      "narration": "Here is why it is easy. The computers reach out to you. Nothing reaches in to them. So there is nothing to open up or change on your internet box at home. An old desktop sitting in your closet works fine. So does a rented computer. And if one of them restarts, it joins back by itself."
+    },
+    {
+      "title": "What is in the download",
+      "bullets": [
+        "START HERE dot T X T -- one page, plain words.",
+        "One command that sets up your main computer.",
+        "One line you paste on every other computer.",
+        "The part that connects it all to your own Claude app."
+      ],
+      "narration": "So what do you actually get. A file called START HERE, which is one page, in plain words. One command that sets up your main computer. One line you paste on every other computer you want to add. And the piece that connects the whole thing to your own Claude app."
+    },
+    {
+      "kind": "diagram",
+      "title": "Three steps, and each one is one line",
+      "boxes": [
+        {
+          "label": "1. Main",
+          "note": "run setup on one computer"
+        },
+        {
+          "label": "2. Helpers",
+          "note": "paste one line on each"
+        },
+        {
+          "label": "3. Claude",
+          "note": "start it in that folder"
+        }
+      ],
+      "arrows": "right",
+      "caption": "Then you type what you want, and it happens.",
+      "narration": "Setting it up is three steps, and every one of them is a single line you paste. Step one. Run the setup on your main computer. Step two. Paste the line it gives you on every helper computer. Step three. Start Claude in that same folder. It finds your computers by itself, because the download already has that part filled in. Then you type what you want, and it happens."
+    },
+    {
+      "title": "One more thing",
+      "subtitle": "This video was made by the thing it just described.",
+      "bullets": [
+        "The words were read out loud by one of the computers.",
+        "The slides were drawn by one of the computers.",
+        "Nobody opened a video editor."
+      ],
+      "narration": "One more thing. This video was made by the thing it just described. The words you are hearing were read out loud by one of the computers. The slides you are looking at were drawn by one of the computers. Nobody opened a video editor."
+    },
+    {
+      "title": "Want to try it",
+      "bullets": [
+        "You need one computer the others can reach.",
+        "Then add as many helpers as you like.",
+        "Need computers? This is where I get mine:",
+        "https://my.solidvps.com/aff.php?aff=579"
+      ],
+      "subtitle": "cash.bot",
+      "duration": 16,
+      "narration": "Want to try it. You need one computer that the others can reach, and then you add as many helpers as you like. If you need computers to run this on, the link on this slide is where I get mine. Thanks for watching."
+    }
+  ]
+}

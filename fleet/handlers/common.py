@@ -1,5 +1,6 @@
 """Shared helpers for handlers."""
 
+import json
 import os
 import shutil
 import subprocess
@@ -54,3 +55,25 @@ def safe_join(base, *parts):
     if target != base_abs and not target.startswith(base_abs + os.sep):
         raise HandlerError("path %r escapes the job working directory" % (parts,))
     return target
+
+
+def media_duration(path):
+    """Length of an audio or video file in seconds, via ffprobe.
+
+    Timing a slideshow against its narration is the one measurement the
+    webinar pipeline cannot do without, so a missing ffprobe is named as such
+    rather than surfacing as a KeyError three frames deeper.
+    """
+    if shutil.which("ffprobe") is None:
+        raise HandlerError(
+            "ffprobe is needed to measure %s. Install ffmpeg (which ships "
+            "ffprobe) on this worker." % os.path.basename(path)
+        )
+    raw = run_command([
+        "ffprobe", "-v", "quiet", "-print_format", "json",
+        "-show_format", path,
+    ], timeout=120)
+    try:
+        return float(json.loads(raw)["format"]["duration"])
+    except (ValueError, KeyError) as exc:
+        raise HandlerError("could not read a duration from %s: %s" % (path, exc))

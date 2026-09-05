@@ -13,7 +13,8 @@ own message rather than a generic "render failed".
 import json
 import os
 
-from .common import HandlerError, require_binary, run_command, safe_join
+from .common import (HandlerError, media_duration, require_binary,
+                     run_command, safe_join)
 
 DEFAULT_VIDEO_ARGS = ["-c:v", "libx264", "-pix_fmt", "yuv420p", "-crf", "20",
                       "-preset", "medium"]
@@ -75,23 +76,51 @@ def _slideshow(payload, ctx):
     entries.append("file '%s'" % ctx.fetch(slides[-1].get("image")).replace("'", r"\'"))
 
     list_path = safe_join(ctx.workdir, "slides.ffconcat")
+
+    audio_path = ctx.fetch(audio_spec) if audio_spec else None
+
+    # The finished video runs for as long as the pictures do -- no longer, and
+    # never less.
+    #
+    # `-shortest` used to decide this, and it got both halves wrong. Ending on
+    # whichever stream finished first meant a closing slide asked to hold for
+    # sixteen seconds against thirteen seconds of narration was cut back to
+    # thirteen, so the link it existed to show came off screen early; and audio
+    # that outran the pictures had its tail dropped, losing the last words
+    # spoken with nothing to say so. Both failures are silent -- the render
+    # succeeds and the file looks fine.
+    #
+    # So: hold the last slide long enough to cover any audio overrun, pad the
+    # audio with silence to cover any picture overrun, and cut at exactly the
+    # picture length. Whichever way the two disagree, nothing is lost.
+    if audio_path:
+        narration = media_duration(audio_path)
+        if narration > total + 0.05:
+            ctx.log("narration runs %.2fs past the last slide; holding it "
+                    "there rather than cutting the audio" % (narration - total))
+            extra = narration - total
+            entries[-2] = entries[-2].rsplit("\nduration ", 1)[0] + (
+                "\nduration %s" % (float(slides[-1].get("duration", 5)) + extra))
+            total = narration
+
     with open(list_path, "w", encoding="utf-8") as handle:
         handle.write("ffconcat version 1.0\n" + "\n".join(entries) + "\n")
 
     args = ["ffmpeg", "-y", "-f", "concat", "-safe", "0", "-i", list_path]
-    if audio_spec:
-        args += ["-i", ctx.fetch(audio_spec)]
+    if audio_path:
+        args += ["-i", audio_path]
     args += [
         "-vf", "scale=%s:force_original_aspect_ratio=decrease,"
                "pad=%s:(ow-iw)/2:(oh-ih)/2,fps=%d"
                % (resolution.replace("x", ":"), resolution.replace("x", ":"), fps),
     ]
     args += DEFAULT_VIDEO_ARGS
-    if audio_spec:
+    if audio_path:
         args += DEFAULT_AUDIO_ARGS
-        # End on whichever of picture or narration finishes first, so a slightly
-        # long audio track does not leave a frozen frame at the end.
-        args += ["-shortest"]
+        # apad makes the audio stream endless; -t then cuts both streams at the
+        # picture length. Without apad, -t would leave the video running past
+        # the end of a short narration with no audio stream to mux.
+        args += ["-af", "apad", "-t", "%.3f" % total]
     args.append(output)
 
     ctx.log("slideshow: %d slides, %.1fs of picture" % (len(slides), total))

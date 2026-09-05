@@ -25,6 +25,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
+from fleetlib import mcp as mcp_server            # noqa: E402
 from fleetlib import models                      # noqa: E402
 from fleetlib.autoscale import Autoscaler        # noqa: E402
 from fleetlib.models import Job                  # noqa: E402
@@ -89,6 +90,27 @@ class HubState:
         self.started_at = time.time()
         self._stop = threading.Event()
         self._maintenance = None
+        # Filled in by make_server once the socket exists. The MCP tools reach
+        # the fleet the same way any other client does -- over HTTP with the
+        # admin token -- so there is exactly one code path to the hub's API and
+        # no second, privileged one that could drift out of step with it.
+        self.self_url = None
+        self._mcp_context = None
+        self._mcp_lock = threading.Lock()
+
+    def mcp_context(self):
+        with self._mcp_lock:
+            if self._mcp_context is None:
+                self._mcp_context = mcp_server.build_context(
+                    hub_url=self.self_url,
+                    token=self.config.admin_token,
+                    # The enrolment token lets `add_computer` hand back a line
+                    # that is ready to paste. Whoever reached this endpoint
+                    # already presented the admin token, which can do strictly
+                    # more than enrol a machine.
+                    enroll_token=self.config.enroll_token,
+                )
+            return self._mcp_context
 
     def start_maintenance(self):
         self._maintenance = threading.Thread(
@@ -157,6 +179,16 @@ class HubHandler(BaseHTTPRequestHandler):
             self.wfile.write(body)
         except (BrokenPipeError, ConnectionResetError):
             pass
+
+    def _no_content(self):
+        """202 with a genuinely empty body.
+
+        202 is *not* in BODYLESS_STATUSES and must not be: unlike 204 and 304
+        it is allowed to carry a body, so a client that gets no Content-Length
+        reads until the connection closes -- which on a keep-alive connection
+        means it hangs until the socket times out. The length has to be stated.
+        """
+        self._send(202, b"", raw=True)
 
     def _error(self, status, message):
         self._send(status, {"error": message})
@@ -262,6 +294,16 @@ class HubHandler(BaseHTTPRequestHandler):
                 "uptime_seconds": round(time.time() - self.state.started_at, 1),
             })
 
+        if parts == ["mcp"]:
+            # The Streamable HTTP transport lets a server decline the optional
+            # server-to-client stream, and says to answer 405 when it does.
+            # This hub has nothing to push, so every exchange is one POST.
+            self.send_response(405)
+            self.send_header("Allow", "POST")
+            self.send_header("Content-Length", "0")
+            self.end_headers()
+            return None
+
         if parts == ["v1", "agents"]:
             if not self._require_admin():
                 return None
@@ -358,6 +400,9 @@ class HubHandler(BaseHTTPRequestHandler):
         parts = self._path_parts()
         store = self.state.store
 
+        if parts == ["mcp"]:
+            return self._mcp()
+
         if parts == ["v1", "agents", "enroll"]:
             return self._enroll()
 
@@ -411,6 +456,42 @@ class HubHandler(BaseHTTPRequestHandler):
                 return self._upload_artifact(agent, job_id)
 
         return self._error(404, "no such endpoint: %s" % self.path)
+
+    def _mcp(self):
+        """Serve the Model Context Protocol over one HTTP POST.
+
+        This is what lets the fleet be added to the Claude app as a connector,
+        so a phone can drive the machines with nothing installed on it. The
+        same tools are served over stdio by ``fleet_mcp.py``; both call
+        ``fleetlib.mcp.dispatch``, so neither can grow a tool the other lacks.
+
+        A notification carries no id and gets no response body -- 202 with an
+        empty body is what the transport specifies, and answering one with a
+        result makes a client wait for a reply to a message it never sent.
+        """
+        if not self._require_admin():
+            return None
+        try:
+            message = json.loads(self._read_body().decode("utf-8") or "null")
+        except ValueError as exc:
+            return self._send(400, {
+                "jsonrpc": "2.0", "id": None,
+                "error": {"code": mcp_server.PARSE_ERROR,
+                          "message": "invalid JSON: %s" % exc},
+            })
+
+        ctx = self.state.mcp_context()
+        if isinstance(message, list):
+            replies = [r for r in (mcp_server.dispatch(m, ctx) for m in message)
+                       if r is not None]
+            if not replies:
+                return self._no_content()
+            return self._send(200, replies)
+
+        response = mcp_server.dispatch(message, ctx)
+        if response is None:
+            return self._no_content()
+        return self._send(200, response)
 
     def _enroll(self):
         token = self._bearer()
@@ -541,6 +622,10 @@ def make_server(config, bind, port):
     ThreadingHTTPServer.allow_reuse_address = True
     httpd = ThreadingHTTPServer((bind, port), handler)
     httpd.daemon_threads = True
+    # Loopback, not the public name: the MCP tools must reach this process
+    # whether or not DNS resolves yet and whether or not a TLS terminator sits
+    # in front of it.
+    state.self_url = "http://127.0.0.1:%d" % httpd.server_address[1]
     return httpd, state
 
 

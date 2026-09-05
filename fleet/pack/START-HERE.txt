@@ -4,15 +4,18 @@
 
 WHAT THIS IS
 
-  A way to put several computers to work for you at once.
+  A way to put several computers to work for you at once, and
+  to tell them what to do by typing in plain English.
 
   You end up with one MAIN computer and any number of HELPER
-  computers. You talk to the main one. The helpers do the work --
-  making videos, speaking words out loud, writing and sending
-  email, drawing pictures.
+  computers. You talk to the main one. The helpers do the work
+  -- making videos, speaking words out loud, writing and
+  sending email, drawing pictures.
 
-  The helpers can be rented computers, or an old desktop sitting
-  in your closet, or both at the same time.
+  The helpers can be rented computers, or an old desktop in
+  your closet, or both at the same time.
+
+  There are three steps. Each one is a single line you paste.
 
 
 WHAT YOU NEED
@@ -20,28 +23,61 @@ WHAT YOU NEED
   1. One computer with a web address that points at it.
      This is the main one. A cheap rented computer is fine.
 
-  2. Any number of other computers. These need nothing special.
-     They do not need a web address. They do not need you to
-     change anything on your internet box at home.
+  2. Any number of other computers. These need nothing
+     special. They do not need a web address. They do not
+     need you to change anything on your internet box at home.
+
+  If you do not have either yet, open GET-COMPUTERS.txt. It
+  walks through buying them and pointing a web address at one.
 
 
-HOW TO SET IT UP
+----------------------------------------------------------------
+  STEP 1 -- SET UP THE MAIN COMPUTER
+----------------------------------------------------------------
 
-  Step 1 -- on the MAIN computer, type this:
+  On the main computer, type this:
 
       sudo bash setup.sh
 
   It asks you two things and then does the rest. When it
-  finishes it saves a file called MY-FLEET-DETAILS.txt and
-  shows you one line to copy.
+  finishes it saves two files you will want:
 
-  Step 2 -- on each HELPER computer, paste that line.
+      MY-FLEET-DETAILS.txt   your codes
+      CONNECT-CLAUDE.txt     how to hook Claude up to this
 
-  That is the whole setup. Repeat step 2 for every computer you
-  want to add. There is no step 3.
+  and it shows you one line to copy.
 
 
-HOW TO TELL IT WORKED
+----------------------------------------------------------------
+  STEP 2 -- ADD A HELPER
+----------------------------------------------------------------
+
+  Go to another computer. Unpack this same zip there. Paste
+  the line step 1 gave you.
+
+  Repeat for every computer you want to add. Same line every
+  time.
+
+
+----------------------------------------------------------------
+  STEP 3 -- TELL IT WHAT TO DO
+----------------------------------------------------------------
+
+  Open USE-WITH-CLAUDE.txt.
+
+  It sets up Claude on your main computer so you can type
+
+      make me a two minute video explaining what my shop does
+
+  and get one back. That page is short and it is the reason
+  all of this exists. Do not skip it.
+
+  There is no step 4.
+
+
+----------------------------------------------------------------
+  HOW TO TELL IT WORKED
+----------------------------------------------------------------
 
   On the main computer, type:
 
@@ -59,7 +95,9 @@ HOW TO TELL IT WORKED
   in words, instead of making you guess.
 
 
-A FEW THINGS WORTH KNOWING
+----------------------------------------------------------------
+  A FEW THINGS WORTH KNOWING
+----------------------------------------------------------------
 
   You do not have to leave anything open. Once set up, each
   computer works quietly in the background, and starts itself
@@ -74,8 +112,14 @@ A FEW THINGS WORTH KNOWING
   Treat that file like a password. Anyone who has it can send
   work to your computers.
 
+  Nothing in this zip is tied to anybody else. There are no
+  codes in it and no list of somebody else's machines. The
+  fleet you build is yours alone.
 
-NEED COMPUTERS TO RUN THIS ON
+
+----------------------------------------------------------------
+  NEED COMPUTERS TO RUN THIS ON
+----------------------------------------------------------------
 
   This is where I get mine:
 
@@ -84,11 +128,19 @@ NEED COMPUTERS TO RUN THIS ON
   That is an affiliate link -- if you sign up through it, it
   supports this project at no extra cost to you.
 
+  GET-COMPUTERS.txt says which size to pick for what.
 
-MORE DETAIL
 
-  TECHNICAL.md, if you want to know exactly how it works or
-  you want to add your own kind of work.
+----------------------------------------------------------------
+  EVERYTHING IN THIS ZIP
+----------------------------------------------------------------
+
+  START-HERE.txt       this page
+  USE-WITH-CLAUDE.txt  typing in plain English to run it
+  GET-COMPUTERS.txt    buying machines, pointing a name at one
+  setup.sh             the one command, for step 1 and step 2
+  TECHNICAL.md         how it works underneath, and how to
+                       add your own kinds of work
 
   cash.bot
 ================================================================

@@ -177,6 +177,115 @@ EOF
     chmod 600 "$DETAILS"
     chown "${SUDO_USER:-root}" "$DETAILS" 2>/dev/null || true
 
+    # ------------------------------------------------------------------
+    # Settings file.
+    #
+    # Every document here tells people to type `fleet status`, and Claude
+    # launches the MCP server itself without a login shell. Both of those
+    # need the hub address and the code without anybody exporting anything,
+    # so they are written to one file that both read.
+    SETTINGS="$TARGET_HOME/.fleet.env"
+    cat > "$SETTINGS" <<EOF
+FLEET_HUB=https://$DOMAIN
+FLEET_TOKEN=$ADMIN
+EOF
+    chmod 600 "$SETTINGS"
+    chown "${SUDO_USER:-root}" "$SETTINGS" 2>/dev/null || true
+
+    # ------------------------------------------------------------------
+    # The `fleet` command.
+    #
+    # Without this, every instruction that says "type fleet status" is wrong:
+    # bootstrap_hub.sh installs the code but puts nothing on PATH. The wrapper
+    # sources the settings file so the command works in a terminal that was
+    # already open, which is the one a person is standing in right now.
+    if [[ -w /usr/local/bin ]] || mkdir -p /usr/local/bin 2>/dev/null; then
+        cat > /usr/local/bin/fleet <<EOF
+#!/usr/bin/env bash
+# Talk to your fleet. Installed by setup.sh.
+for f in "\$HOME/.fleet.env" "$SETTINGS" /etc/fleet.env; do
+    if [[ -r "\$f" ]]; then
+        set -a; . "\$f"; set +a
+        break
+    fi
+done
+exec python3 "$HERE/fleet.py" "\$@"
+EOF
+        chmod 755 /usr/local/bin/fleet
+    fi
+
+    # ------------------------------------------------------------------
+    # How to point Claude at this.
+    CLAUDE_NOTE="$TARGET_HOME/CONNECT-CLAUDE.txt"
+    cat > "$CLAUDE_NOTE" <<EOF
+================================================================
+  CONNECTING CLAUDE TO YOUR COMPUTERS
+================================================================
+
+Read USE-WITH-CLAUDE.txt first. This file is the same thing
+with your own details already filled in.
+
+
+ON THIS COMPUTER  (the way that works)
+----------------------------------------------------------------
+
+  1. Install Claude Code, and sign in:
+
+         curl -fsSL https://claude.ai/install.sh | bash
+         claude
+
+     Log in through the browser when it asks, then type
+     /exit.
+
+  2. Go to the folder you unpacked the zip into:
+
+         cd $HERE
+
+  3. Start Claude there:
+
+         claude
+
+     It will notice the .mcp.json file and ask whether to
+     trust it. Say yes.
+
+  4. Type:  which of my computers are on?
+
+  If Claude says it has no tools, run this once in that
+  folder and start it again:
+
+      claude mcp add fleet -- python3 fleet_mcp.py
+
+  To test without Claude at all:
+
+      python3 $HERE/fleet_mcp.py --self-test
+
+  A line starting with "OK:" means the server is fine.
+
+
+FROM YOUR PHONE  (worth trying, not yet proven)
+----------------------------------------------------------------
+
+  Your main computer answers Claude directly at:
+
+      https://$DOMAIN/mcp
+
+  and your private code is the password:
+
+      $ADMIN
+
+  In the Claude app, add that as a custom connector. The
+  address speaks the right language -- that much is tested.
+  Whether the app will accept a plain code rather than
+  insisting on a full sign-in is the part you will find out
+  by trying. Nothing breaks if it does not.
+
+  Treat this file like a password. That code can run work on
+  every computer you own.
+================================================================
+EOF
+    chmod 600 "$CLAUDE_NOTE"
+    chown "${SUDO_USER:-root}" "$CLAUDE_NOTE" 2>/dev/null || true
+
     rule
     say "  Your main computer is ready."
     rule
@@ -191,6 +300,21 @@ EOF
     say "    sudo bash setup.sh --helper --hub https://$DOMAIN --code $ENROLL"
     say
     say "You can add as many helpers as you like. Same line every time."
+    say
+    rule
+    say "  Then -- how to actually tell it what to do"
+    rule
+    say
+    say "Open USE-WITH-CLAUDE.txt. It sets Claude up on this computer so"
+    say "you can type what you want in plain English and get it back."
+    say
+    say "Your own details are already filled in here:"
+    say
+    say "    $CLAUDE_NOTE"
+    say
+    say "You can also check on things yourself at any time with:"
+    say
+    say "    fleet status"
     rule
     exit 0
 fi

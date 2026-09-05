@@ -1,0 +1,192 @@
+================================================================
+  USING YOUR COMPUTERS BY TALKING TO CLAUDE
+================================================================
+
+You already have computers. This page is how you tell them
+what to do without learning any commands.
+
+You end up typing things like:
+
+    "Which of my computers are on?"
+    "Make me a two minute video explaining what my shop does."
+    "Read this out loud in a voice and save it as intro.wav."
+
+and they do it.
+
+
+----------------------------------------------------------------
+  BEFORE YOU START
+----------------------------------------------------------------
+
+You need to have finished START-HERE.txt already -- the main
+computer set up, and at least one helper joined. If
+
+    fleet status
+
+shows a computer saying "online", you are ready.
+
+
+----------------------------------------------------------------
+  WAY 1 -- ON THE MAIN COMPUTER  (the one that definitely works)
+----------------------------------------------------------------
+
+Step 1. Install Claude Code on the main computer.
+
+    curl -fsSL https://claude.ai/install.sh | bash
+
+  Then run it once and sign in:
+
+    claude
+
+  It asks you to log in through your browser. Do that, then
+  type /exit to come back to the terminal.
+
+
+Step 2. Go to the folder you unpacked this zip into.
+
+    cd ~/cashbot-fleet
+
+  (If you unpacked it somewhere else, go there instead. It is
+  the folder that has START-HERE.txt in it.)
+
+
+Step 3. Start Claude there.
+
+    claude
+
+  The first time, it notices the file called .mcp.json sitting
+  in that folder and asks whether to trust it. Say yes. That
+  file is what connects Claude to your computers, and it came
+  in the zip -- it is not something you have to write.
+
+
+Step 4. Ask it something.
+
+    Type:  which of my computers are on?
+
+That is it. There is no step 5.
+
+
+----------------------------------------------------------------
+  WHAT "IT WORKED" LOOKS LIKE
+----------------------------------------------------------------
+
+You type:
+
+    which of my computers are on?
+
+Claude answers with something shaped like this:
+
+    I'll check your fleet.
+
+    > list_computers
+
+    2 computers:
+
+      video-01    video,general    online, 2 slot(s), last seen 8s ago
+      voice-01    audio            online, 1 slot(s), last seen 3s ago
+
+    Both are online and idle.
+
+The important part is the line starting with ">". That is
+Claude actually reaching your machines. If you see it, it
+worked.
+
+
+----------------------------------------------------------------
+  IF IT DID NOT WORK
+----------------------------------------------------------------
+
+Ask Claude, in these words:
+
+    check my connection
+
+It will run a check that tells you which of three things is
+wrong, in plain English: your computers cannot be reached at
+all, the secure connection is not trusted, or your code is
+wrong. It will not make you guess.
+
+If Claude says it has no tools at all, it did not pick up the
+.mcp.json file. Two things to check, in order:
+
+  1. You are in the right folder. Type ls and make sure you
+     can see START-HERE.txt in the list.
+
+  2. Type this, which sets it up directly:
+
+         claude mcp add fleet -- python3 fleet_mcp.py
+
+     Then start claude again.
+
+If you want to test the connection with Claude out of the
+picture entirely, type:
+
+    python3 fleet_mcp.py --self-test
+
+If that prints a line beginning with "OK:", the file is fine
+and the problem is in how Claude was pointed at it.
+
+
+----------------------------------------------------------------
+  THINGS TO TRY
+----------------------------------------------------------------
+
+    which of my computers are on?
+
+    read this out loud and save it as intro.wav:
+    "Welcome to my shop. Here is what we do."
+
+    make me a short video explaining what my business does.
+    three or four slides. keep the words simple.
+
+    what jobs have run recently?
+
+    I want to add another computer -- what do I paste on it?
+
+Claude works out which machine should do what. You do not
+pick. That is the whole point of having them specialise.
+
+
+----------------------------------------------------------------
+  WAY 2 -- FROM YOUR PHONE
+----------------------------------------------------------------
+
+Your main computer also answers Claude directly over the web,
+at the address:
+
+    https://YOUR-MAIN-COMPUTER/mcp
+
+so the Claude app can be pointed at it as a "custom connector"
+and then you can drive your machines from your phone with
+nothing installed on it. Your private code is the password.
+
+CONNECT-CLAUDE.txt, saved on your main computer when you set
+it up, has that address with your real details filled in.
+
+Be straight with yourself about this one: the address works
+and speaks the right language -- that part is tested. Whether
+the Claude app on your phone will accept a plain code as the
+password, rather than insisting on a full sign-in flow, is
+something you will find out by trying it. Way 1 is the one to
+rely on. Way 2 is the one to try on a slow afternoon.
+
+
+----------------------------------------------------------------
+  WHAT CLAUDE CAN ACTUALLY DO HERE
+----------------------------------------------------------------
+
+  list_computers     see every machine and whether it is on
+  check_connection   diagnose why something is not working
+  speak_text         say words out loud in an AI voice
+  make_video         build a whole narrated video from words
+  make_slide         draw one slide, to check how it looks
+  check_job          see whether something finished
+  list_jobs          see what has run lately
+  save_result        write a finished file to disk
+  cancel_job         stop something
+  add_computer       get the line to paste on a new machine
+  run_job            anything else
+
+You never type these names. Claude picks them. They are
+listed here only so you know what it is allowed to touch.
+================================================================

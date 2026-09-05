@@ -15,6 +15,10 @@ Timing note: when a section has no explicit duration, the slide is held for
 exactly as long as its narration runs. That is the behaviour you almost always
 want and the reason this runs as one job rather than two -- the render needs
 the measured audio length, which only exists after the speech is generated.
+
+An explicit ``duration`` can hold a slide *longer* than its narration -- to
+leave a closing link on screen after the words stop -- but never shorter. See
+the comment in ``run`` for why a short slide corrupts everything after it.
 """
 
 import os
@@ -22,7 +26,8 @@ import os
 from . import render as render_handler
 from . import slides as slide_maker
 from . import tts as tts_handler
-from .common import HandlerError, require_binary, run_command, safe_join
+from .common import (HandlerError, media_duration, require_binary,
+                     run_command, safe_join)
 
 
 def run(payload, ctx):
@@ -69,11 +74,25 @@ def run(payload, ctx):
         else:
             duration = None
 
-        # An explicit duration always wins; otherwise follow the narration.
+        # Without an explicit duration, the slide follows its narration.
         slide_duration = section.get("duration")
         if slide_duration is None:
             slide_duration = duration if duration else 5.0
         slide_duration = float(slide_duration)
+
+        # An explicit duration may lengthen a slide but never shorten it below
+        # its own narration. The audio track is one continuous piece spanning
+        # every slide, so a slide cut short does not just clip its own voice --
+        # it slides every later slide out of sync with the words being spoken
+        # over it, and the tail of the track is dropped entirely when the video
+        # ends first. That failure is silent: the render succeeds and only the
+        # last seconds of speech go missing.
+        if duration and slide_duration < duration:
+            ctx.log(
+                "section %d asked for %.1fs but its narration runs %.1fs; "
+                "holding the slide for the narration instead"
+                % (index + 1, slide_duration, duration))
+            slide_duration = duration
         total_narration += duration or 0.0
         slides.append({"image": image, "duration": slide_duration})
 
@@ -145,18 +164,8 @@ class _SilentArtifacts:
 
 
 def _audio_duration(path):
-    import json
-    import shutil
-    if shutil.which("ffprobe") is None:
-        raise HandlerError(
-            "ffprobe is needed to time narration against slides. "
-            "Install ffmpeg (which ships ffprobe) on this worker."
-        )
-    raw = run_command([
-        "ffprobe", "-v", "quiet", "-print_format", "json",
-        "-show_format", path,
-    ], timeout=120)
-    return float(json.loads(raw)["format"]["duration"])
+    """Kept as a name of its own so tests can stub the measurement out."""
+    return media_duration(path)
 
 
 def _join_audio(parts, ctx):

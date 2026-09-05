@@ -1,0 +1,90 @@
+================================================================
+  GETTING COMPUTERS TO RUN THIS ON
+================================================================
+
+You need at least one computer with a web address. Everything
+after that is optional and makes it faster.
+
+
+----------------------------------------------------------------
+  WHAT YOU ACTUALLY NEED
+----------------------------------------------------------------
+
+  THE MAIN COMPUTER -- one, and only one.
+    This is the one that needs a web address pointing at it.
+    It keeps the list of work. It does not do the work, so it
+    does not need to be powerful. The cheapest thing on the
+    list is fine.
+
+  HELPER COMPUTERS -- as many as you like, including none
+    at the start.
+    These need nothing. No web address. No changes to your
+    internet box at home. An old desktop in a closet counts.
+    A laptop counts. A rented computer counts.
+
+  Helpers for making videos want more power. Helpers for
+  speaking out loud barely need any.
+
+
+----------------------------------------------------------------
+  WHERE I GET MINE
+----------------------------------------------------------------
+
+      https://my.solidvps.com/aff.php?aff=579
+
+  That is an affiliate link. If you sign up through it, it
+  supports this project, and it costs you nothing extra.
+
+  What to pick:
+
+    For your MAIN computer -- the smallest plan they sell.
+    It is a traffic cop, not a workhorse.
+
+    For a HELPER that makes videos -- more processor cores is
+    the thing that matters. More cores, faster videos. It is
+    close to a straight line.
+
+    For a HELPER that speaks -- again, the smallest plan.
+
+  Choose Ubuntu when it asks which system you want. That is
+  what the setup script expects.
+
+
+----------------------------------------------------------------
+  THE ONE FIDDLY BIT -- THE WEB ADDRESS
+----------------------------------------------------------------
+
+Only the main computer needs this, and only once.
+
+  1. When your main computer is created, you are given a
+     number that looks like 203.0.113.45. Write it down.
+
+  2. Go to wherever you bought your domain name. Find the
+     part called "DNS".
+
+  3. Add a record:
+
+         Type:   A
+         Name:   fleet          (or hub, or anything)
+         Value:  the number from step 1
+
+  4. Wait a few minutes. Then, on the main computer, run:
+
+         sudo bash setup.sh
+
+     and when it asks for the web address, give it the full
+     thing -- fleet.yourdomain.com -- not just "fleet".
+
+If you do not own a domain name yet, buy one first. They are
+a few dollars a year. Nothing else in this works without one,
+because the helpers have to have a name to call.
+
+
+----------------------------------------------------------------
+  YOU DO NOT HAVE TO DO IT ALL AT ONCE
+----------------------------------------------------------------
+
+One main computer and one helper is a working fleet. Add more
+when you get tired of waiting for something. Each new one is
+the same single line, pasted.
+================================================================
