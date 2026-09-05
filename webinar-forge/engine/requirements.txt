@@ -1,0 +1,10 @@
+# Voice cloning engine.
+# torch/torchaudio are the heavy part. On a CUDA server install the matching
+# CUDA build first (see https://pytorch.org/get-started/locally/), then this file.
+chatterbox-tts
+f5-tts
+torch
+torchaudio
+fastapi
+uvicorn[standard]
+python-multipart

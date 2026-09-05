@@ -1,0 +1,9 @@
+node_modules/
+output/*
+!output/.gitkeep
+engine/voices/*
+!engine/voices/README.md
+engine/.venv/
+engine/data/
+.env
+*.zip
